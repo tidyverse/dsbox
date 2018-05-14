@@ -1,0 +1,15 @@
+Package: dsbox
+Type: Package
+Title: Data Science Course in a Box
+Version: 0.1.0
+Authors@R: c(
+    person("Mine", "\u00C7etinkaya-Rundel", email = "mine@rstudio.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-6452-2420")),
+    person("RStudio", role = c("cph", "fnd"))
+    )
+Description: Datasets accompanying Data Science Course in a Box, an 
+    introductory data science course for students who are new to R, data 
+    science, and statistics.
+Encoding: UTF-8
+LazyData: true
+License: MIT + file LICENSE
+RoxygenNote: 6.0.1
