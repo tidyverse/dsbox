@@ -2,7 +2,8 @@
 library(tidyverse)
 library(here)
 
-ncbikecrash_raw <- read_csv2(here("data-raw", "ncbikecrash.csv"), na = c("NA", "", ".", "Unknown"))
+ncbikecrash_raw <- read_csv2(here("data-raw", "ncbikecrash.csv"),
+                             na = c("NA", "", ".", "Unknown", "#NULL!"))
 ncbikecrash_names <- read_csv(here("data-raw", "ncbikecrash-names.csv"))
 
 names(ncbikecrash_raw) <- ncbikecrash_names$new
@@ -24,3 +25,4 @@ ncbikecrash <- ncbikecrash_raw %>%
   )
 
 save(ncbikecrash, file = here("data", "ncbikecrash.rdata"))
+
