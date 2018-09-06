@@ -1,4 +1,4 @@
-﻿original,new
+original,new
 Geo Point,geo_point
 Geo Shape,geo_shape
 bikeace,bike_race
@@ -10,7 +10,7 @@ Locality,locality
 BikeSex,bike_sex
 DrvrVehTyp,driver_vehicle_type
 NumBikesNo,num_bikes_no
-BikeAlcDrg,bike_alc_drug
+BikeAlcDrg,bike_alcohol_drugs
 NumBikesBI,num_bikes_bi
 RteInvdCd,rte_invd_cd
 DrvrRace,driver_race
