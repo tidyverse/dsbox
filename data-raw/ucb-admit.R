@@ -9,9 +9,9 @@ ucbadmit <- read_csv(here("data-raw", "ucb-admit.csv"))
 ucbadmit <- ucbadmit %>%
   janitor::clean_names() %>%
   mutate(
-    admit = factor(admit),
+    admit = factor(admit, levels = c("Rejected", "Admitted")),
     gender = factor(gender),
     dept = factor(dept, ordered = TRUE)
   )
 
-use_data(ucbadmit)
+use_data(ucbadmit, overwrite = TRUE)
