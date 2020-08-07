@@ -14,7 +14,7 @@ LazyData: true
 Suggests:
     ggplot2,
     learnr
-License: MIT + file LICENSE
+License: CC BY 4.0
 URL: https://github.com/rstudio-education/dsbox
 BugReports: https://github.com/rstudio-education/dsbox/issues
 Depends: 

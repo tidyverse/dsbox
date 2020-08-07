@@ -16,7 +16,7 @@ A tibble with 11 rows and 6 variables:
 }
 }
 \source{
-https://www.aaup.org/sites/default/files/files/AAUP_Report_InstrStaff-75-11_apr2013.pdf
+\url{https://www.aaup.org/sites/default/files/files/AAUP_Report_InstrStaff-75-11_apr2013.pdf}
 }
 \usage{
 instructors
@@ -28,7 +28,7 @@ dataset released by the AAUP shows trends in instructional staff employees
 between 1975 and 2011. Values given are percentages of full-time tenured,
 full-time tenure-track, full-time non-tenure-track, and part-time faculty
 as well as graduate student employees for each year in the dataset. Values
-may not add up to 100\\% for a given year due to rounding errors.
+may not add up to 100\% for a given year due to rounding errors.
 }
 \examples{
 instructors
