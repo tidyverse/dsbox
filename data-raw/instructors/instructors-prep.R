@@ -6,8 +6,8 @@ library(usethis)
 
 # Read csv ---------------------------------------------------------------------
 
-edibnb <- read_csv(here::here("data-raw", "edibnb", "listings.csv"))
+instructors <- read_csv(here::here("data-raw", "instructors", "instructors.csv"))
 
 # Save data --------------------------------------------------------------------
 
-use_data(edibnb, overwrite = TRUE)
+use_data(instructors, overwrite = TRUE)

@@ -1,10 +1,14 @@
-# Read csv, save as rda.
+# Load packages ----------------------------------------------------------------
+
 library(tidyverse)
 library(here)
+library(usethis)
 
-ncbikecrash_raw <- read_csv2(here("data-raw", "ncbikecrash.csv"),
+# Read csv, bring in names, clean data -----------------------------------------
+
+ncbikecrash_raw <- read_csv2(here::here("data-raw", "ncbikecrash", "ncbikecrash.csv"),
                              na = c("NA", "", ".", "Unknown", "#NULL!"))
-ncbikecrash_names <- read_csv(here("data-raw", "ncbikecrash-names.csv"))
+ncbikecrash_names <- read_csv(here::here("data-raw", "ncbikecrash", "ncbikecrash-names.csv"))
 
 names(ncbikecrash_raw) <- ncbikecrash_names$new
 
@@ -24,5 +28,6 @@ ncbikecrash <- ncbikecrash_raw %>%
     geo_point, geo_shape
   )
 
-save(ncbikecrash, file = here("data", "ncbikecrash.rdata"))
+# Save data --------------------------------------------------------------------
 
+use_data(ncbikecrash, overwrite = TRUE)
