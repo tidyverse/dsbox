@@ -4,7 +4,8 @@
 \name{ncbikecrash}
 \alias{ncbikecrash}
 \title{North Carolina Bicycle Crash Data}
-\format{A tibble with 7467 rows and 66 variables:
+\format{
+A tibble with 7467 rows and 66 variables:
 \describe{
 \item{object_id}{Crash ID}
 \item{city}{City of crash}
@@ -72,7 +73,8 @@
 \item{towrd_road}{}
 \item{geo_point}{Latitude and longitude of crash}
 \item{geo_shape}{}
-}}
+}
+}
 \source{
 https://opendurham.nc.gov/explore/dataset/north_carolina_bicycle_crash_data_heatmap_/table/
 }

@@ -4,12 +4,14 @@
 \name{ucbadmit}
 \alias{ucbadmit}
 \title{UC Berkeley admissions}
-\format{A tibble with 4526 rows and 3 variables:
+\format{
+A tibble with 4526 rows and 3 variables:
 \describe{
 \item{admit}{Admission status of the applicant: Admitted or Rejected}
 \item{gender}{Gender of applicant: Male or Female}
 \item{dept}{Anonimized department: A, B, C, D, E, or F}
-}}
+}
+}
 \source{
 R Core Team (2018). R: A language and environment for
 statistical computing. R Foundation for Statistical Computing,

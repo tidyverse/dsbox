@@ -4,7 +4,8 @@
 \name{student_survey}
 \alias{student_survey}
 \title{Student survey}
-\format{A tibble with 80 rows and 53 variables:
+\format{
+A tibble with 80 rows and 53 variables:
 \describe{
 \item{pets}{How many pets do you have? Enter a positive whole number}
 \item{us_region}{What part of the US are you from? (New England, Mid-Atlantic, Midwest, Southwest, Southeast, California, Pacific Northwest, Not from the US)}
@@ -59,7 +60,8 @@
 \item{fav_fantasy_universe}{Favorite fantasy universe? (Legend of Zelda, Game of Thrones, Lord of the Rings, Harry Potter)}
 \item{hogwarts_house}{Which Harry Potter house do you belong to? (Gryffindor (because I'm a badass), Ravenclaw (because I'm better than you), Hufflepuff (because I'm good at something), Slytherin (because I'll cut you))}
 \item{shooters}{How often do you go to Shooters a month? Enter a positive whole number. Enter 0 if you never go to Shooters}
-}}
+}
+}
 \usage{
 student_survey
 }
