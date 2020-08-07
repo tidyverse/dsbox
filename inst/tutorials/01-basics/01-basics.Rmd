@@ -6,6 +6,8 @@ output:
     allow_skip: true
     css: "css/font-size.css"
 runtime: shiny_prerendered
+description: >
+  Get started with data frames and data visualisation in R using the tidyverse.
 ---
 
 <!-- Add JavaScript code for making the exercise code larger -->
