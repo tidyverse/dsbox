@@ -1,5 +1,5 @@
 ---
-title: "Tutorial 01 - Airbnb Listings in Edinburgh"
+title: "Airbnb listings in Edinburgh"
 output: 
   learnr::tutorial:
     progressive: true
@@ -16,12 +16,13 @@ runtime: shiny_prerendered
 library(learnr)
 library(gradethis)
 library(tidyverse)
+library(dsbox)
 
 # use gradethis for checking. No timelimit
-tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
-
-# make listings data frame globally available
-listings <- read_csv("https://rb.gy/guyp0s")
+tutorial_options(
+  exercise.timelimit = 60, 
+  exercise.checker = gradethis::grade_learnr
+  )
 
 # hide non-exercise code chunks
 knitr::opts_chunk$set(echo = FALSE)
@@ -49,11 +50,11 @@ If you have any questions, post them on [Piazza](https://piazza.com).
 
 ### Packages
 
-We'll use the **tidyverse** package for this analysis. Run the following code 
-to load this package.
+We'll use the **tidyverse** package for this analysis and the **dsbox** package for the data. Run the following code to load this package.
 
 ```{r load-packages, exercise=TRUE}
 library(tidyverse)
+library(dsbox)
 ```
 
 
@@ -61,24 +62,18 @@ library(tidyverse)
 
 ### Load and Glimpse
 
-The data is in a file called `listings.csv` and it's available at https://rb.gy/guyp0s. The `.csv` suffix (the file extension) indicates that this is a **c**omma **s**eparated **v**alues file. Each line of a CSV file is a data record (an observation in the sample), and each column is a variable. The columns are separated by commas, hence the name. CSV is a commonly used format for storing rectangular datasets.
+The data is in the `dsbox` package and it's called `edibnb`. 
 
-You can load this file into R using the `read_csv()` function and assign it to an object called `listings`.
-
-```{r load-data, exercise=TRUE}
-listings <- read_csv("https://rb.gy/guyp0s")
-```
-
-Then, view the data using
+Yiu can view the data using
 
 ```{r glimpse-data, exercise=TRUE}
-glimpse(listings)
+glimpse(edibnb)
 ```
 
 ### Getting to know your data
 
 ```{r quiz-rows}
-question("What does each row in the `listings` dataset represent?",
+question("What does each row in the `edibnb` dataset represent?",
     answer("The values of a certain variable"),
     answer("An individual Airbnb listing",
            correct = TRUE,
@@ -92,15 +87,15 @@ question("What does each row in the `listings` dataset represent?",
 
 How many observations (rows) does the dataset have? Use the following code block to find out.
 
-```{r listings-nrow, exercise=TRUE}
+```{r edibnb-nrow, exercise=TRUE}
 
 ```
 
-```{r listings-nrow-hint-1}
+```{r edibnb-nrow-hint-1}
 nrow(___)
 ```
 
-```{r listings-nrow-check}
+```{r edibnb-nrow-check}
 grade_result(
   pass_if(~ (identical(.result, 13245) | (identical(.result, 13245L))), "There are 13245 observations in the dataset."),
   fail_if(~ (identical(.result, 10) | (identical(.result, 10L))), "Each observation is represented in one row. Did you calculate the number of columns instead of rows?"),
@@ -112,8 +107,8 @@ grade_result(
 
 Each column represents a variable. We can get a list of the variables in the data frame using the `names()` function.
 
-```{r listings-names, exercise=TRUE}
-names(listings)
+```{r edibnb-names, exercise=TRUE}
+names(edibnb)
 ```
 
 The variables and their descriptions are given below:
@@ -149,7 +144,7 @@ ggplot(data = ___, mapping = aes(x = ___)) +
 ```
 
 ```{r price-histogram-hint-1}
-ggplot(data = listings, mapping = aes(x = ___)) +
+ggplot(data = edibnb, mapping = aes(x = ___)) +
   geom_histogram() +
   labs(
     x = "Airbnb listing price, in £",
@@ -159,7 +154,7 @@ ggplot(data = listings, mapping = aes(x = ___)) +
 ```
 
 ```{r price-histogram-solution}
-ggplot(data = listings, mapping = aes(x = price)) +
+ggplot(data = edibnb, mapping = aes(x = price)) +
   geom_histogram() +
   labs(
     x = "Airbnb listing price, in £",
@@ -178,7 +173,7 @@ grade_code("And note that there are a couple warnings, we'll get to those in a b
 ```{r price-shape-quiz-1}
 quiz(
   caption = "",
-  question("Which of the following describes the shape of the distribution of nightly rates of Airbnb listings in Edinburgh? Check all that apply.",
+  question("Which of the following describes the shape of the distribution of nightly rates of Airbnb edibnb in Edinburgh? Check all that apply.",
            answer("Right skewed",
                   correct = TRUE),
            answer("Left skewed",
@@ -220,7 +215,7 @@ ggplot(data = ___, mapping = aes(x = ___)) +
 ```
 
 ```{r faceted-histo-hint-1}
-ggplot(data = listings, mapping = aes(x = ___)) +
+ggplot(data = edibnb, mapping = aes(x = ___)) +
   geom_histogram() +
   facet_wrap(~___) +
   labs(
@@ -232,7 +227,7 @@ ggplot(data = listings, mapping = aes(x = ___)) +
 ```
 
 ```{r faceted-histo-hint-2}
-ggplot(data = listings, mapping = aes(x = price)) +
+ggplot(data = edibnb, mapping = aes(x = price)) +
   geom_histogram() +
   facet_wrap(~___) +
   labs(
@@ -244,7 +239,7 @@ ggplot(data = listings, mapping = aes(x = price)) +
 ```
 
 ```{r faceted-histo-solution}
-ggplot(data = listings, mapping = aes(x = price)) +
+ggplot(data = edibnb, mapping = aes(x = price)) +
   geom_histogram() +
   facet_wrap(~neighbourhood) +
   labs(
@@ -339,7 +334,7 @@ ggplot(data = ___, mapping = aes(x = ___)) +
 ```
 
 ```{r reviews-histogram-solution}
-ggplot(data = listings, mapping = aes(x = review_scores_rating)) +
+ggplot(data = edibnb, mapping = aes(x = review_scores_rating)) +
   geom_histogram() +
   facet_wrap(~neighbourhood) +
   labs(
