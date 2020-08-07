@@ -6,3 +6,9 @@
 rsconnect/
 ^\.github/
 ^inst/tutorials/.*\.html$
+^\.github$
+^README\.Rmd$
+^CODE_OF_CONDUCT\.md$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$

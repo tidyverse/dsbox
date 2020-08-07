@@ -1,0 +1,29 @@
+url: https://rstudii-education.github.io/dsbox
+
+home:
+  links:
+    - text: Learn more
+      href: https://datasciencebox.org/
+
+navbar:
+  left:
+  - text: Reference
+    href: reference/index.html
+  right:
+  - text: Data Science in a Box
+    href: https://datasciencebox.org/
+  - text: Code of Conduct
+    href: CODE_OF_CONDUCT.html
+
+reference:
+- title: Datasets
+  contents:
+  - dennys
+  - edibnb
+  - fisheries
+  - instructors
+  - laquinta
+  - ncbikecrash
+  - ncbreweries
+  - student_survey
+  - ucbadmit

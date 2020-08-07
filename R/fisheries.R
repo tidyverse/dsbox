@@ -7,9 +7,9 @@
 #' @source https://en.wikipedia.org/wiki/Fishing_industry_by_country
 #' @format A tibble with 75 rows and 3 variables:
 #' \describe{
-#' \item{country}{Name of country}
-#' \item{capture}{Tonnage from capture, including fish, crustaceans, molluscs, etc.}
-#' \item{aquaculture}{Tonnage from aquaculture}
+#'   \item{country}{Name of country}
+#'   \item{capture}{Tonnage from capture, including fish, crustaceans, molluscs, etc.}
+#'   \item{aquaculture}{Tonnage from aquaculture}
 #' }
 #' @examples
 #' fisheries
