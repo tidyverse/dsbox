@@ -18,6 +18,7 @@ navbar:
 reference:
 - title: Datasets
   contents:
+  - accidents
   - dennys
   - edibnb
   - fisheries
