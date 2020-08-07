@@ -9,6 +9,8 @@ navbar:
   left:
   - text: Reference
     href: reference/index.html
+  - text: Tutorials
+    href: tutorials/index.html
   right:
   - text: Data Science in a Box
     href: https://datasciencebox.org/
@@ -27,3 +29,8 @@ reference:
   - ncbreweries
   - student_survey
   - ucbadmit
+
+tutorials:
+- name: 01-basics
+  title: Airbnb listings in Edinburgh
+  url: https://minecr.shinyapps.io/dsbox-01-basics/
