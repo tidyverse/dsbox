@@ -1,0 +1,389 @@
+---
+title: "Tutorial 01 - Airbnb Listings in Edinburgh"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+    css: "css/font-size.css"
+runtime: shiny_prerendered
+---
+
+<!-- Add JavaScript code for making the exercise code larger -->
+<script language="JavaScript" src="js/exercise-font-size.js"></script>
+
+```{r setup, include=FALSE}
+# packages
+library(learnr)
+library(gradethis)
+library(tidyverse)
+
+# use gradethis for checking. No timelimit
+tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+
+# make listings data frame globally available
+listings <- read_csv("https://rb.gy/guyp0s")
+
+# hide non-exercise code chunks
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+```{r grassmarket, fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.cap="Photo by Madeleine Kohler on Unsplash"}
+knitr::include_graphics("images/madeleine-kohler-90Qn643Pq9c-unsplash.jpg")
+```
+
+Recent developments in Edinburgh regarding the growth of Airbnb and its impact on the housing market means a better understanding of the Airbnb listings is needed. Using data provided by Airbnb, we can explore how Airbnb availability and prices vary by neighbourhood.
+
+The data come from the [Kaggle database](https://www.kaggle.com/thoroc/edinburgh-inside-airbnb/version/2), and was originally distributed by [Inside Airbnb](http://insideairbnb.com/get-the-data.html) on 25 June 2019.
+
+The data has been modified to better serve the goals of this exploration.
+
+### Learning Goals
+
+The goal of this assignment is not to conduct a thorough analysis of Airbnb listings in Edinburgh, but instead to give you a chance to practice your data visualisation and interpretation skills.
+
+### Getting Help
+
+If you have any questions, post them on [Piazza](https://piazza.com).
+
+### Packages
+
+We'll use the **tidyverse** package for this analysis. Run the following code 
+to load this package.
+
+```{r load-packages, exercise=TRUE}
+library(tidyverse)
+```
+
+
+## Data
+
+### Load and Glimpse
+
+The data is in a file called `listings.csv` and it's available at https://rb.gy/guyp0s. The `.csv` suffix (the file extension) indicates that this is a **c**omma **s**eparated **v**alues file. Each line of a CSV file is a data record (an observation in the sample), and each column is a variable. The columns are separated by commas, hence the name. CSV is a commonly used format for storing rectangular datasets.
+
+You can load this file into R using the `read_csv()` function and assign it to an object called `listings`.
+
+```{r load-data, exercise=TRUE}
+listings <- read_csv("https://rb.gy/guyp0s")
+```
+
+Then, view the data using
+
+```{r glimpse-data, exercise=TRUE}
+glimpse(listings)
+```
+
+### Getting to know your data
+
+```{r quiz-rows}
+question("What does each row in the `listings` dataset represent?",
+    answer("The values of a certain variable"),
+    answer("An individual Airbnb listing",
+           correct = TRUE,
+           message = "Each row in the dataset contains one observation of each field, each relating to a single Airbnb listing."),
+    answer("An Airbnb booking"),
+    answer("An Edinburgh neighbourhood")
+  )
+```
+
+### Number of observations
+
+How many observations (rows) does the dataset have? Use the following code block to find out.
+
+```{r listings-nrow, exercise=TRUE}
+
+```
+
+```{r listings-nrow-hint-1}
+nrow(___)
+```
+
+```{r listings-nrow-check}
+grade_result(
+  pass_if(~ (identical(.result, 13245) | (identical(.result, 13245L))), "There are 13245 observations in the dataset."),
+  fail_if(~ (identical(.result, 10) | (identical(.result, 10L))), "Each observation is represented in one row. Did you calculate the number of columns instead of rows?"),
+  fail_if(~ TRUE, "Not quite. Each observation is represented in one row. Can you remember which function we use to calculate the **n**umber of **row**s?")
+)
+```
+
+### Examining Further
+
+Each column represents a variable. We can get a list of the variables in the data frame using the `names()` function.
+
+```{r listings-names, exercise=TRUE}
+names(listings)
+```
+
+The variables and their descriptions are given below:
+
+1. `id`: ID number of the listing
+1. `price`: Price, in GBP, for one night stay
+1. `neighbourhood`: Neighbourhood listing is located in
+1. `accommodates`: Number of people listing accommodates
+1. `bathrooms`: Number of bathrooms
+1. `bedrooms`: Number of bedrooms
+1. `beds`: Number of beds (which can be different than the number of bedrooms)
+1. `review_scores_rating`: Average rating of property
+1. `number_of_reviews`: Number of reviews
+1. `listing_url`: Listing URL
+
+
+## Data visualisation
+
+
+### Building a histogram
+
+Create a histogram of the distribution of Airbnb listing prices (nightly rates) 
+in Edinburgh. Sample code is provided below, but you will need to fill in the blanks.
+
+```{r price-histogram, exercise=TRUE}
+ggplot(data = ___, mapping = aes(x = ___)) +
+  geom_histogram() +
+  labs(
+    x = "Airbnb listing price, in £",
+    y = "Frequency",
+    title = "Distribution of Airbnb nightly rates in Edinburgh"
+  )
+```
+
+```{r price-histogram-hint-1}
+ggplot(data = listings, mapping = aes(x = ___)) +
+  geom_histogram() +
+  labs(
+    x = "Airbnb listing price, in £",
+    y = "Frequency",
+    title = "Distribution of Airbnb nightly rates in Edinburgh"
+  )
+```
+
+```{r price-histogram-solution}
+ggplot(data = listings, mapping = aes(x = price)) +
+  geom_histogram() +
+  labs(
+    x = "Airbnb listing price, in £",
+    y = "Frequency",
+    title = "Distribution of Airbnb nightly rates in Edinburgh"
+  )
+```
+
+```{r price-histogram-check}
+grade_code("And note that there are a couple warnings, we'll get to those in a bit.")
+```
+
+
+### Interpreting the histogram
+
+```{r price-shape-quiz-1}
+quiz(
+  caption = "",
+  question("Which of the following describes the shape of the distribution of nightly rates of Airbnb listings in Edinburgh? Check all that apply.",
+           answer("Right skewed",
+                  correct = TRUE),
+           answer("Left skewed",
+                  message = "Skew is on the side of the longer tail"),
+           answer("Symmetric",
+                  message = "If you were to draw a vertical line down the middle of the x-axis, would the left and right sides of the distribution look like mirror images?"),
+           answer("Unimodal",
+                  correct = TRUE),
+           answer("Bimodal",
+                  message = "How many prominent peaks do you see?"),
+           answer("Multimodal",
+                  message = "How many prominent peaks do you see?"),
+           allow_retry = TRUE),
+  question("Which of the following is false?",
+           answer("There are no listings with a nightly rate above £1,250."),
+           answer("More than 50% of listings have a nightly rate below £250."),
+           answer("More than 25% of listings have a nightly rate above £500.",
+                  correct = TRUE),
+           answer("It is possible that some of the listings have a nightly rate of £0."),
+           allow_retry = TRUE)
+)
+```
+
+
+### Faceted histograms
+
+Create a faceted histogram where each facet represents a neighbourhood and displays the distribution of Airbnb prices in that neighbourhood. Sample code is provided below, but you will need to fill in the blanks.
+
+```{r faceted-histo, exercise=TRUE}
+ggplot(data = ___, mapping = aes(x = ___)) +
+  geom_histogram() +
+  facet_wrap(~___) +
+  labs(
+    x = "Airbnb listing price, in £",
+    y = "Frequency",
+    title = "Distribution of Airbnb nightly rates in Edinburgh",
+    subtitle = "By neighbourhood"
+  )
+```
+
+```{r faceted-histo-hint-1}
+ggplot(data = listings, mapping = aes(x = ___)) +
+  geom_histogram() +
+  facet_wrap(~___) +
+  labs(
+    x = "Airbnb listing price, in £",
+    y = "Frequency",
+    title = "Distribution of Airbnb nightly rates in Edinburgh",
+    subtitle = "By neighbourhood"
+  )
+```
+
+```{r faceted-histo-hint-2}
+ggplot(data = listings, mapping = aes(x = price)) +
+  geom_histogram() +
+  facet_wrap(~___) +
+  labs(
+    x = "Airbnb listing price, in £",
+    y = "Frequency",
+    title = "Distribution of Airbnb nightly rates in Edinburgh",
+    subtitle = "By neighbourhood"
+  )
+```
+
+```{r faceted-histo-solution}
+ggplot(data = listings, mapping = aes(x = price)) +
+  geom_histogram() +
+  facet_wrap(~neighbourhood) +
+  labs(
+    x = "Airbnb listing price, in £",
+    y = "Frequency",
+    title = "Distribution of Airbnb nightly rates in Edinburgh",
+    subtitle = "By neighbourhood"
+  )
+```
+
+```{r faceted-histo-check}
+grade_code("You've successfully created a faceted histogram.")
+```
+
+### What do the warnings mean?
+
+You'll see in the above code that R gives us a couple of *warnings*. Let's analyse these:
+
+#### Binwidth warning
+
+```
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+The binwidth of a histogram defines the width each bar (bin) spans. Since we haven't specified a particular value in `geom_histogram()`, R picks one for us, but it also lets us know that it would be better for us to pick a `binwidth` intentionally. We'll get to practice this in a bit.
+
+#### Removed rows warning
+
+```
+Warning: Removed 199 rows containing non-finite values (stat_bin).
+```
+
+This second warning is a consequence of the fact that we are working with a real-world dataset, and thus some of the values in the data are missing (we don't know the prices for those listings) and are encoded as `NA`s. If we don't know the price, we can't represent it on the plot.
+
+This doesn't stop R from creating the histogram, but it does mean some observations are omitted from this visualisation (199 of them, to be precise).
+
+
+### Binwidth Experimentation
+
+Instead of having R pick a `binwidth` itself, try out different binwidths using the code below:
+
+```{r binwidth-test, exercise = TRUE, warning=FALSE}
+ggplot(data = ___, mapping = aes(x = ___)) +
+  geom_histogram(binwidth = ___) +
+  facet_wrap(~___) +
+  labs(
+    x = "Airbnb listing price, in £",
+    y = "Frequency",
+    title = "Distribution of Airbnb nightly rates in Edinburgh"
+  )
+```
+
+What is a reasonable value for the `binwidth` parameter? Put your answer in the block below:
+
+```{r reasonable-binwidth, exercise = TRUE}
+
+```
+
+```{r reasonable-binwidth-check}
+grade_result(
+  pass_if(~ (.result >= 20 & .result <= 100), "That's a suitable binwidth."),
+  fail_if(~ (.result < 20), "That binwidth seems quite small. See how narrow the bins are using that width."),
+  fail_if(~ (.result > 100), "That binwidth seems quite large. See how wide the bins are using that width."),
+  fail_if(~ TRUE, "Invalid binwidth.")
+)
+```
+
+
+### Deconstructing the Code
+
+Let’s deconstruct this code:
+
+- `ggplot()` is the function we are using to build our plot, in layers.
+- In the first layer we always define the data frame as the first argument. Then, we define the mappings between the variables in the dataset and the **aes**thetics of the plot (e.g. x and y coordinates, colours, etc.).
+- In the next layer we represent the data with **geom**etric shapes, in this case with a histogram. As you've just seen, it's good to try a few options to find a reasonable binwidth.
+- In the final layer we facet the data by neighbourhood.
+
+### Visualising review scores
+
+Create a similar visualisation, this time showing the distribution of review scores (`review_scores_rating`) across neighbourhoods.
+
+```{r reviews-histogram, exercise = TRUE, warning=FALSE}
+ggplot(data = ___, mapping = aes(x = ___)) +
+  geom_histogram() +
+  facet_wrap(~___) +
+  labs(
+    x = "Average rating score of property",
+    y = "Frequency",
+    title = "Distribution of Airbnb rating scores in Edinburgh",
+    subtitle = "By neighbourhood"
+  )
+```
+
+```{r reviews-histogram-solution}
+ggplot(data = listings, mapping = aes(x = review_scores_rating)) +
+  geom_histogram() +
+  facet_wrap(~neighbourhood) +
+  labs(
+    x = "Average rating score of property",
+    y = "Frequency",
+    title = "Distribution of Airbnb rating scores in Edinburgh",
+    subtitle = "By neighbourhood"
+  )
+```
+
+```{r reviews-histogram-check}
+grade_code("Your solution is correct!")
+```
+
+### Popular neighbourhoods
+
+Which neighbourhood has the most ratings around 100%? Report your answer as a text string in quotation marks, e.g. for Tollcross, type in `"Tollcross"`.
+
+```{r ratings-neighbourhood, exercise=TRUE}
+
+```
+
+```{r ratings-neighbourhood-hint}
+Did you forget to add the quotation marks?
+```
+
+```{r ratings-neighbourhood-check}
+grade_result(
+  pass_if(~ (identical(tolower(.result), "leith")), "Leith has the highest number of perfect ratings."),
+  fail_if(~ TRUE, "Not quite. Try looking at the height of the bars and the labels of the x-axis.")
+)
+```
+
+```{r reviews-quiz}
+question("How do users generally rate properties on Airbnb?",
+  answer("Generally positively",
+         correct = TRUE),
+  answer("Generally negatively."),
+  answer("Can't say from the visualisation."),
+  correct = "Correct!",
+  allow_retry = TRUE
+)
+```
+
+## Wrap Up
+
+Congratulations, you've finished the first tutorial! We hope that you enjoyed practising your data handling, visualisation, and interpretation skills along the way.
