@@ -13,7 +13,7 @@ A tibble with 75 rows and 3 variables:
 }
 }
 \source{
-https://en.wikipedia.org/wiki/Fishing_industry_by_country
+\url{https://en.wikipedia.org/wiki/Fishing_industry_by_country}
 }
 \usage{
 fisheries
