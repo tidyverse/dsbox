@@ -2,3 +2,4 @@
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^data-raw$
+^inst/tutorials/01-basics/01-basics\.Rmd$
