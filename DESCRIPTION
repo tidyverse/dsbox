@@ -11,9 +11,13 @@ Description: Datasets accompanying Data Science Course in a Box, an
     science, and statistics.
 Encoding: UTF-8
 LazyData: true
+Suggests:
+    ggplot2,
+    learnr
 License: MIT + file LICENSE
 URL: https://github.com/rstudio-education/dsbox
 BugReports: https://github.com/rstudio-education/dsbox/issues
 Depends: 
-    R (>= 2.1.0)
-RoxygenNote: 6.0.1.9000
+    R (>= 2.10)
+RoxygenNote: 7.1.1
+Roxygen: list(markdown = TRUE)

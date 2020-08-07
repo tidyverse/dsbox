@@ -4,7 +4,8 @@
 \name{ncbreweries}
 \alias{ncbreweries}
 \title{Breweries in North Carolina}
-\format{A tibble with 251 rows and 7 variables:
+\format{
+A tibble with 251 rows and 7 variables:
 \describe{
 \item{name}{Name of brewery}
 \item{city}{City where brewery is located}
@@ -14,9 +15,10 @@ Brewpub/Brewery, Commercial Brewery)}
 \item{est}{Year brewery opened}
 \item{status}{Status of brewery (Active or Closed)}
 \item{url}{URL of brewery page on RateBeer.com}
-}}
+}
+}
 \source{
-https://www.ratebeer.com/breweries/north%20carolina/33/213/
+https://www.ratebeer.com/breweries/north\%20carolina/33/213/
 }
 \usage{
 ncbreweries
