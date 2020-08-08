@@ -19,6 +19,7 @@ reference:
 - title: Datasets
   contents:
   - accidents
+  - dcbikeshare
   - dennys
   - edibnb
   - fisheries
@@ -28,5 +29,9 @@ reference:
   - lego_sales
   - ncbikecrash
   - ncbreweries
+  - pac_2020
+  - pac_2020_raw
+  - pac_all
+  - pac_all_clean
   - student_survey
   - ucbadmit
