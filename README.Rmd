@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# dsbox <img src="man/figures/dsbox.png" align="right" height="170">
+# dsbox <img src="man/figures/logo.png" align="right" height="170">
 
 <!-- badges: start -->
 [![R build status](https://github.com/rstudio-education/dsbox/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio-education/dsbox/actions)

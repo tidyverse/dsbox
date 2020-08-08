@@ -2,7 +2,6 @@
 ^\.Rproj\.user$
 ^LICENSE\.md$
 ^data-raw$
-
 rsconnect/
 ^\.github/
 ^inst/tutorials/.*\.html$
@@ -12,3 +11,4 @@ rsconnect/
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+man/figures/dsbox-fullsize.png

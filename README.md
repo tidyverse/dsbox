@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# dsbox <img src="man/figures/dsbox.png" align="right" height="170">
+# dsbox <img src="man/figures/logo.png" align="right" height="170">
 
 <!-- badges: start -->
 
