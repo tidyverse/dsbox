@@ -1,7 +1,7 @@
 #' Sales of Lego sets (simulated)
 #'
-#' Here we have data from Lego sales in 2018 for a sample of customers who bought
-#' Legos in the United States.
+#' Simulated data based on real prices for Lego sales in 2018 in the United States. 
+#' Names and hobbies have been randomly generated
 #'
 #'
 #' @format A tibble with 620 rows and 14 variables:
