@@ -17,7 +17,7 @@
 #' events in the city could be detected via monitoring these data.
 #'
 #' The dataset comes from
-#' [UC Irvine](http://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset). Sources of the
+#' [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset). Sources of the
 #' data itself are
 #' [Capital Bikeshare](https://www.capitalbikeshare.com/system-data),
 #'  [freemeteo.co.uk](http://www.freemeteo.co.uk) for weather data, and
