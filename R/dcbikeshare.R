@@ -3,8 +3,8 @@
 #' Bike sharing systems are new generation of traditional bike rentals where whole
 #' process from membership, rental and return back has become automatic. Through these
 #' systems, user is able to easily rent a bike from a particular position and return
-#' back at another position. Currently, there are about over 500 bike-sharing programs
-#' around the world which is composed of over 500 thousands bicycles. Today, there
+#' back at another position. As of May 2018, there are about over 1600 bike-sharing programs
+#' around the world, providing more than 18 million bicycles for public use. Today, there
 #' exists great interest in these systems due to their important role in traffic,
 #' environmental and health issues.
 #'
@@ -20,8 +20,8 @@
 #' [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset). Sources of the
 #' data itself are
 #' [Capital Bikeshare](https://www.capitalbikeshare.com/system-data),
-#'  [freemeteo.co.uk](http://www.freemeteo.co.uk) for weather data, and
-#'  [dv.gov](http://dchr.dc.gov/page/holiday-schedule) for the holiday schedule.
+#' [freemeteo.co.uk](http://www.freemeteo.co.uk) for weather data, and
+#' [dv.gov](http://dchr.dc.gov/page/holiday-schedule) for the holiday schedule.
 #'
 #' The data have been modified to better serve the goals of introductory data science education.
 #'

@@ -7,8 +7,6 @@
 #' [data.gov.uk](https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data/datafile/36f1658e-b709-47e7-9f56-cca7aefeb8fe/preview)
 #' It's been modified to better serve the goals of introductory data science education.
 #'
-#' We can use it to explore
-#'
 #' @source https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data/datafile/36f1658e-b709-47e7-9f56-cca7aefeb8fe/preview
 #' @format A tibble with 768 rows and 31 variables:
 #' \describe{

@@ -1,6 +1,6 @@
 #' Sales of Lego sets (simulated)
 #'
-#' Simulated data based on real prices for Lego sales in 2018 in the United States. 
+#' Simulated data based on real prices for Lego sales in 2018 in the United States.
 #' Names and hobbies have been randomly generated
 #'
 #'
@@ -23,7 +23,7 @@
 #' }
 #' @examples
 #'
-#' library(tidyverse)
+#' library(dplyr)
 #'
 #' lego_sales %>%
 #'   count(first_name, sort = TRUE) %>%

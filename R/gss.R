@@ -1,4 +1,4 @@
-#' GSS - General Social Survey
+#' Data from the 2016 General Social Survey (GSS)
 #'
 #' The GSS gathers data on contemporary American society in order to monitor and
 #' explain trends and constants in attitudes, behaviors, and attributes.
@@ -18,12 +18,12 @@
 #' @source https://gss.norc.org/Get-The-Data
 #' @format A tibble with 2,867 rows and 9 variables:
 #' \describe{
-#'   \item{harass5}{"Over the past five years, have you been harassed by your superiors or co-workers at your job, for example, have you experienced any bullying, physical or psychological abuse?"}
+#'   \item{harass5}{Response to the questions "Over the past five years, have you been harassed by your superiors or co-workers at your job, for example, have you experienced any bullying, physical or psychological abuse?" Possible answers are Yes, No and Does not apply.}
 #'   \item{emailmin}{Number of minutes spent on email weekly, extra to the hours in emailhrs (e.g. emailmin = 30 for 2.5 hours on email).}
 #'   \item{emailhr}{Number of hours spent on email weekly.}
 #'   \item{educ}{Number of years in education.}
 #'   \item{polviews}{Political views. Possible answers are Extremely liberal, Liberal, Slightly liberal, Moderate, Slghtly conservative, Conservative, Extrmly conservative.}
-#'   \item{advfront}{"Even if it brings no immediate benefits, scientific research that advances the frontiers of knowledge is necessary and should be supported by the federal government."}
+#'   \item{advfront}{Response to the question "Even if it brings no immediate benefits, scientific research that advances the frontiers of knowledge is necessary and should be supported by the federal government." Possible answers are Strongly agree, Agree, Dont know, Disagree and Strongly Disagree.}
 #'   \item{snapchat}{Whether respondant uses Snapchat or not.}
 #'   \item{instagram}{Whether respondant uses Instagram or not.}
 #'   \item{wrkstat}{Work status.}
