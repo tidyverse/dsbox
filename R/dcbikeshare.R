@@ -23,7 +23,7 @@
 #'  [freemeteo.co.uk](http://www.freemeteo.co.uk) for weather data, and
 #'  [dv.gov](http://dchr.dc.gov/page/holiday-schedule) for the holiday schedule.
 #'
-#' The data has been modified to better serve the goals of introductory data science education.
+#' The data have been modified to better serve the goals of introductory data science education.
 #'
 #' @source http://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset
 #' @format A tibble with 731 rows and 16 variables:
