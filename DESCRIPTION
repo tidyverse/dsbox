@@ -13,7 +13,9 @@ Encoding: UTF-8
 LazyData: true
 Suggests:
     ggplot2,
-    learnr
+    learnr,
+    dplyr,
+    tidyverse
 License: CC BY 4.0
 URL: https://github.com/rstudio-education/dsbox
 BugReports: https://github.com/rstudio-education/dsbox/issues
