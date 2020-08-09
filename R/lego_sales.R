@@ -1,4 +1,4 @@
-#' Sales of Lego sets
+#' Sales of Lego sets (simulated)
 #'
 #' Here we have data from Lego sales in 2018 for a sample of customers who bought
 #' Legos in the United States.
