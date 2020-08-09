@@ -1,4 +1,4 @@
-#' Political Action Committee Contributions
+#' Foreign-Connected PAC Contributions
 #'
 #' Every election cycle brings its own brand of excitement – and lots of money.
 #' Political donations are of particular interest to political scientists and
