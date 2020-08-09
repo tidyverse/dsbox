@@ -33,8 +33,6 @@
 #' }
 #' @examples
 #'
-#' library(tidyverse)
-#'
-#' glimpse(pac_2020_raw)
+#' pac_2020_raw
 #'
 "pac_2020_raw"
