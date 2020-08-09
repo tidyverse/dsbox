@@ -1,4 +1,4 @@
-#' Political Action Committee Contributions
+#' Foreign-Connected PAC Contributions
 #'
 #' Every election cycle brings its own brand of excitement – and lots of money.
 #' Political donations are of particular interest to political scientists and
@@ -14,7 +14,7 @@
 #' The data come from the
 #' [OpenSecrets.org](https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs).
 #'
-#' The data has been scraped from the OpenSecrets.org website.
+#' The data were scraped from the OpenSecrets.org website in June 2020.
 #' It is part of a series of similar datasets in this package consisting of
 #' datasets collected from OpenSecrets via webscraping.
 #'
