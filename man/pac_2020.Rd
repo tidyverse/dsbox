@@ -3,7 +3,7 @@
 \docType{data}
 \name{pac_2020}
 \alias{pac_2020}
-\title{Political Action Committee Contributions}
+\title{Foreign-Connected PAC Contributions}
 \format{
 A tibble with 224 rows and 5 variables:
 \describe{
@@ -31,12 +31,12 @@ money their candidates raise and where that money comes from.
 In the United States, “only American citizens (and immigrants with green
 cards) can contribute to federal politics, but the American divisions of
 foreign companies can form political action committees (PACs) and collect
-contributions from their American employees.” (source: OpenSecrets.org)
+contributions from their American employees.” (Source: \href{https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs}{OpenSecrets.org})
 
 The data come from the
 \href{https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs}{OpenSecrets.org}.
 
-The data has been scraped from the OpenSecrets.org website.
+The data were scraped from the OpenSecrets.org website in June 2020.
 It is part of a series of similar datasets in this package consisting of
 datasets collected from OpenSecrets via webscraping.
 

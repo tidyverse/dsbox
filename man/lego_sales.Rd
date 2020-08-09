@@ -3,7 +3,7 @@
 \docType{data}
 \name{lego_sales}
 \alias{lego_sales}
-\title{Sales of Lego sets}
+\title{Sales of Lego sets (simulated)}
 \format{
 A tibble with 620 rows and 14 variables:
 \describe{
@@ -27,12 +27,12 @@ A tibble with 620 rows and 14 variables:
 lego_sales
 }
 \description{
-Here we have data from Lego sales in 2018 for a sample of customers who bought
-Legos in the United States.
+Simulated data based on real prices for Lego sales in 2018 in the United States.
+Names and hobbies have been randomly generated
 }
 \examples{
 
-library(tidyverse)
+library(dplyr)
 
 lego_sales \%>\%
   count(first_name, sort = TRUE) \%>\%

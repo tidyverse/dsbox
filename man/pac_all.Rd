@@ -3,7 +3,7 @@
 \docType{data}
 \name{pac_all}
 \alias{pac_all}
-\title{Political Action Committee Contributions}
+\title{Foreign-Connected PAC Contributions}
 \format{
 A tibble with 2245 rows and 6 variables:
 \describe{
@@ -37,7 +37,7 @@ contributions from their American employees.” (source: OpenSecrets.org)
 The data come from the
 \href{https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs}{OpenSecrets.org}.
 
-The data has been scraped from the OpenSecrets.org website.
+The data were scraped from the OpenSecrets.org website in June 2020.
 It is part of a series of similar datasets in this package consisting of
 datasets collected from OpenSecrets via webscraping.
 
