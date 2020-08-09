@@ -9,7 +9,7 @@
 #' In the United States, “only American citizens (and immigrants with green
 #' cards) can contribute to federal politics, but the American divisions of
 #' foreign companies can form political action committees (PACs) and collect
-#' contributions from their American employees.” (source: OpenSecrets.org)
+#' contributions from their American employees.” (Source: [OpenSecrets.org](https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs))
 #'
 #' The data come from the
 #' [OpenSecrets.org](https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs).
