@@ -45,3 +45,6 @@ tutorials:
 - name: 02-accidents
   title: Road Traffic Accidents
   url: https://minecr.shinyapps.io/dsbox-02-accidents/
+- name: 03-collegemajors
+  title: What should I major in?
+  url: https://minecr.shinyapps.io/dsbox-03-collegegrads/
