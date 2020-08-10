@@ -1,4 +1,4 @@
-#' Foreign-Connected PAC Contributions
+#' Foreign-Connected PAC Contributions, 2020, clean data
 #'
 #' Every election cycle brings its own brand of excitement – and lots of money.
 #' Political donations are of particular interest to political scientists and
@@ -31,6 +31,7 @@
 #'   \item{dems}{PAC contributions to the Democratic Party}
 #'   \item{repubs}{PAC contributions to the Republican Party}
 #' }
+#' @seealso pac_2020_raw, pac_all, pac_all_raw
 #' @examples
 #'
 #' library(tibble)

@@ -3,7 +3,7 @@
 \docType{data}
 \name{pac_2020_raw}
 \alias{pac_2020_raw}
-\title{Foreign-Connected PAC Contributions}
+\title{Foreign-Connected PAC Contributions, 2020, raw data}
 \format{
 A tibble with 224 rows and 5 variables:
 \describe{
@@ -48,5 +48,8 @@ scraped from the website
 
 pac_2020_raw
 
+}
+\seealso{
+pac_2020, pac_all, pac_all_raw
 }
 \keyword{datasets}

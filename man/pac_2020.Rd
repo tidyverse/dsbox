@@ -3,7 +3,7 @@
 \docType{data}
 \name{pac_2020}
 \alias{pac_2020}
-\title{Foreign-Connected PAC Contributions}
+\title{Foreign-Connected PAC Contributions, 2020, clean data}
 \format{
 A tibble with 224 rows and 5 variables:
 \describe{
@@ -50,5 +50,8 @@ library(tibble)
 
 glimpse(pac_2020)
 
+}
+\seealso{
+pac_2020_raw, pac_all, pac_all_raw
 }
 \keyword{datasets}

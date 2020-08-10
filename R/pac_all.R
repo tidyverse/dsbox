@@ -1,4 +1,4 @@
-#' Foreign-Connected PAC Contributions
+#' Foreign-Connected PAC Contributions, all years, clean data
 #'
 #' Every election cycle brings its own brand of excitement – and lots of money.
 #' Political donations are of particular interest to political scientists and
@@ -19,23 +19,37 @@
 #' datasets collected from OpenSecrets via webscraping.
 #'
 #' This particular dataset consists of the data for foreign-connected PAC
-#' contrbutions for all available elections cycles, with some minor cleaning
-#' also done to make it more accessible in introductory data science education.
+#' contrbutions for all available elections cycles, with significant cleaning
+#' done to make it more accessible in introductory data science education.
 #'
 #' @source https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs
-#' @format A tibble with 2245 rows and 6 variables:
+#' @format A tibble with 2245 rows and 7 variables:
 #' \describe{
 #'   \item{name}{Name of company (American divisions of a foreign company)}
-#'   \item{country_parent}{Country of origin and (foreign) parent company}
+#'   \item{country}{Country of origin}
+#'   \item{parent}{PAC parent company}
 #'   \item{total}{Total PAC contributions to all parties}
 #'   \item{dems}{PAC contributions to the Democratic Party}
 #'   \item{repubs}{PAC contributions to the Republican Party}
 #'   \item{year}{Election cycle year}
 #' }
+#' @seealso pac_2020_raw, pac_2020, pac_all_raw
 #' @examples
 #'
-#' library(tibble)
+#' library(dplyr)
+#' library(ggplot2)
 #'
-#' glimpse(pac_all)
+#' pac_all %>%
+#'   filter(country %in% c("Canada", "UK")) %>%
+#'   group_by(country, year) %>%
+#'   summarise(tot = sum(total)) %>%
+#'   ggplot(aes(x = year, y = tot, group = country, color = country)) +
+#'   geom_line() +
+#'   labs(
+#'     x = "Year",
+#'     y = "Total Contributions",
+#'     color = "Country"
+#'   )
+#'
 #'
 "pac_all"
