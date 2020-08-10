@@ -42,3 +42,6 @@ tutorials:
 - name: 01-basics
   title: Airbnb listings in Edinburgh
   url: https://minecr.shinyapps.io/dsbox-01-basics/
+- name: 02-accidents
+  title: Road Traffic Accidents
+  url: https://minecr.shinyapps.io/dsbox-02-accidents/
