@@ -48,3 +48,6 @@ tutorials:
 - name: 03-collegemajors
   title: What should I major in?
   url: https://minecr.shinyapps.io/dsbox-03-collegegrads/
+- name: 04-legosales
+  title: Lego Sales in USA
+  url: https://minecr.shinyapps.io/dsbox-04-legosales/
