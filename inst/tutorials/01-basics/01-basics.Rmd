@@ -60,6 +60,15 @@ library(tidyverse)
 library(dsbox)
 ```
 
+```{r load-packages-solution}
+library(tidyverse)
+library(dsbox)
+```
+
+```{r load-packages-check}
+grade_code("The tidyverse and dsbox packages are now loaded!")
+```
+
 
 ## Data
 
@@ -67,7 +76,7 @@ library(dsbox)
 
 The data is in the `dsbox` package and it's called `edibnb`. 
 
-Yiu can view the data using
+You can view the data using
 
 ```{r glimpse-data, exercise=TRUE}
 glimpse(edibnb)
