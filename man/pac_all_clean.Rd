@@ -48,7 +48,8 @@ done to make it more accessible in introductory data science education.
 }
 \examples{
 
-library(tidyverse)
+library(dplyr)
+library(ggplot2)
 
 pac_all_clean \%>\%
   filter(country \%in\% c("Canada", "UK")) \%>\%

@@ -34,7 +34,7 @@
 #' }
 #' @examples
 #'
-#' library(tidyverse)
+#' library(tibble)
 #'
 #' glimpse(pac_all)
 #'

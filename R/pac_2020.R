@@ -33,7 +33,7 @@
 #' }
 #' @examples
 #'
-#' library(tidyverse)
+#' library(tibble)
 #'
 #' glimpse(pac_2020)
 #'
