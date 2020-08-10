@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Foreign-Connected PAC Contributions — pac_all_clean • dsbox</title>
+<title>Locations of Denny's restaurants — dennys • dsbox</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,12 +46,8 @@
 
 
 
-<meta property="og:title" content="Foreign-Connected PAC Contributions — pac_all_clean" />
-<meta property="og:description" content="Every election cycle brings its own brand of excitement – and lots of money.
-Political donations are of particular interest to political scientists and
-other researchers studying politics and voting patterns.
-They are also of interest to citizens who want to stay informed of how much
-money their candidates raise and where that money comes from." />
+<meta property="og:title" content="Locations of Denny's restaurants — dennys" />
+<meta property="og:description" content="Need description" />
 <meta property="og:image" content="https://rstudii-education.github.io/dsbox/logo.png" />
 
 
@@ -117,71 +113,49 @@ money their candidates raise and where that money comes from." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Foreign-Connected PAC Contributions</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rstudio-education/dsbox/blob/master/R/pac_all_clean.R'><code>R/pac_all_clean.R</code></a></small>
-    <div class="hidden name"><code>pac_all_clean.Rd</code></div>
+    <h1>Locations of Denny's restaurants</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rstudio-education/dsbox/blob/master/R/dennys.R'><code>R/dennys.R</code></a></small>
+    <div class="hidden name"><code>dennys.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Every election cycle brings its own brand of excitement – and lots of money.
-Political donations are of particular interest to political scientists and
-other researchers studying politics and voting patterns.
-They are also of interest to citizens who want to stay informed of how much
-money their candidates raise and where that money comes from.</p>
+    <p>Need description</p>
     </div>
 
-    <pre class="usage"><span class='no'>pac_all_clean</span></pre>
+    <pre class="usage"><span class='no'>dennys</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble with 2245 rows and 7 variables:</p><dl'>
-<dt>name</dt><dd><p>Name of company (American divisions of a foreign company)</p></dd>
-<dt>country</dt><dd><p>Country of origin</p></dd>
-<dt>parent</dt><dd><p>PAC parent company</p></dd>
-<dt>total</dt><dd><p>Total PAC contributions to all parties</p></dd>
-<dt>dems</dt><dd><p>PAC contributions to the Democratic Party</p></dd>
-<dt>repubs</dt><dd><p>PAC contributions to the Republican Party</p></dd>
-<dt>year</dt><dd><p>Election cycle year</p></dd>
+    <p>A tibble with 1643 rows and 3 variables:</p><dl'>
+<dt>address</dt><dd><p></p></dd>
+<dt>city</dt><dd><p></p></dd>
+<dt>state</dt><dd><p></p></dd>
+<dt>zip</dt><dd><p></p></dd>
+<dt>longitude</dt><dd><p></p></dd>
+<dt>latitude</dt><dd><p></p></dd>
 
 </dl>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>In the United States, “only American citizens (and immigrants with green
-cards) can contribute to federal politics, but the American divisions of
-foreign companies can form political action committees (PACs) and collect
-contributions from their American employees.” (source: OpenSecrets.org)</p>
-<p>The data come from the
-<a href='https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs'>OpenSecrets.org</a>.</p>
-<p>The data were scraped from the OpenSecrets.org website in June 2020.
-It is part of a series of similar datasets in this package consisting of
-datasets collected from OpenSecrets via webscraping.</p>
-<p>This particular dataset consists of the data for foreign-connected PAC
-contrbutions for all available elections cycles, with significant cleaning
-done to make it more accessible in introductory data science education.</p>
+    <p>Need source.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
-
-<span class='no'>pac_all_clean</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>country</span> <span class='kw'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Canada"</span>, <span class='st'>"UK"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span>(<span class='no'>country</span>, <span class='no'>year</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span>(<span class='kw'>tot</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='no'>total</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>year</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>tot</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>country</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='no'>country</span>)) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></span>() +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(
-    <span class='kw'>x</span> <span class='kw'>=</span> <span class='st'>"Year"</span>,
-    <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>"Total Contributions"</span>,
-    <span class='kw'>color</span> <span class='kw'>=</span> <span class='st'>"Country"</span>
-  )</div><div class='output co'>#&gt; <span class='message'>`summarise()` regrouping output by 'country' (override with `.groups` argument)</span></div><div class='img'><img src='pac_all_clean-1.png' alt='' width='700' height='433' /></div><div class='input'>
-
-</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>dennys</span></div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 1,643 x 6</span><span>
+#&gt;    address                       city             state zip   longitude latitude
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                         </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
+#&gt; </span><span style='color: #555555;'> 1</span><span> 2900 Denali                   Anchorage        AK    99503    -</span><span style='color: #BB0000;'>150.</span><span>      61.2
+#&gt; </span><span style='color: #555555;'> 2</span><span> 3850 Debarr Road              Anchorage        AK    99508    -</span><span style='color: #BB0000;'>150.</span><span>      61.2
+#&gt; </span><span style='color: #555555;'> 3</span><span> 1929 Airport Way              Fairbanks        AK    99701    -</span><span style='color: #BB0000;'>148.</span><span>      64.8
+#&gt; </span><span style='color: #555555;'> 4</span><span> 230 Connector Dr              Auburn           AL    36849     -</span><span style='color: #BB0000;'>85.5</span><span>     32.6
+#&gt; </span><span style='color: #555555;'> 5</span><span> 224 Daniel Payne Drive N      Birmingham       AL    35207     -</span><span style='color: #BB0000;'>86.8</span><span>     33.6
+#&gt; </span><span style='color: #555555;'> 6</span><span> 900 16th St S, Commons on Gr… Birmingham       AL    35294     -</span><span style='color: #BB0000;'>86.8</span><span>     33.5
+#&gt; </span><span style='color: #555555;'> 7</span><span> 5931 Alabama Highway, #157    Cullman          AL    35056     -</span><span style='color: #BB0000;'>86.9</span><span>     34.2
+#&gt; </span><span style='color: #555555;'> 8</span><span> 2190 Ross Clark Circle        Dothan           AL    36301     -</span><span style='color: #BB0000;'>85.4</span><span>     31.2
+#&gt; </span><span style='color: #555555;'> 9</span><span> 900 Tyson Rd                  Hope Hull (Tyso… AL    36043     -</span><span style='color: #BB0000;'>86.4</span><span>     32.2
+#&gt; </span><span style='color: #555555;'>10</span><span> 4874 University Drive         Huntsville       AL    35816     -</span><span style='color: #BB0000;'>86.7</span><span>     34.7
+#&gt; </span><span style='color: #555555;'># … with 1,633 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

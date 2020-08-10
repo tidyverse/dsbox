@@ -164,14 +164,11 @@ make it more accessible in introductory data science education.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>tidyverse</span>)</div><div class='output co'>#&gt; <span class='message'>── <span style='font-weight: bold;'>Attaching packages</span><span> ─────────────────────────────────────── tidyverse 1.3.0 ──</span></div><div class='output co'>#&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>tibble </span><span> 3.0.3     </span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>purrr  </span><span> 0.3.4</span>
-#&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>tidyr  </span><span> 1.1.1     </span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>stringr</span><span> 1.4.0</span>
-#&gt; <span class='message'></span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>readr  </span><span> 1.3.1     </span><span style='color: #00BB00;'>✔</span><span> </span><span style='color: #0000BB;'>forcats</span><span> 0.5.0</span></div><div class='output co'>#&gt; <span class='message'>── </span><span style='font-weight: bold;'>Conflicts</span><span> ────────────────────────────────────────── tidyverse_conflicts() ──</span>
-#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>dplyr</span><span>::</span><span style='color: #00BB00;'>filter()</span><span> masks </span><span style='color: #0000BB;'>stats</span><span>::filter()</span>
-#&gt; <span class='message'></span><span style='color: #BB0000;'>✖</span><span> </span><span style='color: #0000BB;'>dplyr</span><span>::</span><span style='color: #00BB00;'>lag()</span><span>    masks </span><span style='color: #0000BB;'>stats</span><span>::lag()</span></div><div class='input'>
-<span class='fu'>glimpse</span>(<span class='no'>pac_2020</span>)</div><div class='output co'>#&gt; Rows: 224
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>tibble</span>)
+
+<span class='fu'><a href='https://tibble.tidyverse.org/reference/glimpse.html'>glimpse</a></span>(<span class='no'>pac_2020</span>)</div><div class='output co'>#&gt; Rows: 224
 #&gt; Columns: 5
-#&gt; $ name           </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "7-Eleven", "ABB Group (ABB Group)", "Accenture (Accen…
+#&gt; $ name           <span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "7-Eleven", "ABB Group (ABB Group)", "Accenture (Accen…
 #&gt; $ country_parent </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "Japan/Seven &amp; I Holdings", "Switzerland/Asea Brown Bo…
 #&gt; $ total          </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "$1,000", "$9,500", "$82,000", "$14,000", "$166,000", …
 #&gt; $ dems           </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "$0", "$3,500", "$49,000", "$5,000", "$69,000", "$25,7…
