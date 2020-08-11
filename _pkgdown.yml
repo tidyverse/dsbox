@@ -51,3 +51,6 @@ tutorials:
 - name: 04-legosales
   title: Lego Sales in USA
   url: https://minecr.shinyapps.io/dsbox-04-legosales/
+- name: 05-moneyinpolitics
+  title: Money in US Politics
+  url: https://minecr.shinyapps.io/dsbox-05-moneyinpolitics/
