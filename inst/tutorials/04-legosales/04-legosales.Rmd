@@ -1,5 +1,5 @@
 ---
-title: "Lego Sales"
+title: "Lego Sales in USA"
 output: 
   learnr::tutorial:
     progressive: true
