@@ -210,7 +210,7 @@ These tags are then used by the `rvest` package to pick out (i.e. scrape) the da
 When you open it, Selector Gadget looks like this:
 
 ```{r sel-gadget, fig.margin = TRUE, echo = FALSE, out.width = "100%"}
-knitr::include_graphics("images/Selector Gadget.PNG")
+knitr::include_graphics("images/Selector_Gadget.PNG")
 ```
 
 ### Pick out the data
