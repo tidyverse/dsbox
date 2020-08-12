@@ -54,3 +54,12 @@ tutorials:
 - name: 05-moneyinpolitics
   title: Money in US Politics
   url: https://minecr.shinyapps.io/dsbox-05-moneyinpolitics/
+- name: 06-dcbikeshare
+  title: Bike Rentals in D.C.
+  url: https://minecr.shinyapps.io/dsbox-06-dcbikeshare/
+- name: 07-exploregss
+  title: Exploring the GSS
+  url: https://minecr.shinyapps.io/dsbox-07-exploregss/
+- name: 08-bootstrapgss
+  title: Bootstrapping the GSS
+  url: https://minecr.shinyapps.io/dsbox-08-bootstrapgss/
