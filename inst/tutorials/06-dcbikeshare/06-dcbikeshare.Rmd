@@ -253,7 +253,7 @@ library(dsbox)
 ```{r load-packages-solution}
 library(tidyverse)
 library(broom)
-library(broom)
+library(dsbox)
 ```
 
 ```{r load-packages-check}
