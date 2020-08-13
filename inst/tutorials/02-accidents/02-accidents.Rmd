@@ -193,7 +193,7 @@ grade_result(
 )
 ```
 
-## Multi-vehicle accidents in urban areas
+## Multi-vehicle accidents
 
 How many accidents with 2 or more vehicles occurred in an urban area? 
 Use the code chunk below to find out!
@@ -226,7 +226,7 @@ grade_result(
 )
 ```
 
-## Speed limits at accident locations
+## Speed limits
 
 Create a frequency table of the speed limits at which accidents happen (`speed_limit`).
 Look at the hints for help!
