@@ -4,12 +4,13 @@
 ^data-raw$
 rsconnect/
 ^\.github/
-^inst/tutorials/.*\.html$
-^inst/tutorials/.*\._files$
 ^\.github$
 ^README\.Rmd$
 ^CODE_OF_CONDUCT\.md$
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^inst/tutorials/.*\.html$
+^inst/tutorials/.*\._files$
+^inst/tutorials/deploy.R$
 man/figures/dsbox-fullsize.png
