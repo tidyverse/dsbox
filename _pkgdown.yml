@@ -41,7 +41,7 @@ reference:
 tutorials:
 - name: 01-basics
   title: Airbnb listings in Edinburgh
-  url: https://minecr.shinyapps.io/dsbox-01-basics/
+  url: https://minecr.shinyapps.io/dsbox-01-edibnb/
 - name: 02-accidents
   title: Road Traffic Accidents
   url: https://minecr.shinyapps.io/dsbox-02-accidents/
@@ -49,7 +49,7 @@ tutorials:
   title: What should I major in?
   url: https://minecr.shinyapps.io/dsbox-03-collegegrads/
 - name: 04-legosales
-  title: Lego Sales in USA
+  title: Lego Sales
   url: https://minecr.shinyapps.io/dsbox-04-legosales/
 - name: 05-moneyinpolitics
   title: Money in US Politics
