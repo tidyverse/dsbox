@@ -7,29 +7,34 @@ output:
     css: "css/font-size.css"
 runtime: shiny_prerendered
 description: >
-  Learn about data collection with webscraping with data on foreign-connected
-  contributions to US politics.
+  Learn about data harvesting data from the web.
 ---
 
 <!-- Add JavaScript code for making the exercise code larger -->
 <script language="JavaScript" src="js/exercise-font-size.js"></script>
 
 ```{r setup, include=FALSE}
-# packages
+# load packages ----------------------------------------------------------------
+
 library(learnr)
 library(gradethis)
-library(DT) #for datatable() function
-
 library(tidyverse)
 library(robotstxt)
 library(rvest)
 library(scales)
 library(dsbox)
+library(DT) 
 
-# use gradethis for checking
-tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+# set options for exercises and checking ---------------------------------------
 
-# hide non-exercise code chunks
+tutorial_options(
+  exercise.timelimit = 60, 
+  exercise.checker = gradethis::grade_learnr,
+  exercise.error.checker = gradethis::grade_learnr_error
+  )
+
+# hide non-exercise code chunks ------------------------------------------------
+
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -76,14 +81,6 @@ pac_2020 <- dsbox::pac_2020_raw %>%
   mutate(name = str_squish(name))
 ```
 
-```{r read-pac-all-orig}
-pac_all_raw <- dsbox::pac_all_raw
-```
-
-```{r read-pac-all-clean}
-pac_all <- dsbox::pac_all
-```
-
 ```{r clean-pac-all}
 pac_all_final <- dsbox::pac_all %>%
   filter(
@@ -121,16 +118,12 @@ In order to complete this assignment you will need a Chrome browser with the [Se
 
 ### Learning goals
 
-- Introduce you to data collection via web scraping.
-- Continue to build on your data cleaning and visualisation skills.
-
-### Getting help
-
-As always, if you have any questions around the assignment, post them on [Piazza](https://piazza.com).
+- Get started with scraping data from the web. 
+- Continue to build on your data cleaning and visualisation skills. 
 
 ### Packages
 
-In this assignment we will work with the following packages: `tidyverse` and `scales` (which you should be familiar with), and `robotstxt` and `rvest` for web scraping. We also use the `dsbox` package for the data.
+In this assignment we will work with the following packages: **tidyverse** and **scales** (which you should be familiar with), and **robotstxt** and **rvest** for web scraping. We also use the **dsbox** package for pre-scraped data.
 You can load them with the following:
 
 ```{r load-packages, exercise=TRUE}
@@ -496,7 +489,7 @@ This can be accomplished by setting the `extra` argument to "merge" so that the 
 
 Fill the blanks in the following code block to do this.
 
-```{r pac-all-separate, exercise=TRUE, exercise.setup = "read-pac-all-orig", message=FALSE}
+```{r pac-all-separate, exercise = TRUE, message = FALSE}
 pac_all_raw <- pac_all_raw %>%
   separate(___, into = c("___", "___"), sep = "___", extra = "___")
 ```
@@ -608,7 +601,7 @@ grade_code("You've created a function for cleaning the monetary values. Good job
 
 Now, we can combine the `parse_currency()` function with `mutate()` to apply it to the values in the data frame:
 
-```{r parse-currency-data, exercise=TRUE, exercise.setup = "read-pac-all-orig", message=FALSE}
+```{r parse-currency-data, exercise = TRUE, message = FALSE}
 pac_all <- ___ %>%
   ___(
     total = ___,
@@ -661,7 +654,7 @@ grade_code("Now all the monetary valuse are stored as numeric data.")
 
 To top this off, let's take a quick glimpse at the new dataset:
 
-```{r glimpse-cleaned-all, exercise=TRUE, exercise.setup = "read-pac-all-clean", message=FALSE}
+```{r glimpse-cleaned-all, exercise = TRUE, message = FALSE}
 glimpse(pac_all)
 ```
 
@@ -675,7 +668,7 @@ For this, we're going to be following these steps:
 - Calculate sum of total contributions from PACs for each year for each country by using a sequence of `group_by()` then `summarise()`.
 - Make a plot of total contributions (y-axis) by year (x-axis) where two lines identified by different colors represent each of Canada and UK.
 
-```{r uk-canada-plot, exercise=TRUE, exercise.setup = "read-pac-all-clean", message=FALSE}
+```{r uk-canada-plot, exercise = TRUE, message = FALSE}
 pac_all %>%
   ___(country %in% ___) %>%
   ___(country, year) %>%
@@ -758,7 +751,7 @@ dsbox::pac_all %>%
 
 First, we need to filter the data for UK contributions as well as years only up to 2018:
 
-```{r final-plot-filter, exercise=TRUE, exercise.setup = "read-pac-all-clean", message=FALSE}
+```{r final-plot-filter, exercise = TRUE, message = FALSE}
 pac_all %>%
   filter(
     country == "UK",
@@ -771,7 +764,7 @@ pac_all %>%
 Next, we need to calculate total contributions to Democratic and Republican parties from all UK-connected PACs each year. 
 This requires a `group_by()` and `summarise()` step:
 
-```{r final-plot-total-contributions, exercise=TRUE, exercise.setup = "read-pac-all-clean", message=FALSE}
+```{r final-plot-total-contributions, exercise = TRUE, message = FALSE}
 pac_all %>%
   filter(
     country == "UK",
@@ -791,7 +784,7 @@ Ultimately we want to color the lines by party though, and this requires our dat
 
 We can achieve this by pivoting our data to be longer (going from 11 to 22 rows)
 
-```{r final-plot-pivot, exercise=TRUE, exercise.setup = "read-pac-all-clean", message=FALSE}
+```{r final-plot-pivot, exercise = TRUE, message = FALSE}
 pac_all %>%
   filter(
     country == "UK",
@@ -811,7 +804,7 @@ pac_all %>%
 
 Let's save this as a new data frame to simplify the code for generating the plot:
 
-```{r final-plot-data-frame, exercise=TRUE, message=FALSE, exercise.setup = "read-pac-all-clean", message=FALSE}
+```{r final-plot-data-frame, exercise = TRUE, message = FALSE}
 pac_all_final <- pac_all %>%
   filter(
     country == "UK",

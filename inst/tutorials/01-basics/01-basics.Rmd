@@ -14,20 +14,23 @@ description: >
 <script language="JavaScript" src="js/exercise-font-size.js"></script>
 
 ```{r setup, include=FALSE}
-# packages
+# load packages-----------------------------------------------------------------
+
 library(learnr)
 library(gradethis)
 library(tidyverse)
 library(dsbox)
 
-# use gradethis for checking. No timelimit
+# set options for exercises and checking ---------------------------------------
+
 tutorial_options(
   exercise.timelimit = 60, 
   exercise.checker = gradethis::grade_learnr,
   exercise.error.checker = gradethis::grade_learnr_error
   )
 
-# hide non-exercise code chunks
+# hide non-exercise code chunks ------------------------------------------------
+
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -43,13 +46,9 @@ The data come from the [Kaggle database](https://www.kaggle.com/thoroc/edinburgh
 
 The data has been modified to better serve the goals of this exploration.
 
-### Learning Goals
+### Learning goals
 
-The goal of this assignment is not to conduct a thorough analysis of Airbnb listings in Edinburgh, but instead to give you a chance to practice your data visualisation and interpretation skills.
-
-### Getting Help
-
-If you have any questions, post them on [Piazza](https://piazza.com).
+The goal of this tutorial is not to conduct a thorough analysis of Airbnb listings in Edinburgh, but instead to give you a chance to practice your data visualisation and interpretation skills.
 
 ### Packages
 
@@ -72,7 +71,7 @@ grade_code("The tidyverse and dsbox packages are now loaded!")
 
 ## Data
 
-### Load and Glimpse
+### Load and glimpse
 
 The data is in the `dsbox` package and it's called `edibnb`. 
 
@@ -115,7 +114,7 @@ grade_result(
 )
 ```
 
-### Examining Further
+### Examining further
 
 Each column represents a variable. We can get a list of the variables in the data frame using the `names()` function.
 
@@ -289,7 +288,7 @@ This second warning is a consequence of the fact that we are working with a real
 This doesn't stop R from creating the histogram, but it does mean some observations are omitted from this visualisation (199 of them, to be precise).
 
 
-### Binwidth Experimentation
+### Binwidth experimentation
 
 Instead of having R pick a `binwidth` itself, try out different binwidths using the code below:
 
@@ -320,7 +319,7 @@ grade_result(
 ```
 
 
-### Deconstructing the Code
+### Deconstructing the code
 
 Let’s deconstruct this code:
 

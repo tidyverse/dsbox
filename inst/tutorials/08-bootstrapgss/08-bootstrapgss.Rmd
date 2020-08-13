@@ -8,24 +8,31 @@ output:
 runtime: shiny_prerendered
 description: >
   Use bootstrapping to construct confidence intervals and learn how to
-  interpret confidence intervals.
+  interpret confidence intervals using data from the General Social Survey (GSS). 
 ---
 
 <!-- Add JavaScript code for making the exercise code larger -->
 <script language="JavaScript" src="js/exercise-font-size.js"></script>
 
 ```{r setup, include=FALSE}
-# packages
+# load packages ----------------------------------------------------------------
+
 library(learnr)
 library(gradethis)
 library(tidyverse)
 library(infer)
 library(dsbox)
 
-# use gradethis for checking
-tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+# set options for exercises and checking ---------------------------------------
 
-# hide non-exercise code chunks
+tutorial_options(
+  exercise.timelimit = 60, 
+  exercise.checker = gradethis::grade_learnr,
+  exercise.error.checker = gradethis::grade_learnr_error
+  )
+
+# hide non-exercise code chunks ------------------------------------------------
+
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -73,23 +80,15 @@ boot_df_median <- gss_email %>%
 
 ## Introduction
 
-```{r photo, fig.margin = TRUE, echo = FALSE, out.width="100%", fig.cap="Photo by Kira auf der Heide on Unsplash"}
-knitr::include_graphics("images/08-tutorial.jpg")
+```{r photo, fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.cap = "Photo by Christian Wiediger on Unsplash."}
+knitr::include_graphics("images/christian-wiediger-70ku6P7kgmc-unsplash.jpg")
 ```
-
-It’s almost time to wrap up the course, with our final tutorial.
 
 ### Learning goals
 
-In this tutorial, you will learn and expand the following skills:
-
-  - Data wrangling
-  - Bootstrapping to construct confidence intervals
-  - Interpretation of confidence intervals
-
-### Getting help
-
-As always, if you have any questions around the assignment, post them on [Piazza](https://piazza.com).
+- Continue to hone your data wrangling skills.
+- Use bootstrapping to construct confidence intervals.
+- Interpret of confidence intervals in cotext of the data.
 
 ### Packages
 
@@ -112,12 +111,11 @@ library(dsbox)
 grade_code("You've successfully loaded the packages.")
 ```
 
-
 ## Data
 
 For this tutorial, we're going to continue our exploration of the 2016 GSS dataset from last week, which is available as part of the `dsbox` package.
 
-### Data Dictionary
+### Data dictionary
 
 | Variable name    | Description/Question in GSS 
 |:--------|:-------------------------------------------------------------
@@ -127,8 +125,8 @@ For this tutorial, we're going to continue our exploration of the 2016 GSS datas
 | `educ` 		  | Number of years in education.
 | `polviews` 	| Political views. Possible answers are Extremely liberal, Liberal, Slightly liberal, Moderate, Slghtly conservative, Conservative, Extrmly conservative.
 | `advfront`  | "day of the week"Even if it brings no immediate benefits, scientific research that advances the frontiers of knowledge is necessary and should be supported by the federal government."
-| `snapchat`  | Whether respondant uses Snapchat or not.
-| `instagram` | Whether respondant uses Instagram or not.
+| `snapchat`  | Whether respondent uses Snapchat or not.
+| `instagram` | Whether respondent uses Instagram or not.
 | `wrkstat`   | Work status.
 
 
@@ -471,5 +469,6 @@ question("Which statement is correct?",
 
 ## Wrap Up
 
-That's it! You've finished the last tutorial, congratulations!
-We hope you enjoyed this assignment.
+That's it! 
+You've finished the last tutorial, congratulations!
+We hope you enjoyed this exploration. 

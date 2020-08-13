@@ -1,5 +1,5 @@
 ---
-title: "HW 03 - What should I major in?"
+title: "What should I major in?"
 output: 
   learnr::tutorial:
     progressive: true
@@ -15,30 +15,43 @@ description: >
 <script language="JavaScript" src="js/exercise-font-size.js"></script>
 
 ```{r setup, include=FALSE}
-# packages
+# load packages ----------------------------------------------------------------
+
 library(learnr)
 library(gradethis)
 library(tidyverse)
 library(scales)
 library(fivethirtyeight)
 
-# use gradethis for checking. No timelimit
-tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+# set options for exercises and checking ---------------------------------------
 
-# hide non-exercise code chunks
+tutorial_options(
+  exercise.timelimit = 60, 
+  exercise.checker = gradethis::grade_learnr,
+  exercise.error.checker = gradethis::grade_learnr_error
+  )
+
+# hide non-exercise code chunks ------------------------------------------------
+
 knitr::opts_chunk$set(echo = FALSE)
 
-stem_categories <- c("Biology & Life Science",
-                     "Computers & Mathematics",
-                     "Engineering",
-                     "Physical Sciences")
+# data prep --------------------------------------------------------------------
+
+# strm or not
+stem_categories <- c(
+  "Biology & Life Science",
+  "Computers & Mathematics",
+  "Engineering",
+  "Physical Sciences"
+)
 
 college_recent_grads <- college_recent_grads %>%
   mutate(major_type = ifelse(major_category %in% stem_categories, "stem", "not stem"))
 ```
 
 ## Introduction
-```{r college-grad, fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.cap="Photo by Pang Yuhao on Unsplash"}
+
+```{r college-grad, fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.cap = "Photo by Pang Yuhao on Unsplash"}
 knitr::include_graphics("images/pang-yuhao-_kd5cxwZOK4-unsplash.jpg")
 ```
 
@@ -52,18 +65,14 @@ These data originally come from the American Community Survey (ACS) 2010-2012 Pu
 While this is outside the scope of this assignment, if you are curious about how raw data from the ACS were cleaned and prepared, see [the code](https://github.com/fivethirtyeight/data/blob/master/college-majors/college-majors-rscript.R) FiveThirtyEight authors used.
 
 We should also note that there are many considerations that go into picking a major. 
-Earnings potential and employment prospects are two of them, and they are important, but they don’t tell the whole story. 
+Earnings potential and employment prospects are two of them, and they are important, but they do not tell the whole story. 
 Keep this in mind as you analyze the data.
 
 ### Learning goals
 
-- Continue practicing data tidying and visualisation
-- Calculate summary statistics with `summarise()`
-- Arrange output of dplyr chains with `arrange()`
-
-### Getting help
-
-If you have any questions about the assignment, post them on [Piazza](https://piazza.com).
+- Continue practising data tidying and visualisation. 
+- Calculate summary statistics with `summarise()`. 
+- Arrange output of dplyr chains with `arrange()`. 
 
 ### Packages
 
@@ -144,7 +153,7 @@ college_recent_grads %>%
   arrange(unemployment_rate)
 ```
 
-### Let's improve this
+### Improvements 
 
 This gives us what we wanted, but not in an ideal form. 
 The name of the major takes up a lot of space on the page, and so some of the variables are not that useful (e.g. `major_code`, `major_category`) and some we might want front and center are not easily viewed (e.g. `unemployment_rate`).

@@ -15,17 +15,24 @@ description: >
 <script language="JavaScript" src="js/exercise-font-size.js"></script>
 
 ```{r setup, include=FALSE}
-# packages
+# load packages ----------------------------------------------------------------
+
 library(learnr)
 library(gradethis)
 library(tidyverse)
 library(broom)
 library(dsbox)
 
-# use gradethis for checking
-tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+# set options for exercises and checking ---------------------------------------
 
-# hide non-exercise code chunks
+tutorial_options(
+  exercise.timelimit = 60, 
+  exercise.checker = gradethis::grade_learnr,
+  exercise.error.checker = gradethis::grade_learnr_error
+  )
+
+# hide non-exercise code chunks ------------------------------------------------
+
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -37,29 +44,39 @@ gss <- dsbox::gss %>%
 ```{r setup-snap-insta-var}
 gss <- dsbox::gss %>%
   mutate(snap_insta = if_else(snapchat == "Yes" | instagrm == "Yes",
-                              "Yes", "No"))
+    "Yes", "No"
+  ))
 ```
 
 ```{r setup-snap-insta-email-vars}
 gss <- dsbox::gss %>%
-  mutate(email = emailmin + (emailhr * 60),
-         snap_insta = if_else(snapchat == "Yes" | instagrm == "Yes",
-                              "Yes", "No"))
+  mutate(
+    email = emailmin + (emailhr * 60),
+    snap_insta = if_else(snapchat == "Yes" | instagrm == "Yes",
+      "Yes", "No"
+    )
+  )
 ```
 
 ```{r setup-email-lm}
 gss <- dsbox::gss %>%
-  mutate(email = emailmin + (emailhr * 60),
-         snap_insta = if_else(snapchat == "Yes" | instagrm == "Yes",
-                              "Yes", "No"))
+  mutate(
+    email = emailmin + (emailhr * 60),
+    snap_insta = if_else(snapchat == "Yes" | instagrm == "Yes",
+      "Yes", "No"
+    )
+  )
 m <- lm(email ~ educ + wrkstat + snap_insta, data = gss)
 ```
 
 ```{r setup-augmented-email-lm}
 gss <- dsbox::gss %>%
-  mutate(email = emailmin + (emailhr * 60),
-         snap_insta = if_else(snapchat == "Yes" | instagrm == "Yes",
-                              "Yes", "No"))
+  mutate(
+    email = emailmin + (emailhr * 60),
+    snap_insta = if_else(snapchat == "Yes" | instagrm == "Yes",
+      "Yes", "No"
+    )
+  )
 m <- lm(email ~ educ + wrkstat + snap_insta, data = gss)
 m_aug <- augment(m)
 ```
@@ -75,7 +92,7 @@ gss <- dsbox::gss %>%
     polviews2 = case_when(
       polviews %in% c("Extremely liberal", "Liberal", "Slightly liberal") ~ "Liberal",
       polviews %in% c("Extrmly conservative", "Conservative", "Slghtly conservative") ~ "Conservative",
-      TRUE                                             ~ polviews
+      TRUE ~ polviews
     ),
     polviews2 = fct_relevel(polviews2, "Conservative", "Moderate", "Liberal")
   )
@@ -96,15 +113,11 @@ Among the topics covered are civil liberties, crime and violence, intergroup tol
 
 In this assignment we analyze data from the 2016 GSS, using it to estimate values of population parameters of interest about US adults.
 
-### Learning Goals
+### Learning goals
 
 - Work on your data manipulation skills.
 - Fit linear models with multiple predictors.
 - Interpret regression output.
-
-### Getting Help
-
-If you have any questions, post them on [Piazza](https://piazza.com).
 
 ### Packages
 
@@ -127,12 +140,11 @@ library(dsbox)
 grade_code("The packages we'll be working with are now loaded.")
 ```
 
-
 ## Data
 
 In this tutorial, we will work with the 2016 GSS data.
 
-The data are available as part of the `dsbox` package we just loaded; the data frame is called `gss`.
+The data are available as part of the **dsbox** package we just loaded; the data frame is called `gss`.
 
 
 ### Data Dictionary
@@ -690,5 +702,4 @@ Some suggestions could be adding labels and titles, changing colours, etc.
 ## Wrap up
 
 Great work! 
-You've finished the ninth tutorial. 
 We hope you've enjoyed this chance to practice your data handling and modelling skills some more.

@@ -15,47 +15,52 @@ description: >
 <script language="JavaScript" src="js/exercise-font-size.js"></script>
 
 ```{r setup, include=FALSE}
-# packages
+# load packages ----------------------------------------------------------------
+
 library(learnr)
 library(gradethis)
 library(tidyverse)
 library(dsbox)
 
-# use gradethis for checking. No timelimit
-tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+# set options for exercises and checking ---------------------------------------
 
-# create age_group for questions 5 & 6
+tutorial_options(
+  exercise.timelimit = 60, 
+  exercise.checker = gradethis::grade_learnr,
+  exercise.error.checker = gradethis::grade_learnr_error
+  )
+
+# hide non-exercise code chunks ------------------------------------------------
+
+knitr::opts_chunk$set(echo = FALSE)
+
+# data prep --------------------------------------------------------------------
+
+# create age_group for questions 
 lego_sales <- lego_sales %>%
   mutate(age_group = case_when(
-    age <= 18             ~ "18 and under",
+    age <= 18 ~ "18 and under",
     age >= 19 & age <= 25 ~ "19 - 25",
     age >= 26 & age <= 35 ~ "26 - 35",
     age >= 36 & age <= 50 ~ "36 - 50",
-    age >= 51             ~ "51 and over"
-  )
-  )
-
-# hide non-exercise code chunks
-knitr::opts_chunk$set(echo = FALSE)
+    age >= 51 ~ "51 and over"
+  ))
 ```
+
 ## Introduction
 
-```{r stormtrooper, fig.margin = TRUE, echo = FALSE, fig.width=3, out.width = "100%", fig.cap="Photo by James Pond on Unsplash"}
+```{r stormtrooper, fig.margin = TRUE, echo = FALSE, fig.width = 3, out.width = "100%", fig.cap = "Photo by James Pond on Unsplash"}
 knitr::include_graphics("images/james-pond-riEYPSKxoTw-unsplash.jpg")
 ```
 
-This week we'll do some data gymnastics to refresh and review what we 
+In this tutorial we'll do some data gymnastics to refresh and review what we 
 learned over the past few weeks.
 
 ### Learning goals
 
-- Practice the analysis skills you have learned during the last weeks
-- Use independent research to answer a question
-- Deepen your understanding of visualisations
-
-### Getting help
-
-If you have any questions about the assignment, please post them on [Piazza](https://piazza.com)!
+- Practice the analysis skills you have learned so far. 
+- Develop a question you can answer with the data. 
+- Deepen your understanding of building and interpreting visualisations. 
 
 ### Packages
 
@@ -77,10 +82,8 @@ grade_code("The tidyverse and dsbox packages you'll use in this analysis are now
 
 ## Data
 
-### Lego sales
-
 We have data from Lego sales in 2018 for a sample of customers who bought Legos in the United States.
-The dataset is available as part of the `dsbox` package, and it's called `lego_sales`.
+The dataset is available as part of the **dsbox** package, and it's called `lego_sales`.
 
 The codebook for the dataset is as follows:
 
