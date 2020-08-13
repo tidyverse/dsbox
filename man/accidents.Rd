@@ -45,7 +45,7 @@ looking to prevent them.
 }
 \details{
 The data come from the UK Government at
-\href{https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data/datafile/36f1658e-b709-47e7-9f56-cca7aefeb8fe/preview}{data.gov.uk}
+\href{https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data/datafile/36f1658e-b709-47e7-9f56-cca7aefeb8fe/preview}{data.gov.uk}.
 It's been modified to better serve the goals of introductory data science education.
 }
 \examples{
