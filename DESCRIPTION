@@ -18,8 +18,11 @@ Imports:
     ggplot2, 
     dplyr, 
     tibble, 
-    tidyverse
-Suggests:
+    tidyverse, 
+    robotstxt, 
+    rvest, 
+    DT, 
+    broom, 
     fivethirtyeight
 Depends: 
     R (>= 2.10)
