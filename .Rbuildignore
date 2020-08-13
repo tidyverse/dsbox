@@ -11,6 +11,6 @@ rsconnect/
 ^docs$
 ^pkgdown$
 ^inst/tutorials/.*\.html$
-^inst/tutorials/.*\._files$
+^inst/tutorials/.*files$
 ^inst/tutorials/deploy.R$
 man/figures/dsbox-fullsize.png
