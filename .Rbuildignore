@@ -5,6 +5,7 @@
 rsconnect/
 ^\.github/
 ^inst/tutorials/.*\.html$
+^inst/tutorials/.*\._files$
 ^\.github$
 ^README\.Rmd$
 ^CODE_OF_CONDUCT\.md$
