@@ -15,15 +15,16 @@ Imports:
     learnr, 
     gradethis, 
     scales, 
-    ggplot2, 
-    dplyr, 
-    tibble, 
     tidyverse, 
     robotstxt, 
     rvest, 
     DT, 
     broom, 
     fivethirtyeight
+Suggests: 
+    dplyr, 
+    ggplot2, 
+    tibble
 Depends: 
     R (>= 2.10)
 Remotes:
