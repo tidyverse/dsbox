@@ -124,16 +124,18 @@ names(edibnb)
 
 The variables and their descriptions are given below:
 
-1. `id`: ID number of the listing
-1. `price`: Price, in GBP, for one night stay
-1. `neighbourhood`: Neighbourhood listing is located in
-1. `accommodates`: Number of people listing accommodates
-1. `bathrooms`: Number of bathrooms
-1. `bedrooms`: Number of bedrooms
-1. `beds`: Number of beds (which can be different than the number of bedrooms)
-1. `review_scores_rating`: Average rating of property
-1. `number_of_reviews`: Number of reviews
-1. `listing_url`: Listing URL
+| Variable Name   |  Description
+|:----------------|:--------------------------------
+| `id` | ID number of the listing
+| `price` | Price, in GBP, for one night stay
+| `neighbourhood` | Neighbourhood listing is located in
+| `accommodates` | Number of people listing accommodates
+| `bathrooms` | Number of bathrooms
+| `bedrooms` | Number of bedrooms
+| `beds` | Number of beds (which can be different than the number of bedrooms)
+| `review_scores_rating` | Average rating of property
+| `number_of_reviews` | Number of reviews
+| `listing_url` | Listing URL
 
 
 ## Data visualisation
