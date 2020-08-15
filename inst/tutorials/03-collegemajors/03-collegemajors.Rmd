@@ -37,15 +37,17 @@ knitr::opts_chunk$set(echo = FALSE)
 
 # data prep --------------------------------------------------------------------
 
-# strm or not
+# STEM or not
 stem_categories <- c(
   "Biology & Life Science",
   "Computers & Mathematics",
   "Engineering",
   "Physical Sciences"
 )
+```
 
-college_recent_grads <- college_recent_grads %>%
+```{r setup-major-type}
+college_recent_grads <- fivethirtyeight::college_recent_grads %>%
   mutate(major_type = ifelse(major_category %in% stem_categories, "stem", "not stem"))
 ```
 
@@ -574,7 +576,7 @@ Other logical operators that are commonly used are
 
 We can use the logical operators to also filter our data for STEM majors whose median earnings is less than median for all majors’s median earnings, which we found to be $36,000 earlier.
 
-```{r medians-less-than-avg, exercise=TRUE}
+```{r medians-less-than-avg, exercise=TRUE, exercise.setup = "setup-major-type"}
 college_recent_grads %>%
   filter(
     major_type == "stem",
@@ -587,7 +589,7 @@ college_recent_grads %>%
 Modify the above code to show only the major name and median, 25th percentile, and 75th percentile earning for the STEM majors with median earnings less than the \$36,000 average. 
 The data should be sorted such that the major with the highest median earning is on top.
 
-```{r median-less-than-avg, exercise=TRUE}
+```{r median-less-than-avg, exercise=TRUE, exercise.setup = "setup-major-type"}
 college_recent_grads %>%
   filter(
     major_type == "stem",
@@ -652,7 +654,7 @@ grade_result(
 Create a scatterplot of median income vs. proportion of women in that major, colored by whether the major is in a STEM field or not. 
 Describe the association between these three variables.
 
-```{r majors-women, exercise=TRUE}
+```{r majors-women, exercise=TRUE, exercise.setup = "setup-major-type"}
 ggplot(___ = college_recent_grads, 
        mapping = aes(x = ___, y = ___, color = ___)) +
   ___() +
@@ -734,7 +736,7 @@ We can use `scale_x_continuous(labels = label_percent())` to change the labels f
 
 Use the following code block to apply this new formatting, using your code from the previous exercise.
 
-```{r majors-women-labels, exercise=TRUE}
+```{r majors-women-labels, exercise=TRUE, exercise.setup = "setup-major-type"}
 ggplot(___ = college_recent_grads, 
        mapping = aes(x = ___, y = ___, color = ___)) +
   ___() +
