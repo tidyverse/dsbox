@@ -154,7 +154,7 @@ This website is hosted by The Center for Responsive Politics, which is a nonpart
 
 Before getting started, let’s check that a bot has permissions to access pages on this domain. 
 This function comes from the `robotstxt` package and it checks if a bot (or a web scraper like you!) has permissions to access the webpage. 
-The functions returns `TRUE`, the answer is "yes", you're technically allowed to scrape the webpage.
+If the function returns `TRUE`, then the answer is "yes", you're technically allowed to scrape the webpage.
 
 ```{r paths-allowed, exercise=TRUE, warning=FALSE}
 paths_allowed("https://www.opensecrets.org")
