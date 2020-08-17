@@ -36,15 +36,16 @@ tutorial_options(
 # hide non-exercise code chunks ------------------------------------------------
 
 knitr::opts_chunk$set(echo = FALSE)
-```
 
-```{r set-url-2020, include=FALSE}
+
+# setup some things
+------------------------------------------------
+
 url_2020 <- "https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs?cycle=2020"
-```
 
-```{r read-html-2020, include=FALSE}
 page <- read_html(url_2020)
 ```
+
 
 ```{r glimpse-pac-2020-setup}
 # Before renaming
@@ -594,7 +595,7 @@ parse_currency <- function(x){
 ```
 
 ```{r parse-currency-function-check}
-grade_code("You've created a function for cleaning the monetary values. Good job!")
+grade_code("You've created a function for cleaning the monetary values.")
 ```
 
 ### Using the function
@@ -647,7 +648,7 @@ pac_all <- pac_all_raw %>%
 ```
 
 ```{r parse-currency-data-check}
-grade_code("Now all the monetary valuse are stored as numeric data.")
+grade_code("Now all the monetary values are stored as numeric data.")
 ```
 
 ### Glimpse the cleaned data
