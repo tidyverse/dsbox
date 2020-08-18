@@ -124,7 +124,7 @@ For this tutorial, we're going to continue our exploration of the 2016 GSS datas
 | `emailhr` 	| Number of hours spent on email weekly.
 | `educ` 		  | Number of years in education.
 | `polviews` 	| Political views. Possible answers are Extremely liberal, Liberal, Slightly liberal, Moderate, Slghtly conservative, Conservative, Extrmly conservative.
-| `advfront`  | "day of the week"Even if it brings no immediate benefits, scientific research that advances the frontiers of knowledge is necessary and should be supported by the federal government."
+| `advfront`  | "Even if it brings no immediate benefits, scientific research that advances the frontiers of knowledge is necessary and should be supported by the federal government."
 | `snapchat`  | Whether respondent uses Snapchat or not.
 | `instagram` | Whether respondent uses Instagram or not.
 | `wrkstat`   | Work status.
@@ -273,7 +273,7 @@ Let's have a quick look at the bootstrapped data frame:
 glimpse(boot_df)
 ```
 
-Each value of the `stat` field is a particular bootstrapped sample mean.
+Note that each value of the `stat` field is a particular bootstrapped sample mean.
 
 ### Find the confidence interval
 
