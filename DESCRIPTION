@@ -20,7 +20,8 @@ Imports:
     rvest, 
     DT, 
     broom, 
-    fivethirtyeight
+    fivethirtyeight,
+    infer
 Suggests: 
     dplyr, 
     ggplot2, 
