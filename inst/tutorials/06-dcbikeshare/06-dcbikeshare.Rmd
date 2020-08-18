@@ -456,11 +456,19 @@ dcbikeshare <- ___ %>%
 ```{r recode-weathersit-hint-1}
 dcbikeshare <- dcbikeshare %>%
   mutate(
-    ___ = case_when(
+    weathersit = case_when(
+      ___
+    ),
+    ___ = ___
+  )
+```
+
+```{r recode-weathersit-hint-2}
+dcbikeshare <- dcbikeshare %>%
+  mutate(
+    weathersit = case_when(
       weathersit == 1 ~ "clear",
-      weathersit == 2 ~ "mist",
-      weathersit == 3 ~ "light precipitation",
-      weathersit == 4 ~ "heavy precipitation"
+      ___
     ),
     ___ = ___
   )
@@ -471,7 +479,22 @@ dcbikeshare <- dcbikeshare %>%
   mutate(
     weathersit = case_when(
       weathersit == 1 ~ "clear",
-      ___
+      weathersit == 2 ~ "mist",
+      weathersit == 3 ~ "light precipitation",
+      weathersit == 4 ~ "heavy precipitation"
+    ),
+    ___ = ___
+  )
+```
+
+```{r recode-weathersit-hint-4}
+dcbikeshare <- dcbikeshare %>%
+  mutate(
+    weathersit = case_when(
+      weathersit == 1 ~ "clear",
+      weathersit == 2 ~ "mist",
+      weathersit == 3 ~ "light precipitation",
+      weathersit == 4 ~ "heavy precipitation"
     ),
     weathersit = fct_relevel(___)
   )
@@ -494,6 +517,8 @@ dcbikeshare <- dcbikeshare %>%
 grade_code("Your solution is correct!")
 ```
 
+### Recoding warning
+
 At this point, you might wonder what this warning means:
 
 ```
@@ -501,7 +526,7 @@ At this point, you might wonder what this warning means:
 ```
 
 This is simply R warning us that while it is possible for the `weathersit` variable to have the value 4 for heavy precipitation, this never actually occurs in the data.
-Consequently, the `weathersit` variable only has three factors.
+Consequently, the `weathersit` factor only has three levels.
 
 ## Creating new variables
 
@@ -600,6 +625,8 @@ grade_code("Your solution is correct!")
 
 ## Bike rentals and temperature
 
+### Recreating this visualization
+
 Recreate the following visualization. 
 
 ```{r fig.width=9, echo=FALSE, out.width="100%"}
@@ -626,6 +653,7 @@ dcbikeshare %>%
       subtitle = ___,
       x = ___,
       y = ___,
+      color = ___
     ) +
   ___
 ```
@@ -648,6 +676,7 @@ dcbikeshare %>%
       subtitle = ___,
       x = ___,
       y = ___,
+      color = ___
     ) +
   theme_minimal()
 ```
@@ -661,6 +690,7 @@ dcbikeshare %>%
       subtitle = ___,
       x = ___,
       y = ___,
+      color = ___
     ) +
   theme_minimal()
 ```
