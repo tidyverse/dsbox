@@ -392,6 +392,6 @@ question("How do users generally rate properties on Airbnb?",
 )
 ```
 
-## Wrap Up
+## Wrap up
 
 Congratulations, you've finished the first tutorial! We hope that you enjoyed practising your data handling, visualisation, and interpretation skills along the way.

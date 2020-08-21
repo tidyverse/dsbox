@@ -495,7 +495,7 @@ question("Which age group has spent the most money on lego sets?",
   )
 ```
 
-## Wrap Up
+## Wrap up
 
 Congratulations, you have completed tutorial 4! 
 We hope you enjoyed reviewing what we've learned so far!

@@ -767,7 +767,7 @@ grade_code("Those labels look much better now!")
 ```
 
 
-## Wrap Up
+## Wrap up
 
 Well done, you've finished the third tutorial! 
 Hopefully you've enjoyed exploring and analysing this data set, and improved your skills when it comes to sorting, selecting and summarising data (and maybe you're wondering if it's not too late to change your major!)

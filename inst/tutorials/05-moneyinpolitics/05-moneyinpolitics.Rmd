@@ -38,11 +38,8 @@ tutorial_options(
 knitr::opts_chunk$set(echo = FALSE)
 
 
-# setup some things
-------------------------------------------------
-
+# setup some things ------------------------------------------------------------
 url_2020 <- "https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs?cycle=2020"
-
 page <- read_html(url_2020)
 ```
 
@@ -959,7 +956,7 @@ grade_code("Finally! The plot is finished.")
 ```
 
 
-## Wrap Up
+## Wrap up
 
 Excellent work! You've finished the sixth tutorial.
 Hopefully this has served as a good introduction to web scraping, and you've seen a good example of how we can build a simple plot into something much more informative and striking.
