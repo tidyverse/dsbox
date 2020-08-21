@@ -88,7 +88,7 @@ knitr::include_graphics("images/christian-wiediger-70ku6P7kgmc-unsplash.jpg")
 
 - Continue to hone your data wrangling skills.
 - Use bootstrapping to construct confidence intervals.
-- Interpret of confidence intervals in cotext of the data.
+- Interpret of confidence intervals in context of the data.
 
 ### Packages
 
