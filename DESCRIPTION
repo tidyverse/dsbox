@@ -4,6 +4,8 @@ Title: Data Science Course in a Box
 Version: 0.1.0
 Authors@R: c(
     person("Mine", "\u00C7etinkaya-Rundel", email = "mine@rstudio.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-6452-2420")),
+    person("Lee", "Suddaby", email = "leesuddaby@gmail.com", role = c("ctb")),
+    person("Zeno", "Kujowa", email = "zeno.kujawa@gmail.com", role = c("ctb")),
     person("RStudio", role = c("cph", "fnd"))
     )
 Description: Datasets accompanying Data Science Course in a Box, an 
