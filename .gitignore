@@ -6,6 +6,7 @@
 
 # html tutorial output
 inst/tutorials/*/*.html
+inst/tutorials/*/*_files
 
 # deployment output
 rsconnect/

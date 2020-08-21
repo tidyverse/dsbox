@@ -34,11 +34,32 @@ reference:
   - pac_2020
   - pac_2020_raw
   - pac_all
-  - pac_all_clean
+  - pac_all_raw
   - student_survey
   - ucbadmit
 
 tutorials:
 - name: 01-basics
   title: Airbnb listings in Edinburgh
-  url: https://minecr.shinyapps.io/dsbox-01-basics/
+  url: https://minecr.shinyapps.io/dsbox-01-edibnb/
+- name: 02-accidents
+  title: Road Traffic Accidents
+  url: https://minecr.shinyapps.io/dsbox-02-accidents/
+- name: 03-collegemajors
+  title: What should I major in?
+  url: https://minecr.shinyapps.io/dsbox-03-collegegrads/
+- name: 04-legosales
+  title: Lego Sales
+  url: https://minecr.shinyapps.io/dsbox-04-legosales/
+- name: 05-moneyinpolitics
+  title: Money in US Politics
+  url: https://minecr.shinyapps.io/dsbox-05-moneyinpolitics/
+- name: 06-dcbikeshare
+  title: Bike Rentals in D.C.
+  url: https://minecr.shinyapps.io/dsbox-06-dcbikeshare/
+- name: 07-exploregss
+  title: Exploring the GSS
+  url: https://minecr.shinyapps.io/dsbox-07-exploregss/
+- name: 08-bootstrapgss
+  title: Bootstrapping the GSS
+  url: https://minecr.shinyapps.io/dsbox-08-bootstrapgss/

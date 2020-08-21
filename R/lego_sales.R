@@ -15,7 +15,7 @@
 #'   \item{theme}{Theme of lego set purchased}
 #'   \item{subtheme}{Sub theme of lego set purchased}
 #'   \item{year}{Year of purchase}
-#'   \item{name}{ Name of lego set purchased}
+#'   \item{name}{Name of lego set purchased}
 #'   \item{pieces}{Number of pieces of legos in set purchased}
 #'   \item{us_price}{Price of set purchase in US Dollars}
 #'   \item{image_url}{Image URL of lego set purchased}

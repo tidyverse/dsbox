@@ -1,0 +1,420 @@
+---
+title: "Road Traffic Accidents"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+    css: "css/font-size.css"
+runtime: shiny_prerendered
+description: >
+  Get more practice with data visualization and wrangling in the tidyverse: 
+  practice visualization with ggplot2, and data handling with the filter() and 
+  mutate() functions.
+---
+
+<!-- Add JavaScript code for making the exercise code larger -->
+<script language="JavaScript" src="js/exercise-font-size.js"></script>
+
+```{r setup, include=FALSE}
+# load packages ----------------------------------------------------------------
+
+library(learnr)
+library(gradethis)
+library(tidyverse)
+library(dsbox)
+
+# set options for exercises and checking ---------------------------------------
+
+tutorial_options(
+  exercise.timelimit = 60, 
+  exercise.checker = gradethis::grade_learnr,
+  exercise.error.checker = gradethis::grade_learnr_error
+  )
+
+# hide non-exercise code chunks ------------------------------------------------
+
+knitr::opts_chunk$set(echo = FALSE)
+
+# data prep --------------------------------------------------------------------
+
+# redefine light conditions
+accidents <- accidents %>%
+  mutate(light_conditions = case_when(
+    light_conditions == 1 ~ "1 - Daylight",
+    light_conditions == 4 ~ "4 - Darkness - lights lit",
+    light_conditions == 5 ~ "5 - Darkness - lights unlit",
+    light_conditions == 6 ~ "6 - Darkness - no lighting",
+    light_conditions == 7 ~ "7 - Darkness - lighting unknown"
+  ))
+
+# redefine urban area variable
+accidents <- accidents %>%
+  mutate(urban_or_rural_area = case_when(
+    urban_or_rural_area == 1 ~ "Rural",
+    urban_or_rural_area == 2 ~ "Urban",
+    urban_or_rural_area == 3 ~ "Unallocated"
+  ))
+```
+
+## Introduction
+
+```{r biker, fig.margin = TRUE, echo = FALSE, out.width="100%", fig.cap="Photo by Carly Reeves on Unsplash"}
+#might replace the image!
+knitr::include_graphics("images/traffic.jpg")
+```
+
+In this tutorial, we will look at traffic accidents in Edinburgh.
+The data are made available [online](https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data/datafile/36f1658e-b709-47e7-9f56-cca7aefeb8fe/preview) by the UK Government. 
+It covers all recorded accidents in Edinburgh in 2018 and some of the variables were modified for the purposes of this tutorial. 
+
+### Learning goals
+
+- Continue practising data visualization skills with ggplot2. 
+- Filter data for certain attributes with `filter()`. 
+- Create new variables based on existing variables in the data with `mutate()`. 
+
+### Packages
+
+We'll use the **tidyverse** package for the analysis and the **dsbox** package for the data.
+These packages are already installed for you, so you load it as usual by running the following code:
+
+```{r load-packages, exercise = TRUE}
+library(tidyverse)
+library(dsbox)
+```
+
+```{r load-packages-solution}
+library(tidyverse)
+library(dsbox)
+```
+
+```{r load-packages-check}
+grade_code("The tidyverse and dsbox packages are now loaded!")
+```
+
+## Data
+
+The data is in the `dsbox` package and it's called `accidents`. 
+
+Below is an excerpt of the data dictionary. 
+Note that it is long (there are lots of variables in the data), but we will be using a limited set of the variables for our analysis.
+
+| Header                        |  Description
+|:----------------|:--------------------------------
+| `accident_index`  | Accident ID
+|`accident_severity` | 1- Fatal, 2- Serious, 3- Slight
+| `number_of_vehicles` | Number of vehicles involved in accident
+| `number_of_casualties` | Number of people injured in the accident
+| `date` | Date of the accident
+| `day_of_week` | 1-Sunday, [...], 7-Saturday
+| `time` | Time of the accident on the 24h clock.
+| `urban_or_rural_area` | Gives information about the type of area the accident occurred in.
+| `1st_road_class` | Class of 1st road involved in accident. 0 - Not at junction or within 20 metres, 1 - Motorway, 2 - A(M) roads (A-roads with motorway restrictions, 3 - A-road, 4- B-road, 5- C-road, 6 - Unclassified
+| `1st_road_rumber` | ID of 1st road (0 if unclassified).
+| `road_type` | Type of road. 1 - Roundabout, 2 - One way street, 3 - Dual carriageway, 6 - Single carriageway, 7 - Slip road, 9 - Unknown, 12 - One way street/Slip road, -1 - Data missing or out of range.
+| `speed_limit` | Speed limit on the road in mph.
+| `junction_detail` | 0 - Not at junction or within 20 metres, 1 - Roundabout, 2- Mini-roundabout, 3- T or staggered junction, 5 - Slip road, 6- Crossroads, 7- More than 4 arms (not roundabout), 8 - Private drive or entrance, 9 - Other junction, -1 - Data missing or out of range
+| `junction_control` | 0- Not at junction or within 20 metres, 1- Authorised person, 2- Auto traffic signal, 3- Stop sign, 4- Give way or uncontrolled, -1 Data missing or out of range
+| `2nd_road_class` | Class of 2st road involved in accident. 0 - Not at junction or within 20 metres, 1 - Motorway, 2 - A(M) roads (A-roads with motorway restrictions, 3 - A-road, 4- B-road, 5- C-road, 6 - Unclassified
+| `2nd_road_number` | ID of 2nd road (0 if unclassified).
+| `pedestrian_crossing-human_control` | Level of human control at a pedestrian crossing. 0- None within 50 metres, 1- Control by school crossing patrol, 2- Control by other authorised person, -1 - Data missing or out of range
+| `pedestrian_crossing-physical_facilities` | Level of facilities controlling a pedestrian crossing. 0- No physical crossing facilities within 50 metres. 1 - Zebra, 4- Pelican, puffin, toucan or similar non-junction pedestrian light crossing, 5 - Pedestrian phase at traffic signal junction, 7 - Footbridge or subway, 8 - Central refuge, -1 - Data missing or out of range
+| `light_conditions` | 1 - Daylight, 4 - Darkness - lights lit, 5 - Darkness - lights unlit, 6- Darkness - no lighting, 7 - Darkness - lighting unknown
+| `weather_conditions` | 1- Fine, no high winds, 2- Raining, no high winds, 3- Snowing, no high winds, 4 - Fine + high winds, 5 - Raining + high winds, 6 - Snowing + high winds, 7 - Fog or mist, 8 - Other, 9 - Unknown. -1 - Data missing or out of range
+| `road_surface_conditions` | 1- Dry, 2- Wet or damp, 3- Snow, 4- Frost or ice, 5- Flood over 3cm deep, 6- Oil or diesel, 7- Mud, -1 Data missing or out of range
+| `special_conditions_at_site` | 0- None, 1- Auto traffic signal - out, 2 - Auto signal part defective, 3- Road sign or marking defective or obscured, 4- Roadworks, 5- Road surface defective, 5- Oil or diesel, 7- Mud, -1 - Data missing or out of range
+| `carriageway_hazards` | 0- None, 1- Vehicle load on road, 2- Other object on road, 3- Previous accident, 4- Dog on road, 5- Other animal on road, 6- Pedestrian in carriageway - not injured, 7 - Any animal in carriageway (except ridden horse), -1 - Data missing or out of range
+| `did_police_officer_attend_scene_of_accident` | 1- Yes, 2 - No, 3 - No - accident was reported using a self completion form (self rep only)
+
+### First look at the data
+
+You can take a peek at the data using the `glimpse()` function in the box below.
+
+```{r glimpse-data, exercise = TRUE}
+glimpse(accidents)
+```
+
+```{r quiz-rows}
+question("What does each row in the dataset represent?",
+    answer("The registration number of a car"),
+    answer("The location of an accident"),
+    answer("A recorded accident",
+           correct = TRUE,
+           message = "Each row in the dataset contains all information relating to an individual recorded accident in Edinburgh."),
+    answer("An insurance claim "),
+    allow_retry = TRUE
+  )
+```
+
+How many accidents were recorded in Edinburgh in 2018? 
+Use the following code chunk to submit your answer. 
+
+```{r nrow, exercise = TRUE}
+
+```
+
+```{r nrow-hint-1}
+Each row represents one recorded accident!
+```
+
+```{r nrow-hint-2}
+Try using nrow()!
+```
+
+
+```{r nrow-check}
+grade_result(
+  pass_if(~ (identical(.result, 768) | (identical(.result, 768L))), "There are 768 rows, therefore, 768 accidents were recorded in Edinburgh in 2018."),
+  fail_if(~ (identical(.result, 31) | (identical(.result, 31L))), "Each observation is represented in one row. Did you calculate the number of columns instead of rows?"),
+  fail_if(~ TRUE, "Not quite. Each observation is represented in one row. Try looking at the hints for some help!")
+)
+```
+
+How many variables are recorded on these crashes? Use the code chunk below!
+
+```{r ncol, exercise = TRUE}
+
+```
+
+```{r ncol-hint-1}
+Each variable is encoded is displayed as a column.
+```
+
+```{r ncol-hint-2}
+Try using ncol()!
+```
+
+
+```{r ncol-check}
+grade_result(
+  pass_if(~ (identical(.result, 31) | (identical(.result, 31L))), "Since there are 31 columns in the dataset, we know that 31 variables are recorded."),
+  fail_if(~ (identical(.result, 768) | (identical(.result, 768L))), "Each variable is recorded in a column. Did you maybe use the number of rows?"),
+  fail_if(~ TRUE, "Not quite. Each variable is represented in a column. Try looking at the hints for some help!")
+)
+```
+
+## Multi-vehicle accidents
+
+How many accidents with 2 or more vehicles occurred in an urban area? 
+Use the code chunk below to find out!
+
+``` {r filter-accidents, exercise = TRUE}
+___ %>%
+  ___(___, ___) %>%
+  nrow()
+```
+```{r filter-accidents-hint-1}
+Use filter() to find the rows that match the criteria.
+```
+
+```{r filter-accidents-hint-2}
+Look at the data dictionary: 
+you can find out whether an area is urban or rural by looking at urban_or_rural_area 
+and the number of vehicles involved in a crash is given by the number_of_vehicles variable.
+```
+
+``` {r filter-accidents-hint-3}
+accidents %>%
+  filter(number_of_vehicles >= ___, urban_or_rural_area == ___) %>%
+  nrow()
+```
+
+```{r filter-accidents-check}
+grade_result(
+  pass_if(~ (identical(.result, 72) | (identical(.result, 72L))),),
+  fail_if(~ TRUE, "Need help? Look at the hints or ask a question on Piazza!")
+)
+```
+
+## Speed limits
+
+Create a frequency table of the speed limits at which accidents happen (`speed_limit`).
+Look at the hints for help!
+
+```{r speed-frequency, exercise = TRUE}
+___ %>%
+  ___(___)
+```
+
+```{r speed-frequency-hint-1}
+See the help for the `count()` function, specifically the 
+`sort` argument for reporting the frequency table in descending order of counts, 
+i.e. highest on top.
+```
+
+```{r speed-frequency-hint-2}
+accidents %>%
+  ___(___, sort = TRUE)
+```
+
+
+```{r speed-frequency-solution}
+accidents %>%
+  count(speed_limit, sort = TRUE)
+```
+
+```{r speed-frequency-check}
+grade_result(
+   pass_if(~ (identical(.result$n[1], 379L)), "You have created the correct frequency table!"),
+   fail_if(~ TRUE, "Not quite. See the hints for help!")
+ )
+```
+
+```{r quiz-speed}
+question("What is the most common speed limit in the
+dataset?",
+    answer("20",
+           correct = TRUE),
+    answer("30"),
+    answer("40"),
+    answer("50"),
+    answer("60"),
+    answer("70"),
+    allow_retry = TRUE
+  )
+```
+
+## Accident severity
+
+### Visualizing 
+
+Recreate the following plot. 
+To match the colors, you can use `scale_fill_viridis_d()`.
+
+```{r example-plot, fig.width=7, fig.height=3, echo=FALSE}
+ggplot(data = accidents, aes(x = accident_severity, fill = light_conditions)) +
+  geom_bar(position = "fill") +
+  coord_flip() +
+  labs(y = "Proportion", x = "Accident Severity",
+       fill = "Light Conditions", 
+       title = "Light conditions and accident severity") +
+  scale_fill_viridis_d()
+```
+```{r plot-light, exercise = TRUE, fig.width=7, fig.height=3, echo = FALSE}
+ggplot(data = ___, aes(x = ___, ___ = ___)) +
+  geom____(___) +
+  ___() +
+  ___(y = ___, x = ___,
+       ___ = ___, 
+       title = ___)
+```
+
+```{r plot-light-hint-1}
+ggplot(data = ___, aes(x = ___, ___ = ___)) +
+  geom____(___) +
+  ___() +
+  ___(y = ___, x = ___,
+       ___ = ___, 
+       title = ___) +
+  scale_fill_viridis_d()
+```
+
+```{r plot-light-hint-2}
+ggplot(data = ___, aes(x = ___, fill = ___)) +
+  geom_bar(___) +
+  coord_flip() +
+  labs(y = ___, x = ___,
+       fill = ___, 
+       title = ___) +
+  scale_fill_viridis_d()
+```
+
+```{r plot-light-hint-3}
+ggplot(data = ___, aes(x = ___, fill = ___)) +
+  geom_bar(positions = ___) +
+  coord_flip() +
+  labs(y = ___, x = ___,
+       fill = "Light Conditions", 
+       title = ___) +
+  scale_fill_viridis_d()
+```
+
+``` {r plot-light-solution}
+ggplot(data = accidents, aes(x = accident_severity, fill = light_conditions)) +
+  geom_bar(position = "fill") +
+  coord_flip() +
+  labs(y = "Proportion", x = "Accident Severity",
+       fill = "Light Conditions", 
+       title = "Light conditions and accident severity") +
+  scale_fill_viridis_d()
+```
+
+```{r plot-light-check}
+grade_code("Well done!")
+```
+
+```{r plot-interpretation}
+question("Which of the following are true? Remember that '1' denotes a fatal accident, '2' denotes a serious accident and '3' denotes a slight accident", 
+         answer("Most accidents occur in daylight",
+                correct = TRUE),
+         answer("Roughly 20 percent of serious accidents occurred in the darkness without lighting",
+                message = "Look closely at the legend and the colours of the bars!"),
+         answer("Crashes in the darkness tend to be more severe",
+                correct = TRUE),
+         answer("Fatal crashes have the highest proportion of crashes in the darkness where the lights are lit",
+                message = "Compare the sizes of the portions for '4 - Darkness - lights - lit' across the bars."),
+         answer("Most slight accidents in the darkness happen without lighting."),
+        allow_retry = TRUE
+         )
+```
+
+### Customizing labels
+
+Recreate the same figure, but this time change the labels of the crash severity variable such that text like `1 -`, `2 -`, etc. doesn't show up. 
+There are many ways to do this, but in this tutorial, we'll focus on changing how the dataare represented in the `light_conditions` variable using `mutate()`. 
+Note that the colours in the figure might change, but that's ok.
+
+```{r change-labels, exercise = TRUE}
+accidents<- ___ %>%
+  ___(___)
+
+#now, copy the code from the previous exercise here!
+
+
+```
+
+``` {r change-labels-hint-1}
+You could try using case_when()
+```
+
+```{r change-labels-hint-2}
+accidents <- accidents %>%
+  mutate(___ = case_when(___ == ___ ~ ___,
+                            ...))
+```
+
+```{r change-labels-hint-3}
+accidents <- accidents %>%
+  mutate(light_conditions = case_when(
+    light_conditions == "1 - Daylight" ~ "Daylight",
+    ___
+    ))
+```
+
+```{r change-labels-solution}
+accidents <- accidents %>%
+  mutate(light_conditions = case_when(
+    light_conditions == "1 - Daylight" ~ "Daylight",
+    light_conditions == "4 - Darkness - lights lit" ~ "Darkness - lights lit",
+    light_conditions == "5 - Darkness - lights unlit" ~ "Darkness - lights unlit", 
+    light_conditions == "6 - Darkness - no lighting" ~ "Darkness - no lighting", 
+    light_conditions == "7 - Darkness - lighting unknown" ~ "Darkness - lighting unknown"
+    ))
+
+ggplot(data = accidents, aes(x = accident_severity, fill = light_conditions)) +
+  geom_bar(position = "fill") +
+  coord_flip() +
+  labs(y = "Proportion", x = "Accident Severity",
+       fill = "Light Conditions", 
+       title = "Light conditions and accident severity") +
+  scale_fill_viridis_d()
+```
+
+```{r change-labels-check}
+grade_code("Your solution is correct!")
+```
+
+## Wrap up
+
+You have finished tutorial two, good job! 
+We hope you enjoyed this lesson on data visualisation.

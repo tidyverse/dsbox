@@ -1,0 +1,773 @@
+---
+title: "What should I major in?"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+    css: "css/font-size.css"
+runtime: shiny_prerendered
+description: >
+  Delve further into data analysis using the tidyverse: Calculate summary
+  statistics with summarise() and arrange the output of dplyr chains with arrange().
+---
+
+<!-- Add JavaScript code for making the exercise code larger -->
+<script language="JavaScript" src="js/exercise-font-size.js"></script>
+
+```{r setup, include=FALSE}
+# load packages ----------------------------------------------------------------
+
+library(learnr)
+library(gradethis)
+library(tidyverse)
+library(scales)
+library(fivethirtyeight)
+
+# set options for exercises and checking ---------------------------------------
+
+tutorial_options(
+  exercise.timelimit = 60, 
+  exercise.checker = gradethis::grade_learnr,
+  exercise.error.checker = gradethis::grade_learnr_error
+  )
+
+# hide non-exercise code chunks ------------------------------------------------
+
+knitr::opts_chunk$set(echo = FALSE)
+
+# data prep --------------------------------------------------------------------
+
+# STEM or not
+stem_categories <- c(
+  "Biology & Life Science",
+  "Computers & Mathematics",
+  "Engineering",
+  "Physical Sciences"
+)
+```
+
+```{r setup-major-type}
+college_recent_grads <- fivethirtyeight::college_recent_grads %>%
+  mutate(major_type = ifelse(major_category %in% stem_categories, "stem", "not stem"))
+```
+
+## Introduction
+
+```{r college-grad, fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.cap = "Photo by Pang Yuhao on Unsplash"}
+knitr::include_graphics("images/pang-yuhao-_kd5cxwZOK4-unsplash.jpg")
+```
+
+The first step in the process of turning information into knowledge is to summarize and describe the raw information - the data. 
+In this assignment, we explore data on college majors and earnings, specifically the data behind the FiveThirtyEight story [*The Economic Guide To Picking A College Major*](https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/).
+
+[FiveThirtyEight](https://fivethirtyeight.com/) is a website that focuses on opinion poll analysis, politics, economics, and sports blogging. 
+The articles on FiveThirtyEight are data-driven, and they make most of the data used in their articles available on the [GitHub repository](https://github.com/fivethirtyeight).
+
+These data originally come from the American Community Survey (ACS) 2010-2012 Public Use Microdata Series. 
+While this is outside the scope of this assignment, if you are curious about how raw data from the ACS were cleaned and prepared, see [the code](https://github.com/fivethirtyeight/data/blob/master/college-majors/college-majors-rscript.R) FiveThirtyEight authors used.
+
+We should also note that there are many considerations that go into picking a major. 
+Earnings potential and employment prospects are two of them, and they are important, but they do not tell the whole story. 
+Keep this in mind as you analyze the data.
+
+### Learning goals
+
+- Continue practising data tidying and visualisation. 
+- Calculate summary statistics with `summarise()`. 
+- Arrange output of dplyr chains with `arrange()`. 
+
+### Packages
+
+In this assignment we will work with the **tidyverse** package, the **scales** package for formatting numerical values, and the **fivethirtyeight** package for the data. 
+These packages are already installed for you, so you can load them with the following:
+
+```{r load-packages, exercise=TRUE}
+library(tidyverse)
+library(scales)
+library(fivethirtyeight)
+```
+
+```{r load-packages-solution}
+library(tidyverse)
+library(scales)
+library(fivethirtyeight)
+```
+
+```{r load-packages-check}
+grade_code("The packages are now loaded!")
+```
+
+## Data
+
+The data frame we will be working with today is called `college_recent_grads` and it’s in the fivethirtyeight package. 
+This is a tidy **data frame**, with each row representing an **observation** and each column representing a **variable**.
+
+You can take a quick peek at your data frame and view its dimensions with the glimpse function:
+
+```{r glimpse-college-grads, exercise=TRUE}
+glimpse(college_recent_grads)
+```
+
+The description of the variables, i.e. the **codebook**, is given below.
+
+| Header                        |  Description
+|:----------------|:--------------------------------
+|`rank`                         | Rank by median earnings
+|`major_code`                   | Major code, FO1DP in ACS PUMS
+|`major`                        | Major description
+|`major_category`               | Category of major from Carnevale et al
+|`total`                        | Total number of people with major
+|`sample_size`                  | Sample size (unweighted) of full-time, year-round ONLY (used for earnings)
+|`men`                          | Male graduates
+|`women`                        | Female graduates
+|`sharewomen`                   | Women as share of total
+|`employed`                     | Number employed (ESR == 1 or 2)
+|`employed_full_time`           | Employed 35 hours or more
+|`employed_part_time`           | Employed less than 35 hours
+|`employed_full_time_yearround` | Employed at least 50 weeks (WKW == 1) and at least 35 hours (WKHP >= 35)
+|`unemployed`                   | Number unemployed (ESR == 3)
+|`unemployment_rate`            | Unemployed / (Unemployed + Employed)
+|`median`                       | Median earnings of full-time, year-round workers
+|`p25th`                        | 25th percentile of earnigns
+|`p75th`                        | 75th percentile of earnings
+|`college_jobs`                 | Number with job requiring a college degree
+|`non_college_jobs`             | Number with job not requiring a college degree
+|`low_wage_jobs`                | Number in low-wage service jobs
+
+The `college_recent_grads` data frame is a trove of information. 
+Let's think about some questions we might want to answer with these data:
+
+- Which major has the lowest unemployment rate?
+- Which major has the highest percentage of women?
+- How do the distributions of median income compare across major categories?
+- Do women tend to choose majors with lower or higher earnings?
+
+In the next section we aim to answer these questions.
+
+## Majors and unemployment rate
+
+In order to answer this question all we need to do is sort the data. 
+We use the `arrange()` function to do this, and sort it by the `unemployment_rate` variable. 
+By default arrange sorts in ascending order, which is what we want here – we’re interested in the major with the *lowest* unemployment rate.
+
+```{r lowest-unemployment-rate, exercise=TRUE}
+college_recent_grads %>%
+  arrange(unemployment_rate)
+```
+
+### Improvements 
+
+This gives us what we wanted, but not in an ideal form. 
+The name of the major takes up a lot of space on the page, and so some of the variables are not that useful (e.g. `major_code`, `major_category`) and some we might want front and center are not easily viewed (e.g. `unemployment_rate`).
+
+We can use the `select()` function to choose which variables to display, and in which order:
+
+```{r lowest-unemployment-select, exercise=TRUE}
+college_recent_grads %>%
+  arrange(unemployment_rate) %>%
+  select(rank, major, unemployment_rate)
+```
+
+### Select or relocate?
+
+There is also another function in `dplyr` (one of the packages in the tidyverse universe) called `relocate()`, which can be used in the same situations as `select()`.
+
+The difference between these two functions is that `relocate()` moves the variables we're interested in to the front (the left-most columns when we view a tibble), while `select()` keeps *only* the specified variables.
+
+In short, `select()` keeps variables while `relocate()`, well, relocates them!
+
+Use `relocate()` in the following code block to move `rank`, `major` and `unemployment_rate` to the front, and compare the output with that of the `select()` function above.
+
+```{r lowest-unemployment-relocate, exercise=TRUE}
+college_recent_grads %>%
+  arrange(unemployment_rate) %>%
+  relocate(rank, major, unemployment_rate)
+```
+
+## Women in major
+
+To answer such a question we need to arrange the data in descending order. 
+For example, if earlier we were interested in the major with the highest unemployment rate, we would use the following. 
+Note that the `desc()` function specifies that we want `unemployment_rate` in descending order.
+
+```{r highest-unemployment-rate, exercise=TRUE}
+college_recent_grads %>%
+  arrange(desc(unemployment_rate)) %>%
+  select(rank, major, unemployment_rate)
+```
+
+### Top 3 majors for proportion of women
+
+Using what you’ve learned so far, arrange the data in descending order with respect to proportion of women in a major, and display only the major, the total number of people with major, and proportion of women. 
+Show only the top 3 majors by adding `top_n(3)` at the end of the pipeline.
+
+```{r highest-percentage-women, exercise=TRUE}
+college_recent_grads %>%
+  ___(desc(___)) %>%
+  select(major, total, ___) %>%
+  ___
+```
+
+```{r highest-percentage-women-hint-1}
+college_recent_grads %>%
+  arrange(desc(___)) %>%
+  select(major, total, ___) %>%
+  ___
+```
+
+```{r highest-percentage-women-hint-2}
+college_recent_grads %>%
+  arrange(desc(sharewomen)) %>%
+  select(major, total, ___) %>%
+  ___
+```
+
+```{r highest-percentage-women-hint-3}
+college_recent_grads %>%
+  arrange(desc(sharewomen)) %>%
+  select(major, total, sharewomen) %>%
+  ___
+```
+
+```{r highest-percentage-women-solution}
+college_recent_grads %>%
+  arrange(desc(sharewomen)) %>%
+  select(major, total, sharewomen) %>%
+  top_n(3)
+```
+
+```{r highest-percentage-women-check}
+grade_result(
+  pass_if(~ (identical(as.numeric(.result$total[1]), 37589) & identical(round(as.numeric(.result$sharewomen[1]), digits = 3), 0.969) & identical(nrow(.result), 3L)), "Those are the top three majors by percentage of women."),
+  fail_if(~ identical(nrow(.result), 173L), "Did you forget to pick out *only* the top three majors?"),
+  fail_if(~ identical(as.numeric(.result$total[1]), 2339L), "Did you forget to arrange the majors in descending order of percentage of women?"),
+  fail_if(~ TRUE, "Not quite. Take a look at the hints if you need some help.")
+)
+```
+
+## Majors and median income
+
+There are three types of incomes reported in this data frame: `p25th`, `median`, and `p75th`. 
+These correspond to the 25th, 50th, and 75th percentiles of the income distribution of sampled individuals for a given major.
+
+The question we want to answer is "How do the distributions of median income compare across major categories?". 
+We need to do a few things to answer this question: First, we need to group the data by `major_category`. 
+Then, we need a way to summarize the distributions of median income within these groups. 
+This decision will depend on the shapes of these distributions. 
+So first, we need to visualize the data.
+
+We use the `ggplot()` function to do this. 
+The first argument is the data frame, and the next argument gives the mapping of the variables of the data to the aesthetic elements of the plot.
+
+Let’s start simple and take a look at the distribution of all median incomes, without considering the major categories.
+
+```{r income-distribution, exercise=TRUE}
+ggplot(data = college_recent_grads, mapping = aes(x = median)) +
+  geom_histogram() +
+  labs(
+    x = "Median earnings, in $",
+    y = "Frequency",
+    title = "Distribution of median earnings for college majors"
+  )
+```
+
+### Binwidth Warning
+
+Along with the plot, we get a warning, which you should have seen before:
+
+```
+`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+```
+
+This is telling us that we might want to reconsider the binwidth we chose for our histogram – or more accurately, the binwidth we didn’t specify. 
+It’s good practice to always think in the context of the data and try out a few binwidths before settling on a binwidth. 
+You might ask yourself: "What would be a meaningful difference in median incomes?" \$1 is obviously too little, \$10,000 might be too high.
+
+### Pick a binwidth
+
+Use the following code block to recreate the above histogram with binwidths of \$1000 and \$5000, then choose one.
+
+```{r income-distribution-bin, exercise=TRUE}
+ggplot(data = college_recent_grads, mapping = aes(x = median)) +
+  geom_histogram(binwidth = ___) +
+  labs(
+    x = "Median earnings, in $",
+    y = "Frequency",
+    title = "Distribution of median earnings for college majors"
+  )
+```
+
+```{r income-dist-bin-quiz}
+question("Which binwidth is more suitable?", 
+  answer("$1000",
+         message = "That seems a bit narrow. There are many empty bins even in relatively dense parts of the distribution."),
+  answer("$5000",
+         correct = TRUE,
+         message = "That's a good width - certainly better than $1000."),
+  answer("Neither are at all suitable."),
+  allow_retry = TRUE
+)
+```
+
+### Interpreting the histogram
+
+```{r salary-shape-quiz-1}
+quiz(
+  caption = "",
+  question("Which of the following describes the shape of the distribution of graduate salaries for college majors? Check all that apply.",
+           answer("Right skewed",
+                  correct = TRUE),
+           answer("Left skewed",
+                  message = "Skew is on the side of the longer tail"),
+           answer("Symmetric",
+                  message = "If you were to draw a vertical line down the middle of the x-axis, would the left and right sides of the distribution look like mirror images?"),
+           answer("Unimodal",
+                  correct = TRUE),
+           answer("Bimodal",
+                  message = "How many prominent peaks do you see?"),
+           answer("Multimodal",
+                  message = "How many prominent peaks do you see?"),
+           allow_retry = TRUE),
+  question("Which of the following is true?",
+           answer("There are no majors with earnings over $75,000."),
+           answer("Less than 50% of majors have earnings below $50,000."),
+           answer("More than 75% of majors have earnings over $30,000.",
+                  correct = TRUE),
+           answer("The modal earnings are around $25,000."),
+           allow_retry = TRUE)
+)
+```
+
+### Summary Statistics
+
+We can also calculate summary statistics for this distribution using the summarise function:
+
+```{r summary-stats, exercise=TRUE}
+college_recent_grads %>%
+  summarise(min = min(median), max = max(median),
+            mean = mean(median), med = median(median),
+            sd = sd(median), 
+            q1 = quantile(median, probs = 0.25),
+            q3 = quantile(median, probs = 0.75))
+```
+
+```{r summary-stats-quiz}
+question("Based on the shape of the histogram you created above, which set of summary statistics will be more useful for describing the distribution?",
+  answer("Mean and standard deviation",
+         message = "The distribution is skewed, so we don't prefer mean and standard deviation."),
+  answer("Median and interquartile range",
+         correct = TRUE,
+         message = "The distribution is skewed, and the median and IQR are resistant to outliers."),
+  allow_retry = TRUE
+)
+```
+
+
+### Faceted histogram of median incomes
+
+Plot the distribution of `median` income using a histogram, faceted by `major_category`. 
+Use the correct `binwidth` (out of \$1000 and \$5000) from earlier.
+
+```{r histogram-median-income, exercise=TRUE}
+ggplot(___ = college_recent_grads, ___ = aes(x = ___)) +
+  ___(___) + 
+  facet_wrap( ~ ___) +
+  labs(
+    x = "Median earnings, in $",
+    y = "Frequency",
+    title = "Distribution of median earnings for college majors",
+    subtitle = "By major category"
+  )
+```
+
+```{r histogram-median-income-hint-1}
+ggplot(data = college_recent_grads, mapping = aes(x = ___)) +
+  ___(___) + 
+  facet_wrap( ~ ___) +
+  labs(
+    x = "Median earnings, in $",
+    y = "Frequency",
+    title = "Distribution of median earnings for college majors",
+    subtitle = "By major category"
+  )
+```
+
+```{r histogram-median-income-hint-2}
+ggplot(data = college_recent_grads, mapping = aes(x = median)) +
+  ___(___) + 
+  facet_wrap( ~ ___) +
+  labs(
+    x = "Median earnings, in $",
+    y = "Frequency",
+    title = "Distribution of median earnings for college majors",
+    subtitle = "By major category"
+  )
+```
+
+```{r histogram-median-income-hint-3}
+ggplot(data = college_recent_grads, mapping = aes(x = median)) +
+  geom_histogram(binwidth = ___) + 
+  facet_wrap( ~ ___) +
+  labs(
+    x = "Median earnings, in $",
+    y = "Frequency",
+    title = "Distribution of median earnings for college majors",
+    subtitle = "By major category"
+  )
+```
+
+```{r histogram-median-income-solution}
+ggplot(data = college_recent_grads, mapping = aes(x = median)) +
+  geom_histogram(binwidth = 5000) + 
+  facet_wrap( ~ major_category) + 
+  labs(
+    x = "Median earnings, in $",
+    y = "Frequency",
+    title = "Distribution of median earnings for college majors",
+    subtitle = "By major category"
+  )
+```
+
+```{r histogram-median-income-check}
+grade_code("You've successfully created a historgram for median incomes, faceted by major_category.")
+```
+
+### Arranging median incomes for major categories
+
+Now that we’ve seen the shapes of the distributions of median incomes for each major category, we should have a better idea for which summary statistic to use to quantify the typical median income.
+
+Use the partial code block below to arrange all major categories in descending order of typical (you'll need to decide what this mean) median income.
+
+```{r highest-typical-income, exercise=TRUE, message=FALSE}
+college_recent_grads ___
+  ___(___) %>%
+  ___(avg_mean_income = ___(___)) %>%
+  ___(___(avg_mean_income))
+```
+
+```{r highest-typical-income-hint-1}
+college_recent_grads %>%
+  group_by(major_category) %>%
+  ___(avg_mean_income = ___(___)) %>%
+  ___(___(avg_mean_income))
+```
+
+```{r highest-typical-income-hint-2}
+college_recent_grads %>%
+  group_by(major_category) %>%
+  summarise(avg_mean_income = ___(median)) %>%
+  ___(___(avg_mean_income))
+```
+
+```{r highest-typical-income-hint-3}
+college_recent_grads %>%
+  group_by(major_category) %>%
+  summarise(avg_mean_income = mean(median)) %>%
+  ___(___(avg_mean_income))
+```
+
+```{r highest-typical-income-solution}
+college_recent_grads %>%
+  group_by(major_category) %>%
+  summarise(avg_mean_income = mean(median)) %>%
+  arrange(desc(avg_mean_income))
+```
+
+```{r highest-typical-income-check}
+grade_result(
+  pass_if(~ (identical(floor(as.numeric(.result$avg_mean_income[1])), 57382) & identical(floor(.result$avg_mean_income[2]), 43538) & identical(nrow(.result), 16L)), "Those are the major categories in descending order of typical income."),
+  fail_if(~ identical(floor(as.numeric(.result$avg_mean_income[1])), 30100), "Did you arrange in ascending order instead of descending order?"),
+  fail_if(~ identical(floor(as.numeric(.result$avg_mean_income[1])), 30000), "Did you use the median for typical median income instead of mean?"),
+  fail_if(~ TRUE, "Not quite. Take a look at the hints if you need some help.")
+)
+```
+
+
+```{r highest-typical-income-quiz}
+question("Which major category has the highest typical income?",
+  answer("Engineering",
+         correct = TRUE),
+  answer("Computing and Mathematics"),
+  answer("Psychology & Social Work"),
+  answer("Health"),
+  allow_retry = TRUE
+)
+```
+
+## Not so popular majors
+
+Which major category has the fewest majors in this sample? To answer this question we use the `count()` function, which first groups the data and then counts the number of observations in each category. 
+Add to the pipeline appropriately to arrange the results so that the major with the lowest observations is on top.
+
+```{r least-popular-major, exercise=TRUE}
+college_recent_grads %>%
+  count(major_category) %>%
+  ___
+```
+
+```{r least-popular-major-solution}
+college_recent_grads %>%
+  count(major_category) %>%
+  arrange(n)
+```
+
+```{r least-popular-major-check}
+grade_result(
+  pass_if(~ identical(as.character(.result$major_category[1]), "Interdisciplinary"), "Good use of the count() and arrange() functions."),
+  fail_if(~ identical(as.character(.result$major_category[1]), "Agriculture & Natural Resources"), "Did you forget to arrange the major categories in ascending order?"),
+  fail_if(~ identical(as.character(.result$major_category[1]), "Accounting"), "Did you count the `major` field instead of the `major_category` field?"),
+  fail_if(~ TRUE, "Not quite. Take a look at the hints if you need some help.")
+)
+```
+
+```{r least-popular-major-quiz}
+question("Based on the result of the above code, which major category is the least 'popular'?",
+  answer("Law & Public Policy"),
+  answer("Arts"),
+  answer("Psychology & Social Work "),
+  answer("Interdisciplinary",
+         correct = TRUE),
+  allow_retry = TRUE
+)
+```
+
+## All STEM fields aren’t the same
+
+```{r xkcd-purity, echo = FALSE, out.width = "100%", fig.cap="Source: xkcd; my superiority complex"}
+knitr::include_graphics("images/purity.png")
+```
+
+One of the sections of the [FiveThirtyEight story](https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/) is "All STEM fields aren’t the same". 
+Let’s see if this is true.
+
+First, let’s create a new vector called stem_categories that lists the major categories that are considered STEM fields.
+
+```{r stem-categories-vector-ex, exercise=TRUE}
+stem_categories <- c("Biology & Life Science",
+                     "Computers & Mathematics",
+                     "Engineering",
+                     "Physical Sciences")
+```
+
+Then, we can use this to create a new variable in our data frame indicating whether a major is STEM or not.
+
+```{r stem-or-not-ex, exercise=TRUE}
+college_recent_grads <- college_recent_grads %>%
+  mutate(major_type = ifelse(major_category %in% stem_categories, "stem", "not stem"))
+```
+
+Let’s unpack this: with ` mutate()` we create a new variable called `major_type`, which is defined as **"stem"** if the major_category is in the vector called `stem_categories` we created earlier, and as **"not stem"** otherwise.
+
+%in% is a **logical operator**. 
+Other logical operators that are commonly used are
+
+| Operator                   | Operation
+|:----------------|:--------------
+|`x < y`                     | less than
+| `x > y`                    | greater than
+| `x <= y`                   | less than or equal to
+| `x >= y`                   | greater than or equal to
+| `x != y`                   | not equal to
+| `x == y`                   | equal to
+| `x %in% y`                 | contains
+| <code>x &#124; y</code>    | or
+| `x & y`                    | and
+| `!x`                       | not
+
+We can use the logical operators to also filter our data for STEM majors whose median earnings is less than median for all majors’s median earnings, which we found to be $36,000 earlier.
+
+```{r medians-less-than-avg, exercise=TRUE, exercise.setup = "setup-major-type"}
+college_recent_grads %>%
+  filter(
+    major_type == "stem",
+    median < 36000
+  )
+```
+
+### STEM majors with lower-than-average median earnings
+
+Modify the above code to show only the major name and median, 25th percentile, and 75th percentile earning for the STEM majors with median earnings less than the \$36,000 average. 
+The data should be sorted such that the major with the highest median earning is on top.
+
+```{r median-less-than-avg, exercise=TRUE, exercise.setup = "setup-major-type"}
+college_recent_grads %>%
+  filter(
+    major_type == "stem",
+    median < 36000
+    ) ___
+  ___(___, p25th, ___, p75th) %>%
+  arrange(___)
+```
+
+```{r median-less-than-avg-hint-1}
+college_recent_grads %>%
+  filter(
+    major_type == "stem",
+    median < 36000
+    ) %>%
+  ___(___, p25th, ___, p75th) %>%
+  arrange(___)
+```
+
+```{r median-less-than-avg-hint-2}
+college_recent_grads %>%
+  filter(
+    major_type == "stem",
+    median < 36000
+    ) %>%
+  select(___, p25th, ___, p75th) %>%
+  arrange(___)
+```
+
+```{r median-less-than-avg-hint-3}
+college_recent_grads %>%
+  filter(
+    major_type == "stem",
+    median < 36000
+    ) %>%
+  select(major, p25th, median, p75th) %>%
+  arrange(___)
+```
+
+```{r median-less-than-avg-solution}
+college_recent_grads %>%
+  filter(
+    major_type == "stem",
+    median < 36000
+    ) %>%
+  select(major, p25th, median, p75th) %>%
+  arrange(desc(median))
+```
+
+```{r median-less-than-avg-check}
+grade_result(
+  pass_if(~ identical(as.character(.result$major[1]), "Environmental Science"), "You've picked out the STEM majors with lower-than-average earnings"),
+  fail_if(~ identical(as.character(.result$major[1]), "Zoology"), "Did you arrange in ascending instead of descending order?"),
+  fail_if(~ identical(as.character(.result$major[1]), "Neuroscience"), "Did you arrange in order of the 25th percentile earnings?"),
+  fail_if(~ identical(as.character(.result$major[1]), "Multi-Disciplinary Or General Science"), "Did you arrange in order of the 75th percentile earnings?"),
+  fail_if(~ TRUE, "Not quite. Take a look at the hints if you need some help.")
+)
+```
+
+### What types of majors do women tend to major in?
+
+Create a scatterplot of median income vs. proportion of women in that major, colored by whether the major is in a STEM field or not. 
+Describe the association between these three variables.
+
+```{r majors-women, exercise=TRUE, exercise.setup = "setup-major-type"}
+ggplot(___ = college_recent_grads, 
+       mapping = aes(x = ___, y = ___, color = ___)) +
+  ___() +
+  ___(
+    x = "Proportion of women",
+    y = "Median income",
+    color = "Major type"
+  )
+```
+
+```{r majors-women-hint-1}
+ggplot(data = college_recent_grads, 
+       mapping = aes(x = sharewomen, y = ___, color = ___)) +
+  ___() +
+  ___(
+    x = "Proportion of women",
+    y = "Median income",
+    color = "Major type"
+  )
+```
+
+```{r majors-women-hint-2}
+ggplot(data = college_recent_grads, 
+       mapping = aes(x = sharewomen, y = median, color = ___)) +
+  ___() +
+  ___(
+    x = "Proportion of women",
+    y = "Median income",
+    color = "Major type"
+  )
+```
+
+```{r majors-women-hint-3}
+ggplot(data = college_recent_grads, 
+       mapping = aes(x = sharewomen, y = median, color = major_type)) +
+  geom_point() +
+  ___(
+    x = "Proportion of women",
+    y = "Median income",
+    color = "Major type"
+  )
+```
+
+```{r majors-women-solution}
+ggplot(data = college_recent_grads, 
+       mapping = aes(x = sharewomen, y = median, color = major_type)) +
+  geom_point() +
+  labs(
+    x = "Proportion of women",
+    y = "Median income",
+    color = "Major type"
+  )
+```
+
+```{r majors-women-check}
+grade_code("Nice looking scatterplot!")
+```
+
+
+```{r majors-women-quiz}
+question("Which of the following statements accurately describe the association between the three variables in the scatterplot above? Check all that apply.",
+  answer("Sharewomen tends to be higher in STEM fields."),
+  answer("Sharewomen tends to be higher in non-STEM fields.",
+         correct = TRUE),
+  answer("Median income tends to be higher in STEM fields over non-STEM fields.",
+         correct = TRUE),
+  answer("Median income tends to be lower in STEM fields over non-STEM fields."),
+  answer("There is a negative association between median income and sharewomen.",
+         correct = TRUE),
+  answer("There is a positive association between median income and sharewomen."),
+  allow_retry = TRUE
+)
+```
+
+### Spiffing up your axes
+
+Those axis values don't look very nice for reading: for the final part of this tutorial, let's format them. 
+We can use `scale_x_continuous(labels = label_percent())` to change the labels for the `sharewomen` variable to be in percentages, and `scale_y_continuous(label = label_number())` to write the median earnings in more human terms as well. 
+
+Use the following code block to apply this new formatting, using your code from the previous exercise.
+
+```{r majors-women-labels, exercise=TRUE, exercise.setup = "setup-major-type"}
+ggplot(___ = college_recent_grads, 
+       mapping = aes(x = ___, y = ___, color = ___)) +
+  ___() +
+  ___(
+    x = "Percentage of women",
+    y = "Median income",
+    color = "Major type"
+  ) +
+  scale_x_continuous(labels = label_percent()) +
+  scale_y_continuous(labels = label_number())
+```
+
+```{r majors-women-labels-solution}
+ggplot(data = college_recent_grads, 
+       mapping = aes(x = sharewomen, y = median, color = major_type)) +
+  geom_point() +
+  labs(
+    x = "Percentage of women",
+    y = "Median income",
+    color = "Major type"
+  ) +
+  scale_x_continuous(labels = label_percent()) +
+  scale_y_continuous(labels = label_number())
+```
+
+```{r majors-women-labels-check}
+grade_code("Those labels look much better now!")
+```
+
+
+## Wrap up
+
+Well done, you've finished the third tutorial! 
+Hopefully you've enjoyed exploring and analysing this data set, and improved your skills when it comes to sorting, selecting and summarising data (and maybe you're wondering if it's not too late to change your major!)
