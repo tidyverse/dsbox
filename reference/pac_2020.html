@@ -130,12 +130,12 @@ They are also of interest to citizens who want to stay informed of how much
 money their candidates raise and where that money comes from.</p>
     </div>
 
-    <pre class="usage"><span class='no'>pac_2020</span></pre>
+    <pre class="usage"><span class='kw'>pac_2020</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble with 224 rows and 5 variables:</p><dl'>
+    <p>A tibble with 224 rows and 5 variables:</p><dl>
 <dt>name</dt><dd><p>Name of company (American divisions of a foreign company)</p></dd>
 <dt>country_parent</dt><dd><p>Country of origin and (foreign) parent company</p></dd>
 <dt>total</dt><dd><p>Total PAC contributions to all parties</p></dd>
@@ -167,9 +167,10 @@ make it more accessible in introductory data science education.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>tibble</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://tibble.tidyverse.org'>tibble</a></span>)
 
-<span class='fu'><a href='https://tibble.tidyverse.org/reference/glimpse.html'>glimpse</a></span>(<span class='no'>pac_2020</span>)</div><div class='output co'>#&gt; Rows: 224
+<span class='fu'><a href='https://tibble.tidyverse.org/reference/glimpse.html'>glimpse</a></span>(<span class='kw'>pac_2020</span>)
+</div><div class='output co'>#&gt; Rows: 224
 #&gt; Columns: 5
 #&gt; $ name           <span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "7-Eleven", "ABB Group (ABB Group)", "Accenture (Accen…
 #&gt; $ country_parent </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "Japan/Seven &amp; I Holdings", "Switzerland/Asea Brown Bo…
@@ -192,7 +193,7 @@ make it more accessible in introductory data science education.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

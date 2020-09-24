@@ -130,12 +130,12 @@ They are also of interest to citizens who want to stay informed of how much
 money their candidates raise and where that money comes from.</p>
     </div>
 
-    <pre class="usage"><span class='no'>pac_all_raw</span></pre>
+    <pre class="usage"><span class='kw'>pac_all_raw</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble with 2245 rows and 6 variables:</p><dl'>
+    <p>A tibble with 2245 rows and 6 variables:</p><dl>
 <dt>name</dt><dd><p>Name of company (American divisions of a foreign company)</p></dd>
 <dt>country_parent</dt><dd><p>Country of origin and (foreign) parent company</p></dd>
 <dt>total</dt><dd><p>Total PAC contributions to all parties</p></dd>
@@ -168,9 +168,10 @@ also done to make it more accessible in introductory data science education.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>tibble</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='https://tibble.tidyverse.org'>tibble</a></span>)
 
-<span class='fu'><a href='https://tibble.tidyverse.org/reference/glimpse.html'>glimpse</a></span>(<span class='no'>pac_all_raw</span>)</div><div class='output co'>#&gt; Rows: 2,245
+<span class='fu'><a href='https://tibble.tidyverse.org/reference/glimpse.html'>glimpse</a></span>(<span class='kw'>pac_all_raw</span>)
+</div><div class='output co'>#&gt; Rows: 2,245
 #&gt; Columns: 6
 #&gt; $ name           <span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "ABB Daimler-Benz Transportation", "ABB Group", "AE St…
 #&gt; $ country_parent </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "Germany/Daimler-Benz AG", "Switzerland/Asea Brown Bov…
@@ -194,7 +195,7 @@ also done to make it more accessible in introductory data science education.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

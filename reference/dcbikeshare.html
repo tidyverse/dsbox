@@ -134,12 +134,12 @@ exists great interest in these systems due to their important role in traffic,
 environmental and health issues.</p>
     </div>
 
-    <pre class="usage"><span class='no'>dcbikeshare</span></pre>
+    <pre class="usage"><span class='kw'>dcbikeshare</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble with 731 rows and 16 variables:</p><dl'>
+    <p>A tibble with 731 rows and 16 variables:</p><dl>
 <dt>instant</dt><dd><p>record index</p></dd>
 <dt>dteday</dt><dd><p>date</p></dd>
 <dt>season</dt><dd><p>season (1:winter, 2:spring, 3:summer, 4:fall)</p></dd>
@@ -181,14 +181,15 @@ data itself are
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span>)
 
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>dcbikeshare</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>dteday</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>cnt</span>)) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>() +
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='kw'>dcbikeshare</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(x = <span class='kw'>dteday</span>, y = <span class='kw'>cnt</span>)) <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span>() <span class='op'>+</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span>(
-    <span class='kw'>x</span> <span class='kw'>=</span> <span class='st'>"Date"</span>,
-    <span class='kw'>y</span> <span class='kw'>=</span> <span class='st'>"Bike Rentals"</span>
-  )</div><div class='img'><img src='dcbikeshare-1.png' alt='' width='700' height='433' /></div><div class='input'>
+    x = <span class='st'>"Date"</span>,
+    y = <span class='st'>"Bike Rentals"</span>
+  )
+</div><div class='img'><img src='dcbikeshare-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -205,7 +206,7 @@ data itself are
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -128,12 +128,12 @@ listings is needed. Using data provided by Airbnb, we can explore how Airbnb
 availability and prices vary by neighbourhood.</p>
     </div>
 
-    <pre class="usage"><span class='no'>edibnb</span></pre>
+    <pre class="usage"><span class='kw'>edibnb</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble with 13,245 rows and 10 variables:</p><dl'>
+    <p>A tibble with 13,245 rows and 10 variables:</p><dl>
 <dt>id</dt><dd><p>ID number of the listing</p></dd>
 <dt>price</dt><dd><p>Price, in GBP, for one night stay</p></dd>
 <dt>neighbourhood</dt><dd><p>Neighbourhood listing is located in</p></dd>
@@ -160,10 +160,11 @@ and was originally distributed by
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>ggplot2</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span>)
 
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='no'>edibnb</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>price</span>)) +
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span>(<span class='kw'>binwidth</span> <span class='kw'>=</span> <span class='fl'>50</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 199 rows containing non-finite values (stat_bin).</span></div><div class='img'><img src='edibnb-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='kw'>edibnb</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(x = <span class='kw'>price</span>)) <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span>(binwidth = <span class='fl'>50</span>)
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 199 rows containing non-finite values (stat_bin).</span></div><div class='img'><img src='edibnb-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -180,7 +181,7 @@ and was originally distributed by
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
