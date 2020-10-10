@@ -28,7 +28,7 @@ library(dsbox)
 tutorial_options(
   exercise.timelimit = 60, 
   exercise.checker = gradethis::grade_learnr,
-  exercise.error.checker = gradethis::grade_learnr_error
+  exercise.error.check.code = gradethis::grade_learnr_error
   )
 
 # hide non-exercise code chunks ------------------------------------------------
