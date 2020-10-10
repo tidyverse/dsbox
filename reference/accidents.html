@@ -124,36 +124,43 @@ looking to prevent them." />
 looking to prevent them.</p>
     </div>
 
-    <pre class="usage"><span class='kw'>accidents</span></pre>
+    <pre class="usage"><span class='va'>accidents</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>A tibble with 768 rows and 31 variables:</p><dl>
-<dt>accident_index</dt><dd><p>Accident ID</p></dd>
-<dt>accident_severity</dt><dd><p>1- Fatal, 2- Serious, 3- Slight</p></dd>
-<dt>number_of_vehicles</dt><dd><p>Number of vehicles involved in accident</p></dd>
-<dt>number_of_casualties</dt><dd><p>Number of people injured in the accident</p></dd>
+<dt>id</dt><dd><p>Accident ID</p></dd>
+<dt>easting</dt><dd><p>Easting of accident location</p></dd>
+<dt>northing</dt><dd><p>Northing of accident location</p></dd>
+<dt>longitude</dt><dd><p>Longitude of accident location</p></dd>
+<dt>latitude</dt><dd><p>Latitude of accident location</p></dd>
+<dt>police_force</dt><dd><p>Police force</p></dd>
+<dt>severity</dt><dd><p>Accident severity: Fatal, Serious, Slight</p></dd>
+<dt>vehicles</dt><dd><p>Number of vehicles involved in accident</p></dd>
+<dt>casualties</dt><dd><p>Number of people injured in the accident</p></dd>
 <dt>date</dt><dd><p>Date of the accident</p></dd>
-<dt>day_of_week</dt><dd><p>1-Sunday, <a href='https://rdrr.io/r/base/dots.html'>...</a>, 7-Saturday</p></dd>
-<dt>time</dt><dd><p>Time of the accident on the 24h clock.</p></dd>
-<dt>urban_or_rural_area</dt><dd><p>Gives information about the type of area the accident occurred in.</p></dd>
-<dt>1st_road_class</dt><dd><p>Class of 1st road involved in accident. 0 - Not at junction or within 20 metres, 1 - Motorway, 2 - A(M) roads (A-roads with motorway restrictions, 3 - A-road, 4- B-road, 5- C-road, 6 - Unclassified</p></dd>
-<dt>1st_road_rumber</dt><dd><p>ID of 1st road (0 if unclassified).</p></dd>
-<dt>road_type</dt><dd><p>Type of road. 1 - Roundabout, 2 - One way street, 3 - Dual carriageway, 6 - Single carriageway, 7 - Slip road, 9 - Unknown, 12 - One way street/Slip road, -1 - Data missing or out of range.</p></dd>
-<dt>speed_limit</dt><dd><p>Speed limit on the road in mph.</p></dd>
-<dt>junction_detail</dt><dd><p>0 - Not at junction or within 20 metres, 1 - Roundabout, 2- Mini-roundabout, 3- T or staggered junction, 5 - Slip road, 6- Crossroads, 7- More than 4 arms (not roundabout), 8 - Private drive or entrance, 9 - Other junction, -1 - Data missing or out of range</p></dd>
-<dt>junction_control</dt><dd><p>0- Not at junction or within 20 metres, 1- Authorised person, 2- Auto traffic signal, 3- Stop sign, 4- Give way or uncontrolled, -1 Data missing or out of range</p></dd>
-<dt>2nd_road_class</dt><dd><p>Class of 2st road involved in accident. 0 - Not at junction or within 20 metres, 1 - Motorway, 2 - A(M) roads (A-roads with motorway restrictions, 3 - A-road, 4- B-road, 5- C-road, 6 - Unclassified</p></dd>
-<dt>2nd_road_number</dt><dd><p>ID of 2nd road (0 if unclassified).</p></dd>
-<dt>pedestrian_crossing-human_control</dt><dd><p>Level of human control at a pedestrian crossing. 0- None within 50 metres, 1- Control by school crossing patrol, 2- Control by other authorised person, -1 - Data missing or out of range</p></dd>
-<dt>pedestrian_crossing-physical_facilities</dt><dd><p>Level of facilities controlling a pedestrian crossing. 0- No physical crossing facilities within 50 metres. 1 - Zebra, 4- Pelican, puffin, toucan or similar non-junction pedestrian light crossing, 5 - Pedestrian phase at traffic signal junction, 7 - Footbridge or subway, 8 - Central refuge, -1 - Data missing or out of range</p></dd>
-<dt>light_conditions</dt><dd><p>1 - Daylight, 4 - Darkness - lights lit, 5 - Darkness - lights unlit, 6- Darkness - no lighting, 7 - Darkness - lighting unknown</p></dd>
-<dt>weather_conditions</dt><dd><p>1- Fine, no high winds, 2- Raining, no high winds, 3- Snowing, no high winds, 4 - Fine + high winds, 5 - Raining + high winds, 6 - Snowing + high winds, 7 - Fog or mist, 8 - Other, 9 - Unknown. -1 - Data missing or out of range</p></dd>
-<dt>road_surface_conditions</dt><dd><p>1- Dry, 2- Wet or damp, 3- Snow, 4- Frost or ice, 5- Flood over 3cm deep, 6- Oil or diesel, 7- Mud, -1 Data missing or out of range</p></dd>
-<dt>special_conditions_at_site</dt><dd><p>0- None, 1- Auto traffic signal - out, 2 - Auto signal part defective, 3- Road sign or marking defective or obscured, 4- Roadworks, 5- Road surface defective, 5- Oil or diesel, 7- Mud, -1 - Data missing or out of range</p></dd>
-<dt>carriageway_hazards</dt><dd><p>0- None, 1- Vehicle load on road, 2- Other object on road, 3- Previous accident, 4- Dog on road, 5- Other animal on road, 6- Pedestrian in carriageway - not injured, 7 - Any animal in carriageway (except ridden horse), -1 - Data missing or out of range</p></dd>
-<dt>did_police_officer_attend_scene_of_accident</dt><dd><p>1- Yes, 2 - No, 3 - No - accident was reported using a self completion form (self rep only)</p></dd>
+<dt>day_of_week</dt><dd><p>Day of the week of the accident</p></dd>
+<dt>time</dt><dd><p>Time of the accident on the 24h clock</p></dd>
+<dt>district</dt><dd><p>Local authority district</p></dd>
+<dt>highway</dt><dd><p>Local authority highway</p></dd>
+<dt>first_road_class</dt><dd><p>Class of 1st road involved in accident: Motorway, A(M) road (A-road with motorway restrictions), A-road, B-road, C-road, Unclassified</p></dd>
+<dt>first_road_number</dt><dd><p>ID of 1st road (0 if unclassified)</p></dd>
+<dt>road_type</dt><dd><p>Type of road: Roundabout, One way street, Dual carriageway, Single carriageway, Slip road</p></dd>
+<dt>speed_limit</dt><dd><p>Speed limit on the road in mph</p></dd>
+<dt>junction_detail</dt><dd><p>Detail on junction where accident occurred: Crossroads, Mini-roundabout, More than 4 arms, Not within 20 metres of junction, Other junction, Private drive or entrance, Roundabout, Slip road, T or staggered junction</p></dd>
+<dt>junction_control</dt><dd><p>How junction was controlled: Authorised person, Auto traffic signal, Give way or uncontrolled, Missing / Out of range, Stop sign</p></dd>
+<dt>second_road_class</dt><dd><p>Class of 2st road involved in accident: A-road, B-road, C-road, Missing / Out of range, Motorway, Unclassified</p></dd>
+<dt>second_road_number</dt><dd><p>ID of 2nd road (0 if unclassified)</p></dd>
+<dt>ped_cross_human</dt><dd><p>Level of human control at a pedestrian crossing: Control by other authorised person, Control by school crossing patrol, None within 50 metres</p></dd>
+<dt>ped_cross_physical</dt><dd><p>Level of facilities controlling a pedestrian crossing: Central refuge, No physical crossing facilities within 50 metres, Non-junction crossing (pelican, puffin, toucan or similar light crossing), Pedestrian phase at traffic signal junction, Zebra crossing</p></dd>
+<dt>light</dt><dd><p>Light condition at the time of accident: Daylight, Darkness - lights lit, Darkness - lights unlit, Darkness - no lighting, Darkness - lighting unknown</p></dd>
+<dt>weather</dt><dd><p>Weather condition at the time of accident: Fine + no high winds, Raining + no high winds, Snowing + no high winds, Fine + high winds, Raining + high winds, Snowing + high winds, Fog or mist, Other, Unknown</p></dd>
+<dt>road_surface</dt><dd><p>Road surface conditions at the time of the accident: Dry, Wet or damp, Snow, Frost or ice, Flood over 3cm deep</p></dd>
+<dt>special_condition</dt><dd><p>Special condition at the site of the accident: None, Road sign or marking defective or obscured, Roadworks, Road surface defective</p></dd>
+<dt>hazard</dt><dd><p>Carriageway hazards: None, Other object on road, Previous accident, Pedestrian in carriageway - not injured</p></dd>
+<dt>urban_rural</dt><dd><p>Type of area the accident occurred in</p></dd>
+<dt>police</dt><dd><p>Did police officer attend the scene of the accident: No, No + accident self reported (using a self completion form), Yes</p></dd>
 
 </dl>
 
@@ -168,10 +175,10 @@ It's been modified to better serve the goals of introductory data science educat
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span>)
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
 
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span>(<span class='kw'>accidents</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span>(x = <span class='kw'>speed_limit</span>)) <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span>()
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>accidents</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>speed_limit</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='img'><img src='accidents-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
