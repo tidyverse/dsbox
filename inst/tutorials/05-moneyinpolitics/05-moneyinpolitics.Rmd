@@ -41,6 +41,13 @@ knitr::opts_chunk$set(echo = FALSE)
 # setup some things ------------------------------------------------------------
 url_2020 <- "https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs?cycle=2020"
 page <- read_html(url_2020)
+
+parse_currency <- function(x){
+  x %>% 
+    str_remove("\\$") %>%
+    str_remove_all(",") %>%
+    as.numeric()
+}
 ```
 
 
@@ -251,11 +258,13 @@ quiz(caption = "",
      question("`header`",
               answer("TRUE",
                      correct = TRUE),
-              answer("FALSE")),
+              answer("FALSE"),
+              allow_retry = TRUE),
      question("`fill`",
               answer("TRUE",
                      correct = TRUE),
-              answer("FALSE"))
+              answer("FALSE"),
+              allow_retry = TRUE)
      )
 ```
 
