@@ -19,11 +19,11 @@
 #' datasets collected from OpenSecrets via webscraping.
 #'
 #' This particular dataset consists of the data for foreign-connected PAC
-#' contrbutions for all available elections cycles, with some minor cleaning
+#' contributions for all available elections cycles, with some minor cleaning
 #' also done to make it more accessible in introductory data science education.
 #'
 #' @source https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs
-#' @format A tibble with 2245 rows and 6 variables:
+#' @format A tibble with 2156 rows and 6 variables:
 #' \describe{
 #'   \item{name}{Name of company (American divisions of a foreign company)}
 #'   \item{country_parent}{Country of origin and (foreign) parent company}

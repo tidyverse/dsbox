@@ -19,14 +19,15 @@
 #' datasets collected from OpenSecrets via webscraping.
 #'
 #' This particular dataset consists of the data for foreign-connected PAC
-#' contrbutions for the 2020 election cycle, with some cleaning also done to
+#' contributions for the 2020 election cycle, with some cleaning also done to
 #' make it more accessible in introductory data science education.
 #'
 #' @source https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs
-#' @format A tibble with 224 rows and 5 variables:
+#' @format A tibble with 226 rows and 6 variables:
 #' \describe{
 #'   \item{name}{Name of company (American divisions of a foreign company)}
-#'   \item{country_parent}{Country of origin and (foreign) parent company}
+#'   \item{country}{Country of origin}
+#'   \item{parent}{PAC parent company}
 #'   \item{total}{Total PAC contributions to all parties}
 #'   \item{dems}{PAC contributions to the Democratic Party}
 #'   \item{repubs}{PAC contributions to the Republican Party}
