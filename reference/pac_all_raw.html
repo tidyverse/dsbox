@@ -135,7 +135,7 @@ money their candidates raise and where that money comes from.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble with 2245 rows and 6 variables:</p><dl>
+    <p>A tibble with 2156 rows and 6 variables:</p><dl>
 <dt>name</dt><dd><p>Name of company (American divisions of a foreign company)</p></dd>
 <dt>country_parent</dt><dd><p>Country of origin and (foreign) parent company</p></dd>
 <dt>total</dt><dd><p>Total PAC contributions to all parties</p></dd>
@@ -160,7 +160,7 @@ contributions from their American employees.” (source: OpenSecrets.org)</p>
 It is part of a series of similar datasets in this package consisting of
 datasets collected from OpenSecrets via webscraping.</p>
 <p>This particular dataset consists of the data for foreign-connected PAC
-contrbutions for all available elections cycles, with some minor cleaning
+contributions for all available elections cycles, with some minor cleaning
 also done to make it more accessible in introductory data science education.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -171,14 +171,14 @@ also done to make it more accessible in introductory data science education.</p>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tibble.tidyverse.org/'>tibble</a></span><span class='op'>)</span>
 
 <span class='fu'><a href='https://tibble.tidyverse.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>pac_all_raw</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Rows: 2,245
+</div><div class='output co'>#&gt; Rows: 2,156
 #&gt; Columns: 6
-#&gt; $ name           <span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "ABB Daimler-Benz Transportation", "ABB Group", "AE St…
-#&gt; $ country_parent </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "Germany/Daimler-Benz AG", "Switzerland/Asea Brown Bov…
-#&gt; $ total          </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "$15,775", "$48,500", "$30,500", "$41,700", "$31,000",…
-#&gt; $ dems           </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "$10,775", "$19,750", "$3,500", "$10,100", "$8,500", "…
-#&gt; $ repubs         </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "$5,000", "$28,750", "$27,000", "$31,600", "$22,500", …
-#&gt; $ year           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 1998, 1998, 1998, 1998, 1998, 1998, 1998, 1998, 1998, …</div><div class='input'>
+#&gt; $ name           <span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "7-Eleven", "ABB Group", "Accenture", "ACE INA", "Acus…
+#&gt; $ country_parent </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "Japan/Ito-Yokado", "Switzerland/Asea Brown Boveri", "…
+#&gt; $ total          </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "$8,500", "$46,000", "$75,984", "$38,500", "$2,000", "…
+#&gt; $ dems           </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "$1,500", "$17,000", "$23,000", "$12,500", "$2,000", "…
+#&gt; $ repubs         </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "$7,000", "$28,500", "$52,984", "$26,000", "$0", "$500…
+#&gt; $ year           </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, …</div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

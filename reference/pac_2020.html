@@ -135,9 +135,10 @@ money their candidates raise and where that money comes from.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble with 224 rows and 5 variables:</p><dl>
+    <p>A tibble with 226 rows and 6 variables:</p><dl>
 <dt>name</dt><dd><p>Name of company (American divisions of a foreign company)</p></dd>
-<dt>country_parent</dt><dd><p>Country of origin and (foreign) parent company</p></dd>
+<dt>country</dt><dd><p>Country of origin</p></dd>
+<dt>parent</dt><dd><p>PAC parent company</p></dd>
 <dt>total</dt><dd><p>Total PAC contributions to all parties</p></dd>
 <dt>dems</dt><dd><p>PAC contributions to the Democratic Party</p></dd>
 <dt>repubs</dt><dd><p>PAC contributions to the Republican Party</p></dd>
@@ -159,7 +160,7 @@ contributions from their American employees.” (Source: <a href='https://www.op
 It is part of a series of similar datasets in this package consisting of
 datasets collected from OpenSecrets via webscraping.</p>
 <p>This particular dataset consists of the data for foreign-connected PAC
-contrbutions for the 2020 election cycle, with some cleaning also done to
+contributions for the 2020 election cycle, with some cleaning also done to
 make it more accessible in introductory data science education.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -170,13 +171,14 @@ make it more accessible in introductory data science education.</p>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tibble.tidyverse.org/'>tibble</a></span><span class='op'>)</span>
 
 <span class='fu'><a href='https://tibble.tidyverse.org/reference/glimpse.html'>glimpse</a></span><span class='op'>(</span><span class='va'>pac_2020</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Rows: 224
-#&gt; Columns: 5
-#&gt; $ name           <span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "7-Eleven", "ABB Group (ABB Group)", "Accenture (Accen…
-#&gt; $ country_parent </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "Japan/Seven &amp; I Holdings", "Switzerland/Asea Brown Bo…
-#&gt; $ total          </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "$1,000", "$9,500", "$82,000", "$14,000", "$166,000", …
-#&gt; $ dems           </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "$0", "$3,500", "$49,000", "$5,000", "$69,000", "$25,7…
-#&gt; $ repubs         </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "$1,000", "$6,000", "$33,000", "$9,000", "$97,000", "$…</div><div class='input'>
+</div><div class='output co'>#&gt; Rows: 226
+#&gt; Columns: 6
+#&gt; $ name    <span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "7-Eleven", "ABB Group (ABB Group)", "Accenture (Accenture)",…
+#&gt; $ country </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "Japan", "Switzerland", "Ireland", "France", "Netherlands", "…
+#&gt; $ parent  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> "Seven &amp; I Holdings", "Asea Brown Boveri", "Accenture plc", "…
+#&gt; $ total   </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 2000, 15600, 82000, 24800, 176500, 89750, 66300, 500, 307500,…
+#&gt; $ dems    </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 1000, 6800, 49000, 11800, 72000, 30750, 33150, 0, 171500, 445…
+#&gt; $ repubs  </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> 1000, 8800, 33000, 13000, 104500, 59000, 33150, 500, 136000, …</div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

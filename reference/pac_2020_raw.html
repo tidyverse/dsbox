@@ -135,7 +135,7 @@ money their candidates raise and where that money comes from.</p>
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble with 224 rows and 5 variables:</p><dl>
+    <p>A tibble with 226 rows and 5 variables:</p><dl>
 <dt>PAC Name (Affiliate)</dt><dd><p>Name of company (American divisions of a foreign company)</p></dd>
 <dt>Country of Origin/Parent Company</dt><dd><p>Country of origin and (foreign) parent company</p></dd>
 <dt>Total</dt><dd><p>Total PAC contributions to all parties</p></dd>
@@ -159,8 +159,8 @@ contributions from their American employees.” (source: OpenSecrets.org)</p>
 It is part of a series of similar datasets in this package consisting of
 datasets collected from OpenSecrets via webscraping.</p>
 <p>This particular dataset consists of the data for foreign-connected PAC
-contrbutions for the 2020 election cycle, in raw form as it was when
-scraped from the website</p>
+contributions for the 2020 election cycle, in raw form as it was when
+scraped from the website on 11 Nov 2020.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p>pac_2020, pac_all, pac_all_raw</p></div>
@@ -168,20 +168,20 @@ scraped from the website</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='va'>pac_2020_raw</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 224 x 5</span><span>
-#&gt;    `PAC Name (Affiliate)`            `Country of Origin/Pa… Total  Dems   Repubs
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                             </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> 
-#&gt; </span><span style='color: #555555;'> 1</span><span> </span><span style='color: #555555;'>"</span><span>7-Eleven\n                     … Japan/Seven &amp; I Holdi… $1,000 $0     $1,000
-#&gt; </span><span style='color: #555555;'> 2</span><span> </span><span style='color: #555555;'>"</span><span>ABB Group\n                    … Switzerland/Asea Brow… $9,500 $3,500 $6,000
-#&gt; </span><span style='color: #555555;'> 3</span><span> </span><span style='color: #555555;'>"</span><span>Accenture\n                    … Ireland/Accenture plc  $82,0… $49,0… $33,0…
-#&gt; </span><span style='color: #555555;'> 4</span><span> </span><span style='color: #555555;'>"</span><span>Air Liquide America\n          … France/L'Air Liquide … $14,0… $5,000 $9,000
-#&gt; </span><span style='color: #555555;'> 5</span><span> </span><span style='color: #555555;'>"</span><span>Airbus Group\n                 … Netherlands/Airbus Gr… $166,… $69,0… $97,0…
-#&gt; </span><span style='color: #555555;'> 6</span><span> </span><span style='color: #555555;'>"</span><span>Alkermes Inc\n                 … Ireland/Alkermes Plc   $77,2… $25,7… $51,5…
-#&gt; </span><span style='color: #555555;'> 7</span><span> </span><span style='color: #555555;'>"</span><span>Allianz of America\n           … Germany/Allianz AG Ho… $54,5… $25,3… $29,1…
-#&gt; </span><span style='color: #555555;'> 8</span><span> </span><span style='color: #555555;'>"</span><span>Anheuser-Busch\n               … Belgium/Anheuser-Busc… $256,… $129,… $126,…
-#&gt; </span><span style='color: #555555;'> 9</span><span> </span><span style='color: #555555;'>"</span><span>AON Corp\n                     … UK/AON PLC             $58,0… $27,0… $31,0…
-#&gt; </span><span style='color: #555555;'>10</span><span> </span><span style='color: #555555;'>"</span><span>APL Maritime\n                 … France/CMA CGM SA      $16,0… $10,5… $5,500
-#&gt; </span><span style='color: #555555;'># … with 214 more rows</span><span></div><div class='input'>
+</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 226 x 5</span><span>
+#&gt;    `PAC Name (Affiliate)`     `Country of Origin/Parent Co… Total  Dems   Repubs
+#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                         </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> 
+#&gt; </span><span style='color: #555555;'> 1</span><span> 7-Eleven                   Japan/Seven &amp; I Holdings      $2,000 $1,000 $1,000
+#&gt; </span><span style='color: #555555;'> 2</span><span> ABB Group (ABB Group)      Switzerland/Asea Brown Boveri $15,6… $6,800 $8,800
+#&gt; </span><span style='color: #555555;'> 3</span><span> Accenture (Accenture)      Ireland/Accenture plc         $82,0… $49,0… $33,0…
+#&gt; </span><span style='color: #555555;'> 4</span><span> Air Liquide America        France/L'Air Liquide SA       $24,8… $11,8… $13,0…
+#&gt; </span><span style='color: #555555;'> 5</span><span> Airbus Group               Netherlands/Airbus Group      $176,… $72,0… $104,…
+#&gt; </span><span style='color: #555555;'> 6</span><span> Alkermes Inc               Ireland/Alkermes Plc          $89,7… $30,7… $59,0…
+#&gt; </span><span style='color: #555555;'> 7</span><span> Allianz of America (Allia… Germany/Allianz AG Holding    $66,3… $33,1… $33,1…
+#&gt; </span><span style='color: #555555;'> 8</span><span> AMG Vanadium               Netherlands/AMG Advanced Met… $500   $0     $500  
+#&gt; </span><span style='color: #555555;'> 9</span><span> Anheuser-Busch (Anheuser-… Belgium/Anheuser-Busch InBev  $307,… $171,… $136,…
+#&gt; </span><span style='color: #555555;'>10</span><span> AON Corp (AON plc)         UK/AON PLC                    $87,5… $44,5… $43,0…
+#&gt; </span><span style='color: #555555;'># … with 216 more rows</span><span></div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
