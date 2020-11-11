@@ -5,7 +5,7 @@
 \alias{pac_all}
 \title{Foreign-Connected PAC Contributions, all years, clean data}
 \format{
-A tibble with 2245 rows and 7 variables:
+A tibble with 2156 rows and 7 variables:
 \describe{
 \item{name}{Name of company (American divisions of a foreign company)}
 \item{country}{Country of origin}
@@ -43,8 +43,8 @@ It is part of a series of similar datasets in this package consisting of
 datasets collected from OpenSecrets via webscraping.
 
 This particular dataset consists of the data for foreign-connected PAC
-contrbutions for all available elections cycles, with significant cleaning
-done to make it more accessible in introductory data science education.
+contributions for all available elections cycles, in raw form as it was when
+scraped from the website on 11 Nov 2020.
 }
 \examples{
 

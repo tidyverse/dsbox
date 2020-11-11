@@ -5,7 +5,7 @@
 \alias{pac_2020_raw}
 \title{Foreign-Connected PAC Contributions, 2020, raw data}
 \format{
-A tibble with 224 rows and 5 variables:
+A tibble with 226 rows and 5 variables:
 \describe{
 \item{PAC Name (Affiliate)}{Name of company (American divisions of a foreign company)}
 \item{Country of Origin/Parent Company}{Country of origin and (foreign) parent company}
@@ -41,8 +41,8 @@ It is part of a series of similar datasets in this package consisting of
 datasets collected from OpenSecrets via webscraping.
 
 This particular dataset consists of the data for foreign-connected PAC
-contrbutions for the 2020 election cycle, in raw form as it was when
-scraped from the website
+contributions for the 2020 election cycle, in raw form as it was when
+scraped from the website on 11 Nov 2020.
 }
 \examples{
 
