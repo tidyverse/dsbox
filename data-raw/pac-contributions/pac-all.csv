@@ -1,105 +1,4 @@
 name,country,parent,total,dems,repubs,year
-ABB Daimler-Benz Transportation,Germany,Daimler-Benz AG,15775,10775,5000,1998
-ABB Group,Switzerland,Asea Brown Boveri,48500,19750,28750,1998
-AE Staley Manufacturing (Tate & Lyle),UK,Tate & Lyle,30500,3500,27000,1998
-AEGON USA (AEGON NV),Netherlands,Aegon NV,41700,10100,31600,1998
-Alcatel USA,France,Alcatel,31000,8500,22500,1998
-Allied Domecq Spirits & Wine,UK,Allied Domecq,39500,11000,28500,1998
-APL Ltd,Singapore,Neptune Orient Lines,41983,18060,23923,1998
-Aqua-Chem Inc,France,Lyonnaise des Eaux-Dumez Group,11800,1200,10600,1998
-Ares-Serono Inc,Switzerland,Serono SA,6357,5857,500,1998
-Bacardi Corp (Bacardi Ltd),UK,Bacardi Ltd,0,0,0,1998
-Bacardi-Martini USA (Bacardi Ltd),UK,Bacardi Ltd,8500,3500,5000,1998
-BASF Corp,Germany,BASF Group,0,0,0,1998
-Bayer Corp,Germany,Bayer AG,186500,50250,136250,1998
-Bear Creek Corp (Yamanouchi Consumer),Japan,Yamanouchi Consumer,5000,2500,2500,1998
-BHP Copper (Broken Hill Proprietary),Australia,Broken Hill Proprietary,7450,1000,6450,1998
-BHP Minerals International (Broken Hill Proprietary),Australia,Broken Hill Proprietary,10250,4500,5750,1998
-BHP Petroleum Americas (Broken Hill Proprietary),Australia,Broken Hill Proprietary,2600,2500,100,1998
-Blue Circle America,UK,Blue Circle Industries,31850,2250,29600,1998
-BOC Group,UK,BOC Group,0,0,0,1998
-BP America,UK,British Petroleum Co,122361,31250,91111,1998
-Brinson Partners (UBS AG),Switzerland,UBS AG,1000,0,1000,1998
-Brown & Williamson Tobacco,UK,BAT Industries,350821,90000,260821,1998
-Budd Co,Germany,ThyssenKrupp AG,16600,1500,15100,1998
-Business Men's Assurance Co,Italy,Assicurazioni Generali,2750,2000,750,1998
-Ciba Specialty Chemicals,Switzerland,Ciba Specialty Chemicals Holding Inc,15000,2000,13000,1998
-CIBC Oppenheimer,Canada,Canadian Imperial Bank of Commerce,0,0,0,1998
-Credit Suisse First Boston,Switzerland,Credit Suisse Group,188750,90500,98250,1998
-DaimlerChrysler (DaimlerChrysler),Germany,DaimlerChrysler AG,493386,192936,300450,1998
-Electrocom Automation Inc,Germany,Daimler-Benz,1800,0,1800,1998
-Elf Atochem North America,France,Elf Aquitaine,26600,6700,19900,1998
-Equitable Companies (AXA),France,AXA,124500,60500,64000,1998
-Equitable of Iowa Companies (ING Group),Netherlands,ING Group,6900,1000,5900,1998
-Essroc Corp,Italy,Italcementi Group,1000,1000,0,1998
-Experian (GUS plc),UK,GUS plc,500,0,500,1998
-Farmers Group (Zurich Financial Services),Switzerland,Zurich Financial Services,22175,2000,20175,1998
-Fina Inc,Belgium,Petrofina,11050,5000,6050,1998
-First Maryland Bancorp,Ireland,Allied Irish Banks,8800,4475,4325,1998
-Food Lion,Belgium,Delhaize Group,39416,12707,26709,1998
-Fortis Inc,Belgium,Fortis AG,500,0,500,1998
-Fox Inc (News Corporation),Australia,News Corp,25134,10134,15000,1998
-GEC-Marconi Hazeltine (General Electric Co PLC),UK,General Electric Co PLC,27600,10600,17000,1998
-Genentech Inc (Roche Holdings),Switzerland,Roche Group,96704,53704,43000,1998
-Glaxo Wellcome Inc,UK,Glaxo Wellcome,406001,110825,295176,1998
-Grand Trunk Western-Illinois Central RR,Canada,Canadian National Railway,11475,5225,6250,1998
-Great-West Life & Annuity Insurance (Power Financial Corp),Canada,Power Financial Corp,47950,3000,44950,1998
-Gulfstream Aerospace (Gulfstream Aerospace),Germany,DaimlerChrysler AG,27000,10500,16500,1998
-Heublein Inc,UK,Diageo PLC,28800,11300,17500,1998
-Hill & Knowlton (WPP Group),UK,WPP Group,54575,26325,28250,1998
-Hoechst Celanese Corp (Hoechst Corp),Germany,Hoechst AG,74500,29500,45000,1998
-Hoechst Marion Roussel (Hoechst Corp),Germany,Hoechst AG,44256,12000,32256,1998
-Hoffmann-La Roche (Roche Holdings),Switzerland,Roche Holdings,95049,31499,63550,1998
-Holnam Inc,Switzerland,Holderbank Financiere Glaris,47062,13778,33284,1998
-HSBC Americas,UK,HSBC Holdings,10930,6700,4230,1998
-ICI Americas Inc,UK,Imperial Chemical Industries,4750,2000,2750,1998
-Jackson National Life Insurance (Prudential Corp PLC),UK,Prudential Corp PLC,46300,17100,29200,1998
-Joseph E Seagram & Sons (Joseph E Seagram & Sons),Canada,Seagram Co,136190,56012,80178,1998
-Kennecott Holdings,UK,Rio Tinto PLC,33500,8000,25500,1998
-LaFarge Corp,France,Lafarge SA,24750,10200,14550,1998
-LaSalle National Corp,Netherlands,ABN Amro Holding,19500,8500,11000,1998
-Learjet Inc (Bombardier Inc),Canada,Bombardier Inc,3500,0,3500,1998
-Lehigh Portland Cement,Germany,Heidelberger Zement,0,0,0,1998
-Libbey-Owens-Ford,UK,Pilkington Group,18000,1000,17000,1998
-Life Insurance Co of Georgia (ING Group),Netherlands,ING Group,26000,7000,19000,1998
-Loral Space & Communications,UK,Loral Space & Communications,127750,85750,42000,1998
-Marconi North America (Marconi North America),UK,General Electric Co PLC,290750,103200,187550,1998
-Massachusetts Financial Services,Canada,Sun Life Financial Services,25000,8500,16500,1998
-Master Builders Inc (Novartis Corp),Switzerland,Sandoz,2500,500,2000,1998
-Nestle USA (Nestle SA),Switzerland,Nestle,58000,15000,43000,1998
-News America Publishing (News Corporation),Australia,News Corp,48000,14000,34000,1998
-Northern Telecom,Canada,BCE Inc,92379,46266,46113,1998
-Novartis Corp (Novartis AG),Switzerland,Novartis AG,157013,44500,112513,1998
-Novartis Corp (Novartis Corp),Switzerland,Novartis AG,-1250,0,-1250,1998
-Organon Inc,Netherlands,Akzo Nobel,0,0,0,1998
-Pasteur Merieux Connaught (Rhone-Poulenc Rorer Inc),France,Rhone-Poulenc Rorer Inc,88500,43000,45500,1998
-Perrier Group of America (Nestle SA),Switzerland,Nestle,10750,4250,6500,1998
-Peter Pan Seafoods,Japan,Nichiro Corp,2100,-250,2350,1998
-Philips Electronics North America,Netherlands,Philips Electronics,59325,11650,47675,1998
-Pillsbury Co,UK,Diageo PLC,16600,3500,13100,1998
-Pinkerton Tobacco,Sweden,Swedish Match AB,48250,17250,31000,1998
-Princess Cruises,UK,Peninsular & Oriental Steam Navigation,53250,17500,35750,1998
-Racal-Datacom,UK,Platinum Equity Holdings,0,0,0,1998
-Rhone-Poulenc Rorer Inc (Rhone-Poulenc Rorer Inc),France,Rhone-Poulenc,33500,16000,17500,1998
-Rhone-Poulenc Rorer Inc (Rhone-Poulenc Rorer Inc),France,Rhone-Poulenc,42750,6000,36750,1998
-Rolls-Royce North America (Rolls-Royce PLC),UK,Rolls Royce,55159,13898,41261,1998
-SBC Warburg Dillon Read (UBS AG),Switzerland,UBS AG,0,0,0,1998
-"Schroder, Wertheim & Co",UK,Schroders PLC,0,0,0,1998
-Security Life of Denver (ING Group),Netherlands,ING Group,22400,5000,17400,1998
-Shaklee Corp (Yamanouchi Consumer),Japan,Yamanouchi Pharmaceutical,13500,4000,9500,1998
-Shell Oil,Netherlands,Royal Dutch/Shell Group of Companies,113500,27500,86000,1998
-SmithKline Beecham,UK,SmithKline Beecham,138750,51250,87500,1998
-Sony Pictures Entertainment (Sony Corp),Japan,Sony Corp,108500,47750,60750,1998
-Syntex (USA) Inc (Roche Holdings),Switzerland,Roche Holdings,12666,11666,1000,1998
-Tate & Lyle North American Sugars (Tate & Lyle),UK,Tate & Lyle,9900,9800,100,1998
-Timex Corp,Netherlands,Timex Group,0,0,0,1998
-UnionBanCal Corp,Japan,Mitsubishi UFJ Financial Group,10500,4500,6000,1998
-Universal Studios (Joseph E Seagram & Sons),Canada,Seagram Co,210100,90500,119600,1998
-US Surgical Corp,Ireland,Tyco International,65550,23050,42500,1998
-Wexler Group (WPP Group),UK,WPP Group,112098,47498,64600,1998
-Zeneca Inc (Zeneca Inc),UK,Zeneca Group PLC,0,0,0,1998
-Zeneca Inc (Zeneca Inc),UK,Zeneca Group PLC,125077,33827,91250,1998
-Zurich Insurance (Zurich Financial Services),Switzerland,Zurich Financial Services,55050,15550,39500,1998
 7-Eleven,Japan,Ito-Yokado,8500,1500,7000,2000
 ABB Group,Switzerland,Asea Brown Boveri,46000,17000,28500,2000
 Accenture,Bermuda,Accenture plc,75984,23000,52984,2000
@@ -127,7 +26,7 @@ Aventis CropScience (Aventis),France,Aventis,23500,12500,11000,2000
 Aventis Pasteur USA (Aventis),France,Aventis,107500,54500,53000,2000
 Aventis Pharmaceuticals (Aventis),France,Aventis,18000,1500,16500,2000
 Aventis Pharmaceuticals Products (Aventis),France,Aventis,48700,7500,41200,2000
-Bacardi USA (Bacardi USA),UK,Bacardi Ltd,500,0,500,2000
+Bacardi USA (Bacardi Ltd),UK,Bacardi Ltd,500,0,500,2000
 Bacardi USA (Bacardi Ltd),UK,Bacardi Ltd,0,0,0,2000
 BAE Systems North America (BAE Systems),UK,BAE Systems,243639,98580,145059,2000
 Barrick Goldstrike Mines,Canada,Barrick Gold Corp,73250,20075,53175,2000
@@ -171,8 +70,8 @@ GEC-Marconi Hazeltine (BAE Systems),UK,BAE Systems,0,0,0,2000
 Genentech Inc (Roche Holdings),Switzerland,Roche Group,123250,62750,60500,2000
 Gilman Paper,Mexico,Grupo Industrial Durango,12412,0,12412,2000
 GKN Corp,UK,GKN PLC,4775,0,4775,2000
-GlaxoSmithKline (GlaxoSmithKline),UK,GlaxoSmithKline,135500,35750,99750,2000
 GlaxoSmithKline (GlaxoSmithKline),UK,GlaxoSmithKline,604759,109998,494761,2000
+GlaxoSmithKline (GlaxoSmithKline),UK,GlaxoSmithKline,135500,35750,99750,2000
 Grand Trunk Western-Illinois Central RR,Canada,Canadian National Railway,12065,7315,4750,2000
 Great-West Life & Annuity Insurance (Power Financial Corp),Canada,Power Financial Corp,46000,5000,41000,2000
 Greyhound Lines,Canada,Laidlaw,36500,20000,16500,2000
@@ -242,8 +141,8 @@ US Surgical Corp (Tyco International),Ireland,Tyco International,7100,0,7100,200
 USFilter Corp (Vivendi Universal),France,Vivendi Universal,17250,15000,2250,2000
 Vodafone Group,UK,Vodafone Group,49850,14600,35250,2000
 Westfield Corp,Australia,Westfield Group of Australia,29850,19350,10500,2000
-Westinghouse Electric (BNFL PLC),UK,BNFL PLC,27000,8000,19000,2000
 Westinghouse Electric (BNFL PLC),UK,British Nuclear Fuels PLC,250,250,0,2000
+Westinghouse Electric (BNFL PLC),UK,BNFL PLC,27000,8000,19000,2000
 Wexler Group (WPP Group),UK,WPP Group,121093,53000,68093,2000
 Zenith Electronics,South Korea,LG Electronics,0,0,0,2000
 Zurich Insurance (Zurich Financial Services),Switzerland,Zurich Financial Services Group,80787,25250,55537,2000
@@ -277,7 +176,7 @@ Bacardi USA,UK,Bacardi Ltd,0,0,0,2002
 BAE Systems North America (BAE Systems),UK,BAE Systems,391276,149028,242248,2002
 Barrick Goldstrike Mines,Canada,Barrick Gold Corp,75000,33500,41500,2002
 BASF Corp,Germany,BASF Group,204500,41500,163000,2002
-Bayer Corp (Bayer Corp),Germany,Bayer AG,260500,73000,187500,2002
+Bayer Corp (Bayer AG),Germany,Bayer AG,260500,73000,187500,2002
 Bayer CropScience (Bayer AG),Germany,Bayer AG,36000,15500,20500,2002
 Bear Creek Corp (Yamanouchi Consumer),Japan,Yamanouchi Consumer,10150,5050,5100,2002
 BHP Holdings,Australia,BHP Billiton,1023,400,623,2002
@@ -302,8 +201,8 @@ Ciba Specialty Chemicals,Switzerland,Ciba Specialty Chemicals Holding,29500,7500
 CIBC Oppenheimer,Canada,Canadian Imperial Bank of Commerce,0,0,0,2002
 Cooper Industries,Ireland,Cooper Industries Ltd,187500,0,187500,2002
 Coral Energy (Royal Dutch/Shell Group of Companies),Netherlands,Royal Dutch Shell,0,0,0,2002
-Credit Suisse First Boston (Credit Suisse Group),Switzerland,Credit Suisse Group,298312,135812,162500,2002
 Credit Suisse First Boston (Credit Suisse Group),Switzerland,Credit Suisse Group,0,0,0,2002
+Credit Suisse First Boston (Credit Suisse Group),Switzerland,Credit Suisse Group,298312,135812,162500,2002
 DaimlerChrysler (DaimlerChrysler),Germany,DaimlerChrysler AG,483090,196590,286500,2002
 Diageo North America (Diageo PLC),UK,Diageo PLC,61000,24000,37000,2002
 E ON US,Germany,Eon AG,4850,500,4350,2002
@@ -318,8 +217,8 @@ Fortis Inc,Belgium,Fortis AG,79000,21000,58000,2002
 Foster Wheeler,Switzerland,Foster Wheeler PLC,8800,1000,7800,2002
 Genentech Inc (Roche Holdings),Switzerland,Roche Group,146750,83000,63750,2002
 GKN Corp,UK,GKN PLC,630,0,630,2002
-GlaxoSmithKline (GlaxoSmithKline),UK,GlaxoSmithKline,772042,193923,578119,2002
 GlaxoSmithKline (GlaxoSmithKline),UK,GlaxoSmithKline,-4000,-500,-3500,2002
+GlaxoSmithKline (GlaxoSmithKline),UK,GlaxoSmithKline,772042,193923,578119,2002
 Grand Trunk Western-Illinois Central RR,Canada,Canadian National Railway,21825,12675,9150,2002
 Great-West Life & Annuity Insurance (Power Financial Corp),Canada,Power Financial Corp,35550,4050,31500,2002
 Greyhound Lines,Canada,Laidlaw,39500,24500,15000,2002
@@ -420,7 +319,6 @@ AREVA Inc,France,Areva Group,18500,2000,16500,2004
 ASARCO LLC,Mexico,Nueva Grupo Mexico,0,0,0,2004
 AstraZeneca Pharmaceuticals (AstraZeneca PLC),UK,AstraZeneca,219130,61630,157500,2004
 ATOFINA Chemicals (TOTAL SA),France,TOTAL SA,22000,2500,19500,2004
-Aventis Pasteur USA (Sanofi-Aventis),France,Sanofi-Aventis,105300,45000,60300,2004
 Aventis Pharmaceuticals (Sanofi-Aventis),France,Sanofi-Aventis,109265,25515,83750,2004
 AXA Equitable Life Insurance (AXA),France,AXA,149500,39000,110500,2004
 Babcock & Wilcox (McDermott International),Panama,McDermott International,26000,7000,19000,2004
@@ -512,6 +410,7 @@ RBC Centura Banks,Canada,Royal Bank of Canada,5250,1250,4000,2004
 Reed Elsevier Inc,UK,Reed Elsevier Group,50500,13500,37000,2004
 Rolls-Royce North America (Rolls-Royce PLC),UK,Rolls-Royce International,137000,40000,97000,2004
 Sagem Morpho Inc,France,Sagem SA,9950,9950,0,2004
+Sanofi-Pasteur Inc (Sanofi),France,Sanofi-Aventis,105300,45000,60300,2004
 SAP America,Germany,SAP Aktiengesellschaft,146250,56500,89750,2004
 Schaeffler Group USA,Germany,Schaeffler Group,13000,6000,7000,2004
 "Schroder, Salomon et al (Citigroup Inc)",UK,Schroders PLC,0,0,0,2004
@@ -548,16 +447,16 @@ XL America,Bermuda,XL Capital,3000,0,3000,2004
 Zurich Insurance (Zurich Financial Services),Switzerland,Zurich Financial Services Group,195869,59000,135369,2004
 7-Eleven,Japan,Seven & I Holdings,0,0,0,2006
 ABB Group,Switzerland,Asea Brown Boveri,9250,2250,6500,2006
-Accenture (Accenture),Bermuda,Accenture plc,0,0,0,2006
 Accenture (Accenture),Bermuda,Accenture plc,313380,115680,195700,2006
+Accenture (Accenture),Bermuda,Accenture plc,0,0,0,2006
 ACE INA,UK,ACE Ltd,108000,33000,75000,2006
 Acuson Corp (Siemens AG),Germany,Siemens AG,0,0,0,2006
 AEGON USA,Netherlands,Aegon NV,156500,59000,96000,2006
 Agrium US,Canada,Agrium Inc,0,0,0,2006
 AIM Management Group,UK,AMVESCAP,32000,12500,19500,2006
 Air Liquide America,France,L'Air Liquide SA,4000,2000,2000,2006
-Alcatel-Lucent Holding (Alcatel-Lucent),France,Alcatel-Lucent,20000,8000,12000,2006
 Alcatel-Lucent Holding (Alcatel-Lucent),France,Alcatel-Lucent,68000,25000,43000,2006
+Alcatel-Lucent Holding (Alcatel-Lucent),France,Alcatel-Lucent,20000,8000,12000,2006
 Alcon Laboratories (Nestle SA),Switzerland,Nestle,40826,3500,37326,2006
 Allianz of America (Allianz),Germany,Allianz AG Holding,119650,38100,80550,2006
 Allied Domecq Spirits & Wine,France,Pernod Ricard SA,17575,3515,14060,2006
@@ -666,7 +565,7 @@ Reed Elsevier Inc,UK,Reed Elsevier Group,64000,18000,46000,2006
 Rolls-Royce North America (Rolls-Royce PLC),UK,Rolls-Royce International,155000,40500,114500,2006
 Sagem Morpho Inc,France,Sagem SA,0,0,0,2006
 Sanofi-Aventis US (Sanofi-Aventis),France,Sanofi-Aventis,125500,21500,99000,2006
-Sanofi-Pasteur Inc (Sanofi-Aventis),France,Sanofi-Aventis,120335,34000,86335,2006
+Sanofi-Pasteur Inc (Sanofi),France,Sanofi-Aventis,120335,34000,86335,2006
 SAP America,Germany,SAP Aktiengesellschaft,160700,43000,115200,2006
 Schaeffler Group USA,Germany,Schaeffler Group,12000,4000,6000,2006
 "Schroder, Salomon et al (Citigroup Inc)",UK,Schroders PLC,0,0,0,2006
@@ -731,8 +630,8 @@ AstraZeneca Pharmaceuticals (AstraZeneca PLC),UK,AstraZeneca PLC,549500,265500,2
 Aviva USA,UK,Aviva PLC,500,0,500,2008
 AXA Equitable Life Insurance (AXA),France,AXA,216000,137000,79000,2008
 AXIS Specialty US Services (AXIS Capital),UK,AXIS Captial,0,0,0,2008
-Babcock & Wilcox (McDermott International),Panama,McDermott International,250000,133000,117000,2008
 Babcock & Wilcox (McDermott International),Panama,McDermott International,1000,1000,0,2008
+Babcock & Wilcox (McDermott International),Panama,McDermott International,250000,133000,117000,2008
 Bacardi USA,UK,Bacardi Ltd,18000,7500,10500,2008
 BAE Systems (BAE Systems),UK,BAE Systems,732250,313500,418750,2008
 Ballard Power Systems,Canada,Ballard Power Systems,1700,1700,0,2008
@@ -792,7 +691,7 @@ Great-West Life & Annuity Insurance (Power Financial Corp),Canada,Power Financia
 Greyhound Lines,UK,FirstGroup PLC,26000,16500,9500,2008
 Hanson Building Products North America,Germany,Spohn Cement Gmbh,5787,3787,2000,2008
 Heineken USA,Netherlands,L'Arche Green NV,56500,40500,16000,2008
-Henkel Corp,Germany,Henkel KGaA,14000,11000,3000,2008
+Henkel Corp (Henkel KGaA),Germany,Henkel KGaA,14000,11000,3000,2008
 Herbalife International,UK,Herbalife Ltd,45413,27414,17999,2008
 Hill & Knowlton (WPP Group),UK,WPP Group,5000,3000,2000,2008
 Hoffmann-La Roche (Roche Holdings),Switzerland,Roche Holdings,309500,168500,141000,2008
@@ -848,7 +747,7 @@ Research In Motion,Canada,Research in Motion,19500,11000,8500,2008
 Rio Tinto America,UK,Rio Tinto Group,43000,19000,24000,2008
 Rolls-Royce North America (Rolls-Royce PLC),UK,Rolls-Royce PLC,186500,72500,114000,2008
 Sanofi-Aventis US (Sanofi-Aventis),France,Sanofi-Aventis,105500,59500,46000,2008
-Sanofi-Pasteur Inc (Sanofi-Aventis),France,Sanofi-Aventis,52000,28000,24000,2008
+Sanofi-Pasteur Inc (Sanofi),France,Sanofi-Aventis,52000,28000,24000,2008
 Santander Bank (Banco Santander),Spain,Banco Santander,10525,6525,4000,2008
 SAP America,Germany,SAP Aktiengesellschaft,150500,80500,70000,2008
 Schaeffler Group USA,Germany,Schaeffler Group,5800,3500,2300,2008
@@ -858,6 +757,7 @@ Shell Oil,Netherlands,Royal Dutch Shell,77000,25000,52000,2008
 Shire Pharmaceuticals,UK,Shire Plc,1250,250,1000,2008
 SI International,UK,Serco Group,171750,81500,90250,2008
 Siemens Corp (Siemens AG),Germany,Siemens AG,303000,177500,125500,2008
+Skilled Healthcare Group (Onex Corp),Canada,Onex Corp,2300,2300,0,2008
 Smith & Nephew,UK,Smith & Nephew Plc,28300,13000,15300,2008
 Smiths Detection,UK,Smiths Group PLC,5500,4000,1500,2008
 Sodexo Inc,France,Sodexo,34500,30000,4500,2008
@@ -902,6 +802,7 @@ Alcatel-Lucent Holding (Alcatel-Lucent),France,Alcatel-Lucent,0,0,0,2010
 Alcatel-Lucent USA (Alcatel-Lucent),France,Alcatel-Lucent,21000,15500,5500,2010
 Alcon Laboratories (Novartis AG),Switzerland,Novartis,29455,8455,21000,2010
 Allianz of America (Allianz),Germany,Allianz AG Holding,84850,37850,47000,2010
+American Medical Response (Onex Corp),Canada,Onex Corp,44200,38200,6000,2010
 Anheuser-Busch,Belgium,Anheuser-Busch InBev,864500,464000,399500,2010
 APL Ltd,Singapore,Neptune Orient Lines Ltd,62500,35000,25000,2010
 Arcadis US,Netherlands,Arcadis NV,237750,136250,97500,2010
@@ -957,6 +858,7 @@ EADS North America,Netherlands,European Aeronautic Defence & Space Co,207200,104
 Eisai Inc,Japan,Eisai Co Ltd,68000,48500,19500,2010
 Elbit Systems of America,Israel,Elbit Systems Ltd,22500,11500,11000,2010
 Embraer Aircraft Holdings,Brazil,Embraer-Empresa Brasileira de Aeronautic,7000,2500,3500,2010
+EmCare Inc (Onex Corp),Canada,Onex Corp,0,0,0,2010
 EMD Serono Inc,Germany,Merck KGaA,123000,83000,40000,2010
 EnCana Oil & Gas USA,Canada,EnCana Corp,0,0,0,2010
 Essroc Corp,Italy,Italcementi Group,8500,2500,6000,2010
@@ -979,7 +881,7 @@ Greyhound Lines (FirstGroup PLC),UK,FirstGroup PLC,16000,10500,5500,2010
 Gtech Corp,Italy,B&D Holding Di Marco Drago e C Sapa,3500,3500,0,2010
 Halcrow Inc,UK,Halcrow Holdings,1000,1000,0,2010
 Heineken USA,Netherlands,L'Arche Green NV,53500,34000,19500,2010
-Henkel Corp,Germany,Henkel KGaA,11000,7000,4000,2010
+Henkel Corp (Henkel KGaA),Germany,Henkel KGaA,11000,7000,4000,2010
 Herbalife International,UK,Herbalife Ltd,63080,35000,28080,2010
 Hill & Knowlton (WPP Group),UK,WPP Group,1250,1000,250,2010
 Hoffmann-La Roche (Roche Holdings),Switzerland,Roche Holdings,172000,98500,71000,2010
@@ -997,6 +899,7 @@ International Power America,UK,International Power,19000,11500,4000,2010
 International Securities Exchange,Germany,Deutsche Boerse,49500,31500,18000,2010
 Jackson National Life Insurance,UK,Prudential PLC,122774,40000,82774,2010
 JBS USA,Brazil,JBS SA,168050,64000,104050,2010
+Jeld-Wen Inc (Onex Corp),Canada,Onex Corp,4835,2835,2000,2010
 John Hancock Life Insurance,Canada,Manulife Financial,143900,96500,47400,2010
 Kurtzman Carson Consultants,Australia,Computershare Limited,0,0,0,2010
 LaFarge North America,France,Lafarge SA,91000,37500,53500,2010
@@ -1016,8 +919,8 @@ Metro-Goldwyn-Mayer (Sony Corp),Japan,Sony Corp,-2500,0,-2500,2010
 Millennium Pharmaceuticals (Takeda Pharmaceutical Co),Japan,Takeda Pharmaceutical Co,28000,22000,6000,2010
 Miller Brewing (SABMiller),UK,SABMiller PLC,0,0,0,2010
 MillerCoors LLC (SABMiller),UK,SABMiller PLC,205500,97500,107000,2010
-National Grid USA (National Grid plc),UK,National Grid plc,500,500,0,2010
 National Grid USA (National Grid plc),UK,National Grid plc,141350,121100,18250,2010
+National Grid USA (National Grid plc),UK,National Grid plc,500,500,0,2010
 Nestle Purina PetCare (Nestle SA),Switzerland,Nestle,25500,4500,21000,2010
 Nestle Waters North America (Nestle SA),Switzerland,Nestle,19500,10500,8000,2010
 Nomura Holding America,Japan,Nomura Holdings,0,0,0,2010
@@ -1044,7 +947,7 @@ Research In Motion,Canada,Research in Motion,16000,8000,8000,2010
 Rio Tinto America,UK,Rio Tinto Group,71000,36500,30500,2010
 Rolls-Royce North America (Rolls-Royce PLC),UK,Rolls-Royce PLC,353800,176800,172000,2010
 Sanofi-Aventis US (Sanofi-Aventis),France,Sanofi-Aventis,87000,43500,43500,2010
-Sanofi-Pasteur Inc (Sanofi-Aventis),France,Sanofi-Aventis,44500,19750,24750,2010
+Sanofi-Pasteur Inc (Sanofi),France,Sanofi-Aventis,44500,19750,24750,2010
 Santander Bank (Banco Santander),Spain,Banco Santander,9500,9500,0,2010
 SAP America,Germany,SAP Aktiengesellschaft,46500,31000,15500,2010
 Schaeffler Group USA,Germany,Schaeffler Group,3000,2000,1000,2010
@@ -1055,6 +958,7 @@ Severstal Warren,Russia,OAO Severstal,0,0,0,2010
 Shell Oil,Netherlands,Royal Dutch Shell,0,0,0,2010
 Shire Pharmaceuticals,UK,Shire Plc,1500,1000,500,2010
 Siemens Corp,Germany,Siemens AG,302000,171000,128000,2010
+Skilled Healthcare Group (Onex Corp),Canada,Onex Corp,13500,13500,0,2010
 Smith & Nephew,UK,Smith & Nephew Plc,0,0,0,2010
 Smiths Detection,UK,Smiths Group PLC,10800,7800,1000,2010
 Sodexo Inc,France,Sodexo,49500,41000,8500,2010
@@ -1088,8 +992,8 @@ XL America,Ireland,XL Group PLC,1500,1500,0,2010
 Zurich Insurance (Zurich Financial Services),Switzerland,Zurich Financial Services AG,168000,78000,90000,2010
 ABB Group,Switzerland,Asea Brown Boveri,5500,3500,2000,2012
 Abengoa Solar,Spain,Abengoa SA,0,0,0,2012
-Accenture (Accenture),Ireland,Accenture plc,304500,160000,144500,2012
 Accenture (Accenture),Ireland,Accenture plc,0,0,0,2012
+Accenture (Accenture),Ireland,Accenture plc,304500,160000,144500,2012
 ACE INA,Switzerland,ACE Ltd,281500,121500,160000,2012
 Advance America Cash Advance Centers (Grupo Salinas),Mexico,Grupo Salinas,115750,22000,93750,2012
 Advanced BioHealing (Shire Plc),UK,Shire Plc,37250,19750,17500,2012
@@ -1186,7 +1090,7 @@ Grifols Inc,Spain,Grifols SA,40000,28000,12000,2012
 Gtech Corp,Italy,B&D Holding Di Marco Drago e C Sapa,16500,15500,1000,2012
 Halcrow Inc (CH2M HILL),UK,Halcrow Holdings,0,0,0,2012
 Heineken USA,Netherlands,L'Arche Green NV,33500,15000,18500,2012
-Henkel Corp,Germany,Henkel KGaA,6000,4000,2000,2012
+Henkel Corp (Henkel KGaA),Germany,Henkel KGaA,6000,4000,2000,2012
 Herbalife International,UK,Herbalife Ltd,66971,28493,38478,2012
 Hill & Knowlton Strategies (WPP Group),UK,WPP Group,2000,2000,0,2012
 Hoffmann-La Roche (Roche Holdings),Switzerland,Roche Holdings,54500,28000,26500,2012
@@ -1231,8 +1135,8 @@ MorphoTrust USA (Safran SA),France,Safran SA,0,0,0,2012
 Munich American Reassurance,Germany,Munich Re Group,0,0,0,2012
 Nammo Talley Inc,Norway,Nammo AS,4000,3500,500,2012
 National Cement Co,France,Vicat Group,2500,0,2500,2012
-National Grid USA (National Grid plc),UK,National Grid plc,0,0,0,2012
 National Grid USA (National Grid plc),UK,National Grid plc,113400,81900,31500,2012
+National Grid USA (National Grid plc),UK,National Grid plc,0,0,0,2012
 Natixis Global Asset Management,France,Groupe BPCE,0,0,0,2012
 Nestle Purina PetCare (Nestle SA),Switzerland,Nestle,22500,4750,17750,2012
 Nestle Waters North America (Nestle SA),Switzerland,Nestle,22000,19000,3000,2012
@@ -1255,6 +1159,7 @@ Reebok International,Germany,adidas AG,0,0,0,2012
 Reed Elsevier Inc,UK,Reed Elsevier Group,103500,54000,49500,2012
 Renewable Energy Systems Americas,UK,Renewable Energy Systems,31750,17750,14000,2012
 Renre North America Inc,UK,RenaissanceRe Holdings,0,0,0,2012
+Res-Care Inc (Onex Corp),Canada,Onex Corp,28750,7000,21750,2012
 Research In Motion,Canada,Research in Motion,3500,1000,2500,2012
 Rio Tinto America,UK,Rio Tinto Group,28000,7500,20500,2012
 Rolls-Royce North America (Rolls-Royce PLC),UK,Rolls-Royce PLC,272250,73500,198750,2012
@@ -1272,6 +1177,7 @@ SES Americom,Luxembourg,SES Global,0,0,0,2012
 Shell Oil,Netherlands,Royal Dutch Shell,27000,2500,24500,2012
 Shire Pharmaceuticals (Shire Plc),UK,Shire Plc,0,0,0,2012
 Siemens Corp,Germany,Siemens AG,290000,138500,151500,2012
+Skilled Healthcare Group (Onex Corp),Canada,Onex Corp,84250,31750,52500,2012
 Smith & Nephew,UK,Smith & Nephew Plc,26000,10000,16000,2012
 Smiths Group Services Corp,UK,Smiths Group PLC,62250,16500,47750,2012
 Sodexo Inc,France,Sodexo,33000,26000,7000,2012
@@ -1420,7 +1326,7 @@ Greyhound Lines,UK,FirstGroup PLC,16500,6500,10000,2014
 Grifols Inc,Spain,Grifols SA,83000,48000,33000,2014
 Gtech Corp,Italy,B&D Holding Di Marco Drago e C Sapa,21200,17600,3600,2014
 Heineken USA,Netherlands,L'Arche Green NV,27840,18340,9500,2014
-Henkel Corp,Germany,Henkel KGaA,6000,4000,2000,2014
+Henkel Corp (Henkel KGaA),Germany,Henkel KGaA,6000,4000,2000,2014
 Herbalife International,UK,Herbalife Ltd,146700,88100,58600,2014
 Hoffmann-La Roche (Roche Holdings),Switzerland,Roche Holdings,-2000,-4000,2000,2014
 Holcim US,Switzerland,Holcim Ltd,76100,22000,54100,2014
@@ -1484,6 +1390,7 @@ Putnam Investments (Power Financial Corp),Canada,Power Financial Corp,30823,4600
 RBC Bank (Royal Bank of Canada),Canada,Royal Bank of Canada,21200,9000,12200,2014
 Reed Elsevier Inc,UK,Reed Elsevier Group,68100,32000,36100,2014
 Renewable Energy Systems Americas,UK,Renewable Energy Systems,31500,23500,8000,2014
+Res-Care Inc (Onex Corp),Canada,Onex Corp,14000,1500,12500,2014
 Resolute FP US,Canada,Resolute Forest Products,48000,7500,40500,2014
 Rio Tinto America,UK,Rio Tinto Group,18500,6000,11500,2014
 Rolls-Royce North America (Rolls-Royce PLC),UK,Rolls-Royce PLC,238000,67000,171000,2014
@@ -1498,6 +1405,7 @@ Securitas Security Services USA,Sweden,Securitas AB,10800,1300,9500,2014
 Serco Inc,UK,Serco Group,138600,43100,89500,2014
 Shell Oil,Netherlands,Royal Dutch Shell,97100,23100,74000,2014
 Siemens Corp,Germany,Siemens AG,291900,130400,159500,2014
+Skilled Healthcare Group (Onex Corp),Canada,Onex Corp,33100,9000,24100,2014
 Smith & Nephew,UK,Smith & Nephew Plc,53500,16000,37500,2014
 Smithfield Foods,China,WH Group,100700,33000,67700,2014
 Smiths Group Services Corp,UK,Smiths Group PLC,107500,33500,74000,2014
@@ -1542,16 +1450,15 @@ Willis North America,UK,Willis Group,5500,1000,4500,2014
 XL America,Ireland,XL Group PLC,0,0,0,2014
 Zurich Insurance (Zurich Insurance Group),Switzerland,Zurich Financial Services AG,188500,100000,88500,2014
 7-Eleven,Japan,Seven & I Holdings,0,0,0,2016
-ABB Group (ABB Group),Switzerland,Asea Brown Boveri,11000,1000,10000,2016
 ABB Group (ABB Group),Switzerland,Asea Brown Boveri,9500,7000,2500,2016
+ABB Group (ABB Group),Switzerland,Asea Brown Boveri,11000,1000,10000,2016
 Accenture (Accenture),Ireland,Accenture plc,326000,124500,201500,2016
 Advance America Cash Advance Centers (Grupo Salinas),Mexico,Grupo Salinas,82050,33000,49050,2016
 Air Liquide America,France,L'Air Liquide SA,35000,9500,24000,2016
 Airbus Group,Netherlands,Airbus Group,167450,31500,135950,2016
 Alkermes Inc,Ireland,Alkermes Plc,121700,25200,96500,2016
-Allergan Inc (Allergan PLC),Ireland,Allergan PLC,37596,2000,35596,2016
-Allergan Inc (Allergan PLC),Ireland,Allergan PLC,0,0,0,2016
 Allergan Inc (Allergan PLC),Ireland,Allergan PLC,152000,29000,123000,2016
+Allergan Inc (Allergan PLC),Ireland,Allergan PLC,37596,2000,35596,2016
 Allianz of America (Allianz),Germany,Allianz AG Holding,86600,21850,64750,2016
 Altice USA,Netherlands,Altice NV,62900,48900,14000,2016
 AMG Vanadium,Netherlands,AMG Advanced Metallurgical Group,500,0,500,2016
@@ -1650,21 +1557,21 @@ Herbalife International,UK,Herbalife Ltd,60100,30500,29600,2016
 Hoffmann-La Roche (Roche Holdings),Switzerland,Roche Holdings,12500,4000,8500,2016
 Horizon Pharma USA,Ireland,Horizon Pharma PLC,17200,6400,10800,2016
 HSBC North America,UK,HSBC Holdings,254500,98000,156500,2016
-ICAP North America,UK,ICAP plc,22500,5000,17500,2016
+ICAP North America,UK,TP ICAP plc plc,22500,5000,17500,2016
 Infineon Technologies,Germany,Infineon Technologies AG,1500,500,1000,2016
 Ingersoll-Rand,Ireland,Ingersoll Rand Co,34500,6000,28500,2016
 Intelsat Holdings (Serafina SA),Luxembourg,Intelsat SA,73000,25500,47500,2016
 Intergraph Corp,Sweden,Hexagon AB,0,0,0,2016
-International Game Technology (B&D Holding Di Marco Drago e C Sapa),Italy,B&D Holding Di Marco Drago e C Sapa,78450,30500,47950,2016
 International Game Technology (B&D Holding Di Marco Drago e C Sapa),Italy,B&D Holding Di Marco Drago e C Sapa,15000,8000,7000,2016
+International Game Technology (B&D Holding Di Marco Drago e C Sapa),Italy,B&D Holding Di Marco Drago e C Sapa,78450,30500,47950,2016
 International Securities Exchange,Germany,Deutsche Boerse,68500,34500,34000,2016
 ITG Brands (Imperial Brands),UK,Imperial Brands,107500,16000,91500,2016
 Jackson National Life Insurance,UK,Prudential PLC,196500,42500,154000,2016
 JBS USA,Brazil,JBS SA,68500,7000,61500,2016
 Jeld-Wen Inc (Onex Corp),Canada,Onex Corp,2600,0,2600,2016
 John Hancock Life Insurance,Canada,Manulife Financial,97000,52000,45000,2016
-Johnson Controls (Johnson Controls International),Ireland,Johnson Controls International,21500,10500,11000,2016
 Johnson Controls (Johnson Controls International),Ireland,Johnson Controls International,343500,100750,242750,2016
+Johnson Controls (Johnson Controls International),Ireland,Johnson Controls International,21500,10500,11000,2016
 Kawasaki Heavy Industries,Japan,Kawasaki Heavy Industries,0,0,0,2016
 Keystone Foods,Brazil,Marfrig Global Foods,0,0,0,2016
 LafargeHolcim (LafargeHolcim),Switzerland,LaFargeHolcim,74750,19500,55250,2016
@@ -1717,6 +1624,7 @@ Putnam Investments (Power Financial Corp),Canada,Power Financial Corp,23030,7000
 RBC Bank (Royal Bank of Canada),Canada,Royal Bank of Canada,51800,27100,24700,2016
 RELX Inc,UK,RELX Group,213117,96657,116460,2016
 Renewable Energy Systems Americas,UK,Renewable Energy Systems,14400,10400,4000,2016
+Res-Care Inc (Onex Corp),Canada,Onex Corp,14950,3000,11950,2016
 Resolute FP US,Canada,Resolute Forest Products,69000,16000,53000,2016
 Rio Tinto America,UK,Rio Tinto Group,18000,3500,14500,2016
 Roho Group (Investor AB),Sweden,Investor AB,8250,5250,3000,2016
@@ -1815,13 +1723,14 @@ BASF Corp,Germany,BASF SE,638875,301625,337250,2018
 Bayer Corp (Bayer AG),Germany,Bayer AG,278000,86500,191500,2018
 BBVA Compass,Spain,Banco Bilbao Vizcaya Argentaria,250500,69500,181000,2018
 Beam Suntory (Suntory Holdings),Japan,Suntory Holdings,29070,4000,25070,2018
-BMO Financial Corp (Bank of Montreal),Canada,Bank of Montreal,0,0,0,2018
 BMO Financial Corp (Bank of Montreal),Canada,Bank of Montreal,106984,42500,64484,2018
+BMO Financial Corp (Bank of Montreal),Canada,Bank of Montreal,0,0,0,2018
 BMO Harris Bank (Bank of Montreal),Canada,Bank of Montreal,61765,38460,23305,2018
 Boehringer Ingelheim Corp,Germany,CH Boehringer Sohn,123500,61500,62000,2018
 Bombardier Transportation USA (Bombardier Inc),Canada,Bombardier Inc,40500,20500,20000,2018
 BP,UK,BP PLC,348500,117000,231500,2018
 Bridgestone Americas,Japan,Bridgestone Corp,28000,6000,22000,2018
+Brightspring Health Services (Onex Corp),Canada,Onex Corp,9950,2700,7250,2018
 Bumble Bee Foods,UK,Lion Capital,8000,2000,6000,2018
 "Burson, Cohn & Wolfe (WPP Group)",UK,WPP Group,40250,15750,24000,2018
 Buzzi Unicem USA (Buzzi Unicem SpA),Italy,Buzzi Unicem SpA,0,0,0,2018
@@ -1888,8 +1797,8 @@ Heineken USA,Netherlands,L'Arche Green NV,47750,21250,26500,2018
 Herbalife Nutrition,UK,Herbalife Ltd,149219,67519,81700,2018
 Hoffmann-La Roche (Roche Holdings),Switzerland,Roche Holdings,55500,16500,39000,2018
 Horizon Pharma USA,Ireland,Horizon Pharma PLC,81200,42700,38500,2018
-HSBC North America (HSBC Holdings),UK,HSBC Holdings,1000,0,1000,2018
 HSBC North America (HSBC Holdings),UK,HSBC Holdings,164000,76500,87500,2018
+HSBC North America (HSBC Holdings),UK,HSBC Holdings,1000,0,1000,2018
 IDEMIA Identity & Security (IDEMIA),France,Safran SA,30456,7500,22956,2018
 Infineon Technologies,Germany,Infineon Technologies AG,2000,1000,1000,2018
 Ingersoll-Rand,Ireland,Ingersoll Rand Co,33500,13100,20400,2018
@@ -1901,8 +1810,8 @@ Jackson National Life Insurance (Prudential PLC),UK,Prudential PLC,263489,66500,
 Jackson National Life Insurance (Prudential PLC),UK,Prudential PLC,12000,5000,7000,2018
 JBS USA,Brazil,JBS SA,46000,2000,44000,2018
 John Hancock Life Insurance,Canada,Manulife Financial,118200,62000,55200,2018
-Johnson Controls (Johnson Controls International),Ireland,Johnson Controls International,1000,0,1000,2018
 Johnson Controls (Johnson Controls International),Ireland,Johnson Controls International,240500,121000,117500,2018
+Johnson Controls (Johnson Controls International),Ireland,Johnson Controls International,1000,0,1000,2018
 Kawasaki Heavy Industries,Japan,Kawasaki Heavy Industries,500,0,500,2018
 Komatsu Mining,Japan,Komatsu Ltd,17760,1000,16760,2018
 LafargeHolcim (LafargeHolcim),Switzerland,LaFargeHolcim,106000,29000,77000,2018
@@ -2020,227 +1929,229 @@ WSP worldwide,Canada,WSP Global,151724,86650,65074,2018
 XL America,France,AXA,0,0,0,2018
 ZF TRW Automotive (ZF Friedrichshafen AG),Germany,ZF Friedrichshafen AG,30000,14000,16000,2018
 Zurich Insurance (Zurich Insurance Group),Switzerland,Zurich Financial Services AG,173000,92500,80500,2018
-7-Eleven,Japan,Seven & I Holdings,1000,0,1000,2020
-ABB Group (ABB Group),Switzerland,Asea Brown Boveri,9500,3500,6000,2020
+7-Eleven,Japan,Seven & I Holdings,2000,1000,1000,2020
+ABB Group (ABB Group),Switzerland,Asea Brown Boveri,15600,6800,8800,2020
 Accenture (Accenture),Ireland,Accenture plc,82000,49000,33000,2020
-Air Liquide America,France,L'Air Liquide SA,14000,5000,9000,2020
-Airbus Group,Netherlands,Airbus Group,166000,69000,97000,2020
-Alkermes Inc,Ireland,Alkermes Plc,77250,25750,51500,2020
-Allianz of America (Allianz),Germany,Allianz AG Holding,54500,25350,29150,2020
-Anheuser-Busch (Anheuser-Busch InBev),Belgium,Anheuser-Busch InBev,256000,129500,126500,2020
-AON Corp (AON plc),UK,AON PLC,58000,27000,31000,2020
-APL Maritime (CMA CGM),France,CMA CGM SA,16000,10500,5500,2020
+Air Liquide America,France,L'Air Liquide SA,24800,11800,13000,2020
+Airbus Group,Netherlands,Airbus Group,176500,72000,104500,2020
+Alkermes Inc,Ireland,Alkermes Plc,89750,30750,59000,2020
+Allianz of America (Allianz),Germany,Allianz AG Holding,66300,33150,33150,2020
+AMG Vanadium,Netherlands,AMG Advanced Metallurgical Group,500,0,500,2020
+Anheuser-Busch (Anheuser-Busch InBev),Belgium,Anheuser-Busch InBev,307500,171500,136000,2020
+AON Corp (AON plc),UK,AON PLC,87500,44500,43000,2020
+APL Maritime (CMA CGM),France,CMA CGM SA,23500,13000,10500,2020
 Aptiv PLC,Ireland,Aptiv PLC,0,0,0,2020
 Arcadis US (Arcadis NV),Netherlands,Arcadis NV,0,0,0,2020
-ArcelorMittal USA,Luxembourg,ArcelorMittal,35500,12000,23500,2020
+ArcelorMittal USA,Luxembourg,ArcelorMittal,53500,23000,30500,2020
 Arch Capital Group (US),UK,Arch Capital Group,7000,3500,3500,2020
-Arkema Inc,France,Arkema,53000,20000,33000,2020
+Arkema Inc,France,Arkema,64500,24000,40500,2020
 Ash Grove (CRH Plc),Ireland,CRH PLC,0,0,0,2020
 Ashton Woods Corp,Canada,Great Gulf Group,0,0,0,2020
-Assured Guaranty Municipal Corp (Assured Guaranty US Holdings),UK,Assured Guaranty Ltd,85000,48100,36900,2020
-Astellas US,Japan,Astellas Pharma,153000,66000,87000,2020
-AstraZeneca Pharmaceuticals (AstraZeneca PLC),UK,AstraZeneca PLC,195000,74500,120500,2020
-Atkins North America,UK,WS Atkins PLC,21200,6500,14700,2020
-Austal USA,Australia,Austal,16400,5200,11200,2020
-Avangrid Inc (Iberdrola SA),Spain,Iberdrola SA,52500,26000,26500,2020
-Bacardi USA,UK,Bacardi Ltd,29850,10500,17350,2020
-BAE Systems (BAE Systems),UK,BAE Systems,509000,253000,255000,2020
-Barclays Group US,UK,Barclays plc,74500,27000,47500,2020
-Barrick Goldstrike Mines,Canada,Barrick Gold Corp,25500,15000,10500,2020
-BASF Corp,Germany,BASF SE,316500,175000,141500,2020
-Bayer Corp (Bayer AG),Germany,Bayer AG,177500,60500,117000,2020
+Assured Guaranty Municipal Corp (Assured Guaranty US Holdings),UK,Assured Guaranty Ltd,96600,59700,36900,2020
+Astellas US,Japan,Astellas Pharma,191000,87500,103500,2020
+AstraZeneca Pharmaceuticals (AstraZeneca PLC),UK,AstraZeneca PLC,262500,105500,157000,2020
+Atkins North America,UK,WS Atkins PLC,38950,8250,30700,2020
+Austal USA,Australia,Austal,31200,6200,25000,2020
+Avangrid Inc (Iberdrola SA),Spain,Iberdrola SA,76500,41500,35000,2020
+Bacardi USA,UK,Bacardi Ltd,38350,16000,20350,2020
+BAE Systems (BAE Systems),UK,BAE Systems,685000,350000,333000,2020
+Barclays Group US,UK,Barclays plc,128500,59000,69500,2020
+Barrick Goldstrike Mines,Canada,Barrick Gold Corp,39500,24000,15500,2020
+BASF Corp,Germany,BASF SE,423250,236750,186500,2020
+Bayer Corp (Bayer AG),Germany,Bayer AG,318000,133000,185000,2020
 Bayer CropScience (Bayer AG),Germany,Bayer AG,-4500,-4500,0,2020
-BBVA USA,Spain,Banco Bilbao Vizcaya Argentaria,245000,69500,175500,2020
-Beam Suntory (Suntory Holdings),Japan,Suntory Holdings,21397,12566,8831,2020
-BMO Financial Corp (Bank of Montreal),Canada,Bank of Montreal,1500,1500,0,2020
-BMO Financial Corp (Bank of Montreal),Canada,Bank of Montreal,117960,58460,59500,2020
-Boehringer Ingelheim Corp,Germany,CH Boehringer Sohn,76000,33000,43000,2020
-Bombardier Transportation USA (Bombardier Inc),Canada,Bombardier Inc,38000,24000,14000,2020
-BP,UK,BP PLC,187500,60000,127500,2020
-Bridgestone Americas,Japan,Bridgestone Corp,12000,3500,8500,2020
-Bumble Bee Foods,UK,Lion Capital,2500,2500,0,2020
-"Burson, Cohn & Wolfe (WPP Group)",UK,WPP Group,29000,10000,18500,2020
+BBVA USA,Spain,Banco Bilbao Vizcaya Argentaria,382500,141500,241000,2020
+BCW Global (WPP Group),UK,WPP Group,40500,14500,25000,2020
+Beam Suntory (Suntory Holdings),Japan,Suntory Holdings,35397,21566,13831,2020
+BMO Financial Corp (Bank of Montreal),Canada,Bank of Montreal,4000,4000,0,2020
+BMO Financial Corp (Bank of Montreal),Canada,Bank of Montreal,166260,77260,89000,2020
+Boehringer Ingelheim Corp,Germany,CH Boehringer Sohn,140000,76000,64000,2020
+Bombardier Transportation USA (Bombardier Inc),Canada,Bombardier Inc,44500,27000,17500,2020
+BP,UK,BP PLC,209000,76000,133000,2020
+Bridgestone Americas,Japan,Bridgestone Corp,16500,3500,13000,2020
+Bumble Bee Foods (FCF Co),Taiwan,FCF Co,2500,2500,0,2020
 Buzzi Unicem USA (Buzzi Unicem SpA),Italy,Buzzi Unicem SpA,500,0,500,2020
-CalPortland Co,Japan,Taiheiyo Cement Co,65000,10000,55000,2020
-Cardtronics Inc,UK,Cardtronics Plc,6500,4000,2500,2020
+CalPortland Co,Japan,Taiheiyo Cement Co,199500,19500,180000,2020
+Cardtronics Inc,UK,Cardtronics Plc,11000,6500,4500,2020
 Carmeuse Lime,Netherlands,Carmeuse Holding SA,0,0,0,2020
-Case New Holland,Netherlands,CNH Global,58500,2500,56000,2020
-CEMEX Inc,Mexico,CEMEX SA de CV,147000,45500,101500,2020
-CGI Technologies & Solutions,Canada,Groupe CGI,32000,25000,7000,2020
+Case New Holland,Netherlands,CNH Global,102000,7000,95000,2020
+CEMEX Inc,Mexico,CEMEX SA de CV,186500,55500,131000,2020
+CGI Technologies & Solutions,Canada,Groupe CGI,36500,29500,7000,2020
 Chicago Bridge & Iron (McDermott International),Panama,McDermott International,5470,470,5000,2020
-Chubb Group of Insurance Companies,Switzerland,Chubb Ltd,124500,60000,64500,2020
-CIBC Bancorp,Canada,Canadian Imperial Bank of Commerce,4000,2000,2000,2020
+Chubb Group of Insurance Companies,Switzerland,Chubb Ltd,196000,96000,100000,2020
+CIBC Bancorp,Canada,Canadian Imperial Bank of Commerce,5000,3000,2000,2020
 Cirrus Aircraft Corp,China,China Aviation Industry General Aircraft,1500,1500,0,2020
 Cobham Management Services,UK,Cobham PLC,64000,13500,50500,2020
-Continental Automotive Systems (Continental AG),Germany,Continental AG,49000,25500,23500,2020
-Covestro LLC (Covestro AG),Germany,Covestro AG,25000,3000,22000,2020
-Credit Suisse Securities,Switzerland,Credit Suisse Group,10500,-4000,14500,2020
-CRH Americas (CRH PLC),Ireland,CRH PLC,408000,147000,261000,2020
-CSL Behring,Australia,CSL Ltd,46000,17000,29000,2020
+Continental Automotive Systems (Continental AG),Germany,Continental AG,71000,41500,29500,2020
+Covestro LLC (Covestro AG),Germany,Covestro AG,38500,8500,30000,2020
+Credit Suisse Securities,Switzerland,Credit Suisse Group,49500,22500,27000,2020
+CRH Americas (CRH PLC),Ireland,CRH PLC,533500,196500,337000,2020
+CSL Behring,Australia,CSL Ltd,78800,25500,53300,2020
 Daimler Trucks North America (Daimler AG),Germany,Daimler AG,2500,0,2500,2020
-Delhaize America,Belgium,Ahold Delhaize,5500,1000,4500,2020
+Delek US Holdings,Israel,Delek Group,0,0,0,2020
+Delhaize America,Belgium,Ahold Delhaize,32500,11000,21500,2020
 Deutsche Bank Securities,Germany,Deutsche Bank AG,0,0,0,2020
-Diageo North America (Diageo PLC),UK,Diageo PLC,40128,21160,18968,2020
-Direct Energy Inc,UK,Centrica Plc,10800,6500,4300,2020
-Eaton Corp (Eaton Corp),Ireland,Eaton Plc,30500,12000,18500,2020
-EDF Renewables (EDF Group),France,EDF Group,15000,10000,5000,2020
-EDP Renewables NA,Portugal,EDP Renovaveis,15000,8000,7000,2020
-Eisai Inc,Japan,Eisai Co Ltd,7500,2500,5000,2020
-Elbit Systems of America,Israel,Elbit Systems Ltd,43700,8100,35600,2020
-Elekta Inc (Elekta AB),Sweden,Elekta AB,57500,29000,28500,2020
-Embraer Aircraft Holdings,Brazil,Embraer-Empresa Brasileira de Aeronautic,39500,10500,29000,2020
-EMD Serono Inc,Germany,Merck KGaA,104000,53500,50500,2020
-Enbridge Inc,Canada,Enbridge Inc,23500,13000,10500,2020
-Endo Pharmaceuticals,Ireland,Endo International,0,0,0,2020
-ENGIE North America,France,ENGIE,0,0,0,2020
-Equitable Holdings (AXA),France,AXA,100500,39000,61500,2020
-Ericsson Inc,Sweden,Telefonaktiebolaget LM Ericsson,22500,12500,10000,2020
-Experian,UK,Experian,446000,175500,270500,2020
-Farmers Group (Zurich Insurance Group),Switzerland,Zurich Financial Services AG,160500,58000,102500,2020
-First Hawaiian Bank (BNP Paribas),France,BNP Paribas,1000,1000,0,2020
-Florida East Coast Industries (SoftBank Corp),Japan,SoftBank Corp,47500,14500,33000,2020
+Diageo North America (Diageo PLC),UK,Diageo PLC,45563,26595,18968,2020
+Direct Energy Inc,UK,Centrica Plc,20300,12500,7800,2020
+Eaton Corp (Eaton Corp),Ireland,Eaton Plc,36500,15000,21500,2020
+EDF Renewables (EDF Group),France,EDF Group,36500,20000,16500,2020
+EDP Renewables NA,Portugal,EDP Renovaveis,21000,10000,11000,2020
+Eisai Inc,Japan,Eisai Co Ltd,17500,7500,10000,2020
+Elbit Systems of America,Israel,Elbit Systems Ltd,53450,9100,44350,2020
+Elekta Inc (Elekta AB),Sweden,Elekta AB,72000,35500,36500,2020
+Embraer Aircraft Holdings,Brazil,Embraer-Empresa Brasileira de Aeronautic,47500,13500,34000,2020
+EMD Serono Inc,Germany,Merck KGaA,150500,66500,84000,2020
+Enbridge Inc,Canada,Enbridge Inc,51500,15500,36000,2020
+Endo Pharmaceuticals,Ireland,Endo International,129500,64500,65000,2020
+ENGIE North America,France,ENGIE,11500,6000,5500,2020
+Equitable Holdings (AXA),France,AXA,137000,57500,79500,2020
+Ericsson Inc,Sweden,Telefonaktiebolaget LM Ericsson,60000,29000,31000,2020
+Experian,UK,Experian,671500,255000,416500,2020
+Farmers Group (Zurich Insurance Group),Switzerland,Zurich Financial Services AG,215500,84000,131500,2020
+First Hawaiian Bank (BNP Paribas),France,BNP Paribas,6000,6000,0,2020
+Florida East Coast Industries (SoftBank Corp),Japan,SoftBank Corp,60500,16500,44000,2020
 Florida East Coast Railway (Grupo Mexico),Mexico,Grupo Mexico,3469,3169,300,2020
-Framatome (EDF Group),France,EDF Group,28500,19000,9500,2020
-Fresenius Medical Care North America,Germany,Fresenius Medical Care,300500,161500,139000,2020
+Framatome (EDF Group),France,EDF Group,48000,31500,16500,2020
+Fresenius Medical Care North America,Germany,Fresenius Medical Care,413000,211000,202000,2020
 G4S Secure Solutions,UK,G4S plc,0,0,0,2020
-Garmin International (Garmin Ltd),Switzerland,Garmin Ltd,11500,1000,10500,2020
-GE Appliances,China,Haier Group,9500,6000,3500,2020
-Genentech Inc (Roche Holdings),Switzerland,Roche Holdings,355500,180000,175500,2020
+Garmin International (Garmin Ltd),Switzerland,Garmin Ltd,32500,2500,30000,2020
+GE Appliances,China,Haier Group,19500,6000,13500,2020
+Genentech Inc (Roche Holdings),Switzerland,Roche Holdings,371500,185000,186500,2020
 General Cigar Co,Sweden,Scandinavian Tobacco Group,2500,0,2500,2020
 Gerdau Ameristeel Corp,Brazil,Gerdau,4000,0,4000,2020
 Glanbia Foods (Glanbia PLC),Ireland,Glanbia PLC,0,0,0,2020
 Glanbia Performance Nutrition (Glanbia PLC),Ireland,Glanbia plc,0,0,0,2020
-GlaxoSmithKline,UK,GlaxoSmithKline,121000,45500,75500,2020
-Glover Park Group (WPP Group),UK,WPP Group,95200,68700,26500,2020
-Grand Trunk Western-Illinois Central RR,Canada,Canadian National Railway,13000,3500,9500,2020
+GlaxoSmithKline,UK,GlaxoSmithKline,163500,66000,97500,2020
+Glover Park Group (WPP Group),UK,WPP Group,123868,89868,34000,2020
+Grand Trunk Western-Illinois Central RR,Canada,Canadian National Railway,14000,4500,9500,2020
 Great-West Life & Annuity Insurance (Power Financial Corp),Canada,Power Financial Corp,0,0,0,2020
 Greyhound Lines,UK,FirstGroup PLC,12000,9500,2500,2020
-Headwaters Inc,Australia,Boral Ltd,12000,0,12000,2020
-Heineken USA,Netherlands,L'Arche Green NV,29500,15500,14000,2020
-Herbalife Nutrition,UK,Herbalife Ltd,63500,40000,23500,2020
-Horizon Therapeutics,Ireland,Horizon Pharma PLC,98000,49500,48500,2020
-HSBC North America (HSBC Holdings),UK,HSBC Holdings,107500,41500,66000,2020
+Headwaters Inc,Australia,Boral Ltd,18000,3000,15000,2020
+Heineken USA,Netherlands,L'Arche Green NV,41500,22500,19000,2020
+Herbalife Nutrition,UK,Herbalife Ltd,107500,66500,41000,2020
+Horizon Therapeutics,Ireland,Horizon Pharma PLC,124500,53000,71500,2020
 HSBC North America (HSBC Holdings),UK,HSBC Holdings,2000,0,2000,2020
+HSBC North America (HSBC Holdings),UK,HSBC Holdings,147500,58000,89500,2020
 IBI Group Engineering Services,Canada,IBI Group,0,0,0,2020
-IDEMIA Identity & Security (IDEMIA),France,Safran SA,8500,2500,6000,2020
-Infineon Technologies,Germany,Infineon Technologies AG,15500,11000,4500,2020
-Ingersoll-Rand,Ireland,Ingersoll Rand Co,4000,2000,2000,2020
-Intelsat Holdings (Serafina SA),Luxembourg,Intelsat SA,1500,0,1500,2020
-Intergraph Corp,Sweden,Hexagon AB,2000,0,2000,2020
-International Game Technology,Italy,B&D Holding Di Marco Drago e C Sapa,41300,22800,18500,2020
+IDEMIA Identity & Security (IDEMIA),France,Safran SA,20500,11000,9500,2020
+Infineon Technologies,Germany,Infineon Technologies AG,21500,15500,6000,2020
+Intelsat Holdings (Serafina SA),Luxembourg,Intelsat SA,6000,3500,2500,2020
+Intergraph Corp,Sweden,Hexagon AB,4800,0,4800,2020
+International Game Technology,Italy,B&D Holding Di Marco Drago e C Sapa,45800,27300,18500,2020
 Ipsen Biopharmaceuticals,France,Ipsen SA,0,0,0,2020
-ITG Brands,UK,Imperial Brands,10000,2500,7500,2020
-Jackson National Life Insurance (Prudential PLC),UK,Prudential PLC,143000,40000,103000,2020
-Jackson National Life Insurance (Prudential PLC),UK,Prudential PLC,83500,17500,66000,2020
-JBS USA,Brazil,JBS SA,24000,3000,21000,2020
-John Hancock Life Insurance,Canada,Manulife Financial,73500,38000,35500,2020
-Johnson Controls (Johnson Controls International),Ireland,Johnson Controls International,213900,95400,118500,2020
-Komatsu Mining,Japan,Komatsu Ltd,9500,0,9500,2020
-LafargeHolcim (LafargeHolcim),Switzerland,LaFargeHolcim,37000,6500,30500,2020
-Lanxess Corp,Germany,Lanxess Corp,1000,500,500,2020
-Lehigh Hanson,Germany,HeidelbergCement AG,79500,15000,64500,2020
-Leonardo DRS,Italy,Finmeccanica SpA,105500,46000,59500,2020
-Lincare Holdings (Linde plc),UK,Linde plc,6500,1000,5500,2020
+ITG Brands,UK,Imperial Brands,65500,13000,52500,2020
+Jackson National Life Insurance (Prudential PLC),UK,Prudential PLC,106500,28500,78000,2020
+Jackson National Life Insurance (Prudential PLC),UK,Prudential PLC,181500,58500,123000,2020
+JBS USA,Brazil,JBS SA,65000,13000,52000,2020
+John Hancock Life Insurance,Canada,Manulife Financial,97500,51500,46000,2020
+Johnson Controls (Johnson Controls International),Ireland,Johnson Controls International,263400,121400,142000,2020
+Komatsu Mining,Japan,Komatsu Ltd,12500,3000,9500,2020
+LafargeHolcim (LafargeHolcim),Switzerland,LaFargeHolcim,57500,15000,42500,2020
+Lanxess Corp,Germany,Lanxess Corp,4500,2000,2500,2020
+Lehigh Hanson,Germany,HeidelbergCement AG,93000,15500,77500,2020
+Leonardo DRS,Italy,Finmeccanica SpA,182000,64000,118000,2020
+Lincare Holdings (Linde plc),UK,Linde plc,12000,1000,11000,2020
 Linde North America (Linde plc),UK,Linde plc,0,0,0,2020
-Linde plc (Linde plc),UK,Linde Plc,7000,6000,1000,2020
-Livanova Inc,UK,Livanova Plc,2000,0,2000,2020
-Louis Dreyfus Co,Netherlands,Louis Dreyfus Holding B.V.,3000,0,3000,2020
-LSEG US,UK,London Stock Exchange Group,26500,14500,12000,2020
-Lundbeck Inc,Denmark,H Lundbeck A/S,61000,28500,32500,2020
-Maersk Inc (AP Moller-Maersk),Denmark,AP Møller-Mærsk,24500,15500,9000,2020
+Linde plc (Linde plc),UK,Linde Plc,13000,11000,2000,2020
+Livanova Inc,UK,Livanova Plc,4500,0,4500,2020
+Louis Dreyfus Co,Netherlands,Louis Dreyfus Holding B.V.,4000,0,4000,2020
+LSEG US,UK,London Stock Exchange Group,29000,17000,12000,2020
+Lundbeck Inc,Denmark,H Lundbeck A/S,105000,53500,51500,2020
+Maersk Inc (AP Moller-Maersk),Denmark,AP Møller-Mærsk,38000,24000,14000,2020
 Magnolia LNG (Glenfarne Group),Australia,LNG Limited,5000,0,5000,2020
-Mallinckrodt Pharmaceuticals,UK,Mallinckrodt Plc,60000,15500,44500,2020
-Marinette Marine,Italy,Fincantieri-Cantieri Navali Italiani SpA,20250,7000,13250,2020
+Mallinckrodt Pharmaceuticals,UK,Mallinckrodt Plc,67500,18000,49500,2020
+Marinette Marine,Italy,Fincantieri-Cantieri Navali Italiani SpA,24250,9000,15250,2020
 Massachusetts Financial Services (Sun Life Financial),Canada,Sun Life Financial Services,2500,0,2500,2020
-Maxar Technologies (Maxar Technologies),Canada,Maxar Technologies,72000,24500,47500,2020
+Maxar Technologies (Maxar Technologies),Canada,Maxar Technologies,102500,40000,62500,2020
 MBDA Inc,UK,MBDA,0,0,0,2020
-Medtronic Inc,Ireland,Medtronic Plc,171500,94500,77000,2020
-Messer North America,Germany,Messer Group,0,0,0,2020
+Medtronic Inc,Ireland,Medtronic Plc,234500,137500,97000,2020
+Messer North America,Germany,Messer Group,34500,14000,20500,2020
 Mitsubishi Power,Japan,Mitsubishi Hitachi Power Systems,6000,0,6000,2020
-Molson Coors Beverage Co (Molson Coors Brewing),Canada,Molson Coors Brewing,46500,16000,30500,2020
-Mr Cooper Group (SoftBank Corp),Japan,SoftBank Corp,17600,5000,12600,2020
+Molson Coors Beverage Co (Molson Coors Brewing),Canada,Molson Coors Brewing,65500,21500,44000,2020
+Mr Cooper Group (SoftBank Corp),Japan,SoftBank Corp,21600,7000,14600,2020
 MUFG Americas,Japan,Mitsubishi UFJ Financial Group,0,0,0,2020
-Munich American Reassurance,Germany,Munich Re Group,5000,5000,0,2020
-Mylan Inc,Netherlands,Mylan NV,138500,61000,77500,2020
-Nammo Inc (Nammo AS),Norway,Nammo AS,0,0,0,2020
-Nammo Talley Inc (Nammo AS),Norway,Nammo AS,4000,1500,2500,2020
-National Grid USA (National Grid plc),UK,National Grid plc,22000,16500,5500,2020
+Munich American Reassurance,Germany,Munich Re Group,7500,5000,2500,2020
+Mylan Inc,Netherlands,Mylan NV,241500,108500,133000,2020
+Nammo Inc (Nammo AS),Norway,Nammo AS,1250,1250,0,2020
+Nammo Talley Inc (Nammo AS),Norway,Nammo AS,6000,2250,3750,2020
+National Grid USA (National Grid plc),UK,National Grid plc,38500,27500,11000,2020
 Natixis Investment Managers,France,Groupe BPCE,4011,1000,3011,2020
-Nestle Purina PetCare (Nestle SA),Switzerland,Nestle,44250,14500,29750,2020
-Nomura Holding America,Japan,Nomura Holdings,63000,41500,21500,2020
+Nestle Purina PetCare (Nestle SA),Switzerland,Nestle,44250,13500,30750,2020
+Nomura Holding America,Japan,Nomura Holdings,99500,50000,49500,2020
 NOVA Chemicals,United Arab Emirates,International Petroleum Investment Co,1200,0,1200,2020
-Novartis Corp (Novartis AG),Switzerland,Novartis AG,192000,83000,109000,2020
-Novo Nordisk,Denmark,Novo Nordisk A/S,265083,130427,134656,2020
-Novocure Inc,UK,Novocure,47800,1000,46800,2020
-Nutrien Ag Solutions,Canada,Nutrien Ltd,10000,2500,7500,2020
+Novartis Corp (Novartis AG),Switzerland,Novartis AG,266500,125500,141000,2020
+Novo Nordisk,Denmark,Novo Nordisk A/S,339582,168927,170655,2020
+Novocure Inc,UK,Novocure,60600,11000,49600,2020
+Nutrien Ag Solutions,Canada,Nutrien Ltd,23000,7500,15500,2020
 Orano USA (Orano Group),France,Orano Group,1500,0,1500,2020
-Otsuka America (Otsuka Pharmaceutical),Japan,Otsuka Pharmaceutical,23000,15000,8000,2020
-Ovintiv USA (Ovintiv Inc),Canada,EnCana Corp,23000,6000,17000,2020
+Otsuka America (Otsuka Pharmaceutical),Japan,Otsuka Pharmaceutical,45750,27250,18500,2020
+Ovintiv USA (Ovintiv Inc),Canada,EnCana Corp,40500,16000,24500,2020
 Permobil Inc (Investor AB),Sweden,Investor AB,5000,0,5000,2020
-Pernod Ricard USA,France,Pernod Ricard SA,7500,2000,5500,2020
-Peter Pan Seafoods,Japan,Maruha Nichiro Holdings,1500,0,1500,2020
-Pharmavite LLC (Otsuka Pharmaceutical),Japan,Otsuka Pharmaceutical,42000,25000,17000,2020
-Philips Electronics North America (Philips),Netherlands,Philips Electronics,94500,48500,46000,2020
-Protective Life Corp (Dai-Ichi Life),Japan,Dai-Ichi Life,115900,17000,98900,2020
+Pernod Ricard USA,France,Pernod Ricard SA,11000,4500,6500,2020
+Peter Pan Seafoods,Japan,Maruha Nichiro Holdings,2500,500,2000,2020
+Pharmavite LLC (Otsuka Pharmaceutical),Japan,Otsuka Pharmaceutical,67000,38000,29000,2020
+Philips Electronics North America (Philips),Netherlands,Philips Electronics,111000,59000,52000,2020
+Protective Life Corp (Dai-Ichi Life),Japan,Dai-Ichi Life,169400,29000,140400,2020
 Purpose Financial (Grupo Salinas),Mexico,Grupo Salinas,15000,1000,14000,2020
 Putnam Investments (Power Financial Corp),Canada,Power Financial Corp,7388,0,7388,2020
-RBC Bank (Royal Bank of Canada),Canada,Royal Bank of Canada,25500,14500,11000,2020
+RBC Bank (Royal Bank of Canada),Canada,Royal Bank of Canada,47500,31000,16500,2020
 Recurrent Energy,Canada,Canadian Solar,5000,0,5000,2020
-RELX Inc,UK,RELX Group,198000,81500,116500,2020
-Resolute FP US,Canada,Resolute Forest Products,42000,10000,32000,2020
-Reynolds American (British American Tobacco),UK,British American Tobacco plc,199500,43500,156000,2020
-Rio Tinto America,UK,Rio Tinto Group,4500,0,4500,2020
+RELX Inc,UK,RELX Group,243000,109000,134000,2020
+Resolute FP US,Canada,Resolute Forest Products,73500,14500,59000,2020
+Reynolds American (British American Tobacco),UK,British American Tobacco plc,270460,53000,217460,2020
+Rio Tinto America,UK,Rio Tinto Group,14000,8500,5500,2020
 Roche Diagnostics (Roche Holdings),Switzerland,Roche Holdings,40000,12500,27500,2020
-Rolls-Royce North America (Rolls-Royce PLC),UK,Rolls-Royce PLC,160000,53500,106500,2020
+Rolls-Royce North America (Rolls-Royce PLC),UK,Rolls-Royce PLC,203000,71500,131500,2020
 Sabic Innovative Plastics,Saudi Arabia,SABIC,2500,0,2500,2020
 Safelite Group,Belgium,D'Ieteren SA,-500,0,-500,2020
-Samsung Electronics America,South Korea,Samsung Group,166500,94000,72500,2020
-Sanofi US (Sanofi),France,Sanofi,204500,88500,116000,2020
-Santander Bank (Banco Santander),Spain,Banco Santander,80500,37000,43500,2020
+Samsung Electronics America,South Korea,Samsung Group,260000,152000,108000,2020
+Sanofi US (Sanofi),France,Sanofi,241000,91000,150000,2020
+Santander Bank (Banco Santander),Spain,Banco Santander,102000,50000,52000,2020
 SAP America,Germany,SAP Aktiengesellschaft,21000,14000,7000,2020
 Securitas Security Services USA,Sweden,Securitas AB,0,0,0,2020
-Serco Inc,UK,Serco Group,72000,43500,28500,2020
-Shell Oil,Netherlands,Royal Dutch Shell,4000,0,4000,2020
+Serco Inc,UK,Serco Group,117500,63000,54500,2020
+Shell Oil,Netherlands,Royal Dutch Shell,5000,1000,4000,2020
 Shire Holdings US (Takeda Pharmaceutical Co),Japan,Takeda Pharmaceutical Co,-12500,-1500,-11000,2020
-Siemens Corp,Germany,Siemens AG,64000,37500,26500,2020
-Smith & Nephew,UK,Smith & Nephew Plc,74500,30000,44500,2020
-Smithfield Foods,China,WH Group,44000,11500,32500,2020
-Smiths Group Services Corp (Smiths Group),UK,Smiths Group PLC,41500,17500,24000,2020
+Siemens Corp,Germany,Siemens AG,113000,69500,43500,2020
+Smith & Nephew,UK,Smith & Nephew Plc,89500,37000,52500,2020
+Smithfield Foods,China,WH Group,80500,21000,59500,2020
+Smiths Group Services Corp (Smiths Group),UK,Smiths Group PLC,64500,29500,35000,2020
 Sodexo Inc,France,Sodexo,3000,0,3000,2020
-Solvay America,Belgium,Solvay SA,17500,5000,12500,2020
-Sony Pictures Entertainment (Sony Corp),Japan,Sony Corp,83500,56000,27500,2020
-SSAB Americas,Sweden,SSAB AB,15000,2000,13000,2020
-Standard Insurance Co,Japan,Meiji Yasuda Life Insurance,2000,0,2000,2020
-Steris Corp,UK,Steris PLC,19750,6500,13250,2020
+Solvay America,Belgium,Solvay SA,27500,8000,19500,2020
+Sony Pictures Entertainment (Sony Corp),Japan,Sony Corp,93500,63000,30500,2020
+SSAB Americas,Sweden,SSAB AB,20000,4500,15500,2020
+Standard Insurance Co,Japan,Meiji Yasuda Life Insurance,3500,0,3500,2020
+Steris Corp,UK,Steris PLC,55750,12500,43250,2020
 SUEZ Water,France,SUEZ Environnement,4000,3000,1000,2020
-Sun Life Financial (Sun Life Financial),Canada,Sun Life Financial,73500,38000,33000,2020
-Sunovion Pharmaceuticals (Sumitomo Chemical),Japan,Sumitomo Chemical,66000,27000,39000,2020
-Sunpower Corp,France,Total SA,12000,12000,0,2020
-Swedish Match North America (Swedish Match AB),Sweden,Swedish Match AB,1000,0,1000,2020
-Swiss Re America,Switzerland,Swiss Re,30500,17500,13000,2020
-Syngenta Corp,China,ChemChina,41000,17000,24000,2020
+Sun Life Financial (Sun Life Financial),Canada,Sun Life Financial,98500,52500,43500,2020
+Sunovion Pharmaceuticals (Sumitomo Chemical),Japan,Sumitomo Chemical,83500,37000,46500,2020
+Sunpower Corp,France,Total SA,24000,23500,500,2020
+Swedish Match North America (Swedish Match AB),Sweden,Swedish Match AB,3500,0,3500,2020
+Swiss Re America,Switzerland,Swiss Re,43500,28000,15500,2020
+Syngenta Corp,China,ChemChina,110500,42000,68500,2020
 T-Mobile USA (Deutsche Telekom),Germany,Deutsche Telekom,167000,71000,96000,2020
-T-Mobile USA (Deutsche Telekom),Germany,Deutsche Telekom AG,687500,371500,315000,2020
-Takeda Pharmaceuticals USA (Takeda Pharmaceutical Co),Japan,Takeda Pharmaceutical Co,109500,46500,63000,2020
-Tate & Lyle Americas (Tate & Lyle),UK,Tate & Lyle,12750,3000,9750,2020
-TD Bank USA,Canada,Toronto-Dominion Bank,80200,25200,55000,2020
-TE Connectivity,Switzerland,TE Connectivity,42000,19500,22500,2020
-Teva Pharmaceuticals USA,Israel,Teva Pharmaceutical Industries,40500,15000,25500,2020
-Toyota Motor North America,Japan,Toyota Motor Corp,778500,378500,400000,2020
-TransAmerica,Netherlands,Aegon NV,325500,155500,169000,2020
-Transcanada USA Services (Transcanada Corp),Canada,TransCanada Corp,95000,33500,61500,2020
+T-Mobile USA (Deutsche Telekom),Germany,Deutsche Telekom AG,899000,475500,422500,2020
+Takeda Pharmaceuticals USA (Takeda Pharmaceutical Co),Japan,Takeda Pharmaceutical Co,126000,63000,63000,2020
+Tate & Lyle Americas (Tate & Lyle),UK,Tate & Lyle,14750,3000,11750,2020
+TD Bank USA,Canada,Toronto-Dominion Bank,151700,73200,78500,2020
+TE Connectivity,Switzerland,TE Connectivity,100000,53000,47000,2020
+Teva Pharmaceuticals USA,Israel,Teva Pharmaceutical Industries,67300,35800,31500,2020
+Toyota Motor North America,Japan,Toyota Motor Corp,1052142,526000,526142,2020
+Trane Technologies,Ireland,Trane Technologies,5000,2000,3000,2020
+TransAmerica,Netherlands,Aegon NV,417500,195500,221000,2020
+Transcanada USA Services (Transcanada Corp),Canada,TransCanada Corp,117000,48000,69000,2020
 Travelport Inc,UK,Travelport Ltd,0,0,0,2020
-UBS Americas,Switzerland,UBS AG,957500,427000,530500,2020
-UCB Inc (UCB SA),Belgium,UCB SA,10000,2500,7500,2020
-Ultra Electronics USA,UK,Ultra Electronics,25500,13000,12500,2020
-Universal Music Group (Vivendi),France,Vivendi,81000,45500,35500,2020
-Valent USA (Sumitomo Chemical),Japan,Sumitomo Chemical,9000,5000,4000,2020
-VNA Holding (AB Volvo),Sweden,AB Volvo,31000,10000,21000,2020
-VT Halter Marine,Singapore,ST Engineering,9200,0,9200,2020
-Washington Gas Light Co (AltaGas Ltd),Canada,AltaGas Ltd,16500,11000,5500,2020
-Westinghouse Electric,Canada,Brookfield Business Partners,23500,3500,20000,2020
+UBS Americas,Switzerland,UBS AG,1526000,763500,762500,2020
+UCB Inc (UCB SA),Belgium,UCB SA,22000,8000,14000,2020
+Ultra Electronics USA,UK,Ultra Electronics,33000,13000,20000,2020
+Universal Music Group (Vivendi),France,Vivendi,122750,71000,51750,2020
+Valent USA (Sumitomo Chemical),Japan,Sumitomo Chemical,13500,8000,5500,2020
+VNA Holding (AB Volvo),Sweden,AB Volvo,100500,41000,59500,2020
+VT Halter Marine,Singapore,ST Engineering,10200,0,10200,2020
+Washington Gas Light Co (AltaGas Ltd),Canada,AltaGas Ltd,23000,14500,8500,2020
+Westinghouse Electric,Canada,Brookfield Business Partners,33500,4500,29000,2020
 Wexler & Walker Public Policy Assoc (WPP Group),UK,WPP Group,0,0,0,2020
-WSP worldwide,Canada,WSP Global,83750,60750,23000,2020
+WSP worldwide,Canada,WSP Global,138050,100250,37800,2020
 XL America (AXA),France,AXA,0,0,0,2020
 ZF TRW Automotive (ZF Friedrichshafen AG),Germany,ZF Friedrichshafen AG,1000,1000,0,2020
-Zurich Insurance (Zurich Insurance Group),Switzerland,Zurich Financial Services AG,129500,77500,52000,2020
+Zurich Insurance (Zurich Insurance Group),Switzerland,Zurich Financial Services AG,207000,106500,100500,2020
