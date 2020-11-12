@@ -20,7 +20,7 @@ description: >
 library(learnr)
 library(gradethis)
 library(tidyverse)
-library(broom)
+library(tidymodels)
 library(dsbox)
 
 # set options for exercises and checking ---------------------------------------
@@ -201,19 +201,26 @@ dcbikeshare <- mutatedbike
 
 ```{r rentals-vs-temp-r2-setup}
 dcbikeshare <- mutatedbike
-m_cnt_tmp <- lm(cnt ~ temperature_raw, data = dcbikeshare)
+cnt_tmp <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(cnt ~ temperature_raw, data = dcbikeshare)
 ```
 
 ```{r rentals-vs-atemp-r2-setup}
 dcbikeshare <- mutatedbike
-m_cnt_atmp <- lm(cnt ~ feeling_temperature_raw, data = dcbikeshare)
+cnt_atmp <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(cnt ~ feeling_temperature_raw, data = dcbikeshare)
 ```
 
 ```{r adj-r-squared-setup}
 dcbikeshare <- mutatedbike
-m_full <- lm(cnt ~ season + yr + holiday + workingday + weathersit + 
-                   temperature_raw + feeling_temperature_raw + humidity_raw + windspeed_raw + feeling_temperature_raw * holiday, 
-                   data = dcbikeshare)
+cnt_full <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(cnt ~ season + yr + holiday + workingday + weathersit +
+        temperature_raw + feeling_temperature_raw + humidity_raw + 
+        windspeed_raw + feeling_temperature_raw * holiday, 
+      data = dcbikeshare)
 ```
 
 ## Introduction
@@ -246,13 +253,13 @@ Load the packages we need for this tutorial using the chunk below.
 
 ```{r load-packages, exercise = TRUE}
 library(tidyverse)
-library(broom)
+library(tidymodels)
 library(dsbox)
 ```
 
 ```{r load-packages-solution}
 library(tidyverse)
-library(broom)
+library(tidymodels)
 library(dsbox)
 ```
 
@@ -718,8 +725,10 @@ grade_code("Your solution is correct!")
 Fit a linear model predicting total daily bike rentals from raw daily temperature and answer the questions below.
 
 ```{r rentals-vs-temp, exercise = TRUE, exercise.setup = "recreate-viz-setup"}
-m_cnt_tmp <- lm(___ ~ ___, data = ___)
-m_cnt_tmp %>%
+cnt_tmp <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(___ ~ ___, data = ___)
+cnt_tmp %>%
   ___
 
 
@@ -730,20 +739,24 @@ Use tidy() to print the regression output.
 ```
 
 ```{r rentals-vs-temp-hint-2}
-m_cnt_tmp <- lm(cnt ~ ___, data = dcbikeshare)
-m_cnt_tmp %>%
+cnt_tmp <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(cnt ~ ___, data = dcbikeshare)
+cnt_tmp %>%
   tidy()
 ```
 
 ```{r rentals-vs-temp-solution}
-m_cnt_tmp <- lm(cnt ~ temperature_raw, data = dcbikeshare)
-m_cnt_tmp %>%
+cnt_tmp <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(cnt ~ temperature_raw, data = dcbikeshare)
+cnt_tmp %>%
   tidy()
 ```
 
 ```{r rentals-vs-temp-check}
 	 grade_result(
-   pass_if(~ identical(floor(.result$estimate[2]), 161), "You have written the model correctly"),
+   pass_if(~ identical(floor(.result$estimate[2]), 161), "You have fit the model correctly"),
    fail_if(~ identical(floor(.result$estimate[1]), 9), "Did you maybe try to predict the weather from the number of bike rentals?"),
    fail_if(~ identical(floor(.result$estimate[1]),11), "Did you maybe try to predict the weather from the number of bike rentals?"),
    fail_if(~ identical(floor(.result$estimate[1]), 0), "Did you maybe try to predict the weather from the number of bike rentals?"),
@@ -775,7 +788,7 @@ glance(___)$___
 ```
 
 ```{r rentals-vs-temp-r2-solution}
-glance(m_cnt_tmp)$r.squared
+glance(cnt_tmp)$r.squared
 ```
 
 ```{r rentals-vs-temp-r2-check}
@@ -803,7 +816,9 @@ Fit another linear model predicting total daily bike rentals from raw daily feel
 Then, proceed to answering the questions below.
 
 ```{r rentals-vs-atemp, exercise = TRUE, exercise.setup = "recreate-viz-setup"}
-m_cnt_atmp <- lm(___)
+cnt_atmp <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(cnt ~ feeling_temperature_raw, data = dcbikeshare)
 ___ %>%
   ___
 
@@ -815,14 +830,16 @@ Look at the previous question for help!
 ```
 
 ```{r rentals-vs-atemp-solution}
-m_cnt_atmp <- lm(cnt ~ feeling_temperature_raw, data = dcbikeshare)
-m_cnt_atmp %>%
+cnt_atmp <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(cnt ~ feeling_temperature_raw, data = dcbikeshare)
+cnt_atmp %>%
   tidy()
 ```
 
 ```{r rentals-vs-atemp-check}
 	 grade_result(
-   pass_if(~ identical(floor(.result$estimate[2]), 150), "You have written the model correctly"),
+   pass_if(~ identical(floor(.result$estimate[2]), 150), "You have fit the model correctly"),
    fail_if(~ identical(floor(.result$estimate[1]), 11), "Did you maybe try to predict the weather from the number of bike rentals?"),
    fail_if(~ identical(floor(.result$estimate[1]), 0), "Did you maybe try to predict the weather from the number of bike rentals?"),
    fail_if(~ identical(floor(.result$estimate[1]), 1214), "Did you use normalized temperature instead of raw temperature?"),
@@ -853,7 +870,7 @@ glance(___)$___
 ```
 
 ```{r rentals-vs-atemp-r2-solution}
-glance(m_cnt_atmp)$r.squared
+glance(cnt_atmp)$r.squared
 ```
 
 ```{r rentals-vs-atemp-r2-check}
@@ -895,26 +912,32 @@ question("Which is the better explanatory variable of bike rentals?",
 Fit a model predicting total daily bike rentals from season, year, whether the day is holiday or not, whether the day is a workingday or not, the weather category, temperature, feeling temperature, humidity, and windspeed, as well as the interaction between feeling temperature and holiday.
 
 ```{r m-full, exercise = TRUE, exercise.setup = "recreate-viz-setup"}
-m_full <- lm(___)
-tidy(m_full)
+cnt_full <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(___ ~ ___, data = ___)
+tidy(cnt_full)
 ```
 
 ```{r m-full-hint-1}
-m_full <- lm(cnt ~ ___ + feeling_temperature_raw * holiday, 
-                   data = ___)
-tidy(m_full)
+cnt_full <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(cnt ~ ___ + feeling_temperature_raw * holiday, data = ___)
+tidy(cnt_full)
 ```
 
 ```{r m-full-solution}
-m_full <- lm(cnt ~ season + yr + holiday + workingday + weathersit + 
-                   temperature_raw + feeling_temperature_raw + humidity_raw + windspeed_raw + feeling_temperature_raw * holiday, 
-                   data = dcbikeshare)
-tidy(m_full)
+cnt_full <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(cnt ~ season + yr + holiday + workingday + weathersit +
+        temperature_raw + feeling_temperature_raw + humidity_raw +
+        windspeed_raw + feeling_temperature_raw * holiday, 
+      data = dcbikeshare)
+tidy(cnt_full)
 ```
 
 ```{r m-full-check}
 	 grade_result(
-   pass_if(~ identical(floor(.result$estimate[1]), 2715), "You have written the model correctly"),
+   pass_if(~ identical(floor(.result$estimate[1]), 2715), "You have fit the model correctly"),
    fail_if(~ identical(floor(.result$estimate[1]), 2688), "Did you forget to model the interaction effect between feeling temperature and holiday?"),
    fail_if(~ TRUE, "Not quite. Look at the hints for help!")
  )
@@ -935,7 +958,7 @@ glance(___)$adj.r.squared
 ```
 
 ```{r adj-r-squared-solution}
-glance(m_full)$adj.r.squared
+glance(cnt_full)$adj.r.squared
 ```
 
 ```{r adj-r-squared-check}
@@ -985,18 +1008,22 @@ Record the adjusted $R^2$s of each of these models.
 In the chunk below, fit the full model without the `season` variable and print out the $R^2$ score.
 
 ```{r remove-season, exercise = TRUE, exercise.setup = "recreate-viz-setup"}
-rm_season <- lm(___)
+rm_season <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(___ ~ ___, data = ___)
 glance(___)$___
 ```
 
 ```{r remove-season-hint-1}
-rm_season <- lm(cnt ~ ___, data = ___)
+rm_season <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(cnt ~ ___, data = ___)
 glance(___)$adj.r.squared
 ```
 
 ```{r remove-season-check}
 grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 4)), 0.7491), "You have written the model correctly"),
+   pass_if(~ identical(as.numeric(round(.result, digits = 4)), 0.7491), "You have fit the model correctly"),
    fail_if(~ TRUE, "Not quite. Look at the hint for help and remember to just remove the season variable from the full model!")
  )
 ``` 
@@ -1004,18 +1031,22 @@ grade_result(
 In the chunk below, fit the full model without the `year` variable and print out the adjusted $R^2$ score.
 
 ```{r remove-year, exercise = TRUE, exercise.setup = "recreate-viz-setup"}
-rm_year <- lm(___)
+rm_year <- ___ %>%
+  ___ %>%
+  fit(cnt ~ ___, data = ___)
 glance(___)$___
 ```
 
 ```{r remove-year-hint-1}
-rm_year <- lm(cnt ~ ___, data = ___)
+rm_year <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(cnt ~ ___, data = ___)
 glance(___)$adj.r.squared
 ```
 
 ```{r remove-year-check}
 grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 5)), 0.5536), "You have written the model correctly"),
+   pass_if(~ identical(as.numeric(round(.result, digits = 5)), 0.5536), "You have fit the model correctly"),
    fail_if(~ TRUE, "Not quite. Remember to just remove the year variable from the full model!")
  )
 ``` 
@@ -1024,13 +1055,15 @@ In the chunk below, fit the full model without the `holiday` variable and print 
 Remember to also remove the interaction effect between `holiday` and `feeling_temperature_raw`.
 
 ```{r remove-holiday, exercise = TRUE, exercise.setup = "recreate-viz-setup"}
-rm_holiday <- lm(___)
+rm_holiday <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(___ ~ ___, data = ___)
 glance(rm_holiday)$adj.r.squared
 ```
 
 ```{r remove-holiday-check}
 grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 4)), 0.8173), "You have written the model correctly"),
+   pass_if(~ identical(as.numeric(round(.result, digits = 4)), 0.8173), "You have fit the model correctly"),
    fail_if(~ identical(as.numeric(round(.result, digits = 3)), 0.820), "Did you forget to remove the interaction effect?"),
    fail_if(~ TRUE, "Not quite. Did you use the full model as your starting point?")
  )
@@ -1039,13 +1072,15 @@ grade_result(
 Fit the full model without the `workingday` variable using the code chunk below! Remember to record the adjusted $R^2$ score.
 
 ```{r remove-workingday, exercise = TRUE, exercise.setup = "recreate-viz-setup"}
-rm_workingday<- lm(___)
+rm_workingday<- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(___ ~ ___, data = ___)
 glance(___)$___
 ```
 
 ```{r remove-workingday-check}
 grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 4)), 0.8196), "You have written the model correctly"),
+   pass_if(~ identical(as.numeric(round(.result, digits = 4)), 0.8196), "You have fit the model correctly"),
    fail_if(~ TRUE, "Not quite. Did you use the full model as your starting point?")
  )
 ```
@@ -1053,13 +1088,15 @@ grade_result(
 Fit the full model without the `weathersit` variable in the chunk below and record the adjusted $R^2$ score.
 
 ```{r remove-weathersit, exercise = TRUE, exercise.setup = "recreate-viz-setup"}
-rm_weathersit<- lm(___)
+rm_weathersit<- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(___ ~ ___, data = ___)
 glance(___)$___
 ```
 
 ```{r remove-weathersit-check}
 grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 5)), 0.79847), "You have written the model correctly"),
+   pass_if(~ identical(as.numeric(round(.result, digits = 5)), 0.79847), "You have fit the model correctly"),
    fail_if(~ TRUE, "Not quite. Did you use the full model as your starting point?")
  )
 ```
@@ -1067,13 +1104,15 @@ grade_result(
 Remove the `temperature_raw` variable in the chunk below and record the adjusted $R^2$ score.
 
 ```{r remove-tempraw, exercise = TRUE, exercise.setup = "recreate-viz-setup"}
-rm_temp_raw<- lm(___)
+rm_temp_raw<- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(___ ~ ___, data = ___)
 glance(___)$___
 ```
 
 ```{r remove-tempraw-check}
 grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 5)), 0.81813), "You have written the model correctly"),
+   pass_if(~ identical(as.numeric(round(.result, digits = 5)), 0.81813), "You have fit the model correctly"),
    fail_if(~ TRUE, "Not quite. Did you use the full model as your starting point?")
  )
 ```
@@ -1082,13 +1121,15 @@ In the chunk below, fit the full model without the `feeling_temperature_raw` var
 Don't forget to also remove the interaction effect between `holiday` and `feeling_temperature_raw`!
 
 ```{r remove-feeltempraw, exercise = TRUE, exercise.setup = "recreate-viz-setup"}
-rm_feeltemp_raw <- lm(___)
+rm_feeltemp_raw <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(___ ~ ___, data = ___)
 glance(___)$___
 ```
 
 ```{r remove-feeltempraw-check}
 grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 5)), 0.81988), "You have written the model correctly"),
+   pass_if(~ identical(as.numeric(round(.result, digits = 5)), 0.81988), "You have fit the model correctly"),
    fail_if(~ identical(as.numeric(round(.result, digits = 3)), 0.820), "Did you forget to remove the interaction effect?"),
    fail_if(~ TRUE, "Not quite. Did you use the full model as your starting point?")
  )
@@ -1097,13 +1138,15 @@ grade_result(
 Fit the full model without the `humidity_raw` variable and record the adjusted $R^2$ score.
 
 ```{r remove-humidityraw, exercise = TRUE, exercise.setup = "recreate-viz-setup"}
-rm_humidity_raw <- lm(___)
+rm_humidity_raw <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(___ ~ ___, data = ___)
 glance(___)$___
 ```
 
 ```{r remove-humidityraw-check}
 grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 4)), 0.8151), "You have written the model correctly"),
+   pass_if(~ identical(as.numeric(round(.result, digits = 4)), 0.8151), "You have fit the model correctly"),
    fail_if(~ TRUE, "Not quite. Did you use the full model as your starting point?")
  )
 ```
@@ -1111,13 +1154,15 @@ grade_result(
 Fit the full model without the `windspeed_raw` variable and record the adjusted $R^2$ score.
 
 ```{r remove-windraw, exercise = TRUE, exercise.setup = "recreate-viz-setup"}
-rm_windspeed_raw <- lm(___)
+rm_windspeed_raw <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(___ ~ ___, data = ___)
 glance(___)$___
 ```
 
 ```{r remove-windraw-check}
 grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 4)), 0.8106), "You have written the model correctly"),
+   pass_if(~ identical(as.numeric(round(.result, digits = 4)), 0.8106), "You have fit the model correctly"),
    fail_if(~ TRUE, "Not quite. Did you use the full model as your starting point?")
  )
 ```
@@ -1126,13 +1171,15 @@ Last, remove the interaction effect between `holiday` and `feeling_temperature_r
 Then, record the adjusted $R^2$.
 
 ```{r remove-interaction, exercise = TRUE, exercise.setup = "recreate-viz-setup"}
-rm_interaction <- lm(___)
+rm_interaction <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(___ ~ ___, data = ___)
 glance(___)$___
 ```
 
 ```{r remove-interaction-check}
 grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 4)), 0.8197), "You have written the model correctly"),
+   pass_if(~ identical(as.numeric(round(.result, digits = 4)), 0.8197), "You have fit the model correctly"),
    fail_if(~ identical(as.numeric(round(.result, digits = 4)), 0.8174), "Did you also remove the two variables individually in addition to removing the interaction effect?"),
    fail_if(~ TRUE, "Not quite. Did you use the full model as your starting point?")
  )
@@ -1147,8 +1194,7 @@ question("Which model of these models, if any, gives the highest improvement ove
   answer("rm_winspeed_raw, rm_humidity_raw, rm_year"),
   answer("rm_feeltemp_raw, rm_workingday, rm_interaction"),
   answer("All"),
-  answer("None",
-         correct = TRUE),
+  answer("None", correct = TRUE),
   correct = "Correct!",
   incorrect = "Look up the adjusted R-squared of the full models and compare it with the others. Remember we want the highest possible adjusted R-squared score.",
   allow_retry = TRUE
@@ -1157,6 +1203,6 @@ question("Which model of these models, if any, gives the highest improvement ove
 
 ## Wrap up
 
-Congratulations, you finished tutorial 8!
+Congratulations!
 
 Hopefully, you have enjoyed this lesson on modelling and data wrangling.
