@@ -39,7 +39,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 
 # setup some things ------------------------------------------------------------
-url_2020 <- "https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs?cycle=2020"
+url_2020 <- "https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/2020"
 page <- read_html(url_2020)
 
 parse_currency <- function(x){
@@ -95,7 +95,8 @@ pac_all_final <- dsbox::pac_all %>%
   group_by(year) %>%
   summarise(
     Democrat = sum(dems),
-    Republican = sum(repubs)
+    Republican = sum(repubs),
+    .groups = "drop"
   ) %>%
   pivot_longer(
     cols = c(Democrat, Republican), 
@@ -107,7 +108,7 @@ pac_all_final <- dsbox::pac_all %>%
 ## Introduction
 
 ```{r money-pic, fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.cap="Photo by Sharon McCutcheon on Unsplash"}
-knitr::include_graphics("images/05-tutorial.jpg")
+knitr::include_graphics("images/money.jpg")
 ```
 
 Every election cycle brings its own brand of excitement – and lots of money. 
@@ -189,7 +190,7 @@ Let's begin by scraping the data for 2020 PAC contributions, one step at a time.
 First, we define a new variable that stores the URL of the page we want to scrape data from as a character string:
 
 ```{r set-url-2020-ex, exercise=TRUE}
-url_2020 <- "https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs?cycle=2020"
+url_2020 <- "https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/2020"
 ```
 
 ### Read the webpage
@@ -208,16 +209,16 @@ These tags are then used by the `rvest` package to pick out (i.e. scrape) the da
 When you open it, Selector Gadget looks like this:
 
 ```{r sel-gadget, fig.margin = TRUE, echo = FALSE, out.width = "100%"}
-knitr::include_graphics("images/Selector_Gadget.PNG")
+knitr::include_graphics("images/Selector_Gadget.png")
 ```
 
 ### Pick out the data
 
 First, we identify the HTML `node` for the entire table.
-Using Selector Gadget, we can see (below) that `.DataTable` covers the whole section of the page containing the required table:
+Using Selector Gadget, we can see (below) that `.DataTable-Partial` covers the whole section of the page containing the required table:
 
 ```{r datatable, fig.margin = TRUE, echo = FALSE, out.width = "100%"}
-knitr::include_graphics("images/DataTable.PNG")
+knitr::include_graphics("images/DataTable-Partial.png")
 ```
 
 This will therefore be used as the argument in the `html_node()` function.
@@ -228,7 +229,7 @@ We then use Selector Gadget again to identify which tag(s) identify the table.
 For example, we can see that the `.sorting` tag picks out the title row of the table:
 
 ```{r sorting, fig.margin = TRUE, echo = FALSE, out.width = "100%"}
-knitr::include_graphics("images/sorting.PNG")
+knitr::include_graphics("images/sorting.png")
 ```
 
 Using Selector Gadget, answer the following question:
@@ -238,7 +239,7 @@ question("Which tags are used in scraping the table?",
          answer(".sorting"),
          answer("td",
                 correct = TRUE),
-         answer(".DataTable"),
+         answer(".DataTable-Partial"),
          answer("nth-child(0)"),
          allow_retry = TRUE
 )
@@ -278,35 +279,35 @@ Fill in the blanks in the following code block to pick out the PAC contributions
 
 ```{r scrape-pac-2020, exercise=TRUE}
 pac_2020 <- ___ %>%
-  html_node(".DataTable") %>%
+  html_node(".DataTable-Partial") %>%
   html_table(___, header = ___, fill = ___) %>%
   as_tibble()
 ```
 
 ```{r scrape-pac-2020-hint-1}
 pac_2020 <- page %>%
-  html_node(".DataTable") %>%
+  html_node(".DataTable-Partial") %>%
   html_table(___, header = ___, fill = ___) %>%
   as_tibble()
 ```
 
 ```{r scrape-pac-2020-hint-2}
 pac_2020 <- page %>%
-  html_node(".DataTable") %>%
+  html_node(".DataTable-Partial") %>%
   html_table("td", header = ___, fill = ___) %>%
   as_tibble()
 ```
 
 ```{r scrape-pac-2020-hint-3}
 pac_2020 <- page %>%
-  html_node(".DataTable") %>%
+  html_node(".DataTable-Partial") %>%
   html_table("td", header = TRUE, fill = ___) %>%
   as_tibble()
 ```
 
 ```{r scrape-pac-2020-solution}
 pac_2020 <- page %>%
-  html_node(".DataTable") %>%
+  html_node(".DataTable-Partial") %>%
   html_table("td", header = TRUE, fill = TRUE) %>%
   as_tibble()
 ```
@@ -552,7 +553,7 @@ Hints:
 
 - The function for removing character strings is `str_remove()`.
 - The `$` character is a special character so it will need to be escaped.
-- Some contribution amounts are in the millions (e.g. Anheuser-Busch contributed a total of $1,510,897 in 2008). In this case we need to remove all occurences of `,`, which we can do by using `str_remove_all()` instead of `str_remove()`.
+- Some contribution amounts are in the millions. In this case we need to remove all occurrences of `,`, which we can do by using `str_remove_all()` instead of `str_remove()`.
 - Finally, we'll need to use `as.numeric()` to complete the conversion to the numeric data type.
 
 ```{r parse-currency-function, exercise=TRUE}
@@ -679,7 +680,7 @@ For this, we're going to be following these steps:
 pac_all %>%
   ___(country %in% ___) %>%
   ___(country, year) %>%
-  ___(tot = ___) %>%
+  ___(tot = ___, .groups = "drop") %>%
   ggplot(mapping = aes(x = ___, y = ___, group = country, ___ = ___)) +
   ___()
 ```
@@ -688,7 +689,7 @@ pac_all %>%
 pac_all %>%
   filter(country %in% c("___", "___")) %>%
   ___(country, year) %>%
-  ___(tot = ___) %>%
+  ___(tot = ___, .groups = "drop") %>%
   ggplot(mapping = aes(x = ___, y = ___, group = country, ___ = ___)) +
   ___()
 ```
@@ -697,7 +698,7 @@ pac_all %>%
 pac_all %>%
   filter(country %in% c("Canada", "UK")) %>%
   group_by(country, year) %>%
-  ___(tot = ___) %>%
+  ___(tot = ___, .groups = "drop") %>%
   ggplot(mapping = aes(x = ___, y = ___, group = country, ___ = ___)) +
   ___()
 ```
@@ -706,7 +707,7 @@ pac_all %>%
 pac_all %>%
   filter(country %in% c("Canada", "UK")) %>%
   group_by(country, year) %>%
-  summarise(tot = sum(total)) %>%
+  summarise(tot = sum(total), .groups = "drop") %>%
   ggplot(mapping = aes(x = ___, y = ___, group = country, ___ = ___)) +
   ___()
 ```
@@ -715,7 +716,7 @@ pac_all %>%
 pac_all %>%
   filter(country %in% c("Canada", "UK")) %>%
   group_by(country, year) %>%
-  summarise(tot = sum(total)) %>%
+  summarise(tot = sum(total), .groups = "drop") %>%
   ggplot(aes(x = year, y = tot, group = country, color = country)) +
   geom_line()
 ```
@@ -726,14 +727,12 @@ For the final part of this tutorial, we're going to work towards building this p
 
 ```{r dem-repub-over-time, echo=FALSE, message=FALSE}
 dsbox::pac_all %>%
-  filter(
-    country == "UK",
-    year < 2020
-    ) %>%
+  filter(country == "UK") %>%
   group_by(year) %>%
   summarise(
     Democrat = sum(dems),
-    Republican = sum(repubs)
+    Republican = sum(repubs),
+    , .groups = "drop"
   ) %>%
   pivot_longer(
     cols = c(Democrat, Republican), 
@@ -756,14 +755,11 @@ dsbox::pac_all %>%
 
 ### Step 1 - Filter
 
-First, we need to filter the data for UK contributions as well as years only up to 2018:
+First, we need to filter the data for UK contributions:
 
 ```{r final-plot-filter, exercise = TRUE, message = FALSE}
 pac_all %>%
-  filter(
-    country == "UK",
-    year < 2020
-    )
+  filter(country == "UK")
 ```
 
 ### Step 2 - Calculate total contributions
@@ -773,14 +769,12 @@ This requires a `group_by()` and `summarise()` step:
 
 ```{r final-plot-total-contributions, exercise = TRUE, message = FALSE}
 pac_all %>%
-  filter(
-    country == "UK",
-    year < 2020
-    ) %>%
+  filter(country == "UK") %>%
   group_by(year) %>%
   summarise(
     Democrat = sum(dems),
-    Republican = sum(repubs)
+    Republican = sum(repubs),
+    .groups = "drop"
   )
 ```
 
@@ -793,14 +787,12 @@ We can achieve this by pivoting our data to be longer (going from 11 to 22 rows)
 
 ```{r final-plot-pivot, exercise = TRUE, message = FALSE}
 pac_all %>%
-  filter(
-    country == "UK",
-    year < 2020
-    ) %>%
+  filter(country == "UK") %>%
   group_by(year) %>%
   summarise(
     Democrat = sum(dems),
-    Republican = sum(repubs)
+    Republican = sum(repubs),
+    .groups = "drop"
   ) %>%
   pivot_longer(
     cols = c(Democrat, Republican), 
@@ -813,14 +805,12 @@ Let's save this as a new data frame to simplify the code for generating the plot
 
 ```{r final-plot-data-frame, exercise = TRUE, message = FALSE}
 pac_all_final <- pac_all %>%
-  filter(
-    country == "UK",
-    year < 2020
-    ) %>%
+  filter(country == "UK") %>%
   group_by(year) %>%
   summarise(
     Democrat = sum(dems),
-    Republican = sum(repubs)
+    Republican = sum(repubs),
+    .groups = "drop"
   ) %>%
   pivot_longer(
     cols = c(Democrat, Republican), 
@@ -967,5 +957,5 @@ grade_code("Finally! The plot is finished.")
 
 ## Wrap up
 
-Excellent work! You've finished the sixth tutorial.
+Excellent work!
 Hopefully this has served as a good introduction to web scraping, and you've seen a good example of how we can build a simple plot into something much more informative and striking.
