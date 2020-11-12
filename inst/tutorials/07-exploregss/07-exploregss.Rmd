@@ -254,7 +254,10 @@ gss <- gss %>%
 ```
 
 ```{r email-variable-check}
-grade_code("Good work creating that new variable.")
+grade_result(
+  pass_if(~ identical(as.character(.result[1,10]), "720"), "Well done!"),
+  fail_if(~ TRUE, "Not quite. Try looking at the hints for the previous exercise.")
+)
 ```
 
 ### Visualising the email variable
@@ -361,13 +364,15 @@ gss <- gss %>%
 ```{r snap-insta-var-hint-3}
 gss <- gss %>%
   mutate(snap_insta = if_else(snapchat == "Yes" ___ instagrm == "Yes",
-                              ___, ___))
+    ___, ___
+  ))
 ```
 
 ```{r snap-insta-var-solution}
 gss <- gss %>%
   mutate(snap_insta = if_else(snapchat == "Yes" | instagrm == "Yes",
-                              "Yes", "No"))
+    "Yes", "No"
+  ))
 ```
 
 ```{r snap-insta-var-check}
