@@ -376,7 +376,13 @@ gss <- gss %>%
 ```
 
 ```{r snap-insta-var-check}
-grade_code("Good work creating that new variable.")
+grade_result_strict(
+  pass_if(~ .result$snap_insta[2] == "No", "Good going creating that new variable."),
+  pass_if(~ .result$snap_insta[19] == "Yes", "Good going creating that new variable."),
+  pass_if(~ .result$snap_insta[5] == "Yes", "Good going creating that new variable."),
+  pass_if(~ .result$snap_insta[6] == "Yes", "Good going creating that new variable."),
+  pass_if(~ is.na(.result$snap_insta[1]))
+)
 ```
 
 ### Counting responses
@@ -546,7 +552,7 @@ Since this is the spelling that shows up in the data, you need to make sure this
 
 ### Another new variable
 
-In a new variable - call it `advfront2` - recode `advfront` such that Strongly Agree and Agree are mapped to `"Yes"`, and Disagree and Strongly disagree are mapped to `"No"`. 
+In a new variable - call it `advfront2` - recode `advfront` such that Strongly agree and Agree are mapped to `"Yes"`, and Disagree and Strongly disagree are mapped to `"No"`. 
 The remaining levels can be left as is. 
 
 ```{r advfront2-var, exercise = TRUE}
@@ -593,7 +599,14 @@ gss <- gss %>%
 ```
 
 ```{r advfront2-var-check}
-grade_code("Good going creating that new variable.")
+grade_result_strict(
+  pass_if(~ .result$advfront2[1] == "Yes", "Good going creating that new variable."),
+  pass_if(~ .result$advfront2[9] == "Yes"),
+  pass_if(~ .result$advfront2[2] == "No"),
+  pass_if(~ .result$advfront2[98] == "No"),
+  pass_if(~ .result$advfront2[12] == "Dont know"),
+  pass_if(~ is.na(.result$advfront2[3]))
+)
 ```
 
 ### And another variable
@@ -651,7 +664,20 @@ gss <- gss %>%
 ```
 
 ```{r polviews2-var-check}
-grade_code("Good going creating that new variable.")
+grade_result_strict(
+  pass_if(~ .result$polviews2[1] == "Moderate", "Good going creating that new variable."),
+  pass_if(~ .result$polviews2[2] == "Liberal", "Good going creating that new variable."),
+  pass_if(~ .result$polviews2[3] == "Conservative", "Good going creating that new variable."),
+  pass_if(~ .result$polviews2[5] == "Liberal", "Good going creating that new variable."),
+  pass_if(~ .result$polviews2[46] == "Liberal", "Good going creating that new variable."),
+  pass_if(~ .result$polviews2[8] == "Conservative", "Good going creating that new variable."),
+  pass_if(~ .result$polviews2[24] == "Conservative", "Good going creating that new variable."),
+  pass_if(~ is.na(.result$polviews2[9])),
+  fail_if(~ class(.result$polviews2) != "factor", "Be sure to make polviews2 a factor with the specified levels."),
+  pass_if(~ levels(.result$polviews2)[1] == "Conservative"),
+  pass_if(~ levels(.result$polviews2)[2] == "Moderate"),
+  pass_if(~ levels(.result$polviews2)[3] == "Liberal")
+)
 ```
 
 ### A final plot
