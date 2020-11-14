@@ -457,6 +457,11 @@ m <- lm(email ~ educ + wrkstat + snap_insta, data = ___)
 tidy(m)
 ```
 
+```{r email-lm-solution}
+m <- lm(email ~ educ + wrkstat + snap_insta, data = gss)
+tidy(m)
+```
+
 ```{r email-lm-check}
 grade_result(
   pass_if(~ (identical(as.numeric(floor(.result[1,2])), -230) & identical(as.numeric(round(.result[1, 5], digits = 3)), 0.126)), "You have created the desired model correctly."),
