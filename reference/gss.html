@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Data from the 2016 General Social Survey (GSS) — gss • dsbox</title>
+<title>Deprecated — gss • dsbox</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,15 +46,8 @@
 
 
 
-<meta property="og:title" content="Data from the 2016 General Social Survey (GSS) — gss" />
-<meta property="og:description" content="The GSS gathers data on contemporary American society in order to monitor and
-explain trends and constants in attitudes, behaviors, and attributes.
-Hundreds of trends have been tracked since 1972. In addition, since the GSS
-adopted questions from earlier surveys, trends can be followed for up to 70 years.
-The GSS contains a standard core of demographic, behavioral, and attitudinal
-questions, plus topics of special interest. Among the topics covered are civil
-liberties, crime and violence, intergroup tolerance, morality, national spending
-priorities, psychological well-being, social mobility, and stress and traumatic events." />
+<meta property="og:title" content="Deprecated — gss" />
+<meta property="og:description" content="This dataset is now deprecated. Use gss16 instead." />
 <meta property="og:image" content="https://rstudii-education.github.io/dsbox/logo.png" />
 
 
@@ -87,7 +80,7 @@ priorities, psychological well-being, social mobility, and stress and traumatic 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dsbox</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.1</span>
       </span>
     </div>
 
@@ -120,20 +113,13 @@ priorities, psychological well-being, social mobility, and stress and traumatic 
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Data from the 2016 General Social Survey (GSS)</h1>
+    <h1>Deprecated</h1>
     <small class="dont-index">Source: <a href='https://github.com/rstudio-education/dsbox/blob/master/R/gss.R'><code>R/gss.R</code></a></small>
     <div class="hidden name"><code>gss.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The GSS gathers data on contemporary American society in order to monitor and
-explain trends and constants in attitudes, behaviors, and attributes.
-Hundreds of trends have been tracked since 1972. In addition, since the GSS
-adopted questions from earlier surveys, trends can be followed for up to 70 years.
-The GSS contains a standard core of demographic, behavioral, and attitudinal
-questions, plus topics of special interest. Among the topics covered are civil
-liberties, crime and violence, intergroup tolerance, morality, national spending
-priorities, psychological well-being, social mobility, and stress and traumatic events.</p>
+    <p>This dataset is now deprecated. Use <code><a href='gss16.html'>gss16</a></code> instead.</p>
     </div>
 
     <pre class="usage"><span class='va'>gss</span></pre>
@@ -141,36 +127,11 @@ priorities, psychological well-being, social mobility, and stress and traumatic 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble with 2,867 rows and 9 variables:</p><dl>
-<dt>harass5</dt><dd><p>Response to the questions "Over the past five years, have you been harassed by your superiors or co-workers at your job, for example, have you experienced any bullying, physical or psychological abuse?" Possible answers are Yes, No and Does not apply.</p></dd>
-<dt>emailmin</dt><dd><p>Number of minutes spent on email weekly, extra to the hours in emailhrs (e.g. emailmin = 30 for 2.5 hours on email).</p></dd>
-<dt>emailhr</dt><dd><p>Number of hours spent on email weekly.</p></dd>
-<dt>educ</dt><dd><p>Number of years in education.</p></dd>
-<dt>polviews</dt><dd><p>Political views. Possible answers are Extremely liberal, Liberal, Slightly liberal, Moderate, Slghtly conservative, Conservative, Extrmly conservative.</p></dd>
-<dt>advfront</dt><dd><p>Response to the question "Even if it brings no immediate benefits, scientific research that advances the frontiers of knowledge is necessary and should be supported by the federal government." Possible answers are Strongly agree, Agree, Dont know, Disagree and Strongly Disagree.</p></dd>
-<dt>snapchat</dt><dd><p>Whether respondant uses Snapchat or not.</p></dd>
-<dt>instagram</dt><dd><p>Whether respondant uses Instagram or not.</p></dd>
-<dt>wrkstat</dt><dd><p>Work status.</p></dd>
+    <p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 2867 rows and 9 columns.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-</dl>
+    <div class='dont-index'><p><code><a href='gss16.html'>gss16</a></code></p></div>
 
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p>https://gss.norc.org/Get-The-Data</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The data come from the <a href='https://gss.norc.org/Get-The-Data'>NORC at the University of Chicago</a></p>
-<p>The data has been modified to better serve the goals of introductory data science education.
-Only 9 of the original 935 variables have been selected for this dataset.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>gss</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>emailhr</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span><span class='op'>(</span>binwidth <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1218 rows containing non-finite values (stat_bin).</span></div><div class='img'><img src='gss-1.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

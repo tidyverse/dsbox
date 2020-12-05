@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Road Safety Data - Accidents 2018 — accidents • dsbox</title>
+<title>Data from the 2016 General Social Survey (GSS) — gss16 • dsbox</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,9 +46,15 @@
 
 
 
-<meta property="og:title" content="Road Safety Data - Accidents 2018 — accidents" />
-<meta property="og:description" content="Road accidents and their causes are of particular importance to road safety experts
-looking to prevent them." />
+<meta property="og:title" content="Data from the 2016 General Social Survey (GSS) — gss16" />
+<meta property="og:description" content="The GSS gathers data on contemporary American society in order to monitor and
+explain trends and constants in attitudes, behaviors, and attributes.
+Hundreds of trends have been tracked since 1972. In addition, since the GSS
+adopted questions from earlier surveys, trends can be followed for up to 70 years.
+The GSS contains a standard core of demographic, behavioral, and attitudinal
+questions, plus topics of special interest. Among the topics covered are civil
+liberties, crime and violence, intergroup tolerance, morality, national spending
+priorities, psychological well-being, social mobility, and stress and traumatic events." />
 <meta property="og:image" content="https://rstudii-education.github.io/dsbox/logo.png" />
 
 
@@ -114,72 +120,65 @@ looking to prevent them." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Road Safety Data - Accidents 2018</h1>
-    <small class="dont-index">Source: <a href='https://github.com/rstudio-education/dsbox/blob/master/R/accidents.R'><code>R/accidents.R</code></a></small>
-    <div class="hidden name"><code>accidents.Rd</code></div>
+    <h1>Data from the 2016 General Social Survey (GSS)</h1>
+    <small class="dont-index">Source: <a href='https://github.com/rstudio-education/dsbox/blob/master/R/gss16.R'><code>R/gss16.R</code></a></small>
+    <div class="hidden name"><code>gss16.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Road accidents and their causes are of particular importance to road safety experts
-looking to prevent them.</p>
+    <p>The GSS gathers data on contemporary American society in order to monitor and
+explain trends and constants in attitudes, behaviors, and attributes.
+Hundreds of trends have been tracked since 1972. In addition, since the GSS
+adopted questions from earlier surveys, trends can be followed for up to 70 years.
+The GSS contains a standard core of demographic, behavioral, and attitudinal
+questions, plus topics of special interest. Among the topics covered are civil
+liberties, crime and violence, intergroup tolerance, morality, national spending
+priorities, psychological well-being, social mobility, and stress and traumatic events.</p>
     </div>
 
-    <pre class="usage"><span class='va'>accidents</span></pre>
+    <pre class="usage"><span class='va'>gss16</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A tibble with 768 rows and 31 variables:</p><dl>
-<dt>id</dt><dd><p>Accident ID</p></dd>
-<dt>easting</dt><dd><p>Easting of accident location</p></dd>
-<dt>northing</dt><dd><p>Northing of accident location</p></dd>
-<dt>longitude</dt><dd><p>Longitude of accident location</p></dd>
-<dt>latitude</dt><dd><p>Latitude of accident location</p></dd>
-<dt>police_force</dt><dd><p>Police force</p></dd>
-<dt>severity</dt><dd><p>Accident severity: Fatal, Serious, Slight</p></dd>
-<dt>vehicles</dt><dd><p>Number of vehicles involved in accident</p></dd>
-<dt>casualties</dt><dd><p>Number of people injured in the accident</p></dd>
-<dt>date</dt><dd><p>Date of the accident</p></dd>
-<dt>day_of_week</dt><dd><p>Day of the week of the accident</p></dd>
-<dt>time</dt><dd><p>Time of the accident on the 24h clock</p></dd>
-<dt>district</dt><dd><p>Local authority district</p></dd>
-<dt>highway</dt><dd><p>Local authority highway</p></dd>
-<dt>first_road_class</dt><dd><p>Class of 1st road involved in accident: Motorway, A(M) road (A-road with motorway restrictions), A-road, B-road, C-road, Unclassified</p></dd>
-<dt>first_road_number</dt><dd><p>ID of 1st road (0 if unclassified)</p></dd>
-<dt>road_type</dt><dd><p>Type of road: Roundabout, One way street, Dual carriageway, Single carriageway, Slip road</p></dd>
-<dt>speed_limit</dt><dd><p>Speed limit on the road in mph</p></dd>
-<dt>junction_detail</dt><dd><p>Detail on junction where accident occurred: Crossroads, Mini-roundabout, More than 4 arms, Not within 20 metres of junction, Other junction, Private drive or entrance, Roundabout, Slip road, T or staggered junction</p></dd>
-<dt>junction_control</dt><dd><p>How junction was controlled: Authorised person, Auto traffic signal, Give way or uncontrolled, Missing / Out of range, Stop sign</p></dd>
-<dt>second_road_class</dt><dd><p>Class of 2st road involved in accident: A-road, B-road, C-road, Missing / Out of range, Motorway, Unclassified</p></dd>
-<dt>second_road_number</dt><dd><p>ID of 2nd road (0 if unclassified)</p></dd>
-<dt>ped_cross_human</dt><dd><p>Level of human control at a pedestrian crossing: Control by other authorised person, Control by school crossing patrol, None within 50 metres</p></dd>
-<dt>ped_cross_physical</dt><dd><p>Level of facilities controlling a pedestrian crossing: Central refuge, No physical crossing facilities within 50 metres, Non-junction crossing (pelican, puffin, toucan or similar light crossing), Pedestrian phase at traffic signal junction, Zebra crossing</p></dd>
-<dt>light</dt><dd><p>Light condition at the time of accident: Daylight, Darkness - lights lit, Darkness - lights unlit, Darkness - no lighting, Darkness - lighting unknown</p></dd>
-<dt>weather</dt><dd><p>Weather condition at the time of accident: Fine + no high winds, Raining + no high winds, Snowing + no high winds, Fine + high winds, Raining + high winds, Snowing + high winds, Fog or mist, Other, Unknown</p></dd>
-<dt>road_surface</dt><dd><p>Road surface conditions at the time of the accident: Dry, Wet or damp, Snow, Frost or ice, Flood over 3cm deep</p></dd>
-<dt>special_condition</dt><dd><p>Special condition at the site of the accident: None, Road sign or marking defective or obscured, Roadworks, Road surface defective</p></dd>
-<dt>hazard</dt><dd><p>Carriageway hazards: None, Other object on road, Previous accident, Pedestrian in carriageway - not injured</p></dd>
-<dt>urban_rural</dt><dd><p>Type of area the accident occurred in</p></dd>
-<dt>police</dt><dd><p>Did police officer attend the scene of the accident: No, No + accident self reported (using a self completion form), Yes</p></dd>
+    <p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 2867 rows and 9 columns.</p><dl>
+<dt>harass5</dt><dd><p>Response to the questions "Over the past five years, have you been harassed by your superiors or co-workers at your job, for example, have you experienced any bullying, physical or psychological abuse?" Possible answers are Yes, No and Does not apply.</p></dd>
+<dt>emailmin</dt><dd><p>Number of minutes spent on email weekly, extra to the hours in emailhrs (e.g. emailmin = 30 for 2.5 hours on email).</p></dd>
+<dt>emailhr</dt><dd><p>Number of hours spent on email weekly.</p></dd>
+<dt>educ</dt><dd><p>Number of years in education.</p></dd>
+<dt>polviews</dt><dd><p>Political views. Possible answers are Extremely liberal, Liberal, Slightly liberal, Moderate, Slghtly conservative, Conservative, Extrmly conservative.</p></dd>
+<dt>advfront</dt><dd><p>Response to the question "Even if it brings no immediate benefits, scientific research that advances the frontiers of knowledge is necessary and should be supported by the federal government." Possible answers are Strongly agree, Agree, Dont know, Disagree and Strongly Disagree.</p></dd>
+<dt>snapchat</dt><dd><p>Whether respondant uses Snapchat or not.</p></dd>
+<dt>instagram</dt><dd><p>Whether respondant uses Instagram or not.</p></dd>
+<dt>wrkstat</dt><dd><p>Work status.</p></dd>
 
 </dl>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data/datafile/36f1658e-b709-47e7-9f56-cca7aefeb8fe/preview</p>
+    <p>https://gss.norc.org/Get-The-Data</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The data come from the UK Government at
-<a href='https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data/datafile/36f1658e-b709-47e7-9f56-cca7aefeb8fe/preview'>data.gov.uk</a>.
-It's been modified to better serve the goals of introductory data science education.</p>
+    <p>The data come from the <a href='https://gss.norc.org/Get-The-Data'>NORC at the University of Chicago</a></p>
+<p>The data has been modified to better serve the goals of introductory data science education.
+Only 9 of the original 935 variables have been selected for this dataset.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='http://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
-
-<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>accidents</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>speed_limit</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='accidents-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'>
+<span class='va'>gss16</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>email <span class='op'>=</span> <span class='op'>(</span><span class='va'>emailhr</span> <span class='op'>*</span> <span class='fl'>60</span><span class='op'>)</span> <span class='op'>+</span> <span class='va'>emailmin</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>email</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span><span class='op'>(</span>binwidth <span class='op'>=</span> <span class='fl'>60</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Time spent on email (in minutes)"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Removed 1218 rows containing non-finite values (stat_bin).</span></div><div class='img'><img src='gss16-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
