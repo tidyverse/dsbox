@@ -16,63 +16,57 @@ description: >
 
 ```{r setup, include=FALSE}
 # load packages ----------------------------------------------------------------
-
 library(learnr)
 library(gradethis)
 library(tidyverse)
-library(infer)
+library(tidymodels)
 library(dsbox)
 
 # set options for exercises and checking ---------------------------------------
-
-tutorial_options(
-  exercise.timelimit = 60, 
-  exercise.checker = gradethis::grade_learnr,
-  exercise.error.check.code = gradethis::grade_learnr_error
-  )
+gradethis_setup(
+  exercise.timelimit = 60,
+  exercise.checker = grade_learnr,
+  exercise.error.check.code = "grade_code()"
+)
 
 # hide non-exercise code chunks ------------------------------------------------
-
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r setup-email-var}
-gss <- dsbox::gss %>%
+gss16 <- dsbox::gss16 %>%
   mutate(email = emailmin + (emailhr * 60))
 ```
 
-```{r setup-email-na}
-gss_email <- dsbox::gss %>%
-  mutate(email = emailmin + (emailhr * 60)) %>%
-  filter(!is.na(email))
-```
-
 ```{r setup-seed-email-na}
-gss_email <- dsbox::gss %>%
+gss16_email <- dsbox::gss16 %>%
   mutate(email = emailmin + (emailhr * 60)) %>%
   filter(!is.na(email))
+
 set.seed(1234)
 ```
 
-```{r setup-boot-df}
-gss_email <- dsbox::gss %>%
+```{r setup-boot-df-mean}
+gss16_email <- dsbox::gss16 %>%
   mutate(email = emailmin + (emailhr * 60)) %>%
   filter(!is.na(email))
   
 set.seed(1234)
-boot_df <- gss_email %>%
+
+boot_df <- gss16_email %>%
   specify(response = email) %>% 
   generate(reps = 1000, type = "bootstrap") %>% 
   calculate(stat = "mean")
 ```
 
 ```{r setup-boot-df-median}
-gss_email <- dsbox::gss %>%
+gss16_email <- dsbox::gss16 %>%
   mutate(email = emailmin + (emailhr * 60)) %>%
   filter(!is.na(email))
 
 set.seed(1234)
-boot_df_median <- gss_email %>%
+
+boot_df_median <- gss16_email %>%
   specify(response = email) %>% 
   generate(reps = 1000, type = "bootstrap") %>% 
   calculate(stat = "median")
@@ -97,13 +91,13 @@ You can load them with the following code block:
 
 ```{r load-packages, exercise = TRUE}
 library(tidyverse)
-library(infer)
+library(tidymodels)
 library(dsbox)
 ```
 
 ```{r load-packages-solution}
 library(tidyverse)
-library(infer)
+library(tidymodels)
 library(dsbox)
 ```
 
@@ -142,22 +136,22 @@ For the first exercise, create a new variable called email that combines these t
 (Yes, this exercise is a repeat of what you did last week!)
 
 ```{r email-variable, exercise=TRUE}
-gss <- gss %>%
+gss16 <- gss16 %>%
   ___
 ```
 
 ```{r email-variable-hint-1}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(___)
 ```
 
 ```{r email-variable-hint-2}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(email = ___)
 ```
 
 ```{r email-variable-solution}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(email = emailmin + (emailhr * 60))
 ```
 
@@ -176,17 +170,17 @@ Instead save the resulting data frame as `gss_email`.
 ```
 
 ```{r filter-email-hint-1}
-gss_email <- gss %>%
+gss16_email <- gss16 %>%
   ___
 ```
 
 ```{r filter-email-hint-2}
-gss_email <- gss %>%
+gss16_email <- gss16 %>%
   filter(___(email))
 ```
 
 ```{r filter-email-solution}
-gss_email <- gss %>%
+gss16_email <- gss16 %>%
   filter(!is.na(email))
 ```
 
@@ -196,7 +190,7 @@ grade_code("You've successfully filtered the data.")
 
 ### Bootstrap confidence intervals
 
-In the following exercise, we'll be using the `infer` package to construct intervals rather than using for loops.
+In the following exercise, we'll be using the `tidymodels` package to construct intervals rather than using for loops.
 
 What we want to do now is calculate a 95% bootstrap confidence interval for the mean amount of time Americans spend on email weekly.
 
@@ -224,7 +218,7 @@ grade_code("You've set the seed ready for bootstrapping.")
 
 When bootstrapping, we first need to create a data frame containing our bootstrapped data - in this case, sample means.
 
-There are a few functions we use from the `infer` package in doing this:
+There are a few functions we use from the `tidymodels` package in doing this:
 
 - `specify()` is used to specify which variable in our data frame is the relevant response variable (i.e. the variable we're bootstrapping).
 - `generate()` generates the bootstrap samples.
@@ -241,21 +235,21 @@ boot_df <- ___ %>%
 ```
 
 ```{r create-boot-df-hint-1}
-boot_df <- gss_email %>%
+boot_df <- gss16_email %>%
   specify(response = ___) %>% 
   generate(reps = 1000, type = "bootstrap") %>% 
   ___(stat = "___")
 ```
 
 ```{r create-boot-df-hint-2}
-boot_df <- gss_email %>%
+boot_df <- gss16_email %>%
   specify(response = email) %>% 
   generate(reps = 1000, type = "bootstrap") %>% 
   ___(stat = "___")
 ```
 
 ```{r create-boot-df-solution}
-boot_df <- gss_email %>%
+boot_df <- gss16_email %>%
   specify(response = email) %>% 
   generate(reps = 1000, type = "bootstrap") %>% 
   calculate(stat = "mean")
@@ -269,7 +263,7 @@ grade_code("That's you created the bootstrap data frame.")
 
 Let's have a quick look at the bootstrapped data frame:
 
-```{r glimpse-boot-df, exercise = TRUE, exercise.setup = "setup-boot-df"}
+```{r glimpse-boot-df, exercise = TRUE, exercise.setup = "setup-boot-df-mean"}
 glimpse(boot_df)
 ```
 
@@ -285,7 +279,7 @@ To find this range, we calculate percentiles so that the central 95% of the dist
 
 Fill in the blanks in this code block to construct the 95% bootstrap confidence interval for the mean amount of time Americans spend on email weekly.
 
-```{r confidence-interval-email, exercise = TRUE, exercise.setup = "setup-boot-df"}
+```{r confidence-interval-email, exercise = TRUE, exercise.setup = "setup-boot-df-mean"}
 ___ %>%
   summarize(lower = quantile(___, ___),
             upper = ___(___, ___))
@@ -327,22 +321,24 @@ Would you expect a 99% confidence interval to be wider or narrower than the inte
 
 ```{r quiz-confidence}
 question("Which statements are correct? Choose all that apply.",
-    answer("The 99% confidence interval will be narrower, because we have to allow for less variation in order to be 99% accurate"),
-    answer("The 99% confidence interval will be wider, because we need to allow for more variation in order to be more certain that any given mean will lie within the interval",
-           correct = TRUE),
-    answer("The 95% confidence interval will be narrower, because we have to be less certain that any given mean will lie within the interval compared to a 99% confidence interval",
-           correct = TRUE),
-    answer("The 95% confidence interval will be wider, because we can allow for more variation in order to be 95% accurate"),
-    allow_retry = TRUE,
-    random_answer_order = TRUE
-  )
+  answer("The 99% confidence interval will be narrower, because we have to allow for less variation in order to be 99% accurate"),
+  answer("The 99% confidence interval will be wider, because we need to allow for more variation in order to be more certain that any given mean will lie within the interval",
+    correct = TRUE
+  ),
+  answer("The 95% confidence interval will be narrower, because we have to be less certain that any given mean will lie within the interval compared to a 99% confidence interval",
+    correct = TRUE
+  ),
+  answer("The 95% confidence interval will be wider, because we can allow for more variation in order to be 95% accurate"),
+  allow_retry = TRUE,
+  random_answer_order = TRUE
+)
 ```
 
 Using the bootstrap distribution from a previous exercise, calculate a 99%
 bootstrap confidence interval for the mean amount of time Americans spend on email 
 weekly. 
 
-```{r confidence-99-email, exercise = TRUE, exercise.setup = "setup-boot-df"}
+```{r confidence-99-email, exercise = TRUE, exercise.setup = "setup-boot-df-mean"}
 ___ %>%
   ___
 ```
@@ -373,7 +369,7 @@ boot_df %>%
 grade_result(
   pass_if(~ (identical(floor(as.numeric(.result$lower[1])), 375) & identical(floor(as.numeric(.result$upper[1])), 465)), "You have calculated the 99% confidence interval correctly!"),
   fail_if(~ (identical(floor(as.numeric(.result$lower[1])), 378) & identical(floor(as.numeric(.result$upper[1])), 460)), "It looks like you've calculated a 98% confidence interval. Remember that to pick out hte central 99% of the distribution, we need to discard the most extreme 0.5% at each side."),
-  fail_if(~ TRUE, "Not quite. Take a look at the hints if you need some help.")
+  fail_if(~TRUE, "Not quite. Take a look at the hints if you need some help.")
 )
 ```
 
@@ -400,14 +396,14 @@ boot_df_median <- ___ %>%
 ```
 
 ```{r create-boot-df-median-hint-3}
-boot_df_median <- gss_email %>%
+boot_df_median <- gss16_email %>%
   specify(response = ___) %>% 
   generate(reps = 1000, type = "bootstrap") %>% 
   calculate(stat = "___")
 ```
 
 ```{r create-boot-df-median-solution}
-boot_df_median <- gss_email %>%
+boot_df_median <- gss16_email %>%
   specify(response = email) %>% 
   generate(reps = 1000, type = "bootstrap") %>% 
   calculate(stat = "median")
@@ -450,21 +446,23 @@ boot_df_median %>%
 ```{r confidence-90-median-check}
 grade_result(
   pass_if(~ (identical(as.numeric(.result$lower[1]), 120)) & identical(as.numeric(.result$upper[1]), 120), "You have calculated the 90% confidence interval correctly!"),
-  fail_if(~ TRUE, "Not quite. Take a look at the hints if you need some help."))
+  fail_if(~TRUE, "Not quite. Take a look at the hints if you need some help.")
+)
 ```
 
 Based on your findings, answer the following question:
 
 ```{r confidence-median-quiz}
 question("Which statement is correct?",
-    answer("90% of Americans spend 2 hours per week on email."),
-    answer("In 90% of random samples of size 1649 taken from the population, the median amount of time the respondents spent on email weekly was 2 hours",
-           correct = TRUE),
-    answer("We can be 90% certain that the mean amount of time spent on email per week is 2 hours."),
-    answer("In any given sample of Americans, we can predict the median amount of time spent on email per week to be 2 hours with a margin of error of 12 minutes."),
-    allow_retry = TRUE,
-    random_answer_order = TRUE
-  )
+  answer("90% of Americans spend 2 hours per week on email."),
+  answer("In 90% of random samples of size 1649 taken from the population, the median amount of time the respondents spent on email weekly was 2 hours",
+    correct = TRUE
+  ),
+  answer("We can be 90% certain that the mean amount of time spent on email per week is 2 hours."),
+  answer("In any given sample of Americans, we can predict the median amount of time spent on email per week to be 2 hours with a margin of error of 12 minutes."),
+  allow_retry = TRUE,
+  random_answer_order = TRUE
+)
 ```
 
 ## Wrap Up
