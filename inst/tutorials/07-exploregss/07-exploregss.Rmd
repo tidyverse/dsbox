@@ -16,40 +16,37 @@ description: >
 
 ```{r setup, include=FALSE}
 # load packages ----------------------------------------------------------------
-
 library(learnr)
 library(gradethis)
 library(tidyverse)
-library(broom)
+library(tidymodels)
 library(dsbox)
 
 # set options for exercises and checking ---------------------------------------
-
-tutorial_options(
-  exercise.timelimit = 60, 
-  exercise.checker = gradethis::grade_learnr,
-  exercise.error.check.code = gradethis::grade_learnr_error
-  )
+gradethis_setup(
+  exercise.timelimit = 60,
+  exercise.checker = grade_learnr,
+  exercise.error.check.code = "grade_code()"
+)
 
 # hide non-exercise code chunks ------------------------------------------------
-
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r setup-email-var}
-gss <- dsbox::gss %>%
+gss16 <- dsbox::gss16 %>%
   mutate(email = emailmin + (emailhr * 60))
 ```
 
 ```{r setup-snap-insta-var}
-gss <- dsbox::gss %>%
+gss16 <- dsbox::gss16 %>%
   mutate(snap_insta = if_else(snapchat == "Yes" | instagrm == "Yes",
     "Yes", "No"
   ))
 ```
 
 ```{r setup-snap-insta-email-vars}
-gss <- dsbox::gss %>%
+gss16 <- dsbox::gss16 %>%
   mutate(
     email = emailmin + (emailhr * 60),
     snap_insta = if_else(snapchat == "Yes" | instagrm == "Yes",
@@ -59,30 +56,37 @@ gss <- dsbox::gss %>%
 ```
 
 ```{r setup-email-lm}
-gss <- dsbox::gss %>%
+gss16 <- dsbox::gss16 %>%
   mutate(
     email = emailmin + (emailhr * 60),
     snap_insta = if_else(snapchat == "Yes" | instagrm == "Yes",
       "Yes", "No"
     )
   )
-m <- lm(email ~ educ + wrkstat + snap_insta, data = gss)
+
+email_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(email ~ educ + wrkstat + snap_insta, data = gss16)
 ```
 
 ```{r setup-augmented-email-lm}
-gss <- dsbox::gss %>%
+gss16 <- dsbox::gss16 %>%
   mutate(
     email = emailmin + (emailhr * 60),
     snap_insta = if_else(snapchat == "Yes" | instagrm == "Yes",
       "Yes", "No"
     )
   )
-m <- lm(email ~ educ + wrkstat + snap_insta, data = gss)
-m_aug <- augment(m)
+
+email_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(email ~ educ + wrkstat + snap_insta, data = gss16)
+
+email_aug <- augment(email_fit$fit)
 ```
 
 ```{r setup-advfront2-polviews2-vars}
-gss <- dsbox::gss %>%
+gss16 <- dsbox::gss16 %>%
   mutate(
     advfront2 = case_when(
       advfront %in% c("Strongly agree", "Agree") ~ "Yes",
@@ -100,8 +104,8 @@ gss <- dsbox::gss %>%
 
 ## Introduction
 
-```{r title-img, fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.cap="Photo by Benny Jackson on Unsplash"}
-knitr::include_graphics("images/07-tutorial.jpg")
+```{r title-img, fig.margin = TRUE, echo = FALSE, out.width = "100%", fig.cap = "Photo by mauro mora on Unsplash"}
+knitr::include_graphics("images/mauro-mora-31-pOduwZGE-unsplash.jpg")
 ```
 
 The General Social Survey (GSS) gathers data on contemporary American society in order to monitor and explain trends and constants in attitudes, behaviors, and attributes. 
@@ -126,13 +130,13 @@ You can load them with the following code block:
 
 ```{r load-packages, exercise=TRUE}
 library(tidyverse)
-library(broom)
+library(tidymodels)
 library(dsbox)
 ```
 
 ```{r load-packages-solution}
 library(tidyverse)
-library(broom)
+library(tidymodels)
 library(dsbox)
 ```
 
@@ -144,7 +148,7 @@ grade_code("The packages we'll be working with are now loaded.")
 
 In this tutorial, we will work with the 2016 GSS data.
 
-The data are available as part of the **dsbox** package we just loaded; the data frame is called `gss`.
+The data are available as part of the **dsbox** package we just loaded; the data frame is called `gss16`.
 
 
 ### Data Dictionary
@@ -179,12 +183,13 @@ Use the following code block to count the number of possible values for `harass5
 
 ```{r harass5-answers-quiz}
 question("What are the possible responses to the question?",
-         answer("Yes, No"),
-         answer("Yes, No, Does not apply"),
-         answer("Yes, No, NA, Unsure"),
-         answer("Yes, No, NA, Does not apply",
-                correct = TRUE),
-         random_answer_order = TRUE
+  answer("Yes, No"),
+  answer("Yes, No, Does not apply"),
+  answer("Yes, No, NA, Unsure"),
+  answer("Yes, No, NA, Does not apply",
+    correct = TRUE
+  ),
+  random_answer_order = TRUE
 )
 ```
 
@@ -197,19 +202,19 @@ Next, use this code block to determine how many respondents answered "Yes" to th
 ```
 
 ```{r harass5-yes-hint-1}
-gss %>%
+gss16 %>%
   filter(___) %>%
   ___
 ```
 
 ```{r harass5-yes-hint-2}
-gss %>%
+gss16 %>%
   filter(harass5 == "Yes") %>%
   ___
 ```
 
 ```{r harass5-yes-hint-3}
-gss %>%
+gss16 %>%
   filter(harass5 == "Yes") %>%
   nrow()
 ```
@@ -218,7 +223,7 @@ gss %>%
 grade_result(
   pass_if(~ (identical(.result, 237) | identical(.result, 237L)), "237 people answered 'Yes' to the question."),
   fail_if(~ (identical(.result, 1136) | identical(.result, 1136L)), "Did you accidentally count the number of 'No' responses?"),
-  fail_if(~ TRUE, "Not quite. Try looking at the hints now if you need help.")
+  fail_if(~TRUE, "Not quite. Try looking at the hints now if you need help.")
 )
 ```
 
@@ -234,29 +239,29 @@ For example, if the response is 2.5 hrs, this would be recorded as `emailhr = 2`
 Using the following code block, create a new variable called `email` that combines these two variables to report the number of minutes the respondents spend on email weekly.
 
 ```{r email-variable, exercise=TRUE}
-gss <- gss %>%
+gss16 <- gss16 %>%
   ___
 ```
 
 ```{r email-variable-hint-1}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(___)
 ```
 
 ```{r email-variable-hint-2}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(email = ___)
 ```
 
 ```{r email-variable-solution}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(email = emailmin + (emailhr * 60))
 ```
 
 ```{r email-variable-check}
 grade_result(
-  pass_if(~ identical(as.character(.result[1,10]), "720"), "Well done!"),
-  fail_if(~ TRUE, "Not quite. Try looking at the hints for the previous exercise.")
+  pass_if(~ identical(as.character(.result[1, 10]), "720"), "Well done!"),
+  fail_if(~TRUE, "Not quite. Try looking at the hints for the previous exercise.")
 )
 ```
 
@@ -282,14 +287,14 @@ Remember - you'll need to remove the NA values.
 ```
 
 ```{r mean-median-email-hint-2}
-gss %>%
+gss16 %>%
   summarise(
     mean = mean(___)
   )
 ```
 
 ```{r mean-median-email-hint-3}
-gss %>%
+gss16 %>%
   summarise(
     mean = mean(email, na.rm = ___),
     ___
@@ -309,7 +314,7 @@ grade_result(
   fail_if(~ identical(as.numeric(.result), 416.8423), "Good, but please round this to the nearest whole minute."),
   fail_if(~ (as.numeric(.result) > 416) & (as.numeric(.result) < 417), "Did you forget to round your result to the nearest whole minute?"),
   fail_if(~ (identical(as.numeric(.result), 416) | (identical(as.numeric(.result), 416L))), "Good, but check your rounding."),
-  fail_if(~ TRUE, "Not quite. Try looking at the hints for the previous exercise.")
+  fail_if(~TRUE, "Not quite. Try looking at the hints for the previous exercise.")
 )
 ```
 
@@ -323,7 +328,7 @@ Enter the answer into the following block to the nearest minute:
 ```{r median-email-check}
 grade_result(
   pass_if(~ (identical(.result, 120) | (identical(.result, 120L))), "The median number of minutes spent on email per week is 120 mins."),
-  fail_if(~ TRUE, "Not quite. Try looking at the hints for the previous exercise.")
+  fail_if(~TRUE, "Not quite. Try looking at the hints for the previous exercise.")
 )
 ```
 
@@ -332,12 +337,15 @@ grade_result(
 Based on the shape of the distribution of the `email` variable, which of the mean and median is a better measure of the typical amount of time Americans spend on email weekly?
 
 ```{r mean-or-median-email}
-question("Is the mean or the median more suitable?",
-         answer("Mean",
-                message = "Since the distribution is skewed, we need a measure that is resistant to outliers - i.e. the median."),
-         answer("Median",
-                correct = TRUE,
-                message = "Fab! The distribution is skewed and so we use the median as it is resistant to outliers.")
+question(
+  "Is the mean or the median more suitable?",
+  answer("Mean",
+    message = "Since the distribution is skewed, we need a measure that is resistant to outliers - i.e. the median."
+  ),
+  answer("Median",
+    correct = TRUE,
+    message = "Fab! The distribution is skewed and so we use the median as it is resistant to outliers."
+  )
 )
 ```
 
@@ -347,29 +355,29 @@ Create another new variable, `snap_insta` that is coded as “Yes” if the resp
 If the recorded value was `NA` for both of these questions, the value in your new variable should also be `NA`.
 
 ```{r snap-insta-var, exercise=TRUE}
-gss <- gss %>%
+gss16 <- gss16 %>%
   ___
 ```
 
 ```{r snap-insta-var-hint-1}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(___)
 ```
 
 ```{r snap-insta-var-hint-2}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(snap_insta = if_else(___))
 ```
 
 ```{r snap-insta-var-hint-3}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(snap_insta = if_else(snapchat == "Yes" ___ instagrm == "Yes",
     ___, ___
   ))
 ```
 
 ```{r snap-insta-var-solution}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(snap_insta = if_else(snapchat == "Yes" | instagrm == "Yes",
     "Yes", "No"
   ))
@@ -394,14 +402,14 @@ Now, count how many respondents fall into each category of possible values for t
 ```
 
 ```{r count-snap-insta-hint-1}
-gss %>%
+gss16 %>%
   count(___)
 ```
 
 ```{r count-snap-insta-check}
 grade_result(
-  pass_if(~ identical(as.numeric(.result[1,2]), 858), "You have counted the responses correctly."),
-  fail_if(~ TRUE, "Not quite. Try taking a look at the hint.")
+  pass_if(~ identical(as.numeric(.result[1, 2]), 858), "You have counted the responses correctly."),
+  fail_if(~TRUE, "Not quite. Try taking a look at the hint.")
 )
 ```
 
@@ -419,53 +427,68 @@ Note that this information is stored in the `wrkstat` variable.
 ```
 
 ```{r count-wrkstat-hint-1}
-gss %>%
+gss16 %>%
   count(___)
 ```
 
 ```{r count-wrkstat-check}
 grade_result(
-  pass_if(~ identical(as.numeric(.result[1,2]), 284), "You have counted the responses correctly."),
-  fail_if(~ identical(as.numeric(.result[1,2]), 1321), "Good, but there is no need to sort the data."),
-  fail_if(~ identical(as.numeric(.result[1,2]), 3), "Good, but there is no need to sort the data."),
-  fail_if(~ TRUE, "Not quite. Try taking a look at the hint.")
+  pass_if(~ identical(as.numeric(.result[1, 2]), 284), "You have counted the responses correctly."),
+  fail_if(~ identical(as.numeric(.result[1, 2]), 1321), "Good, but there is no need to sort the data."),
+  fail_if(~ identical(as.numeric(.result[1, 2]), 3), "Good, but there is no need to sort the data."),
+  fail_if(~TRUE, "Not quite. Try taking a look at the hint.")
 )
 ```
 
 ## Modelling
 
 Fit a model predicting email (number of minutes per week spent on email) from `educ` (number of years of education), `wrkstat`, and `snap_insta`.
-Having created the model, we'll use the `tidy()` function from the `broom` package to view the attributes of the model in a more, well, *tidy* way.
+Having created the model, we'll use the `tidy()` function from the `tidymodels` package to view the attributes of the model in a more, well, *tidy* way.
 
 ```{r email-lm, exercise = TRUE, exercise.setup = "setup-snap-insta-email-vars"}
-m <- ___(___)
-tidy(m)
+email_fit <- linear_reg() %>%
+  set_engine("___") %>%
+  fit(___ ~ ___, data = ___)
+
+tidy(email_fit)
 ```
 
 ```{r email-lm-hint-1}
-m <- lm(___ ~ ___, ___)
-tidy(m)
+email_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(___ ~ ___, data = ___)
+
+tidy(email_fit)
 ```
 
 ```{r email-lm-hint-2}
-m <- lm(email ~ ___, data = ___)
-tidy(m)
+email_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(email ~ ___, data = ___)
+
+tidy(email_fit)
 ```
 
 ```{r email-lm-hint-3}
-m <- lm(email ~ educ + wrkstat + snap_insta, data = ___)
-tidy(m)
+email_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(email ~ educ + wrkstat + snap_insta, data = ___)
+
+tidy(email_fit)
 ```
 
 ```{r email-lm-solution}
-m <- lm(email ~ educ + wrkstat + snap_insta, data = gss)
-tidy(m)
+email_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(email ~ educ + wrkstat + snap_insta, data = gss16)
+
+tidy(email_fit)
 ```
 
 ```{r email-lm-check}
 grade_result(
-  pass_if(~ (identical(as.numeric(floor(.result[1,2])), -230) & identical(as.numeric(round(.result[1, 5], digits = 3)), 0.126)), "You have created the desired model correctly."),
-  fail_if(~ TRUE, "Not quite. Try taking a look at the hints for constructing the model.")
+  pass_if(~ (identical(as.numeric(floor(.result[1, 2])), -230) & identical(as.numeric(round(.result[1, 5], digits = 3)), 0.126)), "You have created the desired model correctly."),
+  fail_if(~TRUE, "Not quite. Try taking a look at the hints for constructing the model.")
 )
 ```
 
@@ -473,28 +496,28 @@ grade_result(
 
 ```{r email-lm-interpret}
 question("Which is the correct interpretation for the `estimate` of the `educ` parameter?",
-         answer("For each additional year spent in education, the weekly time spent on email is expected to be longer, on average, by 29.6 minutes.", correct = TRUE),
-         answer("For each additional year spent in education, the weekly time spent on email is longer for all respondants by 29.6 minutes."),
-         answer("An additional year spent in education causes you to spend 29.6 minutes more per week on email."),
-         answer("For each additional 29.6 minutes spent on email, the time spent in education is expected to be greater, on average, by one year."),
-         allow_retry = TRUE,
-         random_answer_order = TRUE
+  answer("For each additional year spent in education, the weekly time spent on email is expected to be longer, on average, by 29.6 minutes.", correct = TRUE),
+  answer("For each additional year spent in education, the weekly time spent on email is longer for all respondants by 29.6 minutes."),
+  answer("An additional year spent in education causes you to spend 29.6 minutes more per week on email."),
+  answer("For each additional 29.6 minutes spent on email, the time spent in education is expected to be greater, on average, by one year."),
+  allow_retry = TRUE,
+  random_answer_order = TRUE
 )
 ```
 
 ### Residual Plot
 
 To test the suitability of a linear model, we create a residual plot showing the residuals against fitted values for the model and data.
-To help with this, we use the `augment()` function, also from the `broom` package.
+To help with this, we use the `augment()` function, also from the `tidymodels` package.
 
 First, create the augmented dataset:
 
 ```{r augment-email-lm, exercise = TRUE, exercise.setup = "setup-email-lm"}
-m_aug <- ___
+email_aug <- ___
 ```
 
 ```{r augment-email-lm-solution}
-m_aug <- augment(m)
+email_aug <- augment(email_fit$fit)
 ```
 
 ```{r augment-email-lm-check, warning = FALSE}
@@ -511,22 +534,22 @@ ggplot(___) +
 ```
 
 ```{r residual-plot-hint-1}
-ggplot(data = m_aug, ___) +
+ggplot(data = email_aug, ___) +
   ___
 ```
 
 ```{r residual-plot-hint-2}
-ggplot(data = m_aug, mapping = aes(x = ___, y =  ___)) +
+ggplot(data = email_aug, aes(x = ___, y =  ___)) +
   ___
 ```
 
 ```{r residual-plot-hint-3}
-ggplot(data = m_aug, mapping = aes(x = .fitted, y =  .resid)) +
+ggplot(data = email_aug, aes(x = .fitted, y =  .resid)) +
   ___
 ```
 
 ```{r residual-plot-solution}
-ggplot(data = m_aug, mapping = aes(x = .fitted, y = .resid)) +
+ggplot(data = email_aug, aes(x = .fitted, y = .resid)) +
   geom_point()
 ```
 
@@ -561,19 +584,19 @@ In a new variable - call it `advfront2` - recode `advfront` such that Strongly a
 The remaining levels can be left as is. 
 
 ```{r advfront2-var, exercise = TRUE}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(___)
 ```
 
 ```{r advfront2-var-hint-1}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(
     advfront2 = case_when(___)
   )
 ```
 
 ```{r advfront2-var-hint-2}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(
     advfront2 = case_when(
       advfront %in% c(___) ~ "Yes",
@@ -583,7 +606,7 @@ gss <- gss %>%
 ```
 
 ```{r advfront2-var-hint-3}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(
     advfront2 = case_when(
       advfront %in% c("Strongly agree", "Agree") ~ "Yes",
@@ -593,7 +616,7 @@ gss <- gss %>%
 ```
 
 ```{r advfront2-var-solution}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(
     advfront2 = case_when(
       advfront %in% c("Strongly agree", "Agree") ~ "Yes",
@@ -622,12 +645,12 @@ Arrange the levels so they are in the order "Conservative", "Moderate", "Liberal
 Don’t overwrite the existing polviews, instead, let's call the new variable `polviews2`.
 
 ```{r polviews2-var, exercise = TRUE}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(___)
 ```
 
 ```{r polviews2-var-hint-1}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(
     polviews2 = case_when(___),
     polviews2 = ___
@@ -635,7 +658,7 @@ gss <- gss %>%
 ```
 
 ```{r polviews2-var-hint-2}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(
     polviews2 = case_when(
       polviews %in% c(___) ~ "Liberal",
@@ -646,7 +669,7 @@ gss <- gss %>%
 ```
 
 ```{r polviews2-var-hint-3}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(
     polviews2 = case_when(
       polviews %in% c("Extremely liberal", "Liberal", "Slightly liberal") ~ "Liberal",
@@ -657,7 +680,7 @@ gss <- gss %>%
 ```
 
 ```{r polviews2-var-solution}
-gss <- gss %>%
+gss16 <- gss16 %>%
   mutate(
     polviews2 = case_when(
       polviews %in% c("Extremely liberal", "Liberal", "Slightly liberal") ~ "Liberal",
@@ -691,35 +714,35 @@ For the final exercise in this tutorial, create a visualization that displays th
 You'll need to remove all `NA` values from both variables, and the particular visualisation we're going to create is a filled bar plot.
 
 ```{r final-plot, exercise = TRUE, exercise.setup = "setup-advfront2-polviews2-vars"}
-gss %>%
+gss16 %>%
   filter(___) %>%
   ggplot(mapping = aes(___)) +
   geom___(___)
 ```
 
 ```{r final-plot-hint-1}
-gss %>%
+gss16 %>%
   filter(!is.na(___), !is.na(___)) %>%
   ggplot(mapping = aes(___)) +
   geom___(___)
 ```
 
 ```{r final-plot-hint-2}
-gss %>%
+gss16 %>%
   filter(!is.na(polviews2), !is.na(advfront2)) %>%
   ggplot(mapping = aes(x = ___, fill = ___)) +
   geom___(___)
 ```
 
 ```{r final-plot-hint-3}
-gss %>%
+gss16 %>%
   filter(!is.na(polviews2), !is.na(advfront2)) %>%
   ggplot(aes(x = polviews2, fill = advfront2)) +
   geom___(___)
 ```
 
 ```{r final-plot-solution}
-gss %>%
+gss16 %>%
   filter(!is.na(polviews2), !is.na(advfront2)) %>%
   ggplot(aes(x = polviews2, fill = advfront2)) +
   geom_bar(position = "fill")
