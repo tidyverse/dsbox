@@ -25,11 +25,8 @@ library(dsbox)
 
 # set options for exercises and checking ---------------------------------------
 
-tutorial_options(
-  exercise.timelimit = 60, 
-  exercise.checker = gradethis::grade_learnr,
-  exercise.error.check.code = gradethis::grade_learnr_error
-  )
+gradethis_setup()
+
 
 # hide non-exercise code chunks ------------------------------------------------
 

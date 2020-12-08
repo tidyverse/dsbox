@@ -23,11 +23,9 @@ library(tidymodels)
 library(dsbox)
 
 # set options for exercises and checking ---------------------------------------
-gradethis_setup(
-  exercise.timelimit = 60,
-  exercise.checker = grade_learnr,
-  exercise.error.check.code = "grade_code()"
-)
+
+gradethis_setup()
+
 
 # hide non-exercise code chunks ------------------------------------------------
 knitr::opts_chunk$set(echo = FALSE)

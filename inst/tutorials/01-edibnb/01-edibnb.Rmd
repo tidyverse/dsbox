@@ -23,11 +23,7 @@ library(dsbox)
 
 # set options for exercises and checking ---------------------------------------
 
-tutorial_options(
-  exercise.timelimit = 60, 
-  exercise.checker = gradethis::grade_learnr,
-  exercise.error.check.code = gradethis::grade_learnr_error
-  )
+gradethis_setup()
 
 # hide non-exercise code chunks ------------------------------------------------
 
@@ -96,7 +92,7 @@ question("What does each row in the `edibnb` dataset represent?",
 
 ### Number of observations
 
-How many observations (rows) does the dataset have? Use the following code block to find out.
+How many Airbnb listings are included in this dataset? Use the following code block to find out.
 
 ```{r edibnb-nrow, exercise=TRUE}
 
@@ -110,7 +106,7 @@ nrow(___)
 grade_result(
   pass_if(~ (identical(.result, 13245) | (identical(.result, 13245L))), "There are 13245 observations in the dataset."),
   fail_if(~ (identical(.result, 10) | (identical(.result, 10L))), "Each observation is represented in one row. Did you calculate the number of columns instead of rows?"),
-  fail_if(~ TRUE, "Not quite. Each observation is represented in one row. Can you remember which function we use to calculate the **n**umber of **row**s?")
+  fail_if(~ TRUE, "Not quite. Each observation is represented in one row. Can you remember which function we use to calculate the number of rows?")
 )
 ```
 
@@ -139,7 +135,6 @@ The variables and their descriptions are given below:
 
 
 ## Data visualisation
-
 
 ### Building a histogram
 
