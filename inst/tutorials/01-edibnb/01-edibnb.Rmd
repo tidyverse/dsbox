@@ -106,9 +106,9 @@ nrow(___)
 grade_this({
   if(identical(.result, 13245) | identical(.result, 13245L)) {
     pass("There are 13245 observations in the dataset.")
-    }
-  if(identical(.result, 10) | identical(.result, 10L)) { 
-    fail("Each observation is represented in one row. Did you calculate the number of columns instead of rows?")
+  }
+  if(identical(.result, 10) | identical(.result , 10L)) {
+    fail("There are 13245 observations in the dataset.")
   }
   fail("Not quite. Each observation is represented in one row. Can you remember which function we use to calculate the number of rows?")
 })
