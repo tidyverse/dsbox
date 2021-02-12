@@ -139,7 +139,7 @@ library(dsbox)
 ```
 
 ```{r load-packages-check}
-grade_code("The packages we'll be working with are now loaded.")
+grade_this_code("The packages we'll be working with are now loaded.")
 ```
 
 ## Data
@@ -218,11 +218,15 @@ gss16 %>%
 ```
 
 ```{r harass5-yes-check}
-grade_result(
-  pass_if(~ (identical(.result, 237) | identical(.result, 237L)), "237 people answered 'Yes' to the question."),
-  fail_if(~ (identical(.result, 1136) | identical(.result, 1136L)), "Did you accidentally count the number of 'No' responses?"),
-  fail_if(~TRUE, "Not quite. Try looking at the hints now if you need help.")
-)
+grade_this({
+  if(identical(.result, 237) | identical(.result, 237L)) {
+    pass("237 people answered 'Yes' to the question.")
+  }
+  if(identical(.result, 1136) | identical(.result, 1136L)) {
+    fail("Did you accidentally count the number of 'No' responses?")
+  }
+  fail("Not quite. Try looking at the hints now if you need help.")
+})
 ```
 
 
@@ -257,10 +261,12 @@ gss16 <- gss16 %>%
 ```
 
 ```{r email-variable-check}
-grade_result(
-  pass_if(~ identical(as.character(.result[1, 10]), "720"), "Well done!"),
-  fail_if(~TRUE, "Not quite. Try looking at the hints for the previous exercise.")
-)
+grade_this({
+  if(identical(as.character(.result[1, 10]), "720")) {
+    pass("Well done!")
+  }
+  fail("Not quite. Try looking at the hints for the previous exercise.")
+})
 ```
 
 ### Visualising the email variable
@@ -307,13 +313,21 @@ Enter the answer into the following block to the nearest minute:
 ```
 
 ```{r mean-email-check}
-grade_result(
-  pass_if(~ (identical(as.numeric(.result), 417) | (identical(as.numeric(.result), 417L))), "The mean number of minutes spent on email per week is 417 mins."),
-  fail_if(~ identical(as.numeric(.result), 416.8423), "Good, but please round this to the nearest whole minute."),
-  fail_if(~ (as.numeric(.result) > 416) & (as.numeric(.result) < 417), "Did you forget to round your result to the nearest whole minute?"),
-  fail_if(~ (identical(as.numeric(.result), 416) | (identical(as.numeric(.result), 416L))), "Good, but check your rounding."),
-  fail_if(~TRUE, "Not quite. Try looking at the hints for the previous exercise.")
-)
+grade_this({
+  if(identical(as.numeric(.result), 417) | identical(as.numeric(.result), 417L)) {
+    pass("The mean number of minutes spent on email per week is 417 mins.")
+  }
+  if(identical(as.numeric(.result), 416.8423)) {
+    fail("Good, but please round this to the nearest whole minute.")
+  }
+  if((as.numeric(.result) > 416) & (as.numeric(.result) < 417)) {
+    fail("Did you forget to round your result to the nearest whole minute?")
+  }
+  if(identical(as.numeric(.result), 416) | identical(as.numeric(.result), 416L)) {
+    fail("Good, but check your rounding.")
+  }
+  fail("Not quite. Try looking at the hints for the previous exercise.")
+})
 ```
 
 What is the **median** number of minutes spend on email weekly?
@@ -324,10 +338,12 @@ Enter the answer into the following block to the nearest minute:
 ```
 
 ```{r median-email-check}
-grade_result(
-  pass_if(~ (identical(.result, 120) | (identical(.result, 120L))), "The median number of minutes spent on email per week is 120 mins."),
-  fail_if(~TRUE, "Not quite. Try looking at the hints for the previous exercise.")
-)
+grade_this({
+  if(identical(.result, 120) | identical(.result, 120L)) {
+    pass("The median number of minutes spent on email per week is 120 mins.")
+  }
+  fail("Not quite. Try looking at the hints for the previous exercise.")
+})
 ```
 
 ### Which is better?
@@ -405,10 +421,12 @@ gss16 %>%
 ```
 
 ```{r count-snap-insta-check}
-grade_result(
-  pass_if(~ identical(as.numeric(.result[1, 2]), 858), "You have counted the responses correctly."),
-  fail_if(~TRUE, "Not quite. Try taking a look at the hint.")
-)
+grade_this({
+  if(identical(as.numeric(.result[1, 2]), 858)) {
+    pass("You have counted the responses correctly.")
+  }
+  fail("Not quite. Try taking a look at the hint.")
+})
 ```
 
 ### Employment Status
@@ -430,12 +448,18 @@ gss16 %>%
 ```
 
 ```{r count-wrkstat-check}
-grade_result(
-  pass_if(~ identical(as.numeric(.result[1, 2]), 284), "You have counted the responses correctly."),
-  fail_if(~ identical(as.numeric(.result[1, 2]), 1321), "Good, but there is no need to sort the data."),
-  fail_if(~ identical(as.numeric(.result[1, 2]), 3), "Good, but there is no need to sort the data."),
-  fail_if(~TRUE, "Not quite. Try taking a look at the hint.")
-)
+grade_this({
+  if(identical(as.numeric(.result[1, 2]), 284)) {
+    pass("You have counted the responses correctly.")
+  }
+  if(identical(as.numeric(.result[1, 2]), 1321)) {
+    fail("Good, but there is no need to sort the data.")
+  }
+  if(identical(as.numeric(.result[1, 2]), 3)){
+    fail("Good, but there is no need to sort the data.")
+  }
+  fail("Not quite. Try taking a look at the hint.")
+})
 ```
 
 ## Modelling
@@ -484,10 +508,12 @@ tidy(email_fit)
 ```
 
 ```{r email-lm-check}
-grade_result(
-  pass_if(~ (identical(as.numeric(floor(.result[1, 2])), -230) & identical(as.numeric(round(.result[1, 5], digits = 3)), 0.126)), "You have created the desired model correctly."),
-  fail_if(~TRUE, "Not quite. Try taking a look at the hints for constructing the model.")
-)
+grade_this({
+  if(identical(as.numeric(floor(.result[1, 2])), -230) & identical(as.numeric(round(.result[1, 5], digits = 3)), 0.126)) {
+    pass("You have created the desired model correctly.")
+  }
+  fail("Not quite. Try taking a look at the hints for constructing the model.")
+})
 ```
 
 ### Interpreting the model
@@ -552,7 +578,7 @@ ggplot(data = email_aug, aes(x = .fitted, y = .resid)) +
 ```
 
 ```{r residual-plot-check}
-grade_code("Good job creating the residual plot.")
+grade_this_code("Good job creating the residual plot.")
 ```
 
 
@@ -747,7 +773,7 @@ gss16 %>%
 ```
 
 ```{r final-plot-check}
-grade_code("You've successfuly created the required visualisation.")
+grade_this_code("You've successfuly created the required visualisation.")
 ```
 
 ### Improving your visualisation

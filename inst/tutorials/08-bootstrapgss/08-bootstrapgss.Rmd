@@ -100,7 +100,7 @@ library(dsbox)
 ```
 
 ```{r load-packages-check}
-grade_code("You've successfully loaded the packages.")
+grade_this_code("You've successfully loaded the packages.")
 ```
 
 ## Data
@@ -154,7 +154,7 @@ gss16 <- gss16 %>%
 ```
 
 ```{r email-variable-check}
-grade_code("You've successfully created the `email` variable.")
+grade_this_code("You've successfully created the `email` variable.")
 ```
 
 ### Filter the data
@@ -183,7 +183,7 @@ gss16_email <- gss16 %>%
 ```
 
 ```{r filter-email-check}
-grade_code("You've successfully filtered the data.")
+grade_this_code("You've successfully filtered the data.")
 ```
 
 ### Bootstrap confidence intervals
@@ -209,7 +209,7 @@ set.seed(1234)
 ```
 
 ```{r set-seed-check}
-grade_code("You've set the seed ready for bootstrapping.")
+grade_this_code("You've set the seed ready for bootstrapping.")
 ```
 
 ### Creating the data frame
@@ -254,7 +254,7 @@ boot_df <- gss16_email %>%
 ```
 
 ```{r create-boot-df-check}
-grade_code("That's you created the bootstrap data frame.")
+grade_this_code("That's you created the bootstrap data frame.")
 ```
 
 ### Glimpse the bootstrapped data frame
@@ -308,11 +308,15 @@ boot_df %>%
 ```
 
 ```{r confidence-interval-email-check}
-grade_result(
-  pass_if(~ (identical(floor(as.numeric(.result$lower[1])), 385) & identical(floor(as.numeric(.result$upper[1])), 452)), "That is a 95% confidence interval for mean weekly time spent on email."),
-  fail_if(~ (identical(floor(as.numeric(.result$lower[1])), 389) & identical(floor(as.numeric(.result$upper[1])), 444)), "It looks like you've calculated a 90% confidence interval. Remember that to pick out hte central 95% of the distribution, we need to discard the most extreme 2.5% at each side."),
-  fail_if(~ TRUE, "Not quite. Take a look at the hints if you need some help.")
-)
+grade_this({
+  if(identical(floor(as.numeric(.result$lower[1])), 385) & identical(floor(as.numeric(.result$upper[1])), 452)) {
+    pass("That is a 95% confidence interval for mean weekly time spent on email.")
+  }
+  if(identical(floor(as.numeric(.result$lower[1])), 389) & identical(floor(as.numeric(.result$upper[1])), 444)) {
+    fail("It looks like you've calculated a 90% confidence interval. Remember that to pick out hte central 95% of the distribution, we need to discard the most extreme 2.5% at each side.")
+  }
+  fail("Not quite. Take a look at the hints if you need some help.")
+})
 ```
 
 Would you expect a 99% confidence interval to be wider or narrower than the interval you calculated above?
@@ -364,11 +368,15 @@ boot_df %>%
 ```
 
 ```{r confidence-99-email-check}
-grade_result(
-  pass_if(~ (identical(floor(as.numeric(.result$lower[1])), 375) & identical(floor(as.numeric(.result$upper[1])), 465)), "You have calculated the 99% confidence interval correctly!"),
-  fail_if(~ (identical(floor(as.numeric(.result$lower[1])), 378) & identical(floor(as.numeric(.result$upper[1])), 460)), "It looks like you've calculated a 98% confidence interval. Remember that to pick out hte central 99% of the distribution, we need to discard the most extreme 0.5% at each side."),
-  fail_if(~TRUE, "Not quite. Take a look at the hints if you need some help.")
-)
+grade_this({
+  if(identical(floor(as.numeric(.result$lower[1])), 375) & identical(floor(as.numeric(.result$upper[1])), 465)) {
+    pass("You have calculated the 99% confidence interval correctly!")
+  }
+  if(identical(floor(as.numeric(.result$lower[1])), 378) & identical(floor(as.numeric(.result$upper[1])), 460)) {
+    fail("It looks like you've calculated a 98% confidence interval. Remember that to pick out hte central 99% of the distribution, we need to discard the most extreme 0.5% at each side.")
+  }
+  fail("Not quite. Take a look at the hints if you need some help.")
+})
 ```
 
 ### Bootstrapping the median
@@ -408,7 +416,7 @@ boot_df_median <- gss16_email %>%
 ```
 
 ```{r create-boot-df-median-check}
-grade_code("You have created a new bootstrapped data frame!")
+grade_this_code("You have created a new bootstrapped data frame!")
 ```
 
 Now, calculate the 90% confidence interval for the median amount of time spent on email.
@@ -442,10 +450,12 @@ boot_df_median %>%
 ```
 
 ```{r confidence-90-median-check}
-grade_result(
-  pass_if(~ (identical(as.numeric(.result$lower[1]), 120)) & identical(as.numeric(.result$upper[1]), 120), "You have calculated the 90% confidence interval correctly!"),
-  fail_if(~TRUE, "Not quite. Take a look at the hints if you need some help.")
-)
+grade_this({
+  if(identical(as.numeric(.result$lower[1]), 120)) & identical(as.numeric(.result$upper[1]), 120)) {
+  pass("You have calculated the 90% confidence interval correctly!")
+}
+  fail("Not quite. Take a look at the hints if you need some help.")
+})
 ```
 
 Based on your findings, answer the following question:
