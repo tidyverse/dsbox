@@ -103,11 +103,15 @@ nrow(___)
 ```
 
 ```{r edibnb-nrow-check}
-grade_result(
-  pass_if(~ (identical(.result, 13245) | (identical(.result, 13245L))), "There are 13245 observations in the dataset."),
-  fail_if(~ (identical(.result, 10) | (identical(.result, 10L))), "Each observation is represented in one row. Did you calculate the number of columns instead of rows?"),
-  fail_if(~ TRUE, "Not quite. Each observation is represented in one row. Can you remember which function we use to calculate the number of rows?")
-)
+grade_this({
+  if(identical(.result, 13245) | identical(.result, 13245L)) {
+    pass("There are 13245 observations in the dataset.")
+  }
+  if(identical(.result, 10) | identical(.result , 10L)) {
+    fail("There are 13245 observations in the dataset.")
+  }
+  fail("Not quite. Each observation is represented in one row. Can you remember which function we use to calculate the number of rows?")
+})
 ```
 
 ### Examining further
@@ -172,7 +176,7 @@ ggplot(data = edibnb, mapping = aes(x = price)) +
 ```
 
 ```{r price-histogram-check}
-grade_code("And note that there are a couple warnings, we'll get to those in a bit.")
+grade_this_code("And note that there are a couple warnings, we'll get to those in a bit.")
 ```
 
 
@@ -259,7 +263,7 @@ ggplot(data = edibnb, mapping = aes(x = price)) +
 ```
 
 ```{r faceted-histo-check}
-grade_code("You've successfully created a faceted histogram.")
+grade_this_code("You've successfully created a faceted histogram.")
 ```
 
 ### What do the warnings mean?
@@ -307,12 +311,18 @@ What is a reasonable value for the `binwidth` parameter? Put your answer in the 
 ```
 
 ```{r reasonable-binwidth-check}
-grade_result(
-  pass_if(~ (.result >= 20 & .result <= 100), "That's a suitable binwidth."),
-  fail_if(~ (.result < 20), "That binwidth seems quite small. See how narrow the bins are using that width."),
-  fail_if(~ (.result > 100), "That binwidth seems quite large. See how wide the bins are using that width."),
-  fail_if(~ TRUE, "Invalid binwidth.")
-)
+grade_this({
+  if(.result >= 20 & .result <= 100) {
+    pass("That's a suitable binwidth")
+    }
+  if(.result < 20) {
+    fail("That binwidth seems quite small. See how narrow the bins are using that width.")
+  }
+  if(.result > 100) {
+    fail("That binwidth seems quite large. See how wide the bins are using that width.")
+  }
+  fail("Invalid binwidth.")
+})
 ```
 
 
@@ -354,7 +364,7 @@ ggplot(data = edibnb, mapping = aes(x = review_scores_rating)) +
 ```
 
 ```{r reviews-histogram-check}
-grade_code("Your solution is correct!")
+grade_this_code("Your solution is correct!")
 ```
 
 ### Popular neighbourhoods
@@ -370,10 +380,12 @@ Did you forget to add the quotation marks?
 ```
 
 ```{r ratings-neighbourhood-check}
-grade_result(
-  pass_if(~ (identical(tolower(.result), "leith")), "Leith has the highest number of perfect ratings."),
-  fail_if(~ TRUE, "Not quite. Try looking at the height of the bars and the labels of the x-axis.")
-)
+grade_this({
+  if(identical(tolower(.result), "leith")) {
+    pass("Leith has the highest number of perfect ratings.")
+  }
+  fail("Not quite. Try looking at the height of the bars and the labels of the x-axis.")
+})
 ```
 
 ```{r reviews-quiz}
