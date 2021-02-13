@@ -348,7 +348,7 @@ lego_sales %>%
 ```
 
 ```{r count-ages-check}
-grade_result({
+grade_this({
   if(identical(as.character(.result[1,1]), "36 - 50")) { 
     pass("You have successfully determined the most common age group.")
   }
@@ -427,7 +427,7 @@ lego_sales %>%
 ```
 
 ```{r sales-by-group-check}
-grade_result({
+grade_this({
   if(identical(as.character(.result[1,1]), "36 - 50")) {
     pass("Your solution is correct!")
   }
@@ -515,7 +515,7 @@ lego_sales %>%
 ```
 
 ```{r age-group-money-check}
-grade_result({
+grade_this({
   if(identical(as.character(.result[1,1]), "36 - 50")) {
     pass("Your solution is correct!")
   }

@@ -1198,10 +1198,12 @@ glance(___)$___
 ```
 
 ```{r remove-windraw-check}
-grade_this(
-   pass_if(~ identical(as.numeric(round(.result, digits = 4)), 0.8106), "You have fit the model correctly"),
-   fail_if(~ TRUE, "Not quite. Did you use the full model as your starting point?")
- )
+grade_this({
+  if(identical(as.numeric(round(.result, digits = 4)), 0.8106)) {
+    pass("You have fit the model correctly")
+  }
+   fail("Not quite. Did you use the full model as your starting point?")
+})
 ```
 
 Last, remove the interaction effect between `holiday` and `feeling_temperature_raw` without removing the two variables individually.

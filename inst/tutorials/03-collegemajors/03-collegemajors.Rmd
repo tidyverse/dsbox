@@ -521,7 +521,7 @@ college_recent_grads %>%
 ```
 
 ```{r least-popular-major-check}
-grade_result({
+grade_this({
   if(identical(as.character(.result$major_category[1]), "Interdisciplinary")) {
     pass("Good use of the count() and arrange() functions.")
   }

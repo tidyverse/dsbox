@@ -373,7 +373,7 @@ grade_this({
     pass("You have calculated the 99% confidence interval correctly!")
   }
   if(identical(floor(as.numeric(.result$lower[1])), 378) & identical(floor(as.numeric(.result$upper[1])), 460)) {
-    fail("It looks like you've calculated a 98% confidence interval. Remember that to pick out hte central 99% of the distribution, we need to discard the most extreme 0.5% at each side.")
+    fail("It looks like you've calculated a 98% confidence interval. Remember that to pick out the central 99% of the distribution, we need to discard the most extreme 0.5% at each side.")
   }
   fail("Not quite. Take a look at the hints if you need some help.")
 })
@@ -451,7 +451,7 @@ boot_df_median %>%
 
 ```{r confidence-90-median-check}
 grade_this({
-  if(identical(as.numeric(.result$lower[1]), 120)) & identical(as.numeric(.result$upper[1]), 120)) {
+  if(identical(as.numeric(.result$lower[1]), 120) & identical(as.numeric(.result$upper[1]), 120)) {
   pass("You have calculated the 90% confidence interval correctly!")
 }
   fail("Not quite. Take a look at the hints if you need some help.")

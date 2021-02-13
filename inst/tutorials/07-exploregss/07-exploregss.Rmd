@@ -455,7 +455,7 @@ grade_this({
   if(identical(as.numeric(.result[1, 2]), 1321)) {
     fail("Good, but there is no need to sort the data.")
   }
-  if(identical(as.numeric(.result[1, 2]), 3)){
+  if(identical(as.numeric(.result[1, 2]), 3)) {
     fail("Good, but there is no need to sort the data.")
   }
   fail("Not quite. Try taking a look at the hint.")
@@ -545,7 +545,7 @@ email_aug <- augment(email_fit$fit)
 ```
 
 ```{r augment-email-lm-check, warning = FALSE}
-grade_code("You've successfully created the augmented data set - now on to the residual plot!")
+grade_this_code("You've successfully created the augmented data set - now on to the residual plot!")
 ```
 
 ### The plot thickens
