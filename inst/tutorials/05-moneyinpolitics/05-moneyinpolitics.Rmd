@@ -310,7 +310,7 @@ pac_2020 <- page %>%
 ```
 
 ```{r scrape-pac-2020-check}
-grade_code("You've successfully created a tibble with the data scraped from the web.")
+grade_this_code("You've successfully created a tibble with the data scraped from the web.")
 ```
 
 ### Glimpse our new dataset
@@ -372,7 +372,7 @@ pac_2020 <- pac_2020 %>%
 ```
 
 ```{r rename-pac-2020-check}
-grade_code("Those variable names look much better now!")
+grade_this_code("Those variable names look much better now!")
 ```
 
 ### Glimpse again
@@ -416,7 +416,7 @@ pac_2020 <- pac_2020 %>%
 ```
 
 ```{r clean-names-2020-check}
-grade_code("Good use of the str_squish() function")
+grade_this_code("Good use of the str_squish() function")
 ```
 
 ### One final glimpse
@@ -443,11 +443,15 @@ Think about which function we could use to calculate the *n*umber of *row*s...
 ```
 
 ```{r pac-2020-observations-check}
-grade_result(
-  pass_if(~ (identical(.result, 224) | (identical(.result, 224L))), "There are 224 observations in the pac_2020 dataset."),
-  fail_if(~ (identical(.result, 5) | (identical(.result, 5L))), "Each observation is represented in one row. Did you calculate the number of columns instead of rows?"),
-  fail_if(~ TRUE, "Not quite. Each observation is represented in one row. Can you remember which function we use to calculate the **n**umber of **row**s?")
-)
+grade_this({
+  if(identical(.result, 224) | identical(.result, 224L)) {
+    pass("There are 224 observations in the pac_2020 dataset.")
+  }
+  if(identical(.result, 5) | identical(.result, 5L)) {
+    fail("Each observation is represented in one row. Did you calculate the number of columns instead of rows?")
+  }
+  fail("Not quite. Each observation is represented in one row. Can you remember which function we use to calculate the **n**umber of **row**s?")
+})
 ```
 
 ### Number of variables
@@ -461,11 +465,15 @@ Think about which function we could use to calculate the *n*umber of *col*umns..
 ```
 
 ```{r pac-2020-variables-check}
-grade_result(
-  pass_if(~ (identical(.result, 5) | (identical(.result, 5L))), "There are 5 variables in the pac_2020 dataset."),
-  fail_if(~ (identical(.result, 224) | (identical(.result, 224L))), "Each variable is represented in one column Did you calculate the number of rows instead of columns?"),
-  fail_if(~ TRUE, "Not quite. Each variable is represented in one column Can you remember which function we use to calculate the **n**umber of **col**umns?")
-)
+grade_this({
+  if(identical(.result, 5) | identical(.result, 5L)) {
+    pass("There are 5 variables in the pac_2020 dataset.")
+  }
+  if(identical(.result, 224) | identical(.result, 224L)) {
+    fail("Each variable is represented in one column Did you calculate the number of rows instead of columns?")
+  }
+  fail("Not quite. Each variable is represented in one column Can you remember which function we use to calculate the **n**umber of **col**umns?")
+})
 ```
 
 ### Foreign-connected PAC contributions for all years
@@ -520,7 +528,7 @@ pac_all_raw <- pac_all_raw %>%
 ```
 
 ```{r pac-all-separate-check}
-grade_code("Good job separating the country_parent field into something more usable.")
+grade_this_code("Good job separating the country_parent field into something more usable.")
 ```
 
 ### Convert monetary values to numeric
@@ -599,7 +607,7 @@ parse_currency <- function(x){
 ```
 
 ```{r parse-currency-function-check}
-grade_code("You've created a function for cleaning the monetary values.")
+grade_this_code("You've created a function for cleaning the monetary values.")
 ```
 
 ### Using the function
@@ -652,7 +660,7 @@ pac_all <- pac_all_raw %>%
 ```
 
 ```{r parse-currency-data-check}
-grade_code("Now all the monetary values are stored as numeric data.")
+grade_this_code("Now all the monetary values are stored as numeric data.")
 ```
 
 ### Glimpse the cleaned data
@@ -716,6 +724,10 @@ pac_all %>%
   summarise(tot = sum(total), .groups = "drop") %>%
   ggplot(aes(x = year, y = tot, group = country, color = country)) +
   geom_line()
+```
+
+```{r uk-canada-plot-check}
+grade_this_code("Your solution is correct!")
 ```
 
 ### Building a plot
@@ -834,7 +846,7 @@ pac_all_final %>%
 ```
 
 ```{r final-plot-first-check}
-grade_code("Good start to the plot. Now let's make it look a bit nicer.")
+grade_this_code("Good start to the plot. Now let's make it look a bit nicer.")
 ```
 
 ### Step 4.1 - Changing party colours
@@ -857,7 +869,7 @@ pac_all_final %>%
 ```
 
 ```{r final-plot-second-check}
-grade_code("Those colours are much more appropriate.")
+grade_this_code("Those colours are much more appropriate.")
 ```
 
 ### Step 4.2 - Dollar formatting
@@ -883,7 +895,7 @@ pac_all_final %>%
 ```
 
 ```{r final-plot-third-check}
-grade_code("That vertical axis is looking much better.")
+grade_this_code("That vertical axis is looking much better.")
 ```
 
 ### Step 4.3 - Descriptive labels
@@ -919,7 +931,7 @@ pac_all_final %>%
 ```
 
 ```{r final-plot-fourth-check}
-grade_code("Those labels make the plot much more informative.")
+grade_this_code("Those labels make the plot much more informative.")
 ```
 
 ### Step 4.4 - theme_minimal()
@@ -948,7 +960,7 @@ pac_all_final %>%
 ```
 
 ```{r final-plot-fifth-check}
-grade_code("Finally! The plot is finished.")
+grade_this_code("Finally! The plot is finished.")
 ```
 
 

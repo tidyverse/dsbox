@@ -261,7 +261,7 @@ library(dsbox)
 ```
 
 ```{r load-packages-check}
-grade_code("The packages are now loaded!")
+grade_this_code("The packages are now loaded!")
 ```
 
 ## Data
@@ -350,7 +350,7 @@ dcbikeshare <- dcbikeshare %>%
 ```
 
 ```{r recode-season-exercise-check}
-grade_code("Your solution is correct!")
+grade_this_code("Your solution is correct!")
 ```
 
 ### Recode `holiday` and `workingday`
@@ -398,7 +398,7 @@ dcbikeshare <- dcbikeshare %>%
 ```
 
 ```{r recode-holiday-workingday-check}
-grade_code("Your solution is correct!")
+grade_this_code("Your solution is correct!")
 ```
 
 ### Recode year
@@ -441,7 +441,7 @@ dcbikeshare <- dcbikeshare %>%
 ```
 
 ```{r recode-yr-check}
-grade_code("Your solution is correct!")
+grade_this_code("Your solution is correct!")
 ```
 
 ### Recode `weathersit`
@@ -518,7 +518,7 @@ dcbikeshare <- dcbikeshare %>%
 ```
 
 ```{r recode-weathersit-check}
-grade_code("Your solution is correct!")
+grade_this_code("Your solution is correct!")
 ```
 
 ### Recoding warning
@@ -591,7 +591,7 @@ dcbikeshare <- dcbikeshare %>%
 ```
 
 ```{r recode-measures-check}
-grade_code("Your solution is correct!")
+grade_this_code("Your solution is correct!")
 ```
 
 ### Check `cnt` variable
@@ -624,7 +624,7 @@ dcbikeshare %>%
 ```
 
 ```{r check-cnt-check}
-grade_code("Your solution is correct!")
+grade_this_code("Your solution is correct!")
 ```
 
 ## Bike rentals and temperature
@@ -714,7 +714,7 @@ dcbikeshare %>%
 ```
 
 ```{r recreate-viz-check}
-grade_code("Your solution is correct!")
+grade_this_code("Your solution is correct!")
 ```
 
 ### Bike rentals vs temperature
@@ -752,13 +752,21 @@ cnt_tmp %>%
 ```
 
 ```{r rentals-vs-temp-check}
-	 grade_result(
-   pass_if(~ identical(floor(.result$estimate[2]), 161), "You have fit the model correctly"),
-   fail_if(~ identical(floor(.result$estimate[1]), 9), "Did you maybe try to predict the weather from the number of bike rentals?"),
-   fail_if(~ identical(floor(.result$estimate[1]),11), "Did you maybe try to predict the weather from the number of bike rentals?"),
-   fail_if(~ identical(floor(.result$estimate[1]), 0), "Did you maybe try to predict the weather from the number of bike rentals?"),
-   fail_if(~ TRUE, "Not quite. Look at the hints for help!")
- )
+	 grade_this({
+   if(identical(floor(.result$estimate[2]), 161)) {
+     pass("You have fit the model correctly")
+   }
+   if(identical(floor(.result$estimate[1]), 9)) {
+     fail("Did you maybe try to predict the weather from the number of bike rentals?")
+   }
+   if(identical(floor(.result$estimate[1]),11)) {
+     fail("Did you maybe try to predict the weather from the number of bike rentals?")
+   }
+   if(identical(floor(.result$estimate[1]), 0)) {
+     fail("Did you maybe try to predict the weather from the number of bike rentals?")
+   }
+   fail("Not quite. Look at the hints for help!")
+ })
 ``` 
 
 Now, based on your findings, answer the following question. 
@@ -789,7 +797,7 @@ glance(cnt_tmp)$r.squared
 ```
 
 ```{r rentals-vs-temp-r2-check}
-grade_code("Your solution is correct!")
+grade_this_code("Your solution is correct!")
 ```
 
 Now, answer the following question:
@@ -835,13 +843,21 @@ cnt_atmp %>%
 ```
 
 ```{r rentals-vs-atemp-check}
-	 grade_result(
-   pass_if(~ identical(floor(.result$estimate[2]), 150), "You have fit the model correctly"),
-   fail_if(~ identical(floor(.result$estimate[1]), 11), "Did you maybe try to predict the weather from the number of bike rentals?"),
-   fail_if(~ identical(floor(.result$estimate[1]), 0), "Did you maybe try to predict the weather from the number of bike rentals?"),
-   fail_if(~ identical(floor(.result$estimate[1]), 1214), "Did you use normalized temperature instead of raw temperature?"),
-   fail_if(~ TRUE, "Not quite. Look at the hints for help!")
- )
+grade_this({
+  if(identical(floor(.result$estimate[2]), 150)) {
+    pass("You have fit the model correctly")
+  }
+  if(identical(floor(.result$estimate[1]), 11)) {
+    fail("Did you maybe try to predict the weather from the number of bike rentals?")
+  }
+  if(identical(floor(.result$estimate[1]), 0)) {
+    fail("Did you maybe try to predict the weather from the number of bike rentals?")
+   }
+  if(identical(floor(.result$estimate[1]), 1214)) {
+    fail("Did you use normalized temperature instead of raw temperature?")
+   }
+  fail("Not quite. Look at the hints for help!")
+})
 ``` 
 
 Now, based on your findings, answer the following question. 
@@ -871,7 +887,7 @@ glance(cnt_atmp)$r.squared
 ```
 
 ```{r rentals-vs-atemp-r2-check}
-grade_code("Your solution is correct!")
+grade_this_code("Your solution is correct!")
 ```
 
 Is the following statement true or false?
@@ -933,11 +949,15 @@ tidy(cnt_full)
 ```
 
 ```{r m-full-check}
-	 grade_result(
-   pass_if(~ identical(floor(.result$estimate[1]), 2715), "You have fit the model correctly"),
-   fail_if(~ identical(floor(.result$estimate[1]), 2688), "Did you forget to model the interaction effect between feeling temperature and holiday?"),
-   fail_if(~ TRUE, "Not quite. Look at the hints for help!")
- )
+grade_this({
+  if(identical(floor(.result$estimate[1]), 2715)) {
+    pass("You have fit the model correctly")
+  }
+  if(identical(floor(.result$estimate[1]), 2688)) {
+    fail("Did you forget to model the interaction effect between feeling temperature and holiday?")
+  }
+   fail("Not quite. Look at the hints for help!")
+})
 ``` 
 
 Record adjusted $R^2$ of the model.
@@ -959,7 +979,7 @@ glance(cnt_full)$adj.r.squared
 ```
 
 ```{r adj-r-squared-check}
-grade_code("Your solution is correct!")
+grade_this_code("Your solution is correct!")
 ```
 
 Investigate how the model values change depending on whether a day is a holiday or not and answer the following questions.
@@ -1019,10 +1039,12 @@ glance(___)$adj.r.squared
 ```
 
 ```{r remove-season-check}
-grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 4)), 0.7491), "You have fit the model correctly"),
-   fail_if(~ TRUE, "Not quite. Look at the hint for help and remember to just remove the season variable from the full model!")
- )
+grade_this({
+   if(identical(as.numeric(round(.result, digits = 4)), 0.7491)) {
+     pass("You have fit the model correctly")
+   }
+   fail("Not quite. Look at the hint for help and remember to just remove the season variable from the full model!")
+})
 ``` 
 
 In the chunk below, fit the full model without the `year` variable and print out the adjusted $R^2$ score.
@@ -1042,10 +1064,12 @@ glance(___)$adj.r.squared
 ```
 
 ```{r remove-year-check}
-grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 5)), 0.5536), "You have fit the model correctly"),
-   fail_if(~ TRUE, "Not quite. Remember to just remove the year variable from the full model!")
- )
+grade_this({
+  if(identical(as.numeric(round(.result, digits = 5)), 0.5536)) {
+    pass("You have fit the model correctly")
+  }
+   fail("Not quite. Remember to just remove the year variable from the full model!")
+})
 ``` 
 
 In the chunk below, fit the full model without the `holiday` variable and print out the adjusted $R^2$ score.
@@ -1059,11 +1083,15 @@ glance(rm_holiday)$adj.r.squared
 ```
 
 ```{r remove-holiday-check}
-grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 4)), 0.8173), "You have fit the model correctly"),
-   fail_if(~ identical(as.numeric(round(.result, digits = 3)), 0.820), "Did you forget to remove the interaction effect?"),
-   fail_if(~ TRUE, "Not quite. Did you use the full model as your starting point?")
- )
+grade_this({
+   if(identical(as.numeric(round(.result, digits = 4)), 0.8173)) {
+     pass("You have fit the model correctly")
+   }
+   if(identical(as.numeric(round(.result, digits = 3)), 0.820)) {
+     fail("Did you forget to remove the interaction effect?")
+   }
+   fail("Not quite. Did you use the full model as your starting point?")
+})
 ```
 
 Fit the full model without the `workingday` variable using the code chunk below! Remember to record the adjusted $R^2$ score.
@@ -1076,10 +1104,12 @@ glance(___)$___
 ```
 
 ```{r remove-workingday-check}
-grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 4)), 0.8196), "You have fit the model correctly"),
-   fail_if(~ TRUE, "Not quite. Did you use the full model as your starting point?")
- )
+grade_this({
+   if(identical(as.numeric(round(.result, digits = 4)), 0.8196)) {
+     pass("You have fit the model correctly")
+   }
+   fail("Not quite. Did you use the full model as your starting point?")
+})
 ```
 
 Fit the full model without the `weathersit` variable in the chunk below and record the adjusted $R^2$ score.
@@ -1092,10 +1122,12 @@ glance(___)$___
 ```
 
 ```{r remove-weathersit-check}
-grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 5)), 0.79847), "You have fit the model correctly"),
-   fail_if(~ TRUE, "Not quite. Did you use the full model as your starting point?")
- )
+grade_this({
+   if(identical(as.numeric(round(.result, digits = 5)), 0.79847)) {
+     pass("You have fit the model correctly")
+   }
+   fail("Not quite. Did you use the full model as your starting point?")
+})
 ```
 
 Remove the `temperature_raw` variable in the chunk below and record the adjusted $R^2$ score.
@@ -1108,10 +1140,12 @@ glance(___)$___
 ```
 
 ```{r remove-tempraw-check}
-grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 5)), 0.81813), "You have fit the model correctly"),
-   fail_if(~ TRUE, "Not quite. Did you use the full model as your starting point?")
- )
+grade_this({
+   if(identical(as.numeric(round(.result, digits = 5)), 0.81813)) {
+     pass("You have fit the model correctly")
+   }
+   fail("Not quite. Did you use the full model as your starting point?")
+})
 ```
 
 In the chunk below, fit the full model without the `feeling_temperature_raw` variable and record the adjusted $R^2$ score.
@@ -1125,11 +1159,15 @@ glance(___)$___
 ```
 
 ```{r remove-feeltempraw-check}
-grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 5)), 0.81988), "You have fit the model correctly"),
-   fail_if(~ identical(as.numeric(round(.result, digits = 3)), 0.820), "Did you forget to remove the interaction effect?"),
-   fail_if(~ TRUE, "Not quite. Did you use the full model as your starting point?")
- )
+grade_this({
+   if(identical(as.numeric(round(.result, digits = 5)), 0.81988)) {
+     pass("You have fit the model correctly")
+   }
+   if(identical(as.numeric(round(.result, digits = 3)), 0.820)) {
+     fail("Did you forget to remove the interaction effect?")
+   }
+   fail("Not quite. Did you use the full model as your starting point?")
+})
 ```
 
 Fit the full model without the `humidity_raw` variable and record the adjusted $R^2$ score.
@@ -1142,10 +1180,12 @@ glance(___)$___
 ```
 
 ```{r remove-humidityraw-check}
-grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 4)), 0.8151), "You have fit the model correctly"),
-   fail_if(~ TRUE, "Not quite. Did you use the full model as your starting point?")
- )
+grade_result({
+   if(identical(as.numeric(round(.result, digits = 4)), 0.8151)) {
+     pass("You have fit the model correctly")
+   }
+   fail("Not quite. Did you use the full model as your starting point?")
+})
 ```
 
 Fit the full model without the `windspeed_raw` variable and record the adjusted $R^2$ score.
@@ -1158,10 +1198,12 @@ glance(___)$___
 ```
 
 ```{r remove-windraw-check}
-grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 4)), 0.8106), "You have fit the model correctly"),
-   fail_if(~ TRUE, "Not quite. Did you use the full model as your starting point?")
- )
+grade_this({
+  if(identical(as.numeric(round(.result, digits = 4)), 0.8106)) {
+    pass("You have fit the model correctly")
+  }
+   fail("Not quite. Did you use the full model as your starting point?")
+})
 ```
 
 Last, remove the interaction effect between `holiday` and `feeling_temperature_raw` without removing the two variables individually.
@@ -1175,11 +1217,15 @@ glance(___)$___
 ```
 
 ```{r remove-interaction-check}
-grade_result(
-   pass_if(~ identical(as.numeric(round(.result, digits = 4)), 0.8197), "You have fit the model correctly"),
-   fail_if(~ identical(as.numeric(round(.result, digits = 4)), 0.8174), "Did you also remove the two variables individually in addition to removing the interaction effect?"),
-   fail_if(~ TRUE, "Not quite. Did you use the full model as your starting point?")
- )
+grade_this({
+   if(identical(as.numeric(round(.result, digits = 4)), 0.8197)) {
+     pass("You have fit the model correctly")
+   }
+   if(identical(as.numeric(round(.result, digits = 4)), 0.8174)) {
+     fail("Did you also remove the two variables individually in addition to removing the interaction effect?")
+   }
+   fail("Not quite. Did you use the full model as your starting point?")
+})
 ```
 
 Now, using your findings from the previous exercises, answer the following question: 

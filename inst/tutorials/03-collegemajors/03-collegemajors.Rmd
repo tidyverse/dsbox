@@ -91,7 +91,7 @@ library(fivethirtyeight)
 ```
 
 ```{r load-packages-check}
-grade_code("The packages are now loaded!")
+grade_this_code("The packages are now loaded!")
 ```
 
 ## Data
@@ -234,12 +234,18 @@ college_recent_grads %>%
 ```
 
 ```{r highest-percentage-women-check}
-grade_result(
-  pass_if(~ (identical(as.numeric(.result$total[1]), 37589) & identical(round(as.numeric(.result$sharewomen[1]), digits = 3), 0.969) & identical(nrow(.result), 3L)), "Those are the top three majors by percentage of women."),
-  fail_if(~ identical(nrow(.result), 173L), "Did you forget to pick out *only* the top three majors?"),
-  fail_if(~ identical(as.numeric(.result$total[1]), 2339L), "Did you forget to arrange the majors in descending order of percentage of women?"),
-  fail_if(~ TRUE, "Not quite. Take a look at the hints if you need some help.")
-)
+grade_this({
+  if(identical(as.numeric(.result$total[1]), 37589) & identical(round(as.numeric(.result$sharewomen[1]), digits = 3), 0.969) & identical(nrow(.result), 3L)) {
+    pass("Those are the top three majors by percentage of women.")
+    }
+  if(identical(nrow(.result), 173L)) {
+    fail("Did you forget to pick out *only* the top three majors?")
+    }
+  if(identical(as.numeric(.result$total[1]), 2339L)) {
+    fail("Did you forget to arrange the majors in descending order of percentage of women?")
+    }
+  fail("Not quite. Take a look at the hints if you need some help.")
+})
 ```
 
 ## Majors and median income
@@ -426,7 +432,7 @@ ggplot(data = college_recent_grads, mapping = aes(x = median)) +
 ```
 
 ```{r histogram-median-income-check}
-grade_code("You've successfully created a historgram for median incomes, faceted by major_category.")
+grade_this_code("You've successfully created a historgram for median incomes, faceted by major_category.")
 ```
 
 ### Arranging median incomes for major categories
@@ -471,12 +477,18 @@ college_recent_grads %>%
 ```
 
 ```{r highest-typical-income-check}
-grade_result(
-  pass_if(~ (identical(floor(as.numeric(.result$avg_mean_income[1])), 57382) & identical(floor(.result$avg_mean_income[2]), 43538) & identical(nrow(.result), 16L)), "Those are the major categories in descending order of typical income."),
-  fail_if(~ identical(floor(as.numeric(.result$avg_mean_income[1])), 30100), "Did you arrange in ascending order instead of descending order?"),
-  fail_if(~ identical(floor(as.numeric(.result$avg_mean_income[1])), 30000), "Did you use the median for typical median income instead of mean?"),
-  fail_if(~ TRUE, "Not quite. Take a look at the hints if you need some help.")
-)
+grade_this({
+  if(identical(floor(as.numeric(.result$avg_mean_income[1])), 57382) & identical(floor(.result$avg_mean_income[2]), 43538) & identical(nrow(.result), 16L)) {
+    pass("Those are the major categories in descending order of typical income.")
+  }
+  if(identical(floor(as.numeric(.result$avg_mean_income[1])), 30100)) {
+    fail("Did you arrange in ascending order instead of descending order?")
+  }
+  if(identical(floor(as.numeric(.result$avg_mean_income[1])), 30000)) {
+    fail("Did you use the median for typical median income instead of mean?")
+  }
+  fail("Not quite. Take a look at the hints if you need some help.")
+})
 ```
 
 
@@ -509,12 +521,18 @@ college_recent_grads %>%
 ```
 
 ```{r least-popular-major-check}
-grade_result(
-  pass_if(~ identical(as.character(.result$major_category[1]), "Interdisciplinary"), "Good use of the count() and arrange() functions."),
-  fail_if(~ identical(as.character(.result$major_category[1]), "Agriculture & Natural Resources"), "Did you forget to arrange the major categories in ascending order?"),
-  fail_if(~ identical(as.character(.result$major_category[1]), "Accounting"), "Did you count the `major` field instead of the `major_category` field?"),
-  fail_if(~ TRUE, "Not quite. Take a look at the hints if you need some help.")
-)
+grade_this({
+  if(identical(as.character(.result$major_category[1]), "Interdisciplinary")) {
+    pass("Good use of the count() and arrange() functions.")
+  }
+  if(identical(as.character(.result$major_category[1]), "Agriculture & Natural Resources")) {
+    fail("Did you forget to arrange the major categories in ascending order?")
+  }
+  if(identical(as.character(.result$major_category[1]), "Accounting")) {
+    fail("Did you count the `major` field instead of the `major_category` field?")
+  }
+  fail("Not quite. Take a look at the hints if you need some help.")
+})
 ```
 
 ```{r least-popular-major-quiz}
@@ -637,13 +655,21 @@ college_recent_grads %>%
 ```
 
 ```{r median-less-than-avg-check}
-grade_result(
-  pass_if(~ identical(as.character(.result$major[1]), "Environmental Science"), "You've picked out the STEM majors with lower-than-average earnings"),
-  fail_if(~ identical(as.character(.result$major[1]), "Zoology"), "Did you arrange in ascending instead of descending order?"),
-  fail_if(~ identical(as.character(.result$major[1]), "Neuroscience"), "Did you arrange in order of the 25th percentile earnings?"),
-  fail_if(~ identical(as.character(.result$major[1]), "Multi-Disciplinary Or General Science"), "Did you arrange in order of the 75th percentile earnings?"),
-  fail_if(~ TRUE, "Not quite. Take a look at the hints if you need some help.")
-)
+grade_this({
+  if(identical(as.character(.result$major[1]), "Environmental Science")) { 
+    pass("You've picked out the STEM majors with lower-than-average earnings")
+  }
+  if(identical(as.character(.result$major[1]), "Zoology")) {
+    fail("Did you arrange in ascending instead of descending order?")
+  }
+  if(identical(as.character(.result$major[1]), "Neuroscience")) {
+    fail("Did you arrange in order of the 25th percentile earnings?")
+  }
+  if(identical(as.character(.result$major[1]), "Multi-Disciplinary Or General Science")) {
+    fail("Did you arrange in order of the 75th percentile earnings?")
+  }
+  fail("Not quite. Take a look at the hints if you need some help.")
+})
 ```
 
 ### What types of majors do women tend to major in?
@@ -707,7 +733,7 @@ ggplot(data = college_recent_grads,
 ```
 
 ```{r majors-women-check}
-grade_code("Nice looking scatterplot!")
+grade_this_code("Nice looking scatterplot!")
 ```
 
 
@@ -760,7 +786,7 @@ ggplot(data = college_recent_grads,
 ```
 
 ```{r majors-women-labels-check}
-grade_code("Those labels look much better now!")
+grade_this_code("Those labels look much better now!")
 ```
 
 

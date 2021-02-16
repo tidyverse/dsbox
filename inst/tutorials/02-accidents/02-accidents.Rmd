@@ -65,7 +65,7 @@ library(dsbox)
 ```
 
 ```{r load-packages-check}
-grade_code("The tidyverse and dsbox packages are now loaded!")
+grade_this_code("The tidyverse and dsbox packages are now loaded!")
 ```
 
 ## Data
@@ -145,11 +145,15 @@ Try using nrow()!
 ```
 
 ```{r nrow-check}
-grade_result(
-  pass_if(~ (identical(.result, 768) | (identical(.result, 768L))), "There are 768 rows, therefore, 768 accidents were recorded in Edinburgh in 2018."),
-  fail_if(~ (identical(.result, 31) | (identical(.result, 31L))), "Each observation is represented in one row. Did you calculate the number of columns instead of rows?"),
-  fail_if(~ TRUE, "Not quite. Each observation is represented in one row. Try looking at the hints for some help!")
-)
+grade_this({
+  if(identical(.result, 768) | identical(.result, 768L)) {
+    pass("There are 768 rows, therefore, 768 accidents were recorded in Edinburgh in 2018.")
+    }
+  if(identical(.result, 31) | identical(.result, 31L)) {
+    fail("Each observation is represented in one row. Did you calculate the number of columns instead of rows?")
+    }
+  fail("Not quite. Each observation is represented in one row. Try looking at the hints for some help!")
+})
 ```
 
 How many variables are recorded on these crashes? Use the code chunk below!
@@ -167,11 +171,15 @@ Try using ncol()!
 ```
 
 ```{r ncol-check}
-grade_result(
-  pass_if(~ (identical(.result, 31) | (identical(.result, 31L))), "Since there are 31 columns in the dataset, we know that 31 variables are recorded."),
-  fail_if(~ (identical(.result, 768) | (identical(.result, 768L))), "Each variable is recorded in a column. Did you maybe use the number of rows?"),
-  fail_if(~ TRUE, "Not quite. Each variable is represented in a column. Try looking at the hints for some help!")
-)
+grade_this({
+  if(identical(.result, 31) | identical(.result, 31L)) {
+    pass("Since there are 31 columns in the dataset, we know that 31 variables are recorded.")
+  }
+  if(identical(.result, 768) | identical(.result, 768L)) {
+    fail("Each variable is recorded in a column. Did you maybe use the number of rows?")
+  }
+  fail("Not quite. Each variable is represented in a column. Try looking at the hints for some help!")
+})
 ```
 
 ## Multi-vehicle accidents
@@ -199,10 +207,12 @@ accidents %>%
 ```
 
 ```{r filter-accidents-check}
-grade_result(
-  pass_if(~ (identical(.result, 72) | (identical(.result, 72L))),),
-  fail_if(~ TRUE, "Take a peek at the hints!")
-)
+grade_this({
+  if(identical(.result, 72) | identical(.result, 72L)) {
+    pass("There are 72 rows that correspond to accidents with 2 or more vehicles occurred in an urban area.")
+  }
+  fail("Take a peek at the hints!")
+})
 ```
 
 ## Speed limits
@@ -233,10 +243,11 @@ accidents %>%
 ```
 
 ```{r speed-frequency-check}
-grade_result(
-   pass_if(~ (identical(.result$n[1], 379L)), "You have created the correct frequency table!"),
-   fail_if(~ TRUE, "Not quite. See the hints for help!")
- )
+grade_this({
+  if(identical(.result$n[1], 379L)) {
+    pass("You have created the correct frequency table!")}
+  fail("Not quite. See the hints for help!")
+ })
 ```
 
 ```{r quiz-speed}
@@ -319,7 +330,7 @@ ggplot(data = accidents, aes(x = severity, fill = light)) +
 ```
 
 ```{r plot-light-check}
-grade_code("Well done!")
+grade_this_code("Well done!")
 ```
 
 ```{r plot-interpretation}
@@ -391,7 +402,7 @@ ggplot(data = accidents, aes(x = severity, fill = light)) +
 ```
 
 ```{r change-labels-check}
-grade_code("Your solution is correct!")
+grade_this_code("Your solution is correct!")
 ```
 
 ## Wrap up

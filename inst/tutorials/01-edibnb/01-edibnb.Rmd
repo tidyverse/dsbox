@@ -61,7 +61,7 @@ library(dsbox)
 ```
 
 ```{r load-packages-check}
-grade_code("The tidyverse and dsbox packages are now loaded!")
+grade_this_code("The tidyverse and dsbox packages are now loaded!")
 ```
 
 

@@ -74,7 +74,7 @@ library(dsbox)
 ```
 
 ```{r load-package-check}
-grade_code("The tidyverse and dsbox packages you'll use in this analysis are now loaded!")
+grade_this_code("The tidyverse and dsbox packages you'll use in this analysis are now loaded!")
 ```
 
 ## Data
@@ -123,14 +123,24 @@ lego_sales %>%
 ```
 
 ```{r common-names-check}
-grade_result(
-  pass_if(~ identical(as.character(.result[1,1]), "Jackson"), "You have successfully counted names and sorted the counts in descending order."),
-  fail_if(~ identical(as.character(.result[1,1]), "Aaron"), "Did you forget to sort the counts in descending order?"),
-  fail_if(~ identical(as.character(.result[1,1]), "Adoria"), "Did you accidentally sort the counts in ascending order?"),
-  fail_if(~ identical(as.character(.result[1,1]), "Ackah Yensu"), "Did you count last names instead of first names?"),
-  fail_if(~ identical(as.character(.result[1,1]), "Brown"), "Did you count last names instead of first names?"),
-  fail_if(~ TRUE, "Not quite. Take a peek at the hint!")
-)
+grade_this({
+  if(identical(as.character(.result[1,1]), "Jackson")) {
+    pass("You have successfully counted names and sorted the counts in descending order.")
+  }
+  if(identical(as.character(.result[1,1]), "Aaron")) { 
+    fail("Did you forget to sort the counts in descending order?")
+  }
+  if(identical(as.character(.result[1,1]), "Adoria")) {
+    fail("Did you accidentally sort the counts in ascending order?")
+  }
+  if(identical(as.character(.result[1,1]), "Ackah Yensu")) {
+    fail("Did you count last names instead of first names?")
+  }
+  if(identical(as.character(.result[1,1]), "Brown")) { 
+    fail("Did you count last names instead of first names?")
+  }
+  fail("Not quite. Take a peek at the hint!")
+})
 ```
 
 Now, based on your findings, answer the following question.
@@ -167,14 +177,24 @@ lego_sales %>%
 ```
 
 ```{r common-themes-check}
-grade_result(
-  pass_if(~ identical(as.character(.result[1,1]), "Star Wars"), "You have counted themes and sorted the counts correctly."),
-  fail_if(~ identical(as.character(.result[1,1]), "Advanced Models "), "Did you forget to sort the counts in descending order?"),
-  fail_if(~ identical(as.character(.result[1,1]), "Classic"), "Did you accidentally sort the counts in ascending order?"),
-  fail_if(~ identical(as.character(.result[1,1]), "Adventure Camp"), "Did you count subthemes instead of themes?"),
-  fail_if(~ identical(as.numeric(.result[1,2]), 172), "Did you count subthemes instead of themes?"),
-  fail_if(~ TRUE, "Not quite. Take a peek at the hint!")
-)
+grade_this({
+  if(identical(as.character(.result[1,1]), "Star Wars")) {
+    pass("You have counted themes and sorted the counts correctly.")
+  }
+  if(identical(as.character(.result[1,1]), "Advanced Models ")) {
+    fail("Did you forget to sort the counts in descending order?")
+  }
+  if(identical(as.character(.result[1,1]), "Classic")) {
+    fail("Did you accidentally sort the counts in ascending order?")
+  }
+  if(identical(as.character(.result[1,1]), "Adventure Camp")) {
+    fail("Did you count subthemes instead of themes?")
+  }
+  if(identical(as.numeric(.result[1,2]), 172)) {
+    fail("Did you count subthemes instead of themes?")
+  }
+  fail("Not quite. Take a peek at the hint!")
+})
 ```
 
 Now, based on your findings, answer the following question.
@@ -225,13 +245,21 @@ lego_sales %>%
 ```
 
 ```{r most-common-subtheme-check}
-grade_result(
-  pass_if(~ identical(as.character(.result[1,1]), "The Force Awakens"), "You have successfully counted subthemes and sorted the counts in descending order."),
-  fail_if(~ identical(as.character(.result[1,1]), "Battlefront"), "Did you forget to sort the counts in descending order?"),
-  fail_if(~ identical(as.character(.result[1,1]), "Ultimate Collector Series"), "Did you accidentally sort the counts in ascending order?"),
-  fail_if(~ identical(as.character(.result[1,1]), "Star Wars"), "Did you count themes instead of subthemes?"),
-fail_if(~ TRUE, "Not quite. Take a peek at the hint!")
-)
+grade_this({
+  if(identical(as.character(.result[1,1]), "The Force Awakens")) {
+    pass("You have successfully counted subthemes and sorted the counts in descending order.")
+  }
+  if(identical(as.character(.result[1,1]), "Battlefront")) {
+    fail("Did you forget to sort the counts in descending order?")
+  }
+  if(identical(as.character(.result[1,1]), "Ultimate Collector Series")) {
+    fail("Did you accidentally sort the counts in ascending order?")
+  }
+  if(identical(as.character(.result[1,1]), "Star Wars")) { 
+    fail("Did you count themes instead of subthemes?")
+  }
+fail("Not quite. Take a peek at the hint!")
+})
 ```
 
 Now, based on your findings, answer the following question.
@@ -295,10 +323,12 @@ lego_sales <- lego_sales %>%
 ```
 
 ```{r create-age-group-check}
-grade_result(
-  pass_if(~ identical(paste(as.numeric(table(.result[,"age_group"])), collapse = ", "), "30, 129, 183, 216, 62"), "You have grouped the ages according to the instructions!"),
-  fail_if(~ TRUE, "Not quite. Review the hints.")
-)
+grade_this({
+  if(identical(paste(as.numeric(table(.result[,"age_group"])), collapse = ", "), "30, 129, 183, 216, 62")) {
+    pass("You have grouped the ages according to the instructions!")
+  }
+  fail("Not quite. Review the hints.")
+})
 ```
 
 ### Most common age group
@@ -318,13 +348,21 @@ lego_sales %>%
 ```
 
 ```{r count-ages-check}
-grade_result(
-  pass_if(~ identical(as.character(.result[1,1]), "36 - 50"), "You have successfully determined the most common age group."),
-  fail_if(~ identical(as.character(.result[1,1]), "18 and under"), "Did you forget to arrange the counts in descending order?"),
-  fail_if(~ identical(as.character(.result[1,1]), "33"), "Did you count individual ages instead of age groups?"),
-  fail_if(~ identical(as.character(.result[1,1]), "16"), "Did you count individual ages instead of age groups?"),
-  fail_if(~ TRUE, "Not quite. Try using the count function!")
-)
+grade_this({
+  if(identical(as.character(.result[1,1]), "36 - 50")) { 
+    pass("You have successfully determined the most common age group.")
+  }
+  if(identical(as.character(.result[1,1]), "18 and under")) {
+    fail("Did you forget to arrange the counts in descending order?")
+  }
+  if(identical(as.character(.result[1,1]), "33")) {
+    fail("Did you count individual ages instead of age groups?")
+  }
+  if(identical(as.character(.result[1,1]), "16")) {
+    fail("Did you count individual ages instead of age groups?")
+  }
+  fail("Not quite. Try using the count function!")
+})
 ```
 
 Now, based on your findings, answer the following question:
@@ -389,13 +427,21 @@ lego_sales %>%
 ```
 
 ```{r sales-by-group-check}
-grade_result(
-  pass_if(~ identical(as.character(.result[1,1]), "36 - 50"), "Your solution is correct!"),
-  fail_if(~ identical(as.character(.result[1,1]), "18 and under"), "Did you forget to sort the counts in descending order?"),
-  fail_if(~ identical(as.character(.result[1,1]), "33"), "Did you count individual ages instead of age groups?"),
-  fail_if(~ identical(as.character(.result[1,1]), "16"), "Did you count individual ages instead of age groups?"),
-  fail_if(~ TRUE, "Not quite. Take a peek at the hint!")
-)
+grade_this({
+  if(identical(as.character(.result[1,1]), "36 - 50")) {
+    pass("Your solution is correct!")
+  }
+  if(identical(as.character(.result[1,1]), "18 and under")) {
+    fail("Did you forget to sort the counts in descending order?")
+  }
+  if(identical(as.character(.result[1,1]), "33")) {
+    fail("Did you count individual ages instead of age groups?")
+  }
+  if(identical(as.character(.result[1,1]), "16")) {
+    fail("Did you count individual ages instead of age groups?")
+  }
+  fail("Not quite. Take a peek at the hint!")
+})
 ```
 
 Now, based on your findings, answer the following question:
@@ -469,12 +515,18 @@ lego_sales %>%
 ```
 
 ```{r age-group-money-check}
-grade_result(
-  pass_if(~ identical(as.character(.result[1,1]), "36 - 50"), "Your solution is correct!"),
-  fail_if(~ identical(as.character(.result[1,1]), "18 and under"), "Did you forget to sort the counts in descending order?"),
-  fail_if(~ identical(as.character(.result[1,1]), "57"), "Did you count individual ages instead of age groups?"),
-  fail_if(~ TRUE, "Not quite. Take a peek at the hint!")
-)
+grade_this({
+  if(identical(as.character(.result[1,1]), "36 - 50")) {
+    pass("Your solution is correct!")
+  }
+  if(identical(as.character(.result[1,1]), "18 and under")) {
+    fail("Did you forget to sort the counts in descending order?")
+  }
+  if(identical(as.character(.result[1,1]), "57")){
+    fail("Did you count individual ages instead of age groups?")
+  }
+  fail("Not quite. Take a peek at the hint!")
+})
 ```
 
 Now, based on your findings, answer the following question:
