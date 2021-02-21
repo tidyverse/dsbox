@@ -1180,7 +1180,7 @@ glance(___)$___
 ```
 
 ```{r remove-humidityraw-check}
-grade_result({
+grade_this({
    if(identical(as.numeric(round(.result, digits = 4)), 0.8151)) {
      pass("You have fit the model correctly")
    }
@@ -1202,7 +1202,7 @@ grade_this({
   if(identical(as.numeric(round(.result, digits = 4)), 0.8106)) {
     pass("You have fit the model correctly")
   }
-   fail("Not quite. Did you use the full model as your starting point?")
+  fail("Not quite. Did you use the full model as your starting point?")
 })
 ```
 
