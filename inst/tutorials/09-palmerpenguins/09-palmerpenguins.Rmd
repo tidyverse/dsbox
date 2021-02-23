@@ -181,7 +181,7 @@ grade_this_code("The tidyverse and palmerpenguins packages are now loaded!")
 ## Data
 
 ```{r photo2, fig.margin = TRUE, echo = FALSE, out.width="50%"}
-knitr::include_graphics("images/bill measurement.png",)
+knitr::include_graphics("images/bill-measurement.png",)
 ```
 
 The codebook for the dataset is as follows:
