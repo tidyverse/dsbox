@@ -1,5 +1,5 @@
 ---
-title: "Palmer Penguins"
+title: "Modelling the Palmer Penguins"
 output: 
   learnr::tutorial:
     progressive: true

@@ -64,3 +64,6 @@ tutorials:
 - name: 08-bootstrapgss
   title: Bootstrapping the GSS
   url: https://minecr.shinyapps.io/dsbox-08-bootstrapgss/
+- name: 09-palmerpenguins
+  title: Modelling the Palmer Penguins
+  url: https://minecr.shinyapps.io/dsbox-09-palmerpenguins/

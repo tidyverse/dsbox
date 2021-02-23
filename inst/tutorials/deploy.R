@@ -25,7 +25,7 @@ tutorials <- tibble(dir_to_deploy = tutorial_dirs) %>%
 # deploy all -------------------------------------------------------------------
 
 #for(i in 1:nrow(tutorials)){
-for(i in 7:8){
+for(i in 9:9){
   deployApp(
     appDir = tutorials$dir_to_deploy[i],
     appTitle = tutorials$title[i],
