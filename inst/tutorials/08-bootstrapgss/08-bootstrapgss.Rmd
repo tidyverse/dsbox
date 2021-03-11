@@ -161,7 +161,7 @@ grade_this_code("You've successfully created the `email` variable.")
 
 Next, filter the data for only those who have non `NA` entries for `email.` 
 Do not overwrite the data frame (you’ll need the full data later). 
-Instead save the resulting data frame as `gss_email`.
+Instead save the resulting data frame as `gss16_email`.
 
 ```{r filter-email, exercise = TRUE, exercise.setup = "setup-email-var"}
 
