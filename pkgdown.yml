@@ -2,7 +2,7 @@ pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2021-03-12T11:38Z
+last_built: 2021-03-12T11:44Z
 urls:
   reference: https://rstudii-education.github.io/dsbox/reference
   article: https://rstudii-education.github.io/dsbox/articles
