@@ -29,8 +29,9 @@ Suggests:
     tibble
 Depends: 
     R (>= 2.10)
-License: CC BY 4.0
-URL: https://github.com/rstudio-education/dsbox
+License: MIT + file LICENSE
+URL: https://rstudio-education.github.io/dsbox, 
+    https://github.com/rstudio-education/dsbox
 BugReports: https://github.com/rstudio-education/dsbox/issues
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
