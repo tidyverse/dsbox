@@ -212,7 +212,7 @@ The codebook for the dataset is as follows:
 
 The body mass of penguins are measured and recorded in **grams** in the `body_mass_g` variable.
 
-In the following code block, use `mutate()` to add the new variable `body_mass_g` as that records body mass in **kilograms**.
+In the following code block, use `mutate()` to add the new variable `body_mass_kg` that records body mass in **kilograms**.
 
 Note that 1 gram = 0.001 kilogram.
 
@@ -540,7 +540,7 @@ question("What does the R-squared mean in this context?",
 
 ### Body mass vs species
 
-Unlike flipper length, species is a categorical variable SImilar to what we did for flipper length, fit a linear model predicting body mass from species.
+Unlike flipper length, species is a categorical variable. Similar to what we did for flipper length, fit a linear model predicting body mass from species.
 
 ```{r mass-vs-species, exercise=TRUE, exercise.setup = "unit-conversion"}
 mass_spec_fit <- ___(___)
@@ -833,7 +833,7 @@ What are the values of the slope and the intercept for the best model?
 ```{r predict-mass-1-check}
 grade_this({
   if(identical(round(.result, digits = 3), 2.817)) {
-    pass("You got it!")
+    pass("You got it! Using the best model, the predicted body mass is approximately 2.82kg when flipper length is 17.3cm.")
   }
   fail("Make sure you are using the correct intercept and slope values from the best model.")
 })
@@ -856,7 +856,7 @@ ___*10_____
 ```{r predict-mass-2-check}
 grade_this({
   if(identical(round(.result, digits = 3), -0.811)) {
-    pass("You got it!")
+    pass("Your solution is correct. The predicted body mass is a negative value in this case.")
   }
   fail("Make sure you are using the correct intercept and slope values from the best model.")
 })
