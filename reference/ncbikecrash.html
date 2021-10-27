@@ -205,37 +205,26 @@ Sep 6, 2018.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>ncbikecrash</span>
-</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 7,467 x 66</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 7,467 × 66</span>
 #&gt;    object_id city    county  region development  locality   on_road  rural_urban
-#&gt;        </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>      
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>      </span><span style='text-decoration: underline;'>1</span><span>686 None -… Wayne   Coast… Farms, Wood… Rural (&lt;3… SR 1915  Rural      
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>      </span><span style='text-decoration: underline;'>1</span><span>674 Hender… Vance   Piedm… Residential  Mixed (30… NICHOLA… Urban      
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>      </span><span style='text-decoration: underline;'>1</span><span>673 None -… Lincoln Piedm… Farms, Wood… Rural (&lt;3… US 321   Rural      
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>      </span><span style='text-decoration: underline;'>1</span><span>687 Whitev… Columb… Coast… Commercial   Urban (&gt;7… W BURKH… Urban      
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>      </span><span style='text-decoration: underline;'>1</span><span>653 Wilmin… New Ha… Coast… Residential  Urban (&gt;7… RACINE … Urban      
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>      </span><span style='text-decoration: underline;'>1</span><span>665 None -… Robeson Coast… Farms, Wood… Rural (&lt;3… SR 1513  Rural      
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>      </span><span style='text-decoration: underline;'>1</span><span>642 None -… Richmo… Piedm… Residential  Mixed (30… SR 1903  Rural      
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>      </span><span style='text-decoration: underline;'>1</span><span>675 Raleigh Wake    Piedm… Commercial   Urban (&gt;7… PERSON … Urban      
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>      </span><span style='text-decoration: underline;'>1</span><span>668 Whitev… Columb… Coast… Residential  Rural (&lt;3… FLOWERS… Urban      
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span>      </span><span style='text-decoration: underline;'>1</span><span>662 New Be… Craven  Coast… Residential  Urban (&gt;7… SUTTON … Urban      
-#&gt; </span><span style='color: #949494;'># … with 7,457 more rows, and 58 more variables: speed_limit &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   traffic_control &lt;chr&gt;, weather &lt;chr&gt;, workzone &lt;chr&gt;, bike_age &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   bike_age_group &lt;chr&gt;, bike_alcohol &lt;chr&gt;, bike_alcohol_drugs &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   bike_direction &lt;chr&gt;, bike_injury &lt;chr&gt;, bike_position &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   bike_race &lt;chr&gt;, bike_sex &lt;chr&gt;, driver_age &lt;chr&gt;, driver_age_group &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   driver_alcohol &lt;chr&gt;, driver_alcohol_drugs &lt;chr&gt;, driver_est_speed &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   driver_injury &lt;chr&gt;, driver_race &lt;chr&gt;, driver_sex &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   driver_vehicle_type &lt;chr&gt;, crash_alcohol &lt;chr&gt;, crash_date &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   crash_day &lt;chr&gt;, crash_group &lt;chr&gt;, crash_hour &lt;dbl&gt;, crash_location &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   crash_month &lt;chr&gt;, crash_severity &lt;chr&gt;, crash_time &lt;drtn&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   crash_type &lt;chr&gt;, crash_year &lt;dbl&gt;, ambulance_req &lt;chr&gt;, hit_run &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   light_condition &lt;chr&gt;, road_character &lt;chr&gt;, road_class &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   road_condition &lt;chr&gt;, road_configuration &lt;chr&gt;, road_defects &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   road_feature &lt;chr&gt;, road_surface &lt;chr&gt;, num_bikes_ai &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   num_bikes_bi &lt;dbl&gt;, num_bikes_ci &lt;dbl&gt;, num_bikes_ki &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   num_bikes_no &lt;dbl&gt;, num_bikes_to &lt;dbl&gt;, num_bikes_ui &lt;dbl&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   num_lanes &lt;chr&gt;, num_units &lt;dbl&gt;, distance_mi_from &lt;chr&gt;, frm_road &lt;chr&gt;,</span><span>
-#&gt; </span><span style='color: #949494;'>#   rte_invd_cd &lt;dbl&gt;, towrd_road &lt;chr&gt;, geo_point &lt;chr&gt;, geo_shape &lt;chr&gt;</span><span></div></span></pre>
+#&gt;        <span style='color: #949494; font-style: italic;'>&lt;dbl&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>  <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>        <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      
+#&gt; <span style='color: #BCBCBC;'> 1</span>      <span style='text-decoration: underline;'>1</span>686 None -… Wayne   Coast… Farms, Wood… Rural (&lt;3… SR 1915  Rural      
+#&gt; <span style='color: #BCBCBC;'> 2</span>      <span style='text-decoration: underline;'>1</span>674 Hender… Vance   Piedm… Residential  Mixed (30… NICHOLA… Urban      
+#&gt; <span style='color: #BCBCBC;'> 3</span>      <span style='text-decoration: underline;'>1</span>673 None -… Lincoln Piedm… Farms, Wood… Rural (&lt;3… US 321   Rural      
+#&gt; <span style='color: #BCBCBC;'> 4</span>      <span style='text-decoration: underline;'>1</span>687 Whitev… Columb… Coast… Commercial   Urban (&gt;7… W BURKH… Urban      
+#&gt; <span style='color: #BCBCBC;'> 5</span>      <span style='text-decoration: underline;'>1</span>653 Wilmin… New Ha… Coast… Residential  Urban (&gt;7… RACINE … Urban      
+#&gt; <span style='color: #BCBCBC;'> 6</span>      <span style='text-decoration: underline;'>1</span>665 None -… Robeson Coast… Farms, Wood… Rural (&lt;3… SR 1513  Rural      
+#&gt; <span style='color: #BCBCBC;'> 7</span>      <span style='text-decoration: underline;'>1</span>642 None -… Richmo… Piedm… Residential  Mixed (30… SR 1903  Rural      
+#&gt; <span style='color: #BCBCBC;'> 8</span>      <span style='text-decoration: underline;'>1</span>675 Raleigh Wake    Piedm… Commercial   Urban (&gt;7… PERSON … Urban      
+#&gt; <span style='color: #BCBCBC;'> 9</span>      <span style='text-decoration: underline;'>1</span>668 Whitev… Columb… Coast… Residential  Rural (&lt;3… FLOWERS… Urban      
+#&gt; <span style='color: #BCBCBC;'>10</span>      <span style='text-decoration: underline;'>1</span>662 New Be… Craven  Coast… Residential  Urban (&gt;7… SUTTON … Urban      
+#&gt; <span style='color: #949494;'># … with 7,457 more rows, and 58 more variables: speed_limit &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   traffic_control &lt;chr&gt;, weather &lt;chr&gt;, workzone &lt;chr&gt;, bike_age &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   bike_age_group &lt;chr&gt;, bike_alcohol &lt;chr&gt;, bike_alcohol_drugs &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   bike_direction &lt;chr&gt;, bike_injury &lt;chr&gt;, bike_position &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   bike_race &lt;chr&gt;, bike_sex &lt;chr&gt;, driver_age &lt;chr&gt;, driver_age_group &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   driver_alcohol &lt;chr&gt;, driver_alcohol_drugs &lt;chr&gt;, driver_est_speed &lt;chr&gt;,</span>
+#&gt; <span style='color: #949494;'>#   driver_injury &lt;chr&gt;, driver_race &lt;chr&gt;, driver_sex &lt;chr&gt;, …</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
