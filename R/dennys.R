@@ -3,7 +3,7 @@
 #' Need description 
 #'
 #' @source Need source.
-#' @format A tibble with 1643 rows and 3 variables:
+#' @format A tibble with 1643 rows and 6 variables:
 #' \describe{
 #'   \item{address}{}
 #'   \item{city}{}
