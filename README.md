@@ -5,8 +5,7 @@
 
 <!-- badges: start -->
 
-[![R build
-status](https://github.com/rstudio-education/dsbox/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio-education/dsbox/actions)
+[![R-CMD-check](https://github.com/rstudio-education/dsbox/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio-education/dsbox/actions)
 <!-- badges: end -->
 
 The goal of dsbox is to supplement the Data Science Course in a Box
@@ -42,11 +41,11 @@ request.
 When filing an issue to get help or report a bug, please make a minimal
 **repr**oducible **ex**ample using the
 [reprex](https://reprex.tidyverse.org/) package. If you haven’t heard of
-or used reprex before, you’re in for a treat\! Seriously, reprex will
+or used reprex before, you’re in for a treat! Seriously, reprex will
 make all of your R-question-asking endeavors easier (which is a pretty
 insane ROI for the five to ten minutes it’ll take you to learn what it’s
 all about). For additional reprex pointers, check out the [Get
-help\!](https://www.tidyverse.org/help/) section of the tidyverse site.
+help!](https://www.tidyverse.org/help/) section of the tidyverse site.
 
 Before opening a new issue, be sure to [search issues and pull
 requests](https://github.com/rstudio-education/dsbox/issues) to make
