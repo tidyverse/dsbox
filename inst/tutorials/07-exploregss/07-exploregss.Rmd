@@ -521,7 +521,7 @@ grade_this({
 ```{r email-lm-interpret}
 question("Which is the correct interpretation for the `estimate` of the `educ` parameter?",
   answer("For each additional year spent in education, the weekly time spent on email is expected to be longer, on average, by 29.6 minutes.", correct = TRUE),
-  answer("For each additional year spent in education, the weekly time spent on email is longer for all respondants by 29.6 minutes."),
+  answer("For each additional year spent in education, the weekly time spent on email is longer for all respondents by 29.6 minutes."),
   answer("An additional year spent in education causes you to spend 29.6 minutes more per week on email."),
   answer("For each additional 29.6 minutes spent on email, the time spent in education is expected to be greater, on average, by one year."),
   allow_retry = TRUE,
@@ -550,7 +550,7 @@ grade_this_code("You've successfully created the augmented data set - now on to 
 
 ### The plot thickens
 
-Now, use the `m_aug` tibble as the dataset for creating the desired residual plot.
+Now, use the `email_aug` tibble as the dataset for creating the desired residual plot.
 
 ```{r residual-plot, exercise = TRUE, exercise.setup = "setup-augmented-email-lm"}
 ggplot(___) +
