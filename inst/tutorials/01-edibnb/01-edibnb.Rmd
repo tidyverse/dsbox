@@ -197,7 +197,7 @@ quiz(
            answer("Bimodal",
                   message = "How many prominent peaks, or modes, do you see? (recall \"bi\" means \"two\")"),
            answer("Multimodal",
-                  message = "How many prominent peaks, or modes, do you see?"),
+                  message = "A distribution is said to be multimodal if there are three or more prominent peaks. How many prominent peaks, or modes, do you see?"),
            allow_retry = TRUE),
   question("Which of the following is false?",
            answer("There are no listings with a nightly rate above £1,250."),
