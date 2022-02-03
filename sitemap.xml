@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://rstudii-education.github.io/dsbox/404.html</loc>
+  </url>
+  <url>
+    <loc>https://rstudii-education.github.io/dsbox/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
+    <loc>https://rstudii-education.github.io/dsbox/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://rstudii-education.github.io/dsbox/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://rstudii-education.github.io/dsbox/authors.html</loc>
+  </url>
+  <url>
     <loc>https://rstudii-education.github.io/dsbox/index.html</loc>
+  </url>
+  <url>
+    <loc>https://rstudii-education.github.io/dsbox/news/index.html</loc>
   </url>
   <url>
     <loc>https://rstudii-education.github.io/dsbox/reference/accidents.html</loc>
@@ -23,6 +41,9 @@
   </url>
   <url>
     <loc>https://rstudii-education.github.io/dsbox/reference/gss16.html</loc>
+  </url>
+  <url>
+    <loc>https://rstudii-education.github.io/dsbox/reference/index.html</loc>
   </url>
   <url>
     <loc>https://rstudii-education.github.io/dsbox/reference/instructors.html</loc>
@@ -56,5 +77,35 @@
   </url>
   <url>
     <loc>https://rstudii-education.github.io/dsbox/reference/ucbadmit.html</loc>
+  </url>
+  <url>
+    <loc>https://rstudii-education.github.io/dsbox/tutorials/01-basics.html</loc>
+  </url>
+  <url>
+    <loc>https://rstudii-education.github.io/dsbox/tutorials/02-accidents.html</loc>
+  </url>
+  <url>
+    <loc>https://rstudii-education.github.io/dsbox/tutorials/03-collegemajors.html</loc>
+  </url>
+  <url>
+    <loc>https://rstudii-education.github.io/dsbox/tutorials/04-legosales.html</loc>
+  </url>
+  <url>
+    <loc>https://rstudii-education.github.io/dsbox/tutorials/05-moneyinpolitics.html</loc>
+  </url>
+  <url>
+    <loc>https://rstudii-education.github.io/dsbox/tutorials/06-dcbikeshare.html</loc>
+  </url>
+  <url>
+    <loc>https://rstudii-education.github.io/dsbox/tutorials/07-exploregss.html</loc>
+  </url>
+  <url>
+    <loc>https://rstudii-education.github.io/dsbox/tutorials/08-bootstrapgss.html</loc>
+  </url>
+  <url>
+    <loc>https://rstudii-education.github.io/dsbox/tutorials/09-palmerpenguins.html</loc>
+  </url>
+  <url>
+    <loc>https://rstudii-education.github.io/dsbox/tutorials/index.html</loc>
   </url>
 </urlset>
