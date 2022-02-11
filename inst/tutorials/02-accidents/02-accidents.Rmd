@@ -7,8 +7,8 @@ output:
     css: "css/font-size.css"
 runtime: shiny_prerendered
 description: >
-  Get more practice with data visualization and wrangling in the tidyverse: 
-  practice visualization with ggplot2, and data handling with the filter() and 
+  Get more practice with data visualisation and wrangling in the tidyverse: 
+  practice visualisation with ggplot2, and data handling with the filter() and 
   mutate() functions.
 ---
 
@@ -45,13 +45,13 @@ It covers all recorded accidents in Edinburgh in 2018 and some of the variables 
 
 ### Learning goals
 
-- Continue practising data visualization skills with ggplot2. 
+- Continue practising data visualisation skills with ggplot2. 
 - Filter data for certain attributes with `filter()`. 
 - Create new variables based on existing variables in the data with `mutate()`. 
 
 ### Packages
 
-We'll use the **tidyverse** package for the analysis and the **dsbox** package for the data.
+We'll use the `tidyverse` package for the analysis and the `dsbox` package for the data.
 These packages are already installed for you, so you load it as usual by running the following code:
 
 ```{r load-packages, exercise = TRUE}
@@ -106,7 +106,7 @@ Note that it is long (there are lots of variables in the data), but we will be u
 | `road_surface` | Road surface conditions at the time of the accident: Dry, Wet or damp, Snow, Frost or ice, Flood over 3cm deep
 | `special_condition` | Special condition at the site of the accident: None, Road sign or marking defective or obscured, Roadworks, Road surface defective
 | `hazard` | Carriageway hazards: None, Other object on road, Previous accident, Pedestrian in carriageway - not injured
-| `urban_rural` | Type of area the accident occurred in
+| `urban_rural` | Type of area the accident occurred in: 1 - urban, 2 - rural
 | `police` | Did police officer attend the scene of the accident: No, No + accident self reported (using a self completion form), Yes
 
 ### First look at the data
@@ -163,7 +163,7 @@ How many variables are recorded on these crashes? Use the code chunk below!
 ```
 
 ```{r ncol-hint-1}
-Each variable is encoded is displayed as a column.
+Each variable is displayed as a column.
 ```
 
 ```{r ncol-hint-2}
@@ -208,8 +208,10 @@ accidents %>%
 
 ```{r filter-accidents-check}
 grade_this({
-  if(identical(.result, 72) | identical(.result, 72L)) {
-    pass("There are 72 rows that correspond to accidents with 2 or more vehicles occurred in an urban area.")
+  if(identical(.result, 407) | identical(.result, 407L)) {
+    pass("There are 407 rows that correspond to accidents with 2 or more vehicles occurred in an urban area.")
+  } if(identical(.result, 72) | identical(.result, 72L)) {
+    pass("Check which level corresponds to which type.")
   }
   fail("Take a peek at the hints!")
 })
@@ -265,10 +267,10 @@ dataset?",
 
 ## Accident severity
 
-### Visualizing 
+### Visualising 
 
 Recreate the following plot. 
-To match the colors, you can use `scale_fill_viridis_d()`.
+To match the colours, you can use `scale_fill_viridis_d()`.
 
 ```{r example-plot, fig.width=7, fig.height=3, echo=FALSE}
 ggplot(data = accidents, aes(x = severity, fill = light)) +
@@ -348,7 +350,7 @@ question("Which of the following are true? Check all that apply.",
          )
 ```
 
-### Customizing labels
+### Customising labels
 
 Recreate the same figure, but this time change the labels of the crash severity variable such that the dashes in the labels don't show up. 
 There are many ways to do this, but in this tutorial, we'll focus on changing how the data are represented in the `light` variable using `mutate()`. 
