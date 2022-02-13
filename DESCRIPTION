@@ -22,6 +22,7 @@ Imports:
     DT,
     tidymodels,
     fivethirtyeight,
+    palmerpenguins,
     gradethis (>= 0.1.0.9004)
 Suggests: 
     dplyr, 
@@ -30,10 +31,10 @@ Suggests:
 Depends: 
     R (>= 2.10)
 License: MIT + file LICENSE
-URL: https://rstudio-education.github.io/dsbox, 
+URL: https://rstudio-education.github.io/dsbox,
     https://github.com/rstudio-education/dsbox
 BugReports: https://github.com/rstudio-education/dsbox/issues
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
-Remotes:  
+Remotes: 
     rstudio-education/gradethis
