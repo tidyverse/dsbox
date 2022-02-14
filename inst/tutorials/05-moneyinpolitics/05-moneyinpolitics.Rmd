@@ -126,7 +126,7 @@ In order to complete this assignment you will need a Chrome browser with the [Se
 
 ### Packages
 
-In this assignment we will work with the following packages: **tidyverse** and **scales** (which you should be familiar with), and **robotstxt** and **rvest** for web scraping. We also use the **dsbox** package for pre-scraped data.
+In this assignment we will work with the following packages: `tidyverse` and `scales` (which you should be familiar with), and `robotstxt` and `rvest` for web scraping. We also use the `dsbox` package for pre-scraped data.
 You can load them with the following:
 
 ```{r load-packages, exercise=TRUE}
@@ -439,7 +439,7 @@ To start, use the following code block to find the number of observations and va
 ```
 
 ```{r pac-2020-observations-hint}
-Think about which function we could use to calculate the *n*umber of *row*s...
+Think about which function we could use to calculate the **n**umber of **row**s...
 ```
 
 ```{r pac-2020-observations-check}
@@ -679,7 +679,7 @@ First off in this section, we're going to create a line plot of total contributi
 For this, we're going to be following these steps:
 - Filter for only `Canada` and `UK`.
 - Calculate sum of total contributions from PACs for each year for each country by using a sequence of `group_by()` then `summarise()`.
-- Make a plot of total contributions (y-axis) by year (x-axis) where two lines identified by different colors represent each of Canada and UK.
+- Make a plot of total contributions (y-axis) by year (x-axis) where two lines identified by different colours represent each of Canada and UK.
 
 ```{r uk-canada-plot, exercise = TRUE, message = FALSE}
 pac_all %>%
@@ -722,7 +722,7 @@ pac_all %>%
   filter(country %in% c("Canada", "UK")) %>%
   group_by(country, year) %>%
   summarise(tot = sum(total), .groups = "drop") %>%
-  ggplot(aes(x = year, y = tot, group = country, color = country)) +
+  ggplot(aes(x = year, y = tot, group = country, colour = country)) +
   geom_line()
 ```
 
@@ -748,14 +748,14 @@ dsbox::pac_all %>%
     names_to = "party", 
     values_to = "amount"
     ) %>%
-  ggplot(mapping = aes(x = year, y = amount, color = party)) +
+  ggplot(mapping = aes(x = year, y = amount, colour = party)) +
   geom_line() +
-  scale_color_manual(values = c("blue", "red")) +
+  scale_colour_manual(values = c("blue", "red")) +
   scale_y_continuous(labels = dollar_format(scale = 0.000001, suffix = "M")) +
   labs(
     x = "Year",
     y = "Amount",
-    color = "Party",
+    colour = "Party",
     title = "Contribution to US politics from UK-Connected PACs",
     subtitle = "By party, over time"
   ) +
@@ -790,7 +790,7 @@ pac_all %>%
 ### Step 3 - Pivoting
 
 This results in a 11x3 tibble (11 years, and a column each for year, total contributions in that year to the Democratic party, and total contributions in that year to the Republican party). 
-Ultimately we want to color the lines by party though, and this requires our data to be formatted a little differently: with two rows per year, one for contributions to the Democratic Party and the other for the Republican Party. 
+Ultimately we want to colour the lines by party though, and this requires our data to be formatted a little differently: with two rows per year, one for contributions to the Democratic Party and the other for the Republican Party. 
 
 We can achieve this by pivoting our data to be longer (going from 11 to 22 rows)
 
@@ -841,7 +841,7 @@ pac_all_final %>%
 
 ```{r final-plot-first-solution}
 pac_all_final %>%
-  ggplot(mapping = aes(x = year, y = amount, color = party)) +
+  ggplot(mapping = aes(x = year, y = amount, colour = party)) +
   geom_line()
 ```
 
@@ -852,10 +852,10 @@ grade_this_code("Good start to the plot. Now let's make it look a bit nicer.")
 ### Step 4.1 - Changing party colours
 
 If you've ever seen a US election-related graphic, you'll know that the Democrats are always blue and the Republicans red - so let's colour our plot like this.
-We can use the `scale_color_manual()` function from the `scales` package to do so.
+We can use the `scale_colour_manual()` function from the `scales` package to do so.
 This function's main argument is `values`, which takes in a `vector` describing the colours to be used, for example `c("red", "white", "blue")`.
 
-Copy your code from the previous exercise, and add a `scale_color_manual()` line to the plot:
+Copy your code from the previous exercise, and add a `scale_colour_manual()` line to the plot:
 
 ```{r final-plot-second, exercise=TRUE, exercise.setup = "clean-pac-all", message=FALSE}
 
@@ -863,9 +863,9 @@ Copy your code from the previous exercise, and add a `scale_color_manual()` line
 
 ```{r final-plot-second-solution}
 pac_all_final %>%
-  ggplot(mapping = aes(x = year, y = amount, color = party)) +
+  ggplot(mapping = aes(x = year, y = amount, colour = party)) +
   geom_line() +
-  scale_color_manual(values = c("blue", "red"))
+  scale_colour_manual(values = c("blue", "red"))
 ```
 
 ```{r final-plot-second-check}
@@ -888,9 +888,9 @@ ___ +
 
 ```{r final-plot-third-solution}
 pac_all_final %>%
-  ggplot(mapping = aes(x = year, y = amount, color = party)) +
+  ggplot(mapping = aes(x = year, y = amount, colour = party)) +
   geom_line() +
-  scale_color_manual(values = c("blue", "red")) +
+  scale_colour_manual(values = c("blue", "red")) +
   scale_y_continuous(labels = label_dollar(scale = 0.000001, suffix = "M"))
 ```
 
@@ -909,7 +909,7 @@ ___  +
   ___(
     x = ___,
     y = ___,
-    color = ___,
+    colour = ___,
     ___ = "Contribution to US politics from UK-Connected PACs",
     ___ = "By party, over time"
   ) 
@@ -917,14 +917,14 @@ ___  +
 
 ```{r final-plot-fourth-solution}
 pac_all_final %>%
-  ggplot(mapping = aes(x = year, y = amount, color = party)) +
+  ggplot(mapping = aes(x = year, y = amount, colour = party)) +
   geom_line() +
-  scale_color_manual(values = c("blue", "red")) +
+  scale_colour_manual(values = c("blue", "red")) +
   scale_y_continuous(labels = label_dollar(scale = 0.000001, suffix = "M")) +
   labs(
     x = "Year",
     y = "Amount",
-    color = "Party",
+    colour = "Party",
     title = "Contribution to US politics from UK-Connected PACs",
     subtitle = "By party, over time"
   ) 
@@ -945,14 +945,14 @@ ___ +
 
 ```{r final-plot-fifth-solution}
 pac_all_final %>%
-  ggplot(mapping = aes(x = year, y = amount, color = party)) +
+  ggplot(mapping = aes(x = year, y = amount, colour = party)) +
   geom_line() +
-  scale_color_manual(values = c("blue", "red")) +
+  scale_colour_manual(values = c("blue", "red")) +
   scale_y_continuous(labels = label_dollar(scale = 0.000001, suffix = "M")) +
   labs(
     x = "Year",
     y = "Amount",
-    color = "Party",
+    colour = "Party",
     title = "Contribution to US politics from UK-Connected PACs",
     subtitle = "By party, over time"
   ) +

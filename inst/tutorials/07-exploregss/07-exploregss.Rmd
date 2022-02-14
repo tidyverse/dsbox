@@ -213,7 +213,7 @@ gss16 %>%
 
 ```{r harass5-yes-hint-3}
 gss16 %>%
-  filter(harass5 == "Yes") %>%
+  filter(!(harass5 == "Yes")) %>%
   nrow()
 ```
 
@@ -224,6 +224,9 @@ grade_this({
   }
   if(identical(.result, 1136) | identical(.result, 1136L)) {
     fail("Did you accidentally count the number of 'No' responses?")
+  }
+  if(identical(.result, 1232) | identical(.result, 1232L)) {
+    fail("Did you accidentally count the number of reponses that aren't 'Yes?'")
   }
   fail("Not quite. Try looking at the hints now if you need help.")
 })
@@ -287,7 +290,7 @@ Now, find the mean and median number of minutes respondents spend on email weekl
 ```
 
 ```{r mean-median-email-hint-1}
-Remember - you'll need to remove the NA values.
+Remember - you'll need to remove the 'NA' values.
 ```
 
 ```{r mean-median-email-hint-2}
@@ -305,7 +308,7 @@ gss16 %>%
   )
 ```
 
-What is the **mean** number of minutes spend on email weekly?
+What is the **mean** number of minutes respondents spend on email weekly?
 Enter the answer into the following block to the nearest minute:
 
 ```{r mean-email, exercise=TRUE, exercise.setup = "setup-email-var"}

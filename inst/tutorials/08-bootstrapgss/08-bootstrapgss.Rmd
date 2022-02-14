@@ -154,7 +154,7 @@ gss16 <- gss16 %>%
 ```
 
 ```{r email-variable-check}
-grade_this_code("You've successfully created the `email` variable.")
+grade_this_code("You've successfully created the 'email' variable.")
 ```
 
 ### Filter the data
@@ -254,7 +254,7 @@ boot_df <- gss16_email %>%
 ```
 
 ```{r create-boot-df-check}
-grade_this_code("That's you created the bootstrap data frame.")
+grade_this_code("You've successfully created the bootstrap data frame.")
 ```
 
 ### Glimpse the bootstrapped data frame
@@ -313,7 +313,7 @@ grade_this({
     pass("That is a 95% confidence interval for mean weekly time spent on email.")
   }
   if(identical(floor(as.numeric(.result$lower[1])), 389) & identical(floor(as.numeric(.result$upper[1])), 444)) {
-    fail("It looks like you've calculated a 90% confidence interval. Remember that to pick out hte central 95% of the distribution, we need to discard the most extreme 2.5% at each side.")
+    fail("It looks like you've calculated a 90% confidence interval. Remember that to pick out the central 95% of the distribution, we need to discard the most extreme 2.5% at each side.")
   }
   fail("Not quite. Take a look at the hints if you need some help.")
 })
@@ -428,7 +428,7 @@ ___ %>%
 
 ```{r confidence-90-median-hint-1}
 Look at the previous question for help!
-Remember to use the boot_df_median dataframe.
+Remember to use the 'boot_df_median' dataframe.
 ```
 
 ```{r confidence-90-median-hint-2}
@@ -475,6 +475,5 @@ question("Which statement is correct?",
 
 ## Wrap Up
 
-That's it! 
-You've finished the last tutorial, congratulations!
-We hope you enjoyed this exploration. 
+Great work!
+We hope you enjoyed this exploration into bootstrapping and confidence intervals. Only one more tutorial to go! 

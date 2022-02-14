@@ -48,7 +48,7 @@ The goal of this tutorial is not to conduct a thorough analysis of Airbnb listin
 
 ### Packages
 
-We'll use the **tidyverse** package for this analysis and the **dsbox** package for the data. Run the following code to load this package.
+We'll use the `tidyverse` package for this analysis and the `dsbox` package for the data. Run the following code to load this package.
 
 ```{r load-packages, exercise=TRUE}
 library(tidyverse)
