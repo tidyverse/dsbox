@@ -312,7 +312,7 @@ dcbikeshare <- ___ %>%
 ```
 
 ```{r recode-season-exercise-hint-1}
-Use 'case_when()' to 'mutate()' the variable and 'fct_relevel()' to convert it into a factor!
+Use `case_when()` to `mutate()` the variable and `fct_relevel()` to convert it into a factor!
 ```
 
 ```{r recode-season-exercise-hint-2}
@@ -365,7 +365,7 @@ dcbikeshare <- ___ %>%
 ```
 
 ```{r recode-holiday-workingday-hint-1}
-First 'mutate()' the variables using 'ifelse()', then use 'fct_relevel()'
+First `mutate()` the variables using `ifelse()`, then use `fct_relevel()`
 ```
 
 ```{r recode-holiday-workingday-hint-2}
@@ -668,7 +668,7 @@ The temperature plotted is the feeling temperature.
 ```
 
 ```{r recreate-viz-hint-2}
-Adjust the alpha value to 0.7 and use 'theme_minimal()' at the end.
+Adjust the alpha value to 0.7 and use `theme_minimal()` at the end.
 ```
 
 ```{r recreate-viz-hint-3}

@@ -290,7 +290,7 @@ Now, find the mean and median number of minutes respondents spend on email weekl
 ```
 
 ```{r mean-median-email-hint-1}
-Remember - you'll need to remove the 'NA' values.
+Remember - you'll need to remove the `NA` values.
 ```
 
 ```{r mean-median-email-hint-2}
