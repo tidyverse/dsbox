@@ -5,7 +5,7 @@
 \alias{dennys}
 \title{Locations of Denny's restaurants}
 \format{
-A tibble with 1643 rows and 3 variables:
+A tibble with 1643 rows and 6 variables:
 \describe{
 \item{address}{}
 \item{city}{}

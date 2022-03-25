@@ -136,8 +136,8 @@ int_dat <- data.frame(newflip, conf_int, pred_int)
 
 plot_1 <- ggplot(data = int_dat, aes(x = flipper_length_cm)) +
   geom_point(data = penguins, 
-             aes(x = flipper_length_cm, y = body_mass_kg, color = species)) +
-  scale_color_manual(values = c("orange", "purple", "cyan4")) +
+             aes(x = flipper_length_cm, y = body_mass_kg, colour = species)) +
+  scale_colour_manual(values = c("orange", "purple", "cyan4")) +
   labs(x = "Flipper length (cm)", y = "Body mass (kg)")
 ```
 
@@ -340,7 +340,7 @@ glimpse(penguins)
 ## Patterns in visualisations
 
 Create a scatter plot of the penguin's body mass against their flipper length.
-Using `scale_color_manual()`, represent each species with the following colours:
+Using `scale_colour_manual()`, represent each species with the following colours:
 
 +----------------+-------------+
 |    Species     |   Colour    |
@@ -363,31 +363,31 @@ ggplot() +
 ggplot() +
   geom_point(data = ___, 
            aes(x = ___, ___ = ___, ___ = ___))+
-  scale_color_manual(values = c(___,___,___))+
+  scale_colour_manual(values = c(___,___,___))+
   labs(x = "Flipper length (cm)", y = "Body mass (kg)")
 ```
 
 ```{r plot-massflipper-hint-2}
 ggplot() +
   geom_point(data = penguins, 
-           aes(x = ___, y = ___, color = ___))+
-  scale_color_manual(values = c("orange",___,___))+
+           aes(x = ___, y = ___, colour = ___))+
+  scale_colour_manual(values = c("orange",___,___))+
   labs(x = "Flipper length (cm)", y = "Body mass (kg)")
 ```
 
 ```{r plot-massflipper-hint-3}
 ggplot() +
   geom_point(data = penguins, 
-           aes(x = flipper_length_cm, y = ___, color = species))+
-  scale_color_manual(values = c("orange",___,___))+
+           aes(x = flipper_length_cm, y = ___, colour = species))+
+  scale_colour_manual(values = c("orange",___,___))+
   labs(x = "Flipper length (cm)", y = "Body mass (kg)")
 ```
 
 ```{r plot-massflipper-solution}
 ggplot() +
   geom_point(data = penguins, 
-           aes(x = flipper_length_cm, y = body_mass_kg, color = species))+
-  scale_color_manual(values = c("orange", "purple", "cyan4"))+
+           aes(x = flipper_length_cm, y = body_mass_kg, colour = species))+
+  scale_colour_manual(values = c("orange", "purple", "cyan4"))+
    labs(x = "Flipper length (cm)", y = "Body mass (kg)") 
 
 ```
@@ -1028,15 +1028,15 @@ Let's store the previously created scatterplot in `plot_1`.
 ```{r store-plot, exercise = TRUE, exercise.setup = "final-plot-setup"}
 plot_1 <- ggplot(data = int_dat, aes(x = flipper_length_cm)) +
   geom_point(data = penguins, 
-           aes(x = flipper_length_cm, y = body_mass_kg, color = species))+
-  scale_color_manual(values = c("orange", "purple", "cyan4"))+
+           aes(x = flipper_length_cm, y = body_mass_kg, colour = species))+
+  scale_colour_manual(values = c("orange", "purple", "cyan4"))+
   labs(x = "Flipper length (cm)", y = "Body mass (kg)")
 ```
 
 ```{r store-plot-solution}
 plot_1 <- ggplot(data = int_dat, aes(x = flipper_length_cm))+
-  geom_point(data = penguins, aes(x = flipper_length_cm, y = body_mass_kg,color = species))+
-  scale_color_manual(values = c("orange","purple", "cyan4"))+
+  geom_point(data = penguins, aes(x = flipper_length_cm, y = body_mass_kg,colour = species))+
+  scale_colour_manual(values = c("orange","purple", "cyan4"))+
   labs(x = "Flipper length (cm)", y = "Body mass (kg)")
 ```
 
@@ -1082,5 +1082,7 @@ grade_this_code("Your solution is correct!")
 
 ## Wrap up
 
-Great work!
-We hope you've enjoyed this chance to practice your modelling skills!
+We hope you've enjoyed this chance to practice your modelling skills.
+
+That's it! 
+You've finished the last tutorial, congratulations!

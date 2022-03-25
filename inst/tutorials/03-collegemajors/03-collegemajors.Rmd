@@ -54,7 +54,7 @@ college_recent_grads <- fivethirtyeight::college_recent_grads %>%
 knitr::include_graphics("images/pang-yuhao-_kd5cxwZOK4-unsplash.jpg")
 ```
 
-The first step in the process of turning information into knowledge is to summarize and describe the raw information - the data. 
+The first step in the process of turning information into knowledge is to summarise and describe the raw information - the data. 
 In this assignment, we explore data on college majors and earnings, specifically the data behind the FiveThirtyEight story [*The Economic Guide To Picking A College Major*](https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/).
 
 [FiveThirtyEight](https://fivethirtyeight.com/) is a website that focuses on opinion poll analysis, politics, economics, and sports blogging. 
@@ -65,7 +65,7 @@ While this is outside the scope of this assignment, if you are curious about how
 
 We should also note that there are many considerations that go into picking a major. 
 Earnings potential and employment prospects are two of them, and they are important, but they do not tell the whole story. 
-Keep this in mind as you analyze the data.
+Keep this in mind as you analyse the data.
 
 ### Learning goals
 
@@ -75,7 +75,7 @@ Keep this in mind as you analyze the data.
 
 ### Packages
 
-In this assignment we will work with the **tidyverse** package, the **scales** package for formatting numerical values, and the **fivethirtyeight** package for the data. 
+In this assignment we will work with the `tidyverse` package, the `scales` package for formatting numerical values, and the `fivethirtyeight` package for the data. 
 These packages are already installed for you, so you can load them with the following:
 
 ```{r load-packages, exercise=TRUE}
@@ -96,10 +96,10 @@ grade_this_code("The packages are now loaded!")
 
 ## Data
 
-The data frame we will be working with today is called `college_recent_grads` and it’s in the fivethirtyeight package. 
+The data frame we will be working with today is called `college_recent_grads` and it’s in the `fivethirtyeight` package. 
 This is a tidy **data frame**, with each row representing an **observation** and each column representing a **variable**.
 
-You can take a quick peek at your data frame and view its dimensions with the glimpse function:
+You can take a quick peek at your data frame and view its dimensions with the `glimpse()` function:
 
 ```{r glimpse-college-grads, exercise=TRUE}
 glimpse(college_recent_grads)
@@ -145,7 +145,7 @@ In the next section we aim to answer these questions.
 
 In order to answer this question all we need to do is sort the data. 
 We use the `arrange()` function to do this, and sort it by the `unemployment_rate` variable. 
-By default arrange sorts in ascending order, which is what we want here – we’re interested in the major with the *lowest* unemployment rate.
+By default `arrange()` sorts in ascending order, which is what we want here – we’re interested in the major with the *lowest* unemployment rate.
 
 ```{r lowest-unemployment-rate, exercise=TRUE}
 college_recent_grads %>%
@@ -167,7 +167,7 @@ college_recent_grads %>%
 
 ### Select or relocate?
 
-There is also another function in `dplyr` (one of the packages in the tidyverse universe) called `relocate()`, which can be used in the same situations as `select()`.
+There is also another function in `dplyr` (one of the packages in the `tidyverse` universe) called `relocate()`, which can be used in the same situations as `select()`.
 
 The difference between these two functions is that `relocate()` moves the variables we're interested in to the front (the left-most columns when we view a tibble), while `select()` keeps *only* the specified variables.
 
@@ -255,9 +255,9 @@ These correspond to the 25th, 50th, and 75th percentiles of the income distribut
 
 The question we want to answer is "How do the distributions of median income compare across major categories?". 
 We need to do a few things to answer this question: First, we need to group the data by `major_category`. 
-Then, we need a way to summarize the distributions of median income within these groups. 
+Then, we need a way to summarise the distributions of median income within these groups. 
 This decision will depend on the shapes of these distributions. 
-So first, we need to visualize the data.
+So first, we need to visualise the data.
 
 We use the `ggplot()` function to do this. 
 The first argument is the data frame, and the next argument gives the mapping of the variables of the data to the aesthetic elements of the plot.
@@ -674,61 +674,61 @@ grade_this({
 
 ### What types of majors do women tend to major in?
 
-Create a scatterplot of median income vs. proportion of women in that major, colored by whether the major is in a STEM field or not. 
+Create a scatterplot of median income vs. proportion of women in that major, coloured by whether the major is in a STEM field or not. 
 Describe the association between these three variables.
 
 ```{r majors-women, exercise=TRUE, exercise.setup = "setup-major-type"}
 ggplot(___ = college_recent_grads, 
-       mapping = aes(x = ___, y = ___, color = ___)) +
+       mapping = aes(x = ___, y = ___, colour = ___)) +
   ___() +
   ___(
     x = "Proportion of women",
     y = "Median income",
-    color = "Major type"
+    colour = "Major type"
   )
 ```
 
 ```{r majors-women-hint-1}
 ggplot(data = college_recent_grads, 
-       mapping = aes(x = sharewomen, y = ___, color = ___)) +
+       mapping = aes(x = sharewomen, y = ___, colour = ___)) +
   ___() +
   ___(
     x = "Proportion of women",
     y = "Median income",
-    color = "Major type"
+    colour = "Major type"
   )
 ```
 
 ```{r majors-women-hint-2}
 ggplot(data = college_recent_grads, 
-       mapping = aes(x = sharewomen, y = median, color = ___)) +
+       mapping = aes(x = sharewomen, y = median, colour = ___)) +
   ___() +
   ___(
     x = "Proportion of women",
     y = "Median income",
-    color = "Major type"
+    colour = "Major type"
   )
 ```
 
 ```{r majors-women-hint-3}
 ggplot(data = college_recent_grads, 
-       mapping = aes(x = sharewomen, y = median, color = major_type)) +
+       mapping = aes(x = sharewomen, y = median, colour = major_type)) +
   geom_point() +
   ___(
     x = "Proportion of women",
     y = "Median income",
-    color = "Major type"
+    colour = "Major type"
   )
 ```
 
 ```{r majors-women-solution}
 ggplot(data = college_recent_grads, 
-       mapping = aes(x = sharewomen, y = median, color = major_type)) +
+       mapping = aes(x = sharewomen, y = median, colour = major_type)) +
   geom_point() +
   labs(
     x = "Proportion of women",
     y = "Median income",
-    color = "Major type"
+    colour = "Major type"
   )
 ```
 
@@ -761,12 +761,12 @@ Use the following code block to apply this new formatting, using your code from 
 
 ```{r majors-women-labels, exercise=TRUE, exercise.setup = "setup-major-type"}
 ggplot(___ = college_recent_grads, 
-       mapping = aes(x = ___, y = ___, color = ___)) +
+       mapping = aes(x = ___, y = ___, colour = ___)) +
   ___() +
   ___(
     x = "Percentage of women",
     y = "Median income",
-    color = "Major type"
+    colour = "Major type"
   ) +
   scale_x_continuous(labels = label_percent()) +
   scale_y_continuous(labels = label_number())
@@ -774,12 +774,12 @@ ggplot(___ = college_recent_grads,
 
 ```{r majors-women-labels-solution}
 ggplot(data = college_recent_grads, 
-       mapping = aes(x = sharewomen, y = median, color = major_type)) +
+       mapping = aes(x = sharewomen, y = median, colour = major_type)) +
   geom_point() +
   labs(
     x = "Percentage of women",
     y = "Median income",
-    color = "Major type"
+    colour = "Major type"
   ) +
   scale_x_continuous(labels = label_percent()) +
   scale_y_continuous(labels = label_number())

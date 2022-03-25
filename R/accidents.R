@@ -4,10 +4,10 @@
 #' looking to prevent them.
 #'
 #' The data come from the UK Government at
-#' [data.gov.uk](https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data/datafile/36f1658e-b709-47e7-9f56-cca7aefeb8fe/preview).
+#' [data.gov.uk](https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data).
 #' It's been modified to better serve the goals of introductory data science education.
 #'
-#' @source https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data/datafile/36f1658e-b709-47e7-9f56-cca7aefeb8fe/preview
+#' @source https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data
 #' @format A tibble with 768 rows and 31 variables:
 #' \describe{
 #'   \item{id}{Accident ID}
@@ -39,7 +39,7 @@
 #'   \item{road_surface}{Road surface conditions at the time of the accident: Dry, Wet or damp, Snow, Frost or ice, Flood over 3cm deep}
 #'   \item{special_condition}{Special condition at the site of the accident: None, Road sign or marking defective or obscured, Roadworks, Road surface defective}
 #'   \item{hazard}{Carriageway hazards: None, Other object on road, Previous accident, Pedestrian in carriageway - not injured}
-#'   \item{urban_rural}{Type of area the accident occurred in}
+#'   \item{urban_rural}{Type of area the accident occurred in: 1 - urban, 2 - rural}
 #'   \item{police}{Did police officer attend the scene of the accident: No, No + accident self reported (using a self completion form), Yes}
 #' }
 #'
@@ -51,3 +51,4 @@
 #'   geom_bar()
 #'
 "accidents"
+

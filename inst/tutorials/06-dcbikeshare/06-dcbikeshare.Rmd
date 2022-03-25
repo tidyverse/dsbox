@@ -312,7 +312,7 @@ dcbikeshare <- ___ %>%
 ```
 
 ```{r recode-season-exercise-hint-1}
-Use case_when() to mutate() the variable and fct_relevel() to convert it into a factor!
+Use `case_when()` to `mutate()` the variable and `fct_relevel()` to convert it into a factor!
 ```
 
 ```{r recode-season-exercise-hint-2}
@@ -365,7 +365,7 @@ dcbikeshare <- ___ %>%
 ```
 
 ```{r recode-holiday-workingday-hint-1}
-First mutate() the variables using ifelse(), then use fct_relevel()
+First `mutate()` the variables using `ifelse()`, then use `fct_relevel()`
 ```
 
 ```{r recode-holiday-workingday-hint-2}
@@ -636,14 +636,14 @@ Recreate the following visualization.
 ```{r fig.width=9, echo=FALSE, out.width="100%"}
 dcbikeshare %>%
   mutate(atemp_raw = atemp * 50) %>%
-  ggplot(mapping = aes(x = dteday, y = cnt, color = atemp_raw)) +
+  ggplot(mapping = aes(x = dteday, y = cnt, colour = atemp_raw)) +
     geom_point(alpha = 0.7) +
     labs(
       title = "Bike rentals in DC, 2011 and 2012",
       subtitle = "Warmer temperatures associated with more bike rentals",
       x = "Date",
       y = "Bike rentals",
-      color = "Temperature (C)"
+      colour = "Temperature (C)"
     ) +
   theme_minimal()
 ```
@@ -657,7 +657,7 @@ dcbikeshare %>%
       subtitle = ___,
       x = ___,
       y = ___,
-      color = ___
+      colour = ___
     ) +
   ___
 ```
@@ -668,47 +668,47 @@ The temperature plotted is the feeling temperature.
 ```
 
 ```{r recreate-viz-hint-2}
-Adjust the alpha value to 0.7 and use theme_minimal() at the end.
+Adjust the alpha value to 0.7 and use `theme_minimal()` at the end.
 ```
 
 ```{r recreate-viz-hint-3}
 dcbikeshare %>%
-  ggplot(mapping = aes(x = ___, y = ___, color = ___)) +
+  ggplot(mapping = aes(x = ___, y = ___, colour = ___)) +
     geom_point(alpha = 0.7) +
     labs(
       title = "Bike rentals in DC, 2011 and 2012",
       subtitle = ___,
       x = ___,
       y = ___,
-      color = ___
+      colour = ___
     ) +
   theme_minimal()
 ```
 
 ```{r recreate-viz-hint-4}
 dcbikeshare %>%
-  ggplot(mapping = aes(x = dteday, y = cnt, color = ___)) +
+  ggplot(mapping = aes(x = dteday, y = cnt, colour = ___)) +
     geom_point(alpha = 0.7) +
     labs(
       title = "Bike rentals in DC, 2011 and 2012",
       subtitle = ___,
       x = ___,
       y = ___,
-      color = ___
+      colour = ___
     ) +
   theme_minimal()
 ```
 
 ```{r recreate-viz-solution}
 dcbikeshare %>%
-  ggplot(mapping = aes(x = dteday, y = cnt, color = feeling_temperature_raw)) +
+  ggplot(mapping = aes(x = dteday, y = cnt, colour = feeling_temperature_raw)) +
     geom_point(alpha = 0.7) +
     labs(
       title = "Bike rentals in DC, 2011 and 2012",
       subtitle = "Warmer temperatures associated with more bike rentals",
       x = "Date",
       y = "Bike rentals",
-      color = "Temperature (C)"
+      colour = "Temperature (C)"
     ) +
   theme_minimal()
 ```
