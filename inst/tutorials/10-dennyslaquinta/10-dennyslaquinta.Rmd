@@ -1,0 +1,1007 @@
+---
+title: "Wrangling Denny's and La Quinta"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+css: "css/font-size.css"
+runtime: shiny_prerendered
+description: >
+  Practice your data wranglingskills by examining the relationship between the locations of Denny's Restaurants and La Quinta Inns.
+---
+
+```{=html}
+<script language="JavaScript" src="js/exercise-font-size.js"></script>
+```
+```{r setup, include=FALSE}
+# load packages-----------------------------------------------------------------
+library(learnr)
+library(gradethis)
+library(tidyverse)
+
+
+# set options for exercises and checking ---------------------------------------
+tutorial_options(
+  exercise.timelimit = 60, 
+  exercise.checker = gradethis::grade_learnr
+  )
+
+# hide non-exercise code chunks ------------------------------------------------
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r load-data}
+states <- read_csv(here::here("inst","tutorials", "10-dennyslaquinta", "states.csv"))
+```
+
+## Introduction
+
+```{r photo, fig.margin = TRUE, echo = FALSE, out.width="100%"}
+knitr::include_graphics("images/dennyslaquintapic.png")
+```
+
+These data are from a [blog post](http://njgeo.org/2014/01/30/mitch-hedberg-and-gis/), by John Reiser on his *new jersey geographer blog* and the reproducible scraping process is located [here](https://github.com/johnjreiser/HedbergGIS).
+
+### Learning goals
+
+-   Refine your data wrangling skills
+-   Compare and analyze spatial data
+
+### Packages
+
+Run the following code to load our packages.
+
+```{r load-packages, exercise=TRUE}
+library(tidyverse)
+library(dsbox)
+```
+
+```{r load-packages-solution}
+library(tidyverse)
+library(dsbox)
+```
+
+```{r load-packages-check}
+grade_this_code("The tidyverse and dsbox packages are now loaded!")
+```
+
+<!-- ## Data -->
+
+
+
+<!-- The codebook for the `dennys` dataset is as follows: -->
+
+<!-- +---------------------+-------------------------------------------+ -->
+<!-- | Name                | Description                               | -->
+<!-- +:====================+:==========================================+ -->
+<!-- | `address`           | Street address of the restaurant                          | -->
+<!-- +---------------------+-------------------------------------------+ -->
+<!-- | `city`            | City of the restaurant        | -->
+<!-- +---------------------+-------------------------------------------+ -->
+<!-- | `state`    | US State of the restaurant    | -->
+<!-- +---------------------+-------------------------------------------+ -->
+<!-- | `zip`     | US ZIP Code of the restaurant     | -->
+<!-- +---------------------+-------------------------------------------+ -->
+<!-- | `longitude` | The longitude of the restaurant. in degrees | -->
+<!-- +---------------------+-------------------------------------------+ -->
+<!-- | `lattiude`       | The latitude of the restaurant. in degrees     | -->
+<!-- +---------------------+-------------------------------------------+ -->
+
+
+<!-- The very similar codebook for the `laquinta` dataset is as follows: -->
+
+<!-- +---------------------+-------------------------------------------+ -->
+<!-- | Name                | Description                               | -->
+<!-- +:====================+:==========================================+ -->
+<!-- | `address`           | Street address of the inn                          | -->
+<!-- +---------------------+-------------------------------------------+ -->
+<!-- | `city`            | City of the inn        | -->
+<!-- +---------------------+-------------------------------------------+ -->
+<!-- | `state`    | US State of the inn    | -->
+<!-- +---------------------+-------------------------------------------+ -->
+<!-- | `zip`     | US ZIP Code of the inn     | -->
+<!-- +---------------------+-------------------------------------------+ -->
+<!-- | `longitude` | The longitude of the inn. in degrees | -->
+<!-- +---------------------+-------------------------------------------+ -->
+<!-- | `lattiude`       | The latitude of the inn. in degrees     | -->
+<!-- +---------------------+-------------------------------------------+ -->
+
+## Warm Up
+
+### Dimensions and Variables
+
+We will begin with a quick warmup exercise before diving deeper into the data wrangling. Fill in the following code chunk to examine how many rows are in each data set
+
+```{r dimensions, exercise=TRUE}
+dennys %>%
+  ---
+
+dennys %>%
+  ---
+  
+lquinta %>%
+  ---
+
+laquinta %>%
+  ---
+```
+
+```{r dimensions-hint-1}
+Use the 'nrow()' and  'ncol()' functions!
+```
+
+```{r dimensions-solution}
+dennys %>%
+  nrow()
+
+dennys %>%
+  ncol()
+  
+lquinta %>%
+  nrow()
+
+laquinta %>%
+  ncol()
+```
+
+```{r dimensions-check}
+grade_this_code("Those are the dimensions!")
+```
+
+We note that the number of rows is different between the two datasets, but the number of columns is the same. Does this make sense? What do you think the rows and columns represent? 
+
+### Variable Definitions
+
+Using the code chunk, run the R command that retrieves the documentation for a function, in this case for the `dennys` and `laquinta` datasets.
+
+```{r documentation, exercise=TRUE}
+dennys
+
+laquinta
+```
+
+```{r documentation-hint-1}
+Recall that typing `?` before an function or dataset's name retrieves this info.
+```
+
+
+```{r documentation-solution}
+?dennys
+
+?laquinta
+```
+
+```{r documentation-check}
+grade_this_code("Were you right? Does the ratio of restaurants to inns surprise you?")
+```
+
+If you are curious about how the data were collected or the motivation behind the research question, feel free to visit the linked websites in the documentation before returning to the exercises.
+
+## Frequencies
+
+### Most and fewest Denny's
+
+We will now compare the number of restaurants and inns per states. Which states have the most, and fewest, Denny's locations? Note that the District of Columbia is included as DC. Leave it in and proceed, just noting that there are **51** values for the state variable.
+
+Use `arrange(desc())` and `slice()` to report your answer in a single 10x2 dataframe. Here is some code to get you started:
+
+```{r most-fewest-dennys, exercise=TRUE}
+dennys %>%
+  group_by(___) %>%
+```
+
+```{r most-fewest-dennys-hint-1}
+dennys %>%
+  group_by(state) %>%
+```
+
+```{r most-fewest-dennys-hint-2}
+dennys %>%
+  group_by(state) %>%
+  summarise(restaurants = n()) %>%
+```
+
+```{r most-fewest-dennys-hint-3}
+There are two more lines of code needed. The necessary functions are 'arrange()' and 'slice()'. Use the documentation for those functions to try to figure them out!
+```
+
+```{r most-fewest-dennys-solution}
+dennys %>%
+  group_by(state) %>%
+  summarise(restaurants = n()) %>%
+  arrange(desc(restaurants)) %>%
+  slice(c(1:5, 47:51))
+```
+
+```{r most-fewest-dennys-check}
+grade_this_code("California has the most, and Delaware the fewest.")
+```
+
+### Most and fewest La Quintas
+
+Now, let's do the same for La Quintas. Which states have the most, and fewest, inns? However, this time our dataset has many non-state values. We can employ a function from the `*_join()` family to compare values to values in the `states` dataset, which has already been loaded for you. It contains a column called "abbreviation" with the 51 desired state (and DC) names.
+
+We'll use some code similar to the previous solution to get you started.
+
+```{r most-fewest-laquinta, exercise=TRUE}
+laquinta %>%
+  group_by(state) %>%
+  summarise(motels = n()) %>%
+  arrange(desc(motels)) %>%
+```
+
+```{r most-fewest-laquinta-hint-1}
+Which join function do we want? The "abbreviation" column in `states` has exactly the values we desire. However, since some states may not have any locations, an 'inner_join()' would be our desired solution. 
+
+Note how many rows remain, though!
+```
+
+```{r most-fewest-laquinta-hint-2}
+laquinta %>%
+  group_by(state) %>%
+  summarise(motels = n()) %>%
+  arrange(desc(motels)) %>%
+  inner_join(states, by = c("____" = "abbreviation")) %>%
+```
+
+```{r most-fewest-laquinta-hint-3}
+With the '*_join()' call, we now have two additional columns in our dataframe. Use 'select()' to select the two columns we desire (state, motels) when reporting your answer.
+```
+
+```{r most-fewest-laquinta-solution}
+laquinta %>%
+  group_by(state) %>%
+  summarise(motels = n()) %>%
+  arrange(desc(motels)) %>%
+  inner_join(states, by = c("state" = "abbreviation")) %>%
+  slice(c(1:5, 44:48)) %>%
+  select(state, motels)
+```
+
+## Frequency per Square Mile
+
+We are now interested in examining the ratios of both Denny's and La Quinta locations per thousand square miles in states.
+
+Use `mutate()` after the following starter code to create a new variable. Then, use `arrange(desc())`, `slice()`, and `select()` to report your answer as two 10x2 dataframes.
+
+```{r locations-per-area, exercise = TRUE}
+dennys %>%
+  group_by(state) %>%
+  summarise(restaurant = n()) %>%
+  inner_join(states, by = c("state" = "abbreviation")) %>%
+  mutate(restaurantsperarea =  ___)
+  
+laquinta %>%
+  group_by(state) %>%
+  summarise(motels = n()) %>%
+  inner_join(states, by = c("state" = "abbreviation")) %>%
+  mutate(motelsperarea =  ___)
+```
+
+```{r locations-per-area-hint-1}
+Run `?mutate` to pull up the documentation if you need to jog your memory?
+```
+
+
+```{r locations-per-area-solution}
+dennys %>%
+  group_by(state) %>%
+  summarise(restaurants = n()) %>%
+  inner_join(states, by = c("state" = "abbreviation")) %>%
+  mutate(restaurantsperarea =  restaurants / area) %>%
+  arrange(desc(restaurantsperarea)) %>%
+  slice(c(1:5, 47:51)) %>%
+  select(state, restaurantsperarea)
+  
+laquinta %>%
+  group_by(state) %>%
+  summarise(motels = n()) %>%
+  inner_join(states, by = c("state" = "abbreviation")) %>%
+  mutate(motelsperarea =  motels / area) %>%
+  arrange(desc(motelsperarea)) %>%
+  slice(c(1:5, 44:48)) %>%
+  select(state, motelsperarea)
+```
+
+```{r locations-per-area-check}
+grade_this_code("Great wrangling work!")
+```
+
+
+
+
+
+
+Based on the tibbles you created, answer the following question:
+
+```{r frequency-quiz}
+question("Which of these statements are true? Select all that apply",
+  answer("Michigan has .the fifth-fewest La Quinta's per area", correct = TRUE),
+  answer("Alaska has the fewest sum total of restaurants AND inns overall.", message = "Recall that this variable is a ratio of locations per area, not raw location counts."),
+  answer("Rhode Island is first on the La Quinta list and second on the Denny's list, but it actually has fewer inns than motels.", correct = TRUE),
+  answer("Rhode Island is first on the La Quinta list and second on the Denny's list, so it must have more inns than motels.", message = "Should we compare rank on the list, or overall rate?"),
+  correct = "Correct!",
+  allow_retry = TRUE,
+  random_answer_order = TRUE
+)
+```
+
+Great interpretations! Now, before we proceed, we will put the datasets into a single dataframe to do this.
+
+Use the following code chunk to add a new variable to refer to the establishment. Since the two data frames have the same columns, we can easily bind them with the bind_rows function:
+
+## Visualization
+
+### Assumptions
+
+We shall first construct a linear model that predicts the body mass of penguins based on its flipper length.
+
+The simple linear regression model can be expressed with the following equation:
+
+For $i = 1,2,...,n$, $$Y_i=\beta_0+\beta_1x_i+\epsilon_i$$ where for the $i$th observation $Y_i$ represents the response variable (body mass), $x_i$ the explanatory variable (flipper length), $\beta_0$ the intercept, $\beta_1$ the slope and $\epsilon_i$ the error term.
+
+Before we start modelling, answer the following questions:
+
+```{r quiz-assumptions}
+question("Which of these assumptions are made for the simple linear regression model? Select two.",
+  answer("The body mass of penguins are independent and identically distributed random variables.", correct = TRUE),
+  answer("The penguins' flipper lengths are independent random variables.", message = "The penguins' flipper lengths are values that we have observed to predict our dependant variable, in this case they aren't random variables."),
+  answer("The relationship between the body mass and the mean flipper lengths is linear."),
+  answer("The relationship between the mean body mass and the flipper lengths is linear", correct = TRUE),
+  correct = "Correct!",
+  allow_retry = TRUE,
+  random_answer_order = TRUE
+)
+```
+
+```{r quiz-assumptions-2}
+question("Which of these assumptions are made for the simple linear regression model? Select two.",
+  answer("The error (residual) terms have equal variance.", correct = TRUE),
+  answer("The variance of the error (residual) terms are different for each value of the dependent variable."),
+  answer("The error (residual) terms are not independent."),
+  answer("The error (residual) terms are independent random variables.", correct = TRUE),
+  correct = "Correct!",
+  allow_retry = TRUE,
+  random_answer_order = TRUE
+)
+```
+
+### Body mass vs flipper length
+
+
+Now, using the `tidymodels` package, we can fit a linear model that predicts body mass based on flipper length.
+
+Linear regression using ordinary least squares (OLS) is implemented by using the `linear_reg()` and `set_engine()` functions, whereby we set the engine to `"lm"`. We then use the `fit()` function to specify the formula which takes the form of y \~ x, where y and x are the response and explanatory variables respectively.
+
+The `tidy()` function can be used to view the attributes of the model.
+
+```{r mass-vs-flipper, exercise=TRUE}
+mass_flip_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(body_mass_kg ~ flipper_length_cm, data = penguins)
+tidy(mass_flip_fit)
+```
+
+```{r mass-vs-flipper-solution}
+mass_flip_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(body_mass_kg ~ flipper_length_cm, data = penguins)
+tidy(mass_flip_fit)
+```
+
+```{r mass-vs-flipper-check}
+grade_this({
+  if(identical(floor(.result$estimate[1]), -6)) {
+    pass("You have written the model correctly")
+  }
+  if(identical(floor(.result$estimate[1]), 13)) {
+    fail("Did you maybe try to predict the flipper length instead of body mass? Remember, lm(y~x,data).")
+  }
+  if(identical(round(.result$estimate[1], digits = 1), 0.4)) {
+    fail("Did you maybe try to predict the body mass from the bill length?")
+  }
+  if(identical(floor(.result$estimate[1]), 7)) {
+    fail("Did you maybe try to predict the body mass from the bill depth?")
+  }
+  fail("Not quite. Look at the hints for help!")
+})
+```
+
+Use the code chunk below to obtain the $R^2$ value of the model.
+
+```{r mass-vs-flipper-r2, exercise = TRUE}
+glance(___)$___
+```
+
+```{r mass-vs-flipper-r2-hint-1}
+glance(___)$r.squared
+```
+
+```{r mass-vs-flipper-r2-solution}
+glance(mass_flip_fit)$r.squared
+```
+
+```{r mass-vs-flipper-r2-check}
+grade_this_code("Your solution is correct!")
+```
+
+Based on your findings, answer the following questions:
+
+```{r mass-vs-flipper-quiz}
+question("Which interpretations are correct?",
+  answer("The model has the intercept at approximately -5.78kg, which means that on average, a penguin with flipper length of 0 millimetre has a mass of -5.78 kg. Clearly, such an estimate is implausible due to extrapolation beyond observed range of flipper lengths.",
+    correct = TRUE
+  ),
+  answer("The model has the intercept at approximately 0.497cm, which means that for a penguin with flipper length of 0 centimetre, we can expect it to weigh, on average, 0.497kg"),
+  answer("The slope of the model is approximately 0.497, which means that, for each additional centimetre increase in flipper length, we can expect the mass of the penguin to increase by 0.497kg.",
+    correct = TRUE
+  ),
+  answer("The slope of the model is approximately -5.78, which means that, for each additional millimitre increase in flipper length, we can expect the mass of the penguin to decrease by 5.78kg."),
+  correct = "Correct!",
+  allow_retry = TRUE,
+  random_answer_order = TRUE
+)
+```
+
+```{r quiz-mass-vs-flipper-r2}
+question("What does the R-squared mean in this context?",
+  answer("75.9% of the variability in body mass of the penguins is explained by flipper length.",
+    correct = TRUE
+  ),
+  answer("The model predicts the body mass of penguins 75.9% of the time."),
+  answer("On average, the body mass of penguins predicted by the model differs from the actual mass by 75.9%."),
+  answer("75.9% of the variability in body mass of the penguins is not explained by flipper length."),
+  correct = "Correct!",
+  allow_retry = TRUE,
+  random_answer_order = TRUE
+)
+```
+
+### Body mass vs species
+
+Unlike flipper length, species is a categorical variable SImilar to what we did for flipper length, fit a linear model predicting body mass from species.
+
+```{r mass-vs-species, exercise=TRUE}
+mass_spec_fit <- ___(___)
+___(___)
+```
+
+```{r mass-vs-species-hint-1}
+Look at the previous question for help!
+```
+
+```{r mass-vs-species-hint-2}
+mass_spec_fit <- linear_reg() %>%
+  set_engine("___") %>%
+  fit(___ ~ ___, data = ___)
+tidy(___)
+```
+
+```{r mass-vs-species-hint-3}
+mass_spec_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(body_mass_kg ~ ___, data = ___)
+tidy(mass_spec_fit)
+```
+
+```{r mass-vs-species-solution}
+mass_spec_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(body_mass_kg ~ species, data = penguins)
+tidy(mass_spec_fit)
+```
+
+```{r mass-vs-species-check}
+grade_this({
+  if(identical(round(.result$estimate[1], 2), 3.70)) {
+    pass("You have written the model correctly")
+  }
+  if(identical(round(.result$estimate[1], 2), 3.86)) {
+    fail("Oops, did you maybe try to predict the body mass from sex?")
+  }
+  if(identical(floor(.result$estimate[1]), -6)) {
+    pass("Did you maybe try to predict the body mass from the flipper length?")
+  }
+  fail("Not quite. Look at the hints for help!")
+})
+```
+
+Use the code chunk below to obtain the $R^2$ value of the model.
+
+```{r mass-vs-species-r2, exercise = TRUE}
+
+```
+
+```{r mass-vs-species-r2-hint-1}
+How did you do it for mass_flip_fit?
+```
+
+```{r mass-vs-species-r2-hint-2}
+glance(___)$___
+```
+
+```{r mass-vs-species-r2-solution}
+glance(mass_spec_fit)$r.squared
+```
+
+```{r mass-vs-species-r2-check}
+grade_this_code("Your solution is correct!")
+```
+
+Based on your findings, answer the following question.
+
+```{r mass-vs-species-quiz}
+question("Which of the following statements are correct? Select all that apply.",
+  answer("The intercept for Chinstrap penguins is higher compared to Adelie penguins", 
+         correct = TRUE),
+  answer("The intercept for Gentoo penguins is lower than for Adelie penguins.",
+         message = "Look at the regression output for a hint!"),
+  answer("The average body mass of Gentoo penguins is approximately 1.38kg.",
+         message = "Looking at the regression output, speciesGentoo is a dummy variable that takes on value 1 if penguin is Gentoo and 0 otherwise, and the species Adelie is taken as the reference category."),
+  answer("The average body mass of Adelie penguins is approximately 3.7kg.",
+         correct = TRUE),
+  correct = "Correct!",
+  allow_retry = TRUE,
+  random_answer_order = TRUE
+)
+```
+
+```{r mass-vs-species-quiz-2}
+question("Which of the following statements are correct? Select all that apply.",
+  answer("About 67% of the variability in body mass is explained by species.", correct = TRUE),
+  answer("The model is able to predict the correct body mass 67% of the time."),
+  answer("The difference in the mean body mass between Adelie and Gentoo penguins is 1.38kg.", correct = TRUE),
+  answer("The difference in the mean body mass between Chinstrap and Gentoo penguins is 0.0324g.",
+         message = "In the regression output, both speciesChinstrap and speciesGentoo are dummy variables, this leaves the species Adelie as the reference category."),
+  correct = "Correct!",
+  allow_retry = TRUE,
+  random_answer_order = TRUE
+)
+```
+
+### Body mass vs bill length/depth
+
+In each code chunk below, fit another two linear models predicting body mass from bill length and bill depth respectively.
+
+Predicting body mass from bill length:
+
+```{r mass-vs-bill-length, exercise=TRUE}
+mass_len_fit <- ___(___)
+___(___)
+```
+
+```{r mass-vs-bill-length-hint-1}
+Look at the previous exercises for help!
+```
+
+```{r mass-vs-bill-length-hint-2}
+mass_len_fit <- linear_reg() %>%
+  set_engine("___") %>%
+  fit(___ ~ ___, data = ___)
+tidy(mass_len_fit)
+```
+
+```{r mass-vs-bill-length-hint-3}
+mass_len_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(___ ~ bill_length_cm, data = ___)
+tidy(mass_len_fit)
+```
+
+```{r mass-vs-bill-length-solution}
+mass_len_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(body_mass_kg ~ bill_length_cm, data = penguins)
+tidy(mass_len_fit)
+```
+
+```{r mass-vs-bill-length-check}
+grade_this({
+  if(identical(round(.result$estimate[2], digits = 1), 0.9)) {
+    pass("You have written the model correctly")
+  }
+  if(identical(floor(.result$estimate[1]), 7)) {
+    fail("Did you maybe try to predict the body mass from the bill depth?")
+  }
+  if(identical(floor(.result$estimate[1]), -6)) {
+    fail("Did you maybe try to predict the body mass from the flipper length?")
+  }
+  fail("Not quite. Look at the hints for help!")
+})
+```
+
+Predicting body mass from bill depth:
+
+```{r mass-vs-bill-depth, exercise=TRUE}
+mass_dep_fit <- ___
+___
+```
+
+```{r mass-vs-bill-depth-hint-1}
+Look at previous questions for help!
+```
+
+```{r mass-vs-bill-depth-hint-2}
+mass_dep_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(___ ~ ___, data = ___)
+tidy(mass_dep_fit)
+```
+
+```{r mass-vs-bill-depth-hint-3}
+mass_dep_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(body_mass_kg ~ ___, data = ___)
+tidy(mass_dep_fit)
+```
+
+```{r mass-vs-bill-depth-solution}
+mass_dep_fit <- linear_reg() %>%
+  set_engine("lm") %>%
+  fit(body_mass_kg ~ bill_depth_cm, data = penguins)
+tidy(mass_dep_fit)
+```
+
+```{r mass-vs-bill-depth-check}
+grade_this({
+  if(identical(floor(.result$estimate[2]), -2)) {
+    pass("You have written the model correctly")
+  }
+  if(identical(round(.result$estimate[1], digits = 1), 0.4)) {
+    fail("Did you maybe try to predict the body mass from the bill length?")
+  }
+  if(identical(floor(.result$estimate[1]), -6)) {
+    fail("Did you maybe try to predict the body mass from the flipper length?")
+  }
+  fail("Not quite. Look at the hints for help!")
+})
+```
+
+Record the $R^2$ values of each model
+
+```{r mass-vs-bill-length-r2, exercise = TRUE}
+#R squared for mass_len_fit
+
+```
+
+```{r mass-vs-bill-length-r2-hint-1}
+glance(___)$___
+```
+
+```{r mass-vs-bill-length-r2-hint-2}
+glance(___)$r.squared
+```
+
+```{r mass-vs-bill-length-r2-solution}
+glance(mass_len_fit)$r.squared
+```
+
+```{r mass-vs-bill-length-r2-check}
+grade_code("Brilliant! Your solution is spot on!")
+```
+
+```{r mass-vs-bill-depth-r2, exercise = TRUE}
+#R squared for mass_dep_fit
+
+```
+
+```{r mass-vs-bill-depth-r2-hint-1}
+glance(___)$___
+```
+
+```{r mass-vs-bill-depth-r2-hint-2}
+glance(___)$r.squared
+```
+
+```{r mass-vs-bill-depth-r2-solution}
+glance(mass_dep_fit)$r.squared
+```
+
+```{r mass-vs-bill-depth-r2-check}
+grade_code("Brilliant! Your solution is spot on!")
+```
+
+Using these findings, answer the following:
+
+```{r best-model-quiz}
+question("Which is the better explanatory variable of penguins body mass?",
+  answer("Bill length is the better predictor, since the R-squared is slightly higher.", 
+         message = "Determine the R-squared values again to find the correct answer!"),
+  answer("Bill Depth is the better predictor, since the R-squared is slightly lower.",
+         message = "Determine the R-squared values again to find the correct answer!"
+  ),
+  answer("Flipper length is the better predictor, since the R-squared is higher.",
+         correct = TRUE
+  ),
+  answer("Species is a better predictor, because the R-squared is higher.",
+         message = "Determine the R-squared values again to find the correct answer!"
+  ),
+  answer("Flipper length is the worst predictor, since the R-squared is higher.",
+         message = "To pick the better model, we want a higher R-squared value."
+  ),
+  correct = "Correct!",
+  allow_retry = TRUE,
+  random_answer_order = TRUE
+)
+```
+
+## Making predictions
+
+Using the best model, let's try estimating a penguin's body mass given a certain measurement.
+
+Given a measurement of 17.3cm, what is the estimated mean body mass?
+Compute using the formula of best fit in the code chunk below.
+Hint: slope = 0.497, intercept = -5.781
+
+```{r predict-mass-1, exercise=TRUE}
+
+```
+
+```{r predict-mass-1-hint-1}
+___*17.3_____
+```
+
+```{r predict-mass-1-hint-2}
+What are the values of the slope and the intercept for the best model?
+```
+
+```{r predict-mass-1-solution}
+0.497*17.3 - 5.781
+```
+
+```{r predict-mass-1-check}
+grade_this({
+  if(identical(round(.result, digits = 3), 2.817)) {
+    pass("You got it!")
+  }
+  fail("Make sure you are using the correct intercept and slope values from the best model.")
+})
+```
+
+Using the same method you did as before, predict the body mass for measurement of 10cm.
+
+```{r predict-mass-2, exercise=TRUE}
+
+```
+
+```{r predict-mass-2-hint}
+___*10_____
+```
+
+```{r predict-mass-2-solution}
+0.497*10 - 5.781
+```
+
+```{r predict-mass-2-check}
+grade_this({
+  if(identical(round(.result, digits = 3), -0.811)) {
+    pass("You got it!")
+  }
+  fail("Make sure you are using the correct intercept and slope values from the best model.")
+})
+```
+
+Did you get a negative value?
+Why do you think this is the case?
+
+```{r}
+textInput("prediction", NULL)
+```
+
+### Prediction made simple
+
+Instead of manually computing the predictions, we can simply use the `augment()` function from the broom package.
+
+We need to store the predictor in a data frame before inputting it as the argument in the `augment()` function.
+
+```{r augment-predict, exercise = TRUE}
+flip_len <- data.frame(flipper_length_cm = 17.3)
+augment(mass_flip_fit$fit, newdata = flip_len)
+```
+
+```{r augment-predict-solution}
+flip_len <- data.frame(flipper_length_cm = 17.3)
+augment(mass_flip_fit$fit, newdata = flip_len)
+```
+
+```{r augment-predict-check}
+grade_this_code("Now you know the trick! ")
+```
+
+Using the `augment()` function, we can predict the body masses for a sequence of measurements, 17cm - 24cm with an increment of 0.1cm.
+
+Store the range of measurements in a data frame, `newflip`.
+
+```{r newflip, exercise = TRUE}
+newflip <- data.frame(flipper_length_cm = seq(17, 24, by = 0.1))
+```
+
+```{r newflip-solution}
+newflip <- data.frame(flipper_length_cm = seq(17, 24, by = 0.1))
+```
+
+```{r newflip-check}
+grade_this_code("Great! The values have been stored!")
+```
+
+Now, predict using the `augment()` function:
+
+```{r predict-newflip, exercise = TRUE}
+___(___)
+```
+
+```{r predict-newflip-hint-1}
+How did you do it for a single observation? It's pretty similar.
+```
+
+```{r predict-newflip-hint-2}
+augment(___, ___ )
+```
+
+```{r predict-newflip-hint-3}
+augment(mass_flip_fit$fit, ___ )
+```
+
+```{r predict-newflip-solution}
+augment(mass_flip_fit$fit, newdata = newflip)
+```
+
+```{r predict-newflip-check}
+grade_this_code("Good job predicting the body masses!")
+```
+
+## Confidence & prediction Intervals
+
+In addition to our analyses, we shall take a look at confidence intervals and prediction intervals.
+
+Using the `predict()` function, we can compute both the confidence intervals and the prediction intervals. Note that the default intervals are at the 95% significance level.
+
+```{r confidence-int, exercise = TRUE}
+conf_int <- predict(mass_flip_fit$fit, newflip, interval = "confidence")
+head(conf_int)
+```
+
+```{r confidence-int-solution}
+conf_int <- predict(mass_flip_fit$fit, newflip, interval = "confidence")
+head(conf_int)
+```
+
+```{r confidence-int-check}
+grade_this_code("You have computed the confidence intervals.")
+```
+
+Here we see the first six rows of `conf_int`, where `fit` gives us the predicted body mass, `lwr` and `upr` gives us the lower and upper bounds of the confidence interval respectively.
+
+Similarly, by copying the code above and replacing `conf_int` with `pred_int` as well as setting the argument `interval` to "prediction", compute the prediction intervals.
+
+```{r prediction-int, exercise = TRUE}
+
+```
+
+```{r prediction-int-hint}
+pred_int <- predict(___, ___, interval = ___)
+head(pred_int)
+```
+
+```{r prediction-int-solution}
+pred_int <- predict(mass_flip_fit$fit, newflip, interval = "prediction")
+head(pred_int)
+```
+
+```{r prediction-int-check}
+grade_this_code("You have computed the prediction intervals.")
+```
+
+Now answer the following quiz:
+
+```{r interval-quiz}
+question("Which of the following statements are correct? Select all that apply.",
+  answer("The prediction intervals are wider than the confidence intervals because there is greater uncertainty when you predict an individual value rather than the mean value for body mass.",
+    correct = TRUE
+  ),
+  answer("The confidence intervals are wider than the prediction intervals because there is greater uncertainty when you predict the mean value rather than an individual value for body mass.",
+    message = "width = upper bound - lower bound"
+  ),
+  answer("A prediction interval for body mass is a confidence interval for a future observation of body mass given the explanatory variable flipper length.",
+    correct = TRUE
+  ),
+  answer("The expected value of the body mass will lie within the confidence interval with probability of 95%",
+    message = "The expected value of body mass is fixed, it either lies within the confidence interval or not."
+  ),
+  answer("Out of all the confidence interval computed for the fitted value, we expect 95% of the confidence intervals to contain the expected value of the body mass.", correct = TRUE),
+  correct = "Correct!",
+  allow_retry = TRUE,
+  random_answer_order = TRUE
+)
+```
+
+## Final plot
+
+Let's visualise our fitted line, prediction and confidence intervals on the scatterplot we created previously.
+
+Before we create the plot, we will need to create a data frame that contains columns for flipper lengths, the predicted body mass as well as the upper and lower bounds for the confidence/prediction intervals.
+
+```{r conf-pred-dataframe, exercise = TRUE}
+int_dat <- data.frame(newflip, conf_int, pred_int)
+```
+
+```{r conf-pred-dataframe-solution}
+int_dat <- data.frame(newflip, conf_int, pred_int)
+
+```
+
+```{r conf-pred-dataframe-check}
+grade_this_code("The data frame has been created.")
+```
+
+You can view the first 6 rows of the newly created data frame using the function `head`.
+
+```{r view-int-dat, exercise = TRUE}
+head(int_dat)
+```
+
+The columns `fit` and `fit.1` record the predicted flipper lengths. The columns `lwr` and `upr` give the lower and upper limits for the **confidence intervals** while columns `lwr.1` and `upr.1` contain the lower and upper limits of the **prediction intervals**
+
+Let's store the previously created scatterplot in `plot_1`.
+
+```{r store-plot, exercise = TRUE}
+plot_1 <- ggplot(data = int_dat, aes(x = flipper_length_cm)) +
+  geom_point(data = penguins, 
+           aes(x = flipper_length_cm, y = body_mass_kg, colour = species))+
+  scale_colour_manual(values = c("orange", "purple", "cyan4"))+
+  labs(x = "Flipper length (cm)", y = "Body mass (kg)")
+```
+
+```{r store-plot-solution}
+plot_1 <- ggplot(data = int_dat, aes(x = flipper_length_cm))+
+  geom_point(data = penguins, aes(x = flipper_length_cm, y = body_mass_kg,colour = species))+
+  scale_colour_manual(values = c("orange","purple", "cyan4"))+
+  labs(x = "Flipper length (cm)", y = "Body mass (kg)")
+```
+
+```{r store-plot-check}
+grade_this_code("Let's get plotting!")
+```
+
+Now in the code chunk below, fill in the missing values to produce the plot.
+Use 0.25 for the `alpha` value.
+
+```{r final-plot, exercise = TRUE}
+plot_1 +
+  geom_line(aes(y = ___) )+
+  geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = ___ )+
+  geom_ribbon(aes(___), ___)
+```
+
+```{r final-plot-hint-1}
+plot_1 + 
+  geom_line(aes(y = ___) )+
+  geom_ribbon( aes( ymin = lwr, ymax = upr), alpha = 0.25)+
+  geom_ribbon(aes( ymin = ___, ymax = ___), alpha = ___)
+```
+
+```{r final-plot-hint-2}
+plot_1 +
+  geom_line(aes(y = fit) )+
+  geom_ribbon( aes( ymin = lwr, ymax = upr), alpha = 0.25)+
+  geom_ribbon(aes( ymin = lwr.1, ymax = ____), alpha = ___)
+```
+
+
+```{r final-plot-solution}
+plot_1 + 
+  geom_line(aes(y = fit) )+
+  geom_ribbon( aes( ymin = lwr, ymax = upr), alpha = 0.25)+
+  geom_ribbon(aes( ymin = lwr.1, ymax = upr.1), alpha = 0.25)
+```
+
+```{r final-plot-check}
+grade_this_code("Your solution is correct!")
+```
+
+## Wrap up
+
+We hope you've enjoyed this chance to practice your modelling skills.
+
+That's it! 
+You've finished the last tutorial, congratulations!
