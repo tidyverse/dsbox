@@ -1,5 +1,5 @@
 ---
-title: "Wrangling Denny's and La Quinta"
+title: "La Quinta is Spanish for \"Next to Denny's\""
 output: 
   learnr::tutorial:
     progressive: true
@@ -18,6 +18,7 @@ description: >
 library(learnr)
 library(gradethis)
 library(tidyverse)
+library(dsbox)
 
 
 # set options for exercises and checking ---------------------------------------
@@ -28,26 +29,67 @@ tutorial_options(
 
 # hide non-exercise code chunks ------------------------------------------------
 knitr::opts_chunk$set(echo = FALSE)
-```
 
-```{r load-data}
-states <- read_csv(here::here("inst","tutorials", "10-dennyslaquinta", "states.csv"))
+# setup ------------------------------------------------
+states <- read_csv(here::here("inst","tutorials", "10-dennyslaquinta", "states.csv"), show_col_types = FALSE)
+
+dennys2 <- dennys %>%
+  mutate(establishment = "Denny's")
+laquinta2 <- laquinta %>%
+  mutate(establishment = "La Quinta")
+
+locations <- bind_rows(list(dennys2, laquinta2))
+
+nc_dn <- dennys %>%
+  filter(state == "AK")
+
+nc_lq <- laquinta %>%
+  filter(state == "AK")
+
+nc_dn_lq <- full_join(nc_dn, nc_lq, by = "state")
+
+haversine <- function(long1, lat1, long2, lat2, round = 3) {
+  # convert to radians
+  long1 = long1 * pi / 180
+  lat1  = lat1  * pi / 180
+  long2 = long2 * pi / 180
+  lat2  = lat2  * pi / 180
+  
+  R = 6371 # Earth mean radius in km
+  
+  a = sin((lat2 - lat1)/2)^2 + cos(lat1) * cos(lat2) * sin((long2 - long1)/2)^2
+  d = R * 2 * asin(sqrt(a))
+  
+  return( round(d,round) ) # distance in km
+}
+
+nc_dist <- nc_dn_lq %>%
+  mutate(distance = haversine(longitude.x, latitude.x,
+                              longitude.y, latitude.y))
+
+nc_mindist <- nc_dist %>%
+  group_by(address.x) %>%
+  summarise(closest = min(distance))
+
 ```
 
 ## Introduction
 
-```{r photo, fig.margin = TRUE, echo = FALSE, out.width="100%"}
+```{r photo, fig.margin = TRUE, echo = FALSE, out.width="50%"}
 knitr::include_graphics("images/dennyslaquintapic.png")
 ```
 
-These data are from a [blog post](http://njgeo.org/2014/01/30/mitch-hedberg-and-gis/), by John Reiser on his *new jersey geographer blog* and the reproducible scraping process is located [here](https://github.com/johnjreiser/HedbergGIS).
+Today, we'll be exploring a phenomenon first brought to light by comedian Mitch Hedberg: the seemingly-correlated locations of Denny's Restuarants and La Quinta Inn motels throughout the United States.
+
+These data are from a [post](http://njgeo.org/2014/01/30/mitch-hedberg-and-gis/), by John Reiser on his *new jersey geographer blog* , citing [this](https://www.reddit.com/r/funny/comments/wn66x/holy_shit_mitch_hedberg_was_right/) Reddit post as inspiration for gathering the data. The reproducible scraping process is located [here](https://github.com/johnjreiser/HedbergGIS).
 
 ### Learning goals
 
 -   Refine your data wrangling skills
 -   Compare and analyze spatial data
+-   Answer the research question of interest: do Denny's and La Quinta locations tend to be near each other?
 
-### Packages
+### Packages and Data
 
 Run the following code to load our packages.
 
@@ -56,78 +98,102 @@ library(tidyverse)
 library(dsbox)
 ```
 
-```{r load-packages-solution}
-library(tidyverse)
-library(dsbox)
-```
-
 ```{r load-packages-check}
-grade_this_code("The tidyverse and dsbox packages are now loaded!")
+grade_this_code("The tidyverse and dsbox packages are now loaded")
 ```
 
 <!-- ## Data -->
 
-
-
 <!-- The codebook for the `dennys` dataset is as follows: -->
 
 <!-- +---------------------+-------------------------------------------+ -->
+
 <!-- | Name                | Description                               | -->
+
 <!-- +:====================+:==========================================+ -->
+
 <!-- | `address`           | Street address of the restaurant                          | -->
-<!-- +---------------------+-------------------------------------------+ -->
-<!-- | `city`            | City of the restaurant        | -->
-<!-- +---------------------+-------------------------------------------+ -->
-<!-- | `state`    | US State of the restaurant    | -->
-<!-- +---------------------+-------------------------------------------+ -->
-<!-- | `zip`     | US ZIP Code of the restaurant     | -->
-<!-- +---------------------+-------------------------------------------+ -->
-<!-- | `longitude` | The longitude of the restaurant. in degrees | -->
-<!-- +---------------------+-------------------------------------------+ -->
-<!-- | `lattiude`       | The latitude of the restaurant. in degrees     | -->
+
 <!-- +---------------------+-------------------------------------------+ -->
 
+<!-- | `city`            | City of the restaurant        | -->
+
+<!-- +---------------------+-------------------------------------------+ -->
+
+<!-- | `state`    | US State of the restaurant    | -->
+
+<!-- +---------------------+-------------------------------------------+ -->
+
+<!-- | `zip`     | US ZIP Code of the restaurant     | -->
+
+<!-- +---------------------+-------------------------------------------+ -->
+
+<!-- | `longitude` | The longitude of the restaurant. in degrees | -->
+
+<!-- +---------------------+-------------------------------------------+ -->
+
+<!-- | `lattiude`       | The latitude of the restaurant. in degrees     | -->
+
+<!-- +---------------------+-------------------------------------------+ -->
 
 <!-- The very similar codebook for the `laquinta` dataset is as follows: -->
 
 <!-- +---------------------+-------------------------------------------+ -->
+
 <!-- | Name                | Description                               | -->
+
 <!-- +:====================+:==========================================+ -->
+
 <!-- | `address`           | Street address of the inn                          | -->
+
 <!-- +---------------------+-------------------------------------------+ -->
+
 <!-- | `city`            | City of the inn        | -->
+
 <!-- +---------------------+-------------------------------------------+ -->
+
 <!-- | `state`    | US State of the inn    | -->
+
 <!-- +---------------------+-------------------------------------------+ -->
+
 <!-- | `zip`     | US ZIP Code of the inn     | -->
+
 <!-- +---------------------+-------------------------------------------+ -->
+
 <!-- | `longitude` | The longitude of the inn. in degrees | -->
+
 <!-- +---------------------+-------------------------------------------+ -->
+
 <!-- | `lattiude`       | The latitude of the inn. in degrees     | -->
+
 <!-- +---------------------+-------------------------------------------+ -->
 
 ## Warm Up
 
 ### Dimensions and Variables
 
-We will begin with a quick warmup exercise before diving deeper into the data wrangling. Fill in the following code chunk to examine how many rows are in each data set
+We will begin with a quick warmup exercise before diving deeper into the data wrangling. Fill in the following code chunk to examine how many rows and columns are in each data set.
 
 ```{r dimensions, exercise=TRUE}
-dennys %>%
-  ---
 
 dennys %>%
-  ---
+  ___()
+
+dennys %>%
+  ___()
   
-lquinta %>%
-  ---
+laquinta %>%
+  ___()
 
 laquinta %>%
-  ---
+  ___()
+
 ```
 
-```{r dimensions-hint-1}
-Use the 'nrow()' and  'ncol()' functions!
+```{r dimensions-hint}
+
+Use the `nrow()` and  `ncol()` functions!
+  
 ```
 
 ```{r dimensions-solution}
@@ -137,7 +203,7 @@ dennys %>%
 dennys %>%
   ncol()
   
-lquinta %>%
+laquinta %>%
   nrow()
 
 laquinta %>%
@@ -148,7 +214,7 @@ laquinta %>%
 grade_this_code("Those are the dimensions!")
 ```
 
-We note that the number of rows is different between the two datasets, but the number of columns is the same. Does this make sense? What do you think the rows and columns represent? 
+We note that the number of rows is different between the two datasets, but the number of columns is the same. Does this make sense? What do you think the rows and columns represent?
 
 ### Variable Definitions
 
@@ -160,10 +226,9 @@ dennys
 laquinta
 ```
 
-```{r documentation-hint-1}
+```{r documentation-hint}
 Recall that typing `?` before an function or dataset's name retrieves this info.
 ```
-
 
 ```{r documentation-solution}
 ?dennys
@@ -202,7 +267,8 @@ dennys %>%
 ```
 
 ```{r most-fewest-dennys-hint-3}
-There are two more lines of code needed. The necessary functions are 'arrange()' and 'slice()'. Use the documentation for those functions to try to figure them out!
+There are two more lines of code needed. The necessary functions are 'arrange()' and 'slice()'. 
+Use the documentation for those functions to try to figure them out!
 ```
 
 ```{r most-fewest-dennys-solution}
@@ -219,7 +285,7 @@ grade_this_code("California has the most, and Delaware the fewest.")
 
 ### Most and fewest La Quintas
 
-Now, let's do the same for La Quintas. Which states have the most, and fewest, inns? However, this time our dataset has many non-state values. We can employ a function from the `*_join()` family to compare values to values in the `states` dataset, which has already been loaded for you. It contains a column called "abbreviation" with the 51 desired state (and DC) names.
+Now, let's do the same for La Quintas. Which states have the most, and fewest, inns? However, this time our dataset has many non-state values. We can employ a function from the `*_join()` family to compare values to values in the `states` dataset, which we will also have to load. It contains a column called "abbreviation" with the 51 desired state (and DC) names.
 
 We'll use some code similar to the previous solution to get you started.
 
@@ -231,8 +297,8 @@ laquinta %>%
 ```
 
 ```{r most-fewest-laquinta-hint-1}
-Which join function do we want? The "abbreviation" column in `states` has exactly the values we desire. However, since some states may not have any locations, an 'inner_join()' would be our desired solution. 
-
+Which join function do we want? The "abbreviation" column in `states` has exactly the values we desire. 
+However, since some states may not have any locations, an 'inner_join()' would be our desired solution. 
 Note how many rows remain, though!
 ```
 
@@ -245,7 +311,8 @@ laquinta %>%
 ```
 
 ```{r most-fewest-laquinta-hint-3}
-With the '*_join()' call, we now have two additional columns in our dataframe. Use 'select()' to select the two columns we desire (state, motels) when reporting your answer.
+With the '*_join()' call, we now have two additional columns in our dataframe. 
+Use 'select()' to select the two columns we desire (state, motels) when reporting your answer.
 ```
 
 ```{r most-fewest-laquinta-solution}
@@ -279,12 +346,49 @@ laquinta %>%
 ```
 
 ```{r locations-per-area-hint-1}
-Run `?mutate` to pull up the documentation if you need to jog your memory?
+Run `?mutate` to pull up the documentation if you need to jog your memory!
 ```
 
+```{r locations-per-area-hint-2}
+dennys %>%
+  group_by(state) %>%
+  summarise(restaurants = n()) %>%
+  inner_join(states, by = c("state" = "abbreviation")) %>%
+  mutate(restaurantsperarea =  restaurants / area) %>%
+  arrange(desc(restaurantsperarea)) %>%
+  slice(c(___, ___)) %>%
+  
+laquinta %>%
+  group_by(state) %>%
+  summarise(motels = n()) %>%
+  inner_join(states, by = c("state" = "abbreviation")) %>%
+  mutate(motelsperarea =  motels / area) %>%
+  arrange(desc(motelsperarea)) %>%
+  slice(c(___, ___)) %>%
+```
+
+```{r locations-per-area-hint-3}
+dennys %>%
+  group_by(state) %>%
+  summarise(restaurants = n()) %>%
+  inner_join(states, by = c("state" = "abbreviation")) %>%
+  mutate(restaurantsperarea =  restaurants / area) %>%
+  arrange(desc(restaurantsperarea)) %>%
+  slice(c(1:5, 47:51)) %>%
+  select(___, ___)
+  
+laquinta %>%
+  group_by(state) %>%
+  summarise(motels = n()) %>%
+  inner_join(states, by = c("state" = "abbreviation")) %>%
+  mutate(motelsperarea =  motels / area) %>%
+  arrange(desc(motelsperarea)) %>%
+  slice(c(1:5, 44:48)) %>%
+  select(___, ___)
+```
 
 ```{r locations-per-area-solution}
-dennys %>%
+=dennys %>%
   group_by(state) %>%
   summarise(restaurants = n()) %>%
   inner_join(states, by = c("state" = "abbreviation")) %>%
@@ -307,16 +411,11 @@ laquinta %>%
 grade_this_code("Great wrangling work!")
 ```
 
-
-
-
-
-
 Based on the tibbles you created, answer the following question:
 
 ```{r frequency-quiz}
 question("Which of these statements are true? Select all that apply",
-  answer("Michigan has .the fifth-fewest La Quinta's per area", correct = TRUE),
+  answer("Michigan has the fifth-fewest La Quinta's per area", correct = TRUE),
   answer("Alaska has the fewest sum total of restaurants AND inns overall.", message = "Recall that this variable is a ratio of locations per area, not raw location counts."),
   answer("Rhode Island is first on the La Quinta list and second on the Denny's list, but it actually has fewer inns than motels.", correct = TRUE),
   answer("Rhode Island is first on the La Quinta list and second on the Denny's list, so it must have more inns than motels.", message = "Should we compare rank on the list, or overall rate?"),
@@ -326,528 +425,385 @@ question("Which of these statements are true? Select all that apply",
 )
 ```
 
-Great interpretations! Now, before we proceed, we will put the datasets into a single dataframe to do this.
+Great interpretations! Now, before we proceed with visualization tasks, we want to put the datasets into a single dataframe.
 
-Use the following code chunk to add a new variable to refer to the establishment. Since the two data frames have the same columns, we can easily bind them with the bind_rows function:
+Use the following code chunk to add a new variable to refer to the establishment. Since the two data frames have the same columns, we can easily bind them with the `bind_rows()` function:
+
+```{r bind-rows, exercise = TRUE}
+dennys2 <- dennys %>%
+  mutate(establishment = "Denny's")
+laquinta2 <- laquinta %>%
+  mutate(establishment = "La Quinta")
+
+locations <- bind_rows(list(dennys2, laquinta2))
+```
+
+```{r bind-rows-check}
+grade_this_code("We're all ready to plot!")
+```
 
 ## Visualization
 
-### Assumptions
+### State by State
 
-We shall first construct a linear model that predicts the body mass of penguins based on its flipper length.
+The following two questions ask you to create visualizations. These should follow best practices you have learned so far, such as informative titles, axis labels, etc. See <http://ggplot2.tidyverse.org/reference/labs.html> for help with the syntax. You can also choose different themes to change the overall look of your plots, see <http://ggplot2.tidyverse.org/reference/ggtheme.html> for help with these.
 
-The simple linear regression model can be expressed with the following equation:
+### North Carolina
 
-For $i = 1,2,...,n$, $$Y_i=\beta_0+\beta_1x_i+\epsilon_i$$ where for the $i$th observation $Y_i$ represents the response variable (body mass), $x_i$ the explanatory variable (flipper length), $\beta_0$ the intercept, $\beta_1$ the slope and $\epsilon_i$ the error term.
+Using `ggplot()`, filter the locations for North Carolina only, and plot the coordinates of both Denny's and La Quinta to examine whether Mitch Hedberg's joke holds.
 
-Before we start modelling, answer the following questions:
+*The use of `alpha = 0.7` inside `geom_point()` allows us to better see the overlaid points.*
 
-```{r quiz-assumptions}
-question("Which of these assumptions are made for the simple linear regression model? Select two.",
-  answer("The body mass of penguins are independent and identically distributed random variables.", correct = TRUE),
-  answer("The penguins' flipper lengths are independent random variables.", message = "The penguins' flipper lengths are values that we have observed to predict our dependant variable, in this case they aren't random variables."),
-  answer("The relationship between the body mass and the mean flipper lengths is linear."),
-  answer("The relationship between the mean body mass and the flipper lengths is linear", correct = TRUE),
-  correct = "Correct!",
-  allow_retry = TRUE,
-  random_answer_order = TRUE
-)
+```{r plot-nc, exercise=TRUE}
+locations %>%
+  filter(___) %>%
+  ggplot(mapping = aes(___, ___, ___)) +
+  geom_point(alpha = 0.7) +
+  coord_fixed()
 ```
 
-```{r quiz-assumptions-2}
-question("Which of these assumptions are made for the simple linear regression model? Select two.",
-  answer("The error (residual) terms have equal variance.", correct = TRUE),
-  answer("The variance of the error (residual) terms are different for each value of the dependent variable."),
-  answer("The error (residual) terms are not independent."),
-  answer("The error (residual) terms are independent random variables.", correct = TRUE),
-  correct = "Correct!",
-  allow_retry = TRUE,
-  random_answer_order = TRUE
-)
+```{r plot-nc-hint}
+locations %>%
+  filter(state == "NC") %>%
+  ggplot(mapping = aes(x = ___, y = ___, color = ___)) +
+  geom_point(alpha = 0.5) +
+  coord_fixed()
 ```
 
-### Body mass vs flipper length
-
-
-Now, using the `tidymodels` package, we can fit a linear model that predicts body mass based on flipper length.
-
-Linear regression using ordinary least squares (OLS) is implemented by using the `linear_reg()` and `set_engine()` functions, whereby we set the engine to `"lm"`. We then use the `fit()` function to specify the formula which takes the form of y \~ x, where y and x are the response and explanatory variables respectively.
-
-The `tidy()` function can be used to view the attributes of the model.
-
-```{r mass-vs-flipper, exercise=TRUE}
-mass_flip_fit <- linear_reg() %>%
-  set_engine("lm") %>%
-  fit(body_mass_kg ~ flipper_length_cm, data = penguins)
-tidy(mass_flip_fit)
+```{r plot-nc-solution}
+locations %>%
+  filter(state == "NC") %>%
+  ggplot(mapping = aes(x = longitude, y = latitude, color = establishment)) +
+  geom_point(alpha = 0.5) +
+  coord_fixed()
 ```
 
-```{r mass-vs-flipper-solution}
-mass_flip_fit <- linear_reg() %>%
-  set_engine("lm") %>%
-  fit(body_mass_kg ~ flipper_length_cm, data = penguins)
-tidy(mass_flip_fit)
+```{r plot-nc-check}
+grade_this_code("Great work! Now add titles and labels!")
 ```
 
-```{r mass-vs-flipper-check}
-grade_this({
-  if(identical(floor(.result$estimate[1]), -6)) {
-    pass("You have written the model correctly")
-  }
-  if(identical(floor(.result$estimate[1]), 13)) {
-    fail("Did you maybe try to predict the flipper length instead of body mass? Remember, lm(y~x,data).")
-  }
-  if(identical(round(.result$estimate[1], digits = 1), 0.4)) {
-    fail("Did you maybe try to predict the body mass from the bill length?")
-  }
-  if(identical(floor(.result$estimate[1]), 7)) {
-    fail("Did you maybe try to predict the body mass from the bill depth?")
-  }
-  fail("Not quite. Look at the hints for help!")
-})
-```
+Based on your plot, answer the following questions:
 
-Use the code chunk below to obtain the $R^2$ value of the model.
-
-```{r mass-vs-flipper-r2, exercise = TRUE}
-glance(___)$___
-```
-
-```{r mass-vs-flipper-r2-hint-1}
-glance(___)$r.squared
-```
-
-```{r mass-vs-flipper-r2-solution}
-glance(mass_flip_fit)$r.squared
-```
-
-```{r mass-vs-flipper-r2-check}
-grade_this_code("Your solution is correct!")
-```
-
-Based on your findings, answer the following questions:
-
-```{r mass-vs-flipper-quiz}
-question("Which interpretations are correct?",
-  answer("The model has the intercept at approximately -5.78kg, which means that on average, a penguin with flipper length of 0 millimetre has a mass of -5.78 kg. Clearly, such an estimate is implausible due to extrapolation beyond observed range of flipper lengths.",
+```{r north-carolina-1-quiz}
+question("There are far more ____ locations than ____ locations in North Carolina",
+  answer("Denny's, La Quinta",
     correct = TRUE
   ),
-  answer("The model has the intercept at approximately 0.497cm, which means that for a penguin with flipper length of 0 centimetre, we can expect it to weigh, on average, 0.497kg"),
-  answer("The slope of the model is approximately 0.497, which means that, for each additional centimetre increase in flipper length, we can expect the mass of the penguin to increase by 0.497kg.",
+  answer("La Quinta, Denny's"),
+  allow_retry = TRUE,
+  random_answer_order = TRUE
+)
+```
+
+```{r north-carolina-2-quiz}
+question("Select all (longitude, latitude) combinations that have clusters of locations where the joke holds",
+  answer("(-80, 36)",
     correct = TRUE
   ),
-  answer("The slope of the model is approximately -5.78, which means that, for each additional millimitre increase in flipper length, we can expect the mass of the penguin to decrease by 5.78kg."),
-  correct = "Correct!",
-  allow_retry = TRUE,
-  random_answer_order = TRUE
-)
-```
-
-```{r quiz-mass-vs-flipper-r2}
-question("What does the R-squared mean in this context?",
-  answer("75.9% of the variability in body mass of the penguins is explained by flipper length.",
-    correct = TRUE
-  ),
-  answer("The model predicts the body mass of penguins 75.9% of the time."),
-  answer("On average, the body mass of penguins predicted by the model differs from the actual mass by 75.9%."),
-  answer("75.9% of the variability in body mass of the penguins is not explained by flipper length."),
-  correct = "Correct!",
-  allow_retry = TRUE,
-  random_answer_order = TRUE
-)
-```
-
-### Body mass vs species
-
-Unlike flipper length, species is a categorical variable SImilar to what we did for flipper length, fit a linear model predicting body mass from species.
-
-```{r mass-vs-species, exercise=TRUE}
-mass_spec_fit <- ___(___)
-___(___)
-```
-
-```{r mass-vs-species-hint-1}
-Look at the previous question for help!
-```
-
-```{r mass-vs-species-hint-2}
-mass_spec_fit <- linear_reg() %>%
-  set_engine("___") %>%
-  fit(___ ~ ___, data = ___)
-tidy(___)
-```
-
-```{r mass-vs-species-hint-3}
-mass_spec_fit <- linear_reg() %>%
-  set_engine("lm") %>%
-  fit(body_mass_kg ~ ___, data = ___)
-tidy(mass_spec_fit)
-```
-
-```{r mass-vs-species-solution}
-mass_spec_fit <- linear_reg() %>%
-  set_engine("lm") %>%
-  fit(body_mass_kg ~ species, data = penguins)
-tidy(mass_spec_fit)
-```
-
-```{r mass-vs-species-check}
-grade_this({
-  if(identical(round(.result$estimate[1], 2), 3.70)) {
-    pass("You have written the model correctly")
-  }
-  if(identical(round(.result$estimate[1], 2), 3.86)) {
-    fail("Oops, did you maybe try to predict the body mass from sex?")
-  }
-  if(identical(floor(.result$estimate[1]), -6)) {
-    pass("Did you maybe try to predict the body mass from the flipper length?")
-  }
-  fail("Not quite. Look at the hints for help!")
-})
-```
-
-Use the code chunk below to obtain the $R^2$ value of the model.
-
-```{r mass-vs-species-r2, exercise = TRUE}
-
-```
-
-```{r mass-vs-species-r2-hint-1}
-How did you do it for mass_flip_fit?
-```
-
-```{r mass-vs-species-r2-hint-2}
-glance(___)$___
-```
-
-```{r mass-vs-species-r2-solution}
-glance(mass_spec_fit)$r.squared
-```
-
-```{r mass-vs-species-r2-check}
-grade_this_code("Your solution is correct!")
-```
-
-Based on your findings, answer the following question.
-
-```{r mass-vs-species-quiz}
-question("Which of the following statements are correct? Select all that apply.",
-  answer("The intercept for Chinstrap penguins is higher compared to Adelie penguins", 
-         correct = TRUE),
-  answer("The intercept for Gentoo penguins is lower than for Adelie penguins.",
-         message = "Look at the regression output for a hint!"),
-  answer("The average body mass of Gentoo penguins is approximately 1.38kg.",
-         message = "Looking at the regression output, speciesGentoo is a dummy variable that takes on value 1 if penguin is Gentoo and 0 otherwise, and the species Adelie is taken as the reference category."),
-  answer("The average body mass of Adelie penguins is approximately 3.7kg.",
-         correct = TRUE),
-  correct = "Correct!",
-  allow_retry = TRUE,
-  random_answer_order = TRUE
-)
-```
-
-```{r mass-vs-species-quiz-2}
-question("Which of the following statements are correct? Select all that apply.",
-  answer("About 67% of the variability in body mass is explained by species.", correct = TRUE),
-  answer("The model is able to predict the correct body mass 67% of the time."),
-  answer("The difference in the mean body mass between Adelie and Gentoo penguins is 1.38kg.", correct = TRUE),
-  answer("The difference in the mean body mass between Chinstrap and Gentoo penguins is 0.0324g.",
-         message = "In the regression output, both speciesChinstrap and speciesGentoo are dummy variables, this leaves the species Adelie as the reference category."),
-  correct = "Correct!",
-  allow_retry = TRUE,
-  random_answer_order = TRUE
-)
-```
-
-### Body mass vs bill length/depth
-
-In each code chunk below, fit another two linear models predicting body mass from bill length and bill depth respectively.
-
-Predicting body mass from bill length:
-
-```{r mass-vs-bill-length, exercise=TRUE}
-mass_len_fit <- ___(___)
-___(___)
-```
-
-```{r mass-vs-bill-length-hint-1}
-Look at the previous exercises for help!
-```
-
-```{r mass-vs-bill-length-hint-2}
-mass_len_fit <- linear_reg() %>%
-  set_engine("___") %>%
-  fit(___ ~ ___, data = ___)
-tidy(mass_len_fit)
-```
-
-```{r mass-vs-bill-length-hint-3}
-mass_len_fit <- linear_reg() %>%
-  set_engine("lm") %>%
-  fit(___ ~ bill_length_cm, data = ___)
-tidy(mass_len_fit)
-```
-
-```{r mass-vs-bill-length-solution}
-mass_len_fit <- linear_reg() %>%
-  set_engine("lm") %>%
-  fit(body_mass_kg ~ bill_length_cm, data = penguins)
-tidy(mass_len_fit)
-```
-
-```{r mass-vs-bill-length-check}
-grade_this({
-  if(identical(round(.result$estimate[2], digits = 1), 0.9)) {
-    pass("You have written the model correctly")
-  }
-  if(identical(floor(.result$estimate[1]), 7)) {
-    fail("Did you maybe try to predict the body mass from the bill depth?")
-  }
-  if(identical(floor(.result$estimate[1]), -6)) {
-    fail("Did you maybe try to predict the body mass from the flipper length?")
-  }
-  fail("Not quite. Look at the hints for help!")
-})
-```
-
-Predicting body mass from bill depth:
-
-```{r mass-vs-bill-depth, exercise=TRUE}
-mass_dep_fit <- ___
-___
-```
-
-```{r mass-vs-bill-depth-hint-1}
-Look at previous questions for help!
-```
-
-```{r mass-vs-bill-depth-hint-2}
-mass_dep_fit <- linear_reg() %>%
-  set_engine("lm") %>%
-  fit(___ ~ ___, data = ___)
-tidy(mass_dep_fit)
-```
-
-```{r mass-vs-bill-depth-hint-3}
-mass_dep_fit <- linear_reg() %>%
-  set_engine("lm") %>%
-  fit(body_mass_kg ~ ___, data = ___)
-tidy(mass_dep_fit)
-```
-
-```{r mass-vs-bill-depth-solution}
-mass_dep_fit <- linear_reg() %>%
-  set_engine("lm") %>%
-  fit(body_mass_kg ~ bill_depth_cm, data = penguins)
-tidy(mass_dep_fit)
-```
-
-```{r mass-vs-bill-depth-check}
-grade_this({
-  if(identical(floor(.result$estimate[2]), -2)) {
-    pass("You have written the model correctly")
-  }
-  if(identical(round(.result$estimate[1], digits = 1), 0.4)) {
-    fail("Did you maybe try to predict the body mass from the bill length?")
-  }
-  if(identical(floor(.result$estimate[1]), -6)) {
-    fail("Did you maybe try to predict the body mass from the flipper length?")
-  }
-  fail("Not quite. Look at the hints for help!")
-})
-```
-
-Record the $R^2$ values of each model
-
-```{r mass-vs-bill-length-r2, exercise = TRUE}
-#R squared for mass_len_fit
-
-```
-
-```{r mass-vs-bill-length-r2-hint-1}
-glance(___)$___
-```
-
-```{r mass-vs-bill-length-r2-hint-2}
-glance(___)$r.squared
-```
-
-```{r mass-vs-bill-length-r2-solution}
-glance(mass_len_fit)$r.squared
-```
-
-```{r mass-vs-bill-length-r2-check}
-grade_code("Brilliant! Your solution is spot on!")
-```
-
-```{r mass-vs-bill-depth-r2, exercise = TRUE}
-#R squared for mass_dep_fit
-
-```
-
-```{r mass-vs-bill-depth-r2-hint-1}
-glance(___)$___
-```
-
-```{r mass-vs-bill-depth-r2-hint-2}
-glance(___)$r.squared
-```
-
-```{r mass-vs-bill-depth-r2-solution}
-glance(mass_dep_fit)$r.squared
-```
-
-```{r mass-vs-bill-depth-r2-check}
-grade_code("Brilliant! Your solution is spot on!")
-```
-
-Using these findings, answer the following:
-
-```{r best-model-quiz}
-question("Which is the better explanatory variable of penguins body mass?",
-  answer("Bill length is the better predictor, since the R-squared is slightly higher.", 
-         message = "Determine the R-squared values again to find the correct answer!"),
-  answer("Bill Depth is the better predictor, since the R-squared is slightly lower.",
-         message = "Determine the R-squared values again to find the correct answer!"
-  ),
-  answer("Flipper length is the better predictor, since the R-squared is higher.",
+  answer("(-78.7, 35.7)",
          correct = TRUE
+         ),
+  answer("(-80.7, 35.2)",
+    correct = TRUE
   ),
-  answer("Species is a better predictor, because the R-squared is higher.",
-         message = "Determine the R-squared values again to find the correct answer!"
-  ),
-  answer("Flipper length is the worst predictor, since the R-squared is higher.",
-         message = "To pick the better model, we want a higher R-squared value."
-  ),
+  answer("(-79, 35)"),
+  allow_retry = TRUE
+)
+```
+
+### (Everything's bigger in) Texas
+
+Make the same plot, this time filtering for Texas.
+
+```{r texas, exercise=TRUE}
+locations %>%
+  filter(___) %>%
+  ggplot(mapping = aes(___, ___, ___)) +
+  geom_point(alpha = 0.5) +
+  coord_fixed()
+```
+
+```{r texas-solution}
+locations %>%
+  filter(state == "TX") %>%
+  ggplot(mapping = aes(x = longitude, y = latitude, color = establishment)) +
+  geom_point(alpha = 0.5) +
+  coord_fixed()
+```
+
+```{r texas-check}
+grade_this_code("Bravo!")
+```
+
+Is the trend similar to in North Carolina? Is the trend similar to what you expected? We will now take a more quantitative approach to examining whether or not the joke holds.
+
+## Calculating distance
+
+We will first examine distance using only observations from a North Carolina. Use the code chunk below to create new dataframes called `nc_dn` and `nc_lq`. Then, use a function and to report how many of each there are.
+
+We'll take advantage of a `*_join()` function later to easily calculate distances between locations.
+
+```{r north-carolina, exercise = TRUE}
+nc_dn <- dennys %>%
+  filter(___)
+___(nc_dn)
+
+nc_lq <- laquinta %>%
+  filter(___)
+___(nc_lq)
+```
+
+```{r north-carolina-hint-1}
+nc_dn <- dennys %>%
+  filter(state == "NC")
+___(nc_dn)
+
+nc_lq <- laquinta %>%
+  filter(state == "NC")
+___(nc_lq)
+```
+
+```{r north-carolina-hint-2}
+nc_dn <- dennys %>%
+  filter(state == "NC")
+nrow(nc_dn)
+
+nc_lq <- laquinta %>%
+  filter(state == "NC")
+nrow(nc_lq)
+```
+
+```{r north-carolina-solution}
+nc_dn <- dennys %>%
+  filter(state == "NC")
+nrow(nc_dn)
+
+nc_lq <- laquinta %>%
+  filter(state == "NC")
+nrow(nc_lq)
+```
+
+```{r north-carolina-check}
+grade_this_code("28 Denny's, and 12 La Quintas.")
+```
+
+How many pairings are there between all Denny's and all La Quinta locations in North Carolina, i.e. how many distances do we need to calculate between the locations of these establishments in North Carolina? Report your answer in the following code chunk:
+
+```{r combinations, exercise = TRUE}
+
+```
+
+```{r combinations-hint-1}
+Think about mathematical combinations -- we have 28 options for the Denny's, and 12 for the La Quinta
+```
+
+```{r combinations-hint-2}
+28 * 12
+```
+
+```{r combinations-check}
+grade_this({
+  if(identical(.result, 336) | identical(.result, 336L)) {
+    pass("You get the idea and are ready to join!")
+  }
+  fail("Not quite. Take a peek at the hint!")
+})
+```
+
+### Joining
+
+In order to calculate these distances we need to first restructure our data to pair the Denny's and La Quinta locations. To do so, we will join the two data frames. We have four options for combining variables with joins in R:
+
+`inner_join(x, y)`: return all rows from `x` where there are matching values in `y`, and all columns from `x` and `y`.
+
+`left_join(x, y):` return all rows from `x`, and all columns from `x` and `y`. Rows in `x` with no match in y will have `NA` values in the new columns.
+
+`right_join(x, y)`: return all rows from `y`, and all columns from `x` and `y`. Rows in `y` with no match in `x` will have `NA` values in the new columns.
+
+`full_join(x, y)`: return all rows and all columns from both `x` and `y`. Where there are not matching values, returns `NA` for the one missing.
+
+In this case we want to keep all rows and columns from both `nc_dn` and `nc_lq` data frames. So we will use a `full_join()`. The following image illustrates why:
+
+```{r full-join-photo, fig.margin = TRUE, echo = FALSE, out.width="50%"}
+knitr::include_graphics("images/full-join")
+```
+
+Let's join the data on Denny's and La Quinta locations in North Carolina, and take a look at what it looks like:
+
+```{r north-carolina-join, exercise = TRUE}
+nc_dn_lq <- full_join(nc_dn, nc_lq, by = "state")
+nc_dn_lq
+```
+
+```{r north-carolina-join-check}
+grade_this_code(
+  "Nice joining!"
+)
+```
+
+```{r north-carolina-join-quiz}
+question("Which of the following are **not** a variable name in the new dataframe?",
+  answer("address.x"),
+  answer("establishment", correct = TRUE),
+  answer("state.x", correct = TRUE),
+  answer("state"),
+  answer("zip", correct = TRUE),
+  answer("distance", correct = TRUE),
   correct = "Correct!",
   allow_retry = TRUE,
   random_answer_order = TRUE
 )
 ```
 
-## Making predictions
+`.x` in the variable names means the variable comes from the `x` data frame (the first argument in the `full_join()` call, i.e. `nc_dn`), and `.y` means the variable comes from the `y` data frame. These variables are renamed to include `.x` and `.y` because the two data frames have the same variables and it's not possible to have two variables in a data frame with the exact same name.
 
-Using the best model, let's try estimating a penguin's body mass given a certain measurement.
+Now that we have the data in the format we wanted, all that is left is to calculate the distances between the pairs.
 
-Given a measurement of 17.3cm, what is the estimated mean body mass?
-Compute using the formula of best fit in the code chunk below.
-Hint: slope = 0.497, intercept = -5.781
+### Haversine Distance
 
-```{r predict-mass-1, exercise=TRUE}
+One way of calculating the distance between any two points on the earth is to use the Haversine distance formula. This formula takes into account the fact that the earth is not flat, but instead spherical.
 
+This function is not available in R, but we can define it for our use in this code chunk here:
+
+```{r haversine, exercise = TRUE}
+haversine <- function(long1, lat1, long2, lat2, round = 3) {
+  # convert to radians
+  long1 = long1 * pi / 180
+  lat1  = lat1  * pi / 180
+  long2 = long2 * pi / 180
+  lat2  = lat2  * pi / 180
+  
+  R = 6371 # Earth mean radius in km
+  
+  a = sin((lat2 - lat1)/2)^2 + cos(lat1) * cos(lat2) * sin((long2 - long1)/2)^2
+  d = R * 2 * asin(sqrt(a))
+  
+  return( round(d,round) ) # distance in km
+}
 ```
 
-```{r predict-mass-1-hint-1}
-___*17.3_____
+```{r haversine-solution}
+haversine <- function(long1, lat1, long2, lat2, round = 3) {
+  # convert to radians
+  long1 = long1 * pi / 180
+  lat1  = lat1  * pi / 180
+  long2 = long2 * pi / 180
+  lat2  = lat2  * pi / 180
+  
+  R = 6371 # Earth mean radius in km
+  
+  a = sin((lat2 - lat1)/2)^2 + cos(lat1) * cos(lat2) * sin((long2 - long1)/2)^2
+  d = R * 2 * asin(sqrt(a))
+  
+  return( round(d,round) ) # distance in km
+}
 ```
 
-```{r predict-mass-1-hint-2}
-What are the values of the slope and the intercept for the best model?
+```{r haversine-check}
+grade_this_code("We are ready to calculate!")
 ```
 
-```{r predict-mass-1-solution}
-0.497*17.3 - 5.781
+This function takes five arguments:
+
+-   Longitude and latitude of the first location
+
+-   Longitude and latitude of the second location
+
+-   A parameter by which to round the responses
+
+Calculate the distances between all pairs of Denny’s and La Quinta locations and save this variable as `distance.` Save this in a new dataframe called `nc_dist`.
+
+```{r distance-calc, exercise = TRUE}
+nc_dist <- nc_dn_lq %>%
+  mutate(___)
 ```
 
-```{r predict-mass-1-check}
-grade_this({
-  if(identical(round(.result, digits = 3), 2.817)) {
-    pass("You got it!")
-  }
-  fail("Make sure you are using the correct intercept and slope values from the best model.")
-})
+```{r distance-calc-hint-1}
+nc_dist <- nc_dn_lq %>%
+  mutate(distance = haversine(___))
 ```
 
-Using the same method you did as before, predict the body mass for measurement of 10cm.
-
-```{r predict-mass-2, exercise=TRUE}
-
+```{r distance-calc-solution}
+nc_dist <- nc_dn_lq %>%
+  mutate(distance = haversine(longitude.x, latitude.x,
+                              longitude.y, latitude.y))
 ```
 
-```{r predict-mass-2-hint}
-___*10_____
-```
-
-```{r predict-mass-2-solution}
-0.497*10 - 5.781
-```
-
-```{r predict-mass-2-check}
-grade_this({
-  if(identical(round(.result, digits = 3), -0.811)) {
-    pass("You got it!")
-  }
-  fail("Make sure you are using the correct intercept and slope values from the best model.")
-})
-```
-
-Did you get a negative value?
-Why do you think this is the case?
-
-```{r}
-textInput("prediction", NULL)
-```
-
-### Prediction made simple
-
-Instead of manually computing the predictions, we can simply use the `augment()` function from the broom package.
-
-We need to store the predictor in a data frame before inputting it as the argument in the `augment()` function.
-
-```{r augment-predict, exercise = TRUE}
-flip_len <- data.frame(flipper_length_cm = 17.3)
-augment(mass_flip_fit$fit, newdata = flip_len)
-```
-
-```{r augment-predict-solution}
-flip_len <- data.frame(flipper_length_cm = 17.3)
-augment(mass_flip_fit$fit, newdata = flip_len)
-```
-
-```{r augment-predict-check}
-grade_this_code("Now you know the trick! ")
-```
-
-Using the `augment()` function, we can predict the body masses for a sequence of measurements, 17cm - 24cm with an increment of 0.1cm.
-
-Store the range of measurements in a data frame, `newflip`.
-
-```{r newflip, exercise = TRUE}
-newflip <- data.frame(flipper_length_cm = seq(17, 24, by = 0.1))
-```
-
-```{r newflip-solution}
-newflip <- data.frame(flipper_length_cm = seq(17, 24, by = 0.1))
-```
-
-```{r newflip-check}
+```{r distance-calc-check}
 grade_this_code("Great! The values have been stored!")
 ```
 
-Now, predict using the `augment()` function:
+Now, calculate the *minimum* distance between a Denny’s and La Quinta for each Denny’s location. Check the hints if you need help!
 
-```{r predict-newflip, exercise = TRUE}
-___(___)
+```{r minimum-dist, exercise = TRUE}
+nc_mindist <- nc_dist %>%
 ```
 
-```{r predict-newflip-hint-1}
-How did you do it for a single observation? It's pretty similar.
+```{r minimum-dist-hint-1}
+nc_mindist <- nc_dist %>%
+  group_by(___) %>%
 ```
 
-```{r predict-newflip-hint-2}
-augment(___, ___ )
+```{r minimum-dist-hint-2}
+nc_mindist <- nc_dist %>%
+  group_by(address.x) %>%
+  summarise(closest = ___)
 ```
 
-```{r predict-newflip-hint-3}
-augment(mass_flip_fit$fit, ___ )
+```{r minimum-dist-solution}
+nc_mindist <- nc_dist %>%
+  group_by(address.x) %>%
+  summarise(closest = min(distance))
 ```
 
-```{r predict-newflip-solution}
-augment(mass_flip_fit$fit, newdata = newflip)
+```{r minimum-dist-check}
+grade_this_code("You're a wrangling expert now!")
 ```
 
-```{r predict-newflip-check}
-grade_this_code("Good job predicting the body masses!")
+### Describe the distribution
+
+Use the following code chunk to examine the distribution of the distances between Denny’s and the nearest La Quinta locations in North Carolina. Generate relevant summary statistics to be able to answer the following question. You will likely need to adjust the binwidth from the default in `geom_histogram()`.
+
+```{r describe-dist, exercise = TRUE}
+ggplot(data = ___, mapping = aes(___)) +
+  geom_histogram(binwidth = ___)
+       
+summary(___)
+```
+
+```{r describe-dist-solution}
+ggplot(data = nc_mindist, mapping = aes(closest)) +
+  geom_histogram(binwidth = 8)
+
+summary(nc_mindist)
+```
+
+```{r nc-dist-1-quiz}
+question("The distribution is:",
+  answer("Right-skewed",
+    correct = TRUE
+  ),
+  answer("Left-skewed"),
+  answer("Symmetric"),
+  correct = "Correct!",
+  allow_retry = TRUE,
+  random_answer_order = TRUE
+)
+```
+
+```{r nc-dist-2-quiz}
+question("______ of the Denny's locations are greater than 65.444 miles away from a la Quinta",
+  answer("More than half",
+    message = "Think about what the right-skew means, with the larger mean than median."
+  ),
+  answer("Exactly half",
+         message = "That would be true for the median of the distribution, 53.456"),
+  answer("Less than half",
+         correct = TRUE),
+  correct = "Correct, and we can tell from our histogram, too!",
+  allow_retry = TRUE,
+  random_answer_order = TRUE
+)
 ```
 
 ## Confidence & prediction Intervals
@@ -915,93 +871,29 @@ question("Which of the following statements are correct? Select all that apply."
 )
 ```
 
-## Final plot
+Repeat the same analysis for Texas: (i) filter Denny’s and La Quinta Data Frames for NC, (ii) join these data frames to get a completelist of all possible pairings, (iii) calculate the distances between all possible pairings of Denny’s and La Quinta in NC, (iv) find the minimum distance between each Denny’s and La Quinta location, (v) visualize and describe the distribution of these shortest distances using appropriate summary statistics.
 
-Let's visualise our fitted line, prediction and confidence intervals on the scatterplot we created previously.
+Repeat the same analysis for Texas in the next section.
 
-Before we create the plot, we will need to create a data frame that contains columns for flipper lengths, the predicted body mass as well as the upper and lower bounds for the confidence/prediction intervals.
+## Your turn
 
-```{r conf-pred-dataframe, exercise = TRUE}
-int_dat <- data.frame(newflip, conf_int, pred_int)
-```
+### In conclusion
 
-```{r conf-pred-dataframe-solution}
-int_dat <- data.frame(newflip, conf_int, pred_int)
-
-```
-
-```{r conf-pred-dataframe-check}
-grade_this_code("The data frame has been created.")
-```
-
-You can view the first 6 rows of the newly created data frame using the function `head`.
-
-```{r view-int-dat, exercise = TRUE}
-head(int_dat)
-```
-
-The columns `fit` and `fit.1` record the predicted flipper lengths. The columns `lwr` and `upr` give the lower and upper limits for the **confidence intervals** while columns `lwr.1` and `upr.1` contain the lower and upper limits of the **prediction intervals**
-
-Let's store the previously created scatterplot in `plot_1`.
-
-```{r store-plot, exercise = TRUE}
-plot_1 <- ggplot(data = int_dat, aes(x = flipper_length_cm)) +
-  geom_point(data = penguins, 
-           aes(x = flipper_length_cm, y = body_mass_kg, colour = species))+
-  scale_colour_manual(values = c("orange", "purple", "cyan4"))+
-  labs(x = "Flipper length (cm)", y = "Body mass (kg)")
-```
-
-```{r store-plot-solution}
-plot_1 <- ggplot(data = int_dat, aes(x = flipper_length_cm))+
-  geom_point(data = penguins, aes(x = flipper_length_cm, y = body_mass_kg,colour = species))+
-  scale_colour_manual(values = c("orange","purple", "cyan4"))+
-  labs(x = "Flipper length (cm)", y = "Body mass (kg)")
-```
-
-```{r store-plot-check}
-grade_this_code("Let's get plotting!")
-```
-
-Now in the code chunk below, fill in the missing values to produce the plot.
-Use 0.25 for the `alpha` value.
-
-```{r final-plot, exercise = TRUE}
-plot_1 +
-  geom_line(aes(y = ___) )+
-  geom_ribbon(aes(ymin = lwr, ymax = upr), alpha = ___ )+
-  geom_ribbon(aes(___), ___)
-```
-
-```{r final-plot-hint-1}
-plot_1 + 
-  geom_line(aes(y = ___) )+
-  geom_ribbon( aes( ymin = lwr, ymax = upr), alpha = 0.25)+
-  geom_ribbon(aes( ymin = ___, ymax = ___), alpha = ___)
-```
-
-```{r final-plot-hint-2}
-plot_1 +
-  geom_line(aes(y = fit) )+
-  geom_ribbon( aes( ymin = lwr, ymax = upr), alpha = 0.25)+
-  geom_ribbon(aes( ymin = lwr.1, ymax = ____), alpha = ___)
-```
-
-
-```{r final-plot-solution}
-plot_1 + 
-  geom_line(aes(y = fit) )+
-  geom_ribbon( aes( ymin = lwr, ymax = upr), alpha = 0.25)+
-  geom_ribbon(aes( ymin = lwr.1, ymax = upr.1), alpha = 0.25)
-```
-
-```{r final-plot-check}
-grade_this_code("Your solution is correct!")
+```{r final-quiz}
+question("Among the states you examined, where is Mitch Hedberg’s joke most likely to hold true?",
+  answer("Texas=",
+    correct = TRUE
+  ),
+  answer("North Carolina",
+    correct = TRUE
+  ),
+  correct = "Correct!",
+  allow_retry = TRUE
+)
 ```
 
 ## Wrap up
 
 We hope you've enjoyed this chance to practice your modelling skills.
 
-That's it! 
-You've finished the last tutorial, congratulations!
+That's it! You've finished the last tutorial, congratulations!
