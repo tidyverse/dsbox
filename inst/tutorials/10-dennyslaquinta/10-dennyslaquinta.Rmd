@@ -41,10 +41,10 @@ laquinta2 <- laquinta %>%
 locations <- bind_rows(list(dennys2, laquinta2))
 
 nc_dn <- dennys %>%
-  filter(state == "AK")
+  filter(state == "NC")
 
 nc_lq <- laquinta %>%
-  filter(state == "AK")
+  filter(state == "NC")
 
 nc_dn_lq <- full_join(nc_dn, nc_lq, by = "state")
 
@@ -71,6 +71,24 @@ nc_mindist <- nc_dist %>%
   group_by(address.x) %>%
   summarise(closest = min(distance))
 
+
+tx_dn <- dennys %>%
+  filter(state == "TX")
+nrow(tx_dn)
+
+tx_lq <- laquinta %>%
+  filter(state == "TX")
+nrow(tx_lq)
+
+tx_dn_lq <- full_join(tx_dn, tx_lq, by = "state")
+
+tx_dist <- tx_dn_lq %>%
+  mutate(distance = haversine(longitude.x, latitude.x,
+                              longitude.y, latitude.y))
+
+tx_mindist <- tx_dist %>%
+  group_by(address.x) %>%
+  summarise(closest = min(distance))
 ```
 
 ## Introduction
@@ -94,6 +112,11 @@ These data are from a [post](http://njgeo.org/2014/01/30/mitch-hedberg-and-gis/)
 Run the following code to load our packages.
 
 ```{r load-packages, exercise=TRUE}
+library(tidyverse)
+library(dsbox)
+```
+
+```{r load-packages-solution}
 library(tidyverse)
 library(dsbox)
 ```
@@ -174,8 +197,7 @@ grade_this_code("The tidyverse and dsbox packages are now loaded")
 
 We will begin with a quick warmup exercise before diving deeper into the data wrangling. Fill in the following code chunk to examine how many rows and columns are in each data set.
 
-```{r dimensions, exercise=TRUE}
-
+```{r dimensions, exercise = TRUE}
 dennys %>%
   ___()
 
@@ -187,14 +209,13 @@ laquinta %>%
 
 laquinta %>%
   ___()
-
 ```
 
 ```{r dimensions-hint}
-
-Use the `nrow()` and  `ncol()` functions!
-  
+Use the `nrow()` and `ncol()` functions!
 ```
+
+
 
 ```{r dimensions-solution}
 dennys %>%
@@ -227,7 +248,7 @@ laquinta
 ```
 
 ```{r documentation-hint}
-Recall that typing `?` before an function or dataset's name retrieves this info.
+Recall that typing `?` before a function or dataset's name retrieves this info.
 ```
 
 ```{r documentation-solution}
@@ -267,7 +288,7 @@ dennys %>%
 ```
 
 ```{r most-fewest-dennys-hint-3}
-There are two more lines of code needed. The necessary functions are 'arrange()' and 'slice()'. 
+There are two more lines of code needed. The necessary functions are `arrange(desc())` and `slice()`. 
 Use the documentation for those functions to try to figure them out!
 ```
 
@@ -408,7 +429,7 @@ laquinta %>%
 ```
 
 ```{r locations-per-area-check}
-grade_this_code("Great wrangling work!")
+grade_this_code(learnr::random_praise(language = "emo"))
 ```
 
 Based on the tibbles you created, answer the following question:
@@ -635,10 +656,30 @@ nc_dn_lq <- full_join(nc_dn, nc_lq, by = "state")
 nc_dn_lq
 ```
 
+```{r north-carolina-join-solution}
+nc_dn_lq <- full_join(nc_dn, nc_lq, by = "state")
+nc_dn_lq
+```
+
 ```{r north-carolina-join-check}
 grade_this_code(
-  "Nice joining!"
+  learnr::random_praise(language = "emo")
 )
+```
+
+How many columns are in the new dataframe `nc_dn_lq`? You may submit your answer as a number or as the output of a line of code.
+
+```{r north-carolina-join-columns, exercise = TRUE}
+
+```
+
+```{r north-carolina-join-columns-check}
+grade_this({
+  if(identical(.result, 1) | identical(.result, 11L)) {
+    pass(random_praise())
+  }
+  fail("Try joining again!")
+})
 ```
 
 ```{r north-carolina-join-quiz}
@@ -762,20 +803,20 @@ grade_this_code("You're a wrangling expert now!")
 
 ### Describe the distribution
 
-Use the following code chunk to examine the distribution of the distances between Denny’s and the nearest La Quinta locations in North Carolina. Generate relevant summary statistics to be able to answer the following question. You will likely need to adjust the binwidth from the default in `geom_histogram()`.
+Use the following code chunk to examine the distribution of the distances between Denny’s and the nearest La Quinta locations in North Carolina. Generate relevant summary statistics to be able to answer the following questions. You will likely need to adjust the binwidth from the default in `geom_histogram()`.
 
 ```{r describe-dist, exercise = TRUE}
 ggplot(data = ___, mapping = aes(___)) +
   geom_histogram(binwidth = ___)
        
-summary(___)
+summary(___$___)
 ```
 
 ```{r describe-dist-solution}
 ggplot(data = nc_mindist, mapping = aes(closest)) +
-  geom_histogram(binwidth = 8)
+  geom_histogram(binwidth = 10)
 
-summary(nc_mindist)
+summary(nc_mindist$closest)
 ```
 
 ```{r nc-dist-1-quiz}
@@ -806,94 +847,190 @@ question("______ of the Denny's locations are greater than 65.444 miles away fro
 )
 ```
 
-## Confidence & prediction Intervals
+We believe there may be some outliers in this dataset. Recall that the IQR definition of outliers defines any point further than 1.5 times the $IQR = Q_{3} - Q_{1}$ past the first or third quartiles, $Q_{1}$ and $Q_{3}$ respectively, as outliers. Begin by calculalting the $IQR$ of `nc_mindist$closest` **rounded to three decimal places**, using the code chunk below as a calculator. You may submit your answer asthe number itself or as the output of code.
 
-In addition to our analyses, we shall take a look at confidence intervals and prediction intervals.
-
-Using the `predict()` function, we can compute both the confidence intervals and the prediction intervals. Note that the default intervals are at the 95% significance level.
-
-```{r confidence-int, exercise = TRUE}
-conf_int <- predict(mass_flip_fit$fit, newflip, interval = "confidence")
-head(conf_int)
+```{r nc-dist-3, exercise = TRUE}
+___ - ___
 ```
 
-```{r confidence-int-solution}
-conf_int <- predict(mass_flip_fit$fit, newflip, interval = "confidence")
-head(conf_int)
+
+```{r nc-dist-3-check}
+grade_this({
+  if(identical(.result, 71.597) | identical(.result, round(71.597, 3))) {
+    pass("That's the IQR!")
+  }
+  if(identical(.result, 186.156 ) | identical(.result, round(186.156 , 3))) {
+    fail("Did you use the max and min instead of the first and third quartiles?")
+  }
+  if(identical(.result, -71.597) | identical(.result, round(-71.597, 3))) {
+    pass("Almost! Did you reverse your equation?")
+  }
+  fail("Not quite. Look at the summary() output above for the first and third quartile values!")
+})
 ```
 
-```{r confidence-int-check}
-grade_this_code("You have computed the confidence intervals.")
-```
+Using the following code chunk as a calculator, find the range of non-outlying values by multiplying the $IQR$ by 1.5 and subtracting and adding from the first and third quartiles, respectively. Then, filter the `nc_ln_dq` dataframe to see how many values lie outside this range. Report the number of outliers below.
 
-Here we see the first six rows of `conf_int`, where `fit` gives us the predicted body mass, `lwr` and `upr` gives us the lower and upper bounds of the confidence interval respectively.
-
-Similarly, by copying the code above and replacing `conf_int` with `pred_int` as well as setting the argument `interval` to "prediction", compute the prediction intervals.
-
-```{r prediction-int, exercise = TRUE}
+```{r nc-dist-4, exercise = TRUE}
 
 ```
 
-```{r prediction-int-hint}
-pred_int <- predict(___, ___, interval = ___)
-head(pred_int)
+```{r nc-dist-4-hint-1}
+[summary(nc_mindist$closest)[2] - ___, summary(nc_mindist$closest)[5] + ___]
 ```
 
-```{r prediction-int-solution}
-pred_int <- predict(mass_flip_fit$fit, newflip, interval = "prediction")
-head(pred_int)
+```{r nc-dist-4-hint-2}
+[summary(nc_mindist$closest)[2] - 1.5 * ___, summary(nc_mindist$closest)[5] + 1.5 * ___]
 ```
 
-```{r prediction-int-check}
-grade_this_code("You have computed the prediction intervals.")
-```
-
-Now answer the following quiz:
-
-```{r interval-quiz}
-question("Which of the following statements are correct? Select all that apply.",
-  answer("The prediction intervals are wider than the confidence intervals because there is greater uncertainty when you predict an individual value rather than the mean value for body mass.",
-    correct = TRUE
-  ),
-  answer("The confidence intervals are wider than the prediction intervals because there is greater uncertainty when you predict the mean value rather than an individual value for body mass.",
-    message = "width = upper bound - lower bound"
-  ),
-  answer("A prediction interval for body mass is a confidence interval for a future observation of body mass given the explanatory variable flipper length.",
-    correct = TRUE
-  ),
-  answer("The expected value of the body mass will lie within the confidence interval with probability of 95%",
-    message = "The expected value of body mass is fixed, it either lies within the confidence interval or not."
-  ),
-  answer("Out of all the confidence interval computed for the fitted value, we expect 95% of the confidence intervals to contain the expected value of the body mass.", correct = TRUE),
-  correct = "Correct!",
-  allow_retry = TRUE,
-  random_answer_order = TRUE
+```{r nc-dist-5-quiz}
+question_text("How many outliers are in this dataset?",
+  answer("0", correct = TRUE),
+  answer("2", message = "Did you forget to multiply the IQR by 1.5?"),
+  correct = "Nice! Even though the histogram is skewed, none of the data points are actually outliers",
+  allow_retry = TRUE
 )
 ```
 
-Repeat the same analysis for Texas: (i) filter Denny’s and La Quinta Data Frames for NC, (ii) join these data frames to get a completelist of all possible pairings, (iii) calculate the distances between all possible pairings of Denny’s and La Quinta in NC, (iv) find the minimum distance between each Denny’s and La Quinta location, (v) visualize and describe the distribution of these shortest distances using appropriate summary statistics.
+
+
+Repeat the same analysis for Texas: (i) filter Denny’s and La Quinta Data Frames for TX, (ii) join these data frames to get a complete list of all possible pairings, (iii) calculate the distances between all possible pairings of Denny’s and La Quinta in NC, (iv) find the minimum distance between each Denny’s and La Quinta location, (v) visualize and describe the distribution of these shortest distances using appropriate summary statistics.
 
 Repeat the same analysis for Texas in the next section.
 
 ## Your turn
 
+### Filtering
+
+```{r texas-filter, exercise = TRUE}
+
+```
+
+```{r texas-filter-solution}
+tx_dn <- dennys %>%
+  filter(state == "TX")
+nrow(tx_dn)
+
+tx_lq <- laquinta %>%
+  filter(state == "TX")
+nrow(tx_lq)
+```
+
+```{r texas-filter-dennys-quiz}
+question_text("How many Dennys are in Texas?",
+  answer("200", correct = TRUE),
+  correct = random_praise(),
+  allow_retry = TRUE
+)
+```
+
+```{r texas-filter-laquinta-quiz}
+question_text("How many La Quintas are in Texas?",
+  answer("237", correct = TRUE),
+  correct = random_praise(),
+  allow_retry = TRUE
+)
+```
+
+In the next code chunk, complete the following steps of the analysis: join these data frames to get a complete list of all possible pairings, calculate the distances between all possible pairings of Denny’s and La Quinta in TX, find the minimum distance between each Denny’s and La Quinta location, and visualize and describe the distribution of these shortest distances using appropriate summary statistics. Refer to the previous page if you need assistance, but you've got this!
+
+```{r texas-analysis-rest-steps, exercise = TRUE}
+
+```
+
+```{r texas-analysis-rest-steps-solution}
+# see previous steps  in NC analysis to create objects
+ggplot(data = tx_mindist, mapping = aes(closest)) +
+  geom_histogram(binwidth = 1)
+
+summary(tx_mindist$closest)
+
+x = (summary(tx_mindist$closest)[5] - summary(tx_mindist$closest)[2])
+y = summary(tx_mindist$closest)[2] - x
+z = summary(tx_mindist$closest)[5] + x
+
+tx_mindist %>%
+  filter(closest < y | closest > z)
+```
+
+```{r texas-1-quiz}
+question("Picking a North Carolina Denny's at random, there is a 50% chance it will be further from the nearest La Quinta than all Denny's in Texas are ",
+  answer("True", message = "Are you comparing to the mean or the median? Which of those values refers to 50% of the data?"),
+  answer("False", correct = TRUE),
+  correct = random_praise(),
+  allow_retry = TRUE
+)
+```
+
+```{r texas-2-quiz}
+question_text("Using the same 1.5 IQR method as for the North Carolina data, the Texas data has ___ outliers.",
+  answer("23", message = "Are you comparing to the mean or the median? Which of those values refers to 50% of the data?"),
+  answer("14", correct = TRUE),
+  correct = random_praise(),
+  allow_retry = TRUE
+)
+```
+
+```{r texas-3-quiz}
+question("What potential problem(s) would we face if we attempted to perform OLS regression by collecting demographic and geographic data on these states to predict the closest distance values?",
+  answer("Correlated structure of data leading to lower effective sample size/deflated standard errors", correct = TRUE),
+  answer("Non-random pattern in residuals", correct = TRUE),
+  answer("Negative values predicted from OLS regression are not meaningful in this context",
+         correct = TRUE),
+  answer("Correlated structure of data leading to collinearity in predictors and thus unattainable linear model fit."),
+  correct = random_praise(),
+  allow_retry = TRUE
+)
+```
+
+### View the results
+
+Use the code in the following code chunk to join the closest La Quinta data to the location information of the Denny's restaurants in Texas. Then, in the same code chunk, plot the Denny's locations again, this time mapping `aes(color = closest)`.
+
+```{r texas-closest-plot, exercise = TRUE}
+tx_dn %>%
+  left_join(tx_mindist, by = c("address" = "address.x")) %>%
+  ggplot(___) 
+```
+
+```{r texas-closest-plot-hint-1}
+tx_dn %>%
+  left_join(tx_mindist, by = c("address" = "address.x")) %>%
+  ggplot(aes(x = longitude, y = latitude, color = closest)) +
+  geom_point() +
+  coord_fixed()
+```
+
+```{r texas-closest-plot-hint-2}
+You may have to add another layer with a color palette, like `scale_color_viridis_c()`,
+to more clearly see the variation.
+```
+
+```{r texas-4-quiz}
+question("The Denny's location in Texas that is furthest from a La Quinta is in the ______ region",
+  answer("Upper left"),
+  answer("Upper right", correct = TRUE),
+  answer("Lower left"),
+  answer("Lower right"),
+  correct = random_praise(),
+  random_answer_order = TRUE,
+  allow_retry = TRUE
+)
+```
+
 ### In conclusion
 
 ```{r final-quiz}
-question("Among the states you examined, where is Mitch Hedberg’s joke most likely to hold true?",
-  answer("Texas=",
-    correct = TRUE
-  ),
-  answer("North Carolina",
-    correct = TRUE
-  ),
-  correct = "Correct!",
+question("Which state do you think agrees with Mitch Hedberg's observation more?",
+  answer("North Carolina"),
+  answer("Texas", correct = TRUE),
+  correct = random_praise(),
   allow_retry = TRUE
 )
 ```
 
 ## Wrap up
 
-We hope you've enjoyed this chance to practice your modelling skills.
+We hope you've enjoyed this chance to practice your data wrangling and visualization skills. And, if you've ever wondered whether the locations of Denny's and La Quintas are correlated, now you know.
 
 That's it! You've finished the last tutorial, congratulations!
