@@ -964,7 +964,7 @@ question("Picking a North Carolina Denny's at random, there is a 50% chance it w
 
 ```{r texas-2-quiz}
 question_text("Using the same 1.5 IQR method as for the North Carolina data, the Texas data has ___ outliers.",
-  answer("23", message = "Are you comparing to the mean or the median? Which of those values refers to 50% of the data?"),
+  answer("23", message = "Did you forget to multiply the IQR by 1.5??"),
   answer("14", correct = TRUE),
   correct = random_praise(),
   allow_retry = TRUE
