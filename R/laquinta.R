@@ -24,11 +24,11 @@
 #'
 #'
 #'
-#' laquinta %>%
-#'   group_by(state) %>%
-#'   summarise(motels = n()) %>%
-#'   arrange(desc(factor(motels))) %>%
-#'   slice_head(n = 10) %>%
+#' laquinta |>
+#'   group_by(state) |>
+#'   summarise(motels = n()) |>
+#'   arrange(desc(factor(motels))) |>
+#'   slice_head(n = 10) |>
 #'   ggplot(aes(x = reorder(state, -motels), y = motels)) +
 #'   geom_col()
 "laquinta"
