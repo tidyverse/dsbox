@@ -32,19 +32,19 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r setup-email-var}
-gss16 <- dsbox::gss16 %>%
+gss16 <- dsbox::gss16 |>
   mutate(email = emailmin + (emailhr * 60))
 ```
 
 ```{r setup-snap-insta-var}
-gss16 <- dsbox::gss16 %>%
+gss16 <- dsbox::gss16 |>
   mutate(snap_insta = if_else(snapchat == "Yes" | instagrm == "Yes",
     "Yes", "No"
   ))
 ```
 
 ```{r setup-snap-insta-email-vars}
-gss16 <- dsbox::gss16 %>%
+gss16 <- dsbox::gss16 |>
   mutate(
     email = emailmin + (emailhr * 60),
     snap_insta = if_else(snapchat == "Yes" | instagrm == "Yes",
@@ -54,7 +54,7 @@ gss16 <- dsbox::gss16 %>%
 ```
 
 ```{r setup-email-lm}
-gss16 <- dsbox::gss16 %>%
+gss16 <- dsbox::gss16 |>
   mutate(
     email = emailmin + (emailhr * 60),
     snap_insta = if_else(snapchat == "Yes" | instagrm == "Yes",
@@ -62,13 +62,13 @@ gss16 <- dsbox::gss16 %>%
     )
   )
 
-email_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+email_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(email ~ educ + wrkstat + snap_insta, data = gss16)
 ```
 
 ```{r setup-augmented-email-lm}
-gss16 <- dsbox::gss16 %>%
+gss16 <- dsbox::gss16 |>
   mutate(
     email = emailmin + (emailhr * 60),
     snap_insta = if_else(snapchat == "Yes" | instagrm == "Yes",
@@ -76,15 +76,15 @@ gss16 <- dsbox::gss16 %>%
     )
   )
 
-email_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+email_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(email ~ educ + wrkstat + snap_insta, data = gss16)
 
 email_aug <- augment(email_fit$fit)
 ```
 
 ```{r setup-advfront2-polviews2-vars}
-gss16 <- dsbox::gss16 %>%
+gss16 <- dsbox::gss16 |>
   mutate(
     advfront2 = case_when(
       advfront %in% c("Strongly agree", "Agree") ~ "Yes",
@@ -200,20 +200,20 @@ Next, use this code block to determine how many respondents answered "Yes" to th
 ```
 
 ```{r harass5-yes-hint-1}
-gss16 %>%
-  filter(___) %>%
+gss16 |>
+  filter(___) |>
   ___
 ```
 
 ```{r harass5-yes-hint-2}
-gss16 %>%
-  filter(harass5 == "Yes") %>%
+gss16 |>
+  filter(harass5 == "Yes") |>
   ___
 ```
 
 ```{r harass5-yes-hint-3}
-gss16 %>%
-  filter(!(harass5 == "Yes")) %>%
+gss16 |>
+  filter(!(harass5 == "Yes")) |>
   nrow()
 ```
 
@@ -244,22 +244,22 @@ For example, if the response is 2.5 hrs, this would be recorded as `emailhr = 2`
 Using the following code block, create a new variable called `email` that combines these two variables to report the number of minutes the respondents spend on email weekly.
 
 ```{r email-variable, exercise=TRUE}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   ___
 ```
 
 ```{r email-variable-hint-1}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(___)
 ```
 
 ```{r email-variable-hint-2}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(email = ___)
 ```
 
 ```{r email-variable-solution}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(email = emailmin + (emailhr * 60))
 ```
 
@@ -294,14 +294,14 @@ Remember - you'll need to remove the `NA` values.
 ```
 
 ```{r mean-median-email-hint-2}
-gss16 %>%
+gss16 |>
   summarise(
     mean = mean(___)
   )
 ```
 
 ```{r mean-median-email-hint-3}
-gss16 %>%
+gss16 |>
   summarise(
     mean = mean(email, na.rm = ___),
     ___
@@ -372,29 +372,29 @@ Create another new variable, `snap_insta` that is coded as “Yes” if the resp
 If the recorded value was `NA` for both of these questions, the value in your new variable should also be `NA`.
 
 ```{r snap-insta-var, exercise=TRUE}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   ___
 ```
 
 ```{r snap-insta-var-hint-1}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(___)
 ```
 
 ```{r snap-insta-var-hint-2}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(snap_insta = if_else(___))
 ```
 
 ```{r snap-insta-var-hint-3}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(snap_insta = if_else(snapchat == "Yes" ___ instagrm == "Yes",
     ___, ___
   ))
 ```
 
 ```{r snap-insta-var-solution}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(snap_insta = if_else(snapchat == "Yes" | instagrm == "Yes",
     "Yes", "No"
   ))
@@ -419,7 +419,7 @@ Now, count how many respondents fall into each category of possible values for t
 ```
 
 ```{r count-snap-insta-hint-1}
-gss16 %>%
+gss16 |>
   count(___)
 ```
 
@@ -446,7 +446,7 @@ Note that this information is stored in the `wrkstat` variable.
 ```
 
 ```{r count-wrkstat-hint-1}
-gss16 %>%
+gss16 |>
   count(___)
 ```
 
@@ -471,40 +471,40 @@ Fit a model predicting email (number of minutes per week spent on email) from `e
 Having created the model, we'll use the `tidy()` function from the `tidymodels` package to view the attributes of the model in a more, well, *tidy* way.
 
 ```{r email-lm, exercise = TRUE, exercise.setup = "setup-snap-insta-email-vars"}
-email_fit <- linear_reg() %>%
-  set_engine("___") %>%
+email_fit <- linear_reg() |>
+  set_engine("___") |>
   fit(___ ~ ___, data = ___)
 
 tidy(email_fit)
 ```
 
 ```{r email-lm-hint-1}
-email_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+email_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(___ ~ ___, data = ___)
 
 tidy(email_fit)
 ```
 
 ```{r email-lm-hint-2}
-email_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+email_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(email ~ ___, data = ___)
 
 tidy(email_fit)
 ```
 
 ```{r email-lm-hint-3}
-email_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+email_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(email ~ educ + wrkstat + snap_insta, data = ___)
 
 tidy(email_fit)
 ```
 
 ```{r email-lm-solution}
-email_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+email_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(email ~ educ + wrkstat + snap_insta, data = gss16)
 
 tidy(email_fit)
@@ -611,19 +611,19 @@ In a new variable - call it `advfront2` - recode `advfront` such that Strongly a
 The remaining levels can be left as is. 
 
 ```{r advfront2-var, exercise = TRUE}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(___)
 ```
 
 ```{r advfront2-var-hint-1}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(
     advfront2 = case_when(___)
   )
 ```
 
 ```{r advfront2-var-hint-2}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(
     advfront2 = case_when(
       advfront %in% c(___) ~ "Yes",
@@ -633,7 +633,7 @@ gss16 <- gss16 %>%
 ```
 
 ```{r advfront2-var-hint-3}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(
     advfront2 = case_when(
       advfront %in% c("Strongly agree", "Agree") ~ "Yes",
@@ -643,7 +643,7 @@ gss16 <- gss16 %>%
 ```
 
 ```{r advfront2-var-solution}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(
     advfront2 = case_when(
       advfront %in% c("Strongly agree", "Agree") ~ "Yes",
@@ -672,12 +672,12 @@ Arrange the levels so they are in the order "Conservative", "Moderate", "Liberal
 Don’t overwrite the existing polviews, instead, let's call the new variable `polviews2`.
 
 ```{r polviews2-var, exercise = TRUE}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(___)
 ```
 
 ```{r polviews2-var-hint-1}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(
     polviews2 = case_when(___),
     polviews2 = ___
@@ -685,7 +685,7 @@ gss16 <- gss16 %>%
 ```
 
 ```{r polviews2-var-hint-2}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(
     polviews2 = case_when(
       polviews %in% c(___) ~ "Liberal",
@@ -696,7 +696,7 @@ gss16 <- gss16 %>%
 ```
 
 ```{r polviews2-var-hint-3}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(
     polviews2 = case_when(
       polviews %in% c("Extremely liberal", "Liberal", "Slightly liberal") ~ "Liberal",
@@ -707,7 +707,7 @@ gss16 <- gss16 %>%
 ```
 
 ```{r polviews2-var-solution}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(
     polviews2 = case_when(
       polviews %in% c("Extremely liberal", "Liberal", "Slightly liberal") ~ "Liberal",
@@ -741,36 +741,36 @@ For the final exercise in this tutorial, create a visualization that displays th
 You'll need to remove all `NA` values from both variables, and the particular visualisation we're going to create is a filled bar plot.
 
 ```{r final-plot, exercise = TRUE, exercise.setup = "setup-advfront2-polviews2-vars"}
-gss16 %>%
-  filter(___) %>%
+gss16 |>
+  filter(___) |>
   ggplot(mapping = aes(___)) +
   geom___(___)
 ```
 
 ```{r final-plot-hint-1}
-gss16 %>%
-  filter(!is.na(___), !is.na(___)) %>%
+gss16 |>
+  filter(!is.na(___), !is.na(___)) |>
   ggplot(mapping = aes(___)) +
   geom___(___)
 ```
 
 ```{r final-plot-hint-2}
-gss16 %>%
-  filter(!is.na(polviews2), !is.na(advfront2)) %>%
+gss16 |>
+  filter(!is.na(polviews2), !is.na(advfront2)) |>
   ggplot(mapping = aes(x = ___, fill = ___)) +
   geom___(___)
 ```
 
 ```{r final-plot-hint-3}
-gss16 %>%
-  filter(!is.na(polviews2), !is.na(advfront2)) %>%
+gss16 |>
+  filter(!is.na(polviews2), !is.na(advfront2)) |>
   ggplot(aes(x = polviews2, fill = advfront2)) +
   geom___(___)
 ```
 
 ```{r final-plot-solution}
-gss16 %>%
-  filter(!is.na(polviews2), !is.na(advfront2)) %>%
+gss16 |>
+  filter(!is.na(polviews2), !is.na(advfront2)) |>
   ggplot(aes(x = polviews2, fill = advfront2)) +
   geom_bar(position = "fill")
 ```

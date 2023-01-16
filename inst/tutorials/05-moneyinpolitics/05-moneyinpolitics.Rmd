@@ -40,9 +40,9 @@ url_2020 <- "https://www.opensecrets.org/political-action-committees-pacs/foreig
 page <- read_html(url_2020)
 
 parse_currency <- function(x){
-  x %>% 
-    str_remove("\\$") %>%
-    str_remove_all(",") %>%
+  x |> 
+    str_remove("\\$") |>
+    str_remove_all(",") |>
     as.numeric()
 }
 ```
@@ -60,7 +60,7 @@ pac_2020 <- dsbox::pac_2020_raw
 
 ```{r glimpse-pac-2020-2-setup}
 # After renaming
-pac_2020 <- dsbox::pac_2020_raw %>%
+pac_2020 <- dsbox::pac_2020_raw |>
   rename(
     name = `PAC Name (Affiliate)` ,
     country_parent = `Country of Origin/Parent Company`,
@@ -72,29 +72,29 @@ pac_2020 <- dsbox::pac_2020_raw %>%
 
 ```{r glimpse-pac-2020-3-setup}
 # After renaming and squishing
-pac_2020 <- dsbox::pac_2020_raw %>%
+pac_2020 <- dsbox::pac_2020_raw |>
   rename(
     name = `PAC Name (Affiliate)` ,
     country_parent = `Country of Origin/Parent Company`,
     total = Total,
     dems = Dems,
     repubs = Repubs
-  ) %>%
+  ) |>
   mutate(name = str_squish(name))
 ```
 
 ```{r clean-pac-all}
-pac_all_final <- dsbox::pac_all %>%
+pac_all_final <- dsbox::pac_all |>
   filter(
     country == "UK",
     year < 2020
-    ) %>%
-  group_by(year) %>%
+    ) |>
+  group_by(year) |>
   summarise(
     Democrat = sum(dems),
     Republican = sum(repubs),
     .groups = "drop"
-  ) %>%
+  ) |>
   pivot_longer(
     cols = c(Democrat, Republican), 
     names_to = "party", 
@@ -275,37 +275,37 @@ In order to convert data to a `tibble`, we'll use the `as_tibble()` function fro
 Fill in the blanks in the following code block to pick out the PAC contributions data.
 
 ```{r scrape-pac-2020, exercise=TRUE}
-pac_2020 <- ___ %>%
-  html_node(".DataTable-Partial") %>%
-  html_table(___, header = ___, fill = ___) %>%
+pac_2020 <- ___ |>
+  html_node(".DataTable-Partial") |>
+  html_table(___, header = ___, fill = ___) |>
   as_tibble()
 ```
 
 ```{r scrape-pac-2020-hint-1}
-pac_2020 <- page %>%
-  html_node(".DataTable-Partial") %>%
-  html_table(___, header = ___, fill = ___) %>%
+pac_2020 <- page |>
+  html_node(".DataTable-Partial") |>
+  html_table(___, header = ___, fill = ___) |>
   as_tibble()
 ```
 
 ```{r scrape-pac-2020-hint-2}
-pac_2020 <- page %>%
-  html_node(".DataTable-Partial") %>%
-  html_table("td", header = ___, fill = ___) %>%
+pac_2020 <- page |>
+  html_node(".DataTable-Partial") |>
+  html_table("td", header = ___, fill = ___) |>
   as_tibble()
 ```
 
 ```{r scrape-pac-2020-hint-3}
-pac_2020 <- page %>%
-  html_node(".DataTable-Partial") %>%
-  html_table("td", header = TRUE, fill = ___) %>%
+pac_2020 <- page |>
+  html_node(".DataTable-Partial") |>
+  html_table("td", header = TRUE, fill = ___) |>
   as_tibble()
 ```
 
 ```{r scrape-pac-2020-solution}
-pac_2020 <- page %>%
-  html_node(".DataTable-Partial") %>%
-  html_table("td", header = TRUE, fill = TRUE) %>%
+pac_2020 <- page |>
+  html_node(".DataTable-Partial") |>
+  html_table("td", header = TRUE, fill = TRUE) |>
   as_tibble()
 ```
 
@@ -328,7 +328,7 @@ Rename the variables to the following: `name`, `country_parent`, `total`, `dems`
 Note that `dems` is short for Democrats and `repubs` is short for Republicans, the two major parties in the US. 
 
 ```{r rename-pac-2020, exercise=TRUE, message = FALSE}
-pac_2020 <- pac_2020 %>%
+pac_2020 <- pac_2020 |>
   rename(
     ___ = `PAC Name (Affiliate)`,
     ___ = `Country of Origin/Parent Company`,
@@ -339,7 +339,7 @@ pac_2020 <- pac_2020 %>%
 ```
 
 ```{r rename-pac-2020-hint-1}
-pac_2020 <- pac_2020 %>%
+pac_2020 <- pac_2020 |>
   rename(
     name = `PAC Name (Affiliate)` ,
     ___ = `Country of Origin/Parent Company`,
@@ -350,7 +350,7 @@ pac_2020 <- pac_2020 %>%
 ```
 
 ```{r rename-pac-2020-hint-2}
-pac_2020 <- pac_2020 %>%
+pac_2020 <- pac_2020 |>
   rename(
     name = `PAC Name (Affiliate)` ,
     country_parent = `Country of Origin/Parent Company`,
@@ -361,7 +361,7 @@ pac_2020 <- pac_2020 %>%
 ```
 
 ```{r rename-pac-2020-solution}
-pac_2020 <- pac_2020 %>%
+pac_2020 <- pac_2020 |>
   rename(
     name = `PAC Name (Affiliate)` ,
     country_parent = `Country of Origin/Parent Company`,
@@ -391,27 +391,27 @@ But remember, we have a string manipulation function that removes pesky white sp
 For the final data cleaning exercise (for now!), fix up the name variable using this function.
 
 ```{r clean-names-2020, exercise=TRUE, message = FALSE}
-pac_2020 <- pac_2020 %>%
+pac_2020 <- pac_2020 |>
   ___
 ```
 
 ```{r clean-names-2020-hint-1}
-pac_2020 <- pac_2020 %>%
+pac_2020 <- pac_2020 |>
   mutate(___)
 ```
 
 ```{r clean-names-2020-hint-2}
-pac_2020 <- pac_2020 %>%
+pac_2020 <- pac_2020 |>
   mutate(name = ___)
 ```
 
 ```{r clean-names-2020-hint-3}
-pac_2020 <- pac_2020 %>%
+pac_2020 <- pac_2020 |>
   mutate(name = str_squish(___))
 ```
 
 ```{r clean-names-2020-solution}
-pac_2020 <- pac_2020 %>%
+pac_2020 <- pac_2020 |>
   mutate(name = str_squish(name))
 ```
 
@@ -503,27 +503,27 @@ This can be accomplished by setting the `extra` argument to "merge" so that the 
 Fill the blanks in the following code block to do this.
 
 ```{r pac-all-separate, exercise = TRUE, message = FALSE}
-pac_all_raw <- pac_all_raw %>%
+pac_all_raw <- pac_all_raw |>
   separate(___, into = c("___", "___"), sep = "___", extra = "___")
 ```
 
 ```{r pac-all-separate-hint-1}
-pac_all_raw <- pac_all_raw %>%
+pac_all_raw <- pac_all_raw |>
   separate(country_parent, into = c("___", "___"), sep = "___", extra = "___")
 ```
 
 ```{r pac-all-separate-hint-2}
-pac_all_raw <- pac_all_raw %>%
+pac_all_raw <- pac_all_raw |>
   separate(country_parent, into = c("country", "parent"), sep = "___", extra = "___")
 ```
 
 ```{r pac-all-separate-hint-3}
-pac_all_raw <- pac_all_raw %>%
+pac_all_raw <- pac_all_raw |>
   separate(country_parent, into = c("country", "parent"), sep = "/", extra = "___")
 ```
 
 ```{r pac-all-separate-solution}
-pac_all_raw <- pac_all_raw %>%
+pac_all_raw <- pac_all_raw |>
   separate(country_parent, into = c("country", "parent"), sep = "/", extra = "merge")
 ```
 
@@ -551,7 +551,7 @@ parse_currency <- function(x){
 The value `x` in the brackets is the `parameter` of the function, in other words, the name of a variable to handle the data passed into the function. 
 We will now put the function's code inside the curly braces, since currently our function doesn't actually do anything.
 
-We start with `x %>%` so that our function acts on `x`. 
+We start with `x |>` so that our function acts on `x`. 
 Then we build the function layer-by-layer (or, more appropriately, pipe-by-pipe).
 
 Hints:
@@ -563,45 +563,45 @@ Hints:
 
 ```{r parse-currency-function, exercise=TRUE}
 parse_currency <- function(x){
-  x %>% 
-    ___ %>%
-    ___ %>%
+  x |> 
+    ___ |>
+    ___ |>
     ___
 }
 ```
 
 ```{r parse-currency-function-hint-1}
 parse_currency <- function(x){
-  x %>% 
-    str_remove("___") %>%
-    ___ %>%
+  x |> 
+    str_remove("___") |>
+    ___ |>
     ___
 }
 ```
 
 ```{r parse-currency-function-hint-2}
 parse_currency <- function(x){
-  x %>% 
-    str_remove("\\$") %>%
-    ___ %>%
+  x |> 
+    str_remove("\\$") |>
+    ___ |>
     ___
 }
 ```
 
 ```{r parse-currency-function-hint-3}
 parse_currency <- function(x){
-  x %>% 
-    str_remove("\\$") %>%
-    str_remove_all(",") %>%
+  x |> 
+    str_remove("\\$") |>
+    str_remove_all(",") |>
     ___
 }
 ```
 
 ```{r parse-currency-function-solution}
 parse_currency <- function(x){
-  x %>% 
-    str_remove("\\$") %>%
-    str_remove_all(",") %>%
+  x |> 
+    str_remove("\\$") |>
+    str_remove_all(",") |>
     as.numeric()
 }
 ```
@@ -615,7 +615,7 @@ grade_this_code("You've created a function for cleaning the monetary values.")
 Now, we can combine the `parse_currency()` function with `mutate()` to apply it to the values in the data frame:
 
 ```{r parse-currency-data, exercise = TRUE, message = FALSE}
-pac_all <- ___ %>%
+pac_all <- ___ |>
   ___(
     total = ___,
     dems = ___,
@@ -624,7 +624,7 @@ pac_all <- ___ %>%
 ```
 
 ```{r parse-currency-data-hint-1}
-pac_all <- pac_all_raw %>%
+pac_all <- pac_all_raw |>
   mutate(
     total = ___,
     dems = ___,
@@ -633,7 +633,7 @@ pac_all <- pac_all_raw %>%
 ```
 
 ```{r parse-currency-data-hint-2}
-pac_all <- pac_all_raw %>%
+pac_all <- pac_all_raw |>
   mutate(
     total = parse_currency(total),
     dems = ___,
@@ -642,7 +642,7 @@ pac_all <- pac_all_raw %>%
 ```
 
 ```{r parse-currency-data-hint-3}
-pac_all <- pac_all_raw %>%
+pac_all <- pac_all_raw |>
   mutate(
     total = parse_currency(total),
     dems = parse_currency(dems),
@@ -651,7 +651,7 @@ pac_all <- pac_all_raw %>%
 ```
 
 ```{r parse-currency-data-solution}
-pac_all <- pac_all_raw %>%
+pac_all <- pac_all_raw |>
   mutate(
     total = parse_currency(total),
     dems = parse_currency(dems),
@@ -682,46 +682,46 @@ For this, we're going to be following these steps:
 - Make a plot of total contributions (y-axis) by year (x-axis) where two lines identified by different colours represent each of Canada and UK.
 
 ```{r uk-canada-plot, exercise = TRUE, message = FALSE}
-pac_all %>%
-  ___(country %in% ___) %>%
-  ___(country, year) %>%
-  ___(tot = ___, .groups = "drop") %>%
+pac_all |>
+  ___(country %in% ___) |>
+  ___(country, year) |>
+  ___(tot = ___, .groups = "drop") |>
   ggplot(mapping = aes(x = ___, y = ___, group = country, ___ = ___)) +
   ___()
 ```
 
 ```{r uk-canada-plot-hint-1}
-pac_all %>%
-  filter(country %in% c("___", "___")) %>%
-  ___(country, year) %>%
-  ___(tot = ___, .groups = "drop") %>%
+pac_all |>
+  filter(country %in% c("___", "___")) |>
+  ___(country, year) |>
+  ___(tot = ___, .groups = "drop") |>
   ggplot(mapping = aes(x = ___, y = ___, group = country, ___ = ___)) +
   ___()
 ```
 
 ```{r uk-canada-plot-hint-2}
-pac_all %>%
-  filter(country %in% c("Canada", "UK")) %>%
-  group_by(country, year) %>%
-  ___(tot = ___, .groups = "drop") %>%
+pac_all |>
+  filter(country %in% c("Canada", "UK")) |>
+  group_by(country, year) |>
+  ___(tot = ___, .groups = "drop") |>
   ggplot(mapping = aes(x = ___, y = ___, group = country, ___ = ___)) +
   ___()
 ```
 
 ```{r uk-canada-plot-hint-3}
-pac_all %>%
-  filter(country %in% c("Canada", "UK")) %>%
-  group_by(country, year) %>%
-  summarise(tot = sum(total), .groups = "drop") %>%
+pac_all |>
+  filter(country %in% c("Canada", "UK")) |>
+  group_by(country, year) |>
+  summarise(tot = sum(total), .groups = "drop") |>
   ggplot(mapping = aes(x = ___, y = ___, group = country, ___ = ___)) +
   ___()
 ```
 
 ```{r uk-canada-plot-solution}
-pac_all %>%
-  filter(country %in% c("Canada", "UK")) %>%
-  group_by(country, year) %>%
-  summarise(tot = sum(total), .groups = "drop") %>%
+pac_all |>
+  filter(country %in% c("Canada", "UK")) |>
+  group_by(country, year) |>
+  summarise(tot = sum(total), .groups = "drop") |>
   ggplot(aes(x = year, y = tot, group = country, colour = country)) +
   geom_line()
 ```
@@ -735,19 +735,19 @@ grade_this_code("Your solution is correct!")
 For the final part of this tutorial, we're going to work towards building this plot:
 
 ```{r dem-repub-over-time, echo=FALSE, message=FALSE}
-dsbox::pac_all %>%
-  filter(country == "UK") %>%
-  group_by(year) %>%
+dsbox::pac_all |>
+  filter(country == "UK") |>
+  group_by(year) |>
   summarise(
     Democrat = sum(dems),
     Republican = sum(repubs),
     , .groups = "drop"
-  ) %>%
+  ) |>
   pivot_longer(
     cols = c(Democrat, Republican), 
     names_to = "party", 
     values_to = "amount"
-    ) %>%
+    ) |>
   ggplot(mapping = aes(x = year, y = amount, colour = party)) +
   geom_line() +
   scale_colour_manual(values = c("blue", "red")) +
@@ -767,7 +767,7 @@ dsbox::pac_all %>%
 First, we need to filter the data for UK contributions:
 
 ```{r final-plot-filter, exercise = TRUE, message = FALSE}
-pac_all %>%
+pac_all |>
   filter(country == "UK")
 ```
 
@@ -777,9 +777,9 @@ Next, we need to calculate total contributions to Democratic and Republican part
 This requires a `group_by()` and `summarise()` step:
 
 ```{r final-plot-total-contributions, exercise = TRUE, message = FALSE}
-pac_all %>%
-  filter(country == "UK") %>%
-  group_by(year) %>%
+pac_all |>
+  filter(country == "UK") |>
+  group_by(year) |>
   summarise(
     Democrat = sum(dems),
     Republican = sum(repubs),
@@ -795,14 +795,14 @@ Ultimately we want to colour the lines by party though, and this requires our da
 We can achieve this by pivoting our data to be longer (going from 11 to 22 rows)
 
 ```{r final-plot-pivot, exercise = TRUE, message = FALSE}
-pac_all %>%
-  filter(country == "UK") %>%
-  group_by(year) %>%
+pac_all |>
+  filter(country == "UK") |>
+  group_by(year) |>
   summarise(
     Democrat = sum(dems),
     Republican = sum(repubs),
     .groups = "drop"
-  ) %>%
+  ) |>
   pivot_longer(
     cols = c(Democrat, Republican), 
     names_to = "party", 
@@ -813,14 +813,14 @@ pac_all %>%
 Let's save this as a new data frame to simplify the code for generating the plot:
 
 ```{r final-plot-data-frame, exercise = TRUE, message = FALSE}
-pac_all_final <- pac_all %>%
-  filter(country == "UK") %>%
-  group_by(year) %>%
+pac_all_final <- pac_all |>
+  filter(country == "UK") |>
+  group_by(year) |>
   summarise(
     Democrat = sum(dems),
     Republican = sum(repubs),
     .groups = "drop"
-  ) %>%
+  ) |>
   pivot_longer(
     cols = c(Democrat, Republican), 
     names_to = "party", 
@@ -834,13 +834,13 @@ Now we can form a basic plot of UK-based PAC contributions to each political par
 Once we've done this, it's not too hard to make it more aesthetically pleasing by adding further layers to `ggplot`.
 
 ```{r final-plot-first, exercise=TRUE, exercise.setup = "clean-pac-all", message=FALSE}
-pac_all_final %>%
+pac_all_final |>
   ggplot(___) +
   ___
 ```
 
 ```{r final-plot-first-solution}
-pac_all_final %>%
+pac_all_final |>
   ggplot(mapping = aes(x = year, y = amount, colour = party)) +
   geom_line()
 ```
@@ -862,7 +862,7 @@ Copy your code from the previous exercise, and add a `scale_colour_manual()` lin
 ```
 
 ```{r final-plot-second-solution}
-pac_all_final %>%
+pac_all_final |>
   ggplot(mapping = aes(x = year, y = amount, colour = party)) +
   geom_line() +
   scale_colour_manual(values = c("blue", "red"))
@@ -887,7 +887,7 @@ ___ +
 ```
 
 ```{r final-plot-third-solution}
-pac_all_final %>%
+pac_all_final |>
   ggplot(mapping = aes(x = year, y = amount, colour = party)) +
   geom_line() +
   scale_colour_manual(values = c("blue", "red")) +
@@ -916,7 +916,7 @@ ___  +
 ```
 
 ```{r final-plot-fourth-solution}
-pac_all_final %>%
+pac_all_final |>
   ggplot(mapping = aes(x = year, y = amount, colour = party)) +
   geom_line() +
   scale_colour_manual(values = c("blue", "red")) +
@@ -944,7 +944,7 @@ ___ +
 ```
 
 ```{r final-plot-fifth-solution}
-pac_all_final %>%
+pac_all_final |>
   ggplot(mapping = aes(x = year, y = amount, colour = party)) +
   geom_line() +
   scale_colour_manual(values = c("blue", "red")) +

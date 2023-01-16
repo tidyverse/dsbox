@@ -34,7 +34,7 @@ knitr::opts_chunk$set(echo = FALSE)
 # data prep --------------------------------------------------------------------
 
 # create age_group for questions 
-lego_sales <- lego_sales %>%
+lego_sales <- lego_sales |>
   mutate(age_group = case_when(
     age <= 18 ~ "18 and under",
     age >= 19 & age <= 25 ~ "19 - 25",
@@ -108,17 +108,17 @@ The codebook for the dataset is as follows:
 What are the three most common first names of purchasers? Use the code chunk below to find out!
 
 ```{r common-names, exercise = TRUE}
-lego_sales %>%
+lego_sales |>
   ___(___)
 ```
 
 ```{r common-names-hint-1}
-lego_sales %>%
+lego_sales |>
   count(___, sort = TRUE)
 ```
 
 ```{r common-names-solution}
-lego_sales %>%
+lego_sales |>
   count(first_name, sort = TRUE)
 ```
 
@@ -163,7 +163,7 @@ question("What are the three most common names?",
 What are the four most common themes of LEGO sets purchased? Use the code chunk below to find out!
 
 ```{r common-themes, exercise = TRUE}
-lego_sales %>%
+lego_sales |>
   ___(___)
 ```
 
@@ -172,7 +172,7 @@ Look at the previous question for help!
 ```
 
 ```{r common-themes-solution}
-lego_sales %>%
+lego_sales |>
   count(theme, sort = TRUE)
 ```
 
@@ -217,20 +217,20 @@ question("What are the four most commonly purchased themes?",
 Among the most common theme of LEGO sets purchased, what is the most common subtheme?
 
 ```{r most-common-subtheme, exercise = TRUE}
-lego_sales %>%
-  ___(___) %>%
+lego_sales |>
+  ___(___) |>
   ___(___)
 ```
 
 ```{r most-common-subtheme-hint-1}
-lego_sales %>%
-  filter(___ == ___) %>%
+lego_sales |>
+  filter(___ == ___) |>
   ___(___)
 ```
 
 ```{r most-common-subtheme-hint-2}
-lego_sales %>%
-  filter(theme == ___) %>%
+lego_sales |>
+  filter(theme == ___) |>
   count(___)
 ```
 
@@ -239,8 +239,8 @@ Look at the previous question to see what the most common theme is!
 ```
 
 ```{r most-common-subtheme-solution}
-lego_sales %>%
-  filter(theme == "Star Wars") %>%
+lego_sales |>
+  filter(theme == "Star Wars") |>
   count(subtheme, sort = TRUE)
 ```
 
@@ -284,7 +284,7 @@ question("What is the most common subtheme among the most common theme?",
 Create a new variable called `age_group` and group the ages of customers into the following categories: "18 and under", "19 - 25", "26 - 35", "36 - 50", "51 and over".
 
 ``` {r create-age-group, exercise = TRUE}
-lego_sales <- ___ %>%
+lego_sales <- ___ |>
   ___(age_group = ___(
     ___
   ))
@@ -304,7 +304,7 @@ etc.
 ```
 
 ```{r create-age-group-hint-3}
-lego_sales <- lego_sales %>%
+lego_sales <- lego_sales |>
   mutate(age_group = case_when(
     age <= 18             ~ "18 and under",
     ___
@@ -312,7 +312,7 @@ lego_sales <- lego_sales %>%
 ```
 
 ``` {r create-age-group-solution}
-lego_sales <- lego_sales %>%
+lego_sales <- lego_sales |>
   mutate(age_group = case_when(
     age <= 18 ~ "18 and under",
     age >= 19 & age <= 25 ~ "19 - 25",
@@ -338,12 +338,12 @@ Count the number of customers in each age group and display the counts in descen
 Which age group is the most common? Write code in the chunk below to figure it out!
 
 ````{r count-ages, exercise = TRUE}
-lego_sales %>%
+lego_sales |>
   ___(___)
 ```
 
 ````{r count-ages-solution}
-lego_sales %>%
+lego_sales |>
   count(age_group, sort = TRUE)
 ```
 
@@ -387,20 +387,20 @@ question("Which age group is the most common in the dataset?",
 Which age group has purchased the highest number of LEGO sets?
 
 ``` {r sales-by-group, exercise = TRUE}
-lego_sales %>%
-  ___(___) %>%
+lego_sales |>
+  ___(___) |>
   ___(
     total_n = ___(___)
-  ) %>%
+  ) |>
   arrange(___)
 ```
 
 ``` {r sales-by-group-hint-1}
-lego_sales %>%
-  group_by(___) %>%
+lego_sales |>
+  group_by(___) |>
   summarise(
     total_n = sum(___)
-  ) %>%
+  ) |>
   arrange(___)
 ```
 
@@ -409,20 +409,20 @@ You need to consider the quantity of purchases.
 ```
 
 ``` {r sales-by-group-hint-3}
-lego_sales %>%
-  group_by(___) %>%
+lego_sales |>
+  group_by(___) |>
   summarise(
     total_n = sum(quantity)
-  ) %>%
+  ) |>
   arrange(desc(___))
 ```
 
 ``` {r sales-by-group-solution}
-lego_sales %>%
-  group_by(age_group) %>%
+lego_sales |>
+  group_by(age_group) |>
   summarise(
     total_n = sum(quantity)
-  ) %>%
+  ) |>
   arrange(desc(total_n))
 ```
 
@@ -463,14 +463,14 @@ question("Which age group has purchased the highest number of LEGO sets?",
 Which age group has spent the most money on LEGO sets?
 
 ```{r age-group-money, exercise = TRUE}
-lego_sales %>%
+lego_sales |>
   ___(
     amount_spent = ___ * ___
-  ) %>%
-  ___(___) %>%
+  ) |>
+  ___(___) |>
   ___(
     total_spent = ___(___)
-  ) %>%
+  ) |>
   arrange(___)
 ```
 
@@ -479,38 +479,38 @@ You will need to consider quantity of purchases as well as price of LEGO sets.
 ```
 
 ```{r age-group-money-hint-2}
-lego_sales %>%
+lego_sales |>
   mutate(
     amount_spent = ___ * ___
-  ) %>%
-  group_by(___) %>%
+  ) |>
+  group_by(___) |>
   summarise(
     total_spent = ___(___)
-  ) %>%
+  ) |>
   arrange(desc(___))
 ```
 
 ```{r age-group-money-hint-3}
-lego_sales %>%
+lego_sales |>
   mutate(
     amount_spent = us_price * quantity
-  ) %>%
-  group_by(age_group) %>%
+  ) |>
+  group_by(age_group) |>
   summarise(
     total_spent = sum(___)
-  ) %>%
+  ) |>
   arrange(desc(___))
 ```
 
 ```{r age-group-money-solution}
-lego_sales %>%
+lego_sales |>
   mutate(
     amount_spent = us_price * quantity
-  ) %>%
-  group_by(age_group) %>%
+  ) |>
+  group_by(age_group) |>
   summarise(
     total_spent = sum(amount_spent)
-  ) %>%
+  ) |>
   arrange(desc(total_spent))
 ```
 

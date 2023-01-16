@@ -188,8 +188,8 @@ How many accidents with 2 or more vehicles occurred in an urban area?
 Use the code chunk below to find out!
 
 ``` {r filter-accidents, exercise = TRUE}
-___ %>%
-  ___(___, ___) %>%
+___ |>
+  ___(___, ___) |>
   nrow()
 ```
 ```{r filter-accidents-hint-1}
@@ -201,8 +201,8 @@ Review the data dictionary, specifically the variables urban_rural and vehicles.
 ```
 
 ``` {r filter-accidents-hint-3}
-accidents %>%
-  filter(vehicles >= ___, urban_rural == ___) %>%
+accidents |>
+  filter(vehicles >= ___, urban_rural == ___) |>
   nrow()
 ```
 
@@ -223,7 +223,7 @@ Create a frequency table of the speed limits at which accidents happen (`speed_l
 Look at the hints for help!
 
 ```{r speed-frequency, exercise = TRUE}
-___ %>%
+___ |>
   ___(___)
 ```
 
@@ -234,13 +234,13 @@ i.e. highest on top.
 ```
 
 ```{r speed-frequency-hint-2}
-accidents %>%
+accidents |>
   ___(___, sort = TRUE)
 ```
 
 
 ```{r speed-frequency-solution}
-accidents %>%
+accidents |>
   count(speed_limit, sort = TRUE)
 ```
 
@@ -357,7 +357,7 @@ There are many ways to do this, but in this tutorial, we'll focus on changing ho
 Note that the colours in the figure might change, but that's ok.
 
 ```{r change-labels, exercise = TRUE}
-accidents<- ___ %>%
+accidents<- ___ |>
   ___(___)
 
 #now, copy the code from the previous exercise here!
@@ -370,13 +370,13 @@ You could try using case_when()
 ```
 
 ```{r change-labels-hint-2}
-accidents <- accidents %>%
+accidents <- accidents |>
   mutate(___ = case_when(___ == ___ ~ ___,
                             ...))
 ```
 
 ```{r change-labels-hint-3}
-accidents <- accidents %>%
+accidents <- accidents |>
   mutate(light = case_when(
     light == "Daylight" ~ "Daylight",
     light == "Darkness - lights lit" ~ "Darkness, lights lit",
@@ -385,7 +385,7 @@ accidents <- accidents %>%
 ```
 
 ```{r change-labels-solution}
-accidents <- accidents %>%
+accidents <- accidents |>
   mutate(light = case_when(
     light == "Daylight" ~ "Daylight",
     light == "Darkness - lights lit"       ~ "Darkness, lights lit",

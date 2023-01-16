@@ -33,17 +33,17 @@ knitr::opts_chunk$set(echo = FALSE)
 # setup ------------------------------------------------
 states <- read_csv(here::here("inst","tutorials", "10-dennyslaquinta", "states.csv"), show_col_types = FALSE)
 
-dennys2 <- dennys %>%
+dennys2 <- dennys |>
   mutate(establishment = "Denny's")
-laquinta2 <- laquinta %>%
+laquinta2 <- laquinta |>
   mutate(establishment = "La Quinta")
 
 locations <- bind_rows(list(dennys2, laquinta2))
 
-nc_dn <- dennys %>%
+nc_dn <- dennys |>
   filter(state == "NC")
 
-nc_lq <- laquinta %>%
+nc_lq <- laquinta |>
   filter(state == "NC")
 
 nc_dn_lq <- full_join(nc_dn, nc_lq, by = "state")
@@ -63,31 +63,31 @@ haversine <- function(long1, lat1, long2, lat2, round = 3) {
   return( round(d,round) ) # distance in km
 }
 
-nc_dist <- nc_dn_lq %>%
+nc_dist <- nc_dn_lq |>
   mutate(distance = haversine(longitude.x, latitude.x,
                               longitude.y, latitude.y))
 
-nc_mindist <- nc_dist %>%
-  group_by(address.x) %>%
+nc_mindist <- nc_dist |>
+  group_by(address.x) |>
   summarise(closest = min(distance))
 
 
-tx_dn <- dennys %>%
+tx_dn <- dennys |>
   filter(state == "TX")
 nrow(tx_dn)
 
-tx_lq <- laquinta %>%
+tx_lq <- laquinta |>
   filter(state == "TX")
 nrow(tx_lq)
 
 tx_dn_lq <- full_join(tx_dn, tx_lq, by = "state")
 
-tx_dist <- tx_dn_lq %>%
+tx_dist <- tx_dn_lq |>
   mutate(distance = haversine(longitude.x, latitude.x,
                               longitude.y, latitude.y))
 
-tx_mindist <- tx_dist %>%
-  group_by(address.x) %>%
+tx_mindist <- tx_dist |>
+  group_by(address.x) |>
   summarise(closest = min(distance))
 ```
 
@@ -198,16 +198,16 @@ grade_this_code("The tidyverse and dsbox packages are now loaded")
 We will begin with a quick warmup exercise before diving deeper into the data wrangling. Fill in the following code chunk to examine how many rows and columns are in each data set.
 
 ```{r dimensions, exercise = TRUE}
-dennys %>%
+dennys |>
   ___()
 
-dennys %>%
+dennys |>
   ___()
   
-laquinta %>%
+laquinta |>
   ___()
 
-laquinta %>%
+laquinta |>
   ___()
 ```
 
@@ -218,16 +218,16 @@ Use the `nrow()` and `ncol()` functions!
 
 
 ```{r dimensions-solution}
-dennys %>%
+dennys |>
   nrow()
 
-dennys %>%
+dennys |>
   ncol()
   
-laquinta %>%
+laquinta |>
   nrow()
 
-laquinta %>%
+laquinta |>
   ncol()
 ```
 
@@ -272,19 +272,19 @@ We will now compare the number of restaurants and inns per states. Which states 
 Use `arrange(desc())` and `slice()` to report your answer in a single 10x2 dataframe. Here is some code to get you started:
 
 ```{r most-fewest-dennys, exercise=TRUE}
-dennys %>%
-  group_by(___) %>%
+dennys |>
+  group_by(___) |>
 ```
 
 ```{r most-fewest-dennys-hint-1}
-dennys %>%
-  group_by(state) %>%
+dennys |>
+  group_by(state) |>
 ```
 
 ```{r most-fewest-dennys-hint-2}
-dennys %>%
-  group_by(state) %>%
-  summarise(restaurants = n()) %>%
+dennys |>
+  group_by(state) |>
+  summarise(restaurants = n()) |>
 ```
 
 ```{r most-fewest-dennys-hint-3}
@@ -293,10 +293,10 @@ Use the documentation for those functions to try to figure them out!
 ```
 
 ```{r most-fewest-dennys-solution}
-dennys %>%
-  group_by(state) %>%
-  summarise(restaurants = n()) %>%
-  arrange(desc(restaurants)) %>%
+dennys |>
+  group_by(state) |>
+  summarise(restaurants = n()) |>
+  arrange(desc(restaurants)) |>
   slice(c(1:5, 47:51))
 ```
 
@@ -311,10 +311,10 @@ Now, let's do the same for La Quintas. Which states have the most, and fewest, i
 We'll use some code similar to the previous solution to get you started.
 
 ```{r most-fewest-laquinta, exercise=TRUE}
-laquinta %>%
-  group_by(state) %>%
-  summarise(motels = n()) %>%
-  arrange(desc(motels)) %>%
+laquinta |>
+  group_by(state) |>
+  summarise(motels = n()) |>
+  arrange(desc(motels)) |>
 ```
 
 ```{r most-fewest-laquinta-hint-1}
@@ -324,11 +324,11 @@ Note how many rows remain, though!
 ```
 
 ```{r most-fewest-laquinta-hint-2}
-laquinta %>%
-  group_by(state) %>%
-  summarise(motels = n()) %>%
-  arrange(desc(motels)) %>%
-  inner_join(states, by = c("____" = "abbreviation")) %>%
+laquinta |>
+  group_by(state) |>
+  summarise(motels = n()) |>
+  arrange(desc(motels)) |>
+  inner_join(states, by = c("____" = "abbreviation")) |>
 ```
 
 ```{r most-fewest-laquinta-hint-3}
@@ -337,12 +337,12 @@ Use 'select()' to select the two columns we desire (state, motels) when reportin
 ```
 
 ```{r most-fewest-laquinta-solution}
-laquinta %>%
-  group_by(state) %>%
-  summarise(motels = n()) %>%
-  arrange(desc(motels)) %>%
-  inner_join(states, by = c("state" = "abbreviation")) %>%
-  slice(c(1:5, 44:48)) %>%
+laquinta |>
+  group_by(state) |>
+  summarise(motels = n()) |>
+  arrange(desc(motels)) |>
+  inner_join(states, by = c("state" = "abbreviation")) |>
+  slice(c(1:5, 44:48)) |>
   select(state, motels)
 ```
 
@@ -353,16 +353,16 @@ We are now interested in examining the ratios of both Denny's and La Quinta loca
 Use `mutate()` after the following starter code to create a new variable. Then, use `arrange(desc())`, `slice()`, and `select()` to report your answer as two 10x2 dataframes.
 
 ```{r locations-per-area, exercise = TRUE}
-dennys %>%
-  group_by(state) %>%
-  summarise(restaurant = n()) %>%
-  inner_join(states, by = c("state" = "abbreviation")) %>%
+dennys |>
+  group_by(state) |>
+  summarise(restaurant = n()) |>
+  inner_join(states, by = c("state" = "abbreviation")) |>
   mutate(restaurantsperarea =  ___)
   
-laquinta %>%
-  group_by(state) %>%
-  summarise(motels = n()) %>%
-  inner_join(states, by = c("state" = "abbreviation")) %>%
+laquinta |>
+  group_by(state) |>
+  summarise(motels = n()) |>
+  inner_join(states, by = c("state" = "abbreviation")) |>
   mutate(motelsperarea =  ___)
 ```
 
@@ -371,60 +371,60 @@ Run `?mutate` to pull up the documentation if you need to jog your memory!
 ```
 
 ```{r locations-per-area-hint-2}
-dennys %>%
-  group_by(state) %>%
-  summarise(restaurants = n()) %>%
-  inner_join(states, by = c("state" = "abbreviation")) %>%
-  mutate(restaurantsperarea =  restaurants / area) %>%
-  arrange(desc(restaurantsperarea)) %>%
-  slice(c(___, ___)) %>%
+dennys |>
+  group_by(state) |>
+  summarise(restaurants = n()) |>
+  inner_join(states, by = c("state" = "abbreviation")) |>
+  mutate(restaurantsperarea =  restaurants / area) |>
+  arrange(desc(restaurantsperarea)) |>
+  slice(c(___, ___)) |>
   
-laquinta %>%
-  group_by(state) %>%
-  summarise(motels = n()) %>%
-  inner_join(states, by = c("state" = "abbreviation")) %>%
-  mutate(motelsperarea =  motels / area) %>%
-  arrange(desc(motelsperarea)) %>%
-  slice(c(___, ___)) %>%
+laquinta |>
+  group_by(state) |>
+  summarise(motels = n()) |>
+  inner_join(states, by = c("state" = "abbreviation")) |>
+  mutate(motelsperarea =  motels / area) |>
+  arrange(desc(motelsperarea)) |>
+  slice(c(___, ___)) |>
 ```
 
 ```{r locations-per-area-hint-3}
-dennys %>%
-  group_by(state) %>%
-  summarise(restaurants = n()) %>%
-  inner_join(states, by = c("state" = "abbreviation")) %>%
-  mutate(restaurantsperarea =  restaurants / area) %>%
-  arrange(desc(restaurantsperarea)) %>%
-  slice(c(1:5, 47:51)) %>%
+dennys |>
+  group_by(state) |>
+  summarise(restaurants = n()) |>
+  inner_join(states, by = c("state" = "abbreviation")) |>
+  mutate(restaurantsperarea =  restaurants / area) |>
+  arrange(desc(restaurantsperarea)) |>
+  slice(c(1:5, 47:51)) |>
   select(___, ___)
   
-laquinta %>%
-  group_by(state) %>%
-  summarise(motels = n()) %>%
-  inner_join(states, by = c("state" = "abbreviation")) %>%
-  mutate(motelsperarea =  motels / area) %>%
-  arrange(desc(motelsperarea)) %>%
-  slice(c(1:5, 44:48)) %>%
+laquinta |>
+  group_by(state) |>
+  summarise(motels = n()) |>
+  inner_join(states, by = c("state" = "abbreviation")) |>
+  mutate(motelsperarea =  motels / area) |>
+  arrange(desc(motelsperarea)) |>
+  slice(c(1:5, 44:48)) |>
   select(___, ___)
 ```
 
 ```{r locations-per-area-solution}
-=dennys %>%
-  group_by(state) %>%
-  summarise(restaurants = n()) %>%
-  inner_join(states, by = c("state" = "abbreviation")) %>%
-  mutate(restaurantsperarea =  restaurants / area) %>%
-  arrange(desc(restaurantsperarea)) %>%
-  slice(c(1:5, 47:51)) %>%
+=dennys |>
+  group_by(state) |>
+  summarise(restaurants = n()) |>
+  inner_join(states, by = c("state" = "abbreviation")) |>
+  mutate(restaurantsperarea =  restaurants / area) |>
+  arrange(desc(restaurantsperarea)) |>
+  slice(c(1:5, 47:51)) |>
   select(state, restaurantsperarea)
   
-laquinta %>%
-  group_by(state) %>%
-  summarise(motels = n()) %>%
-  inner_join(states, by = c("state" = "abbreviation")) %>%
-  mutate(motelsperarea =  motels / area) %>%
-  arrange(desc(motelsperarea)) %>%
-  slice(c(1:5, 44:48)) %>%
+laquinta |>
+  group_by(state) |>
+  summarise(motels = n()) |>
+  inner_join(states, by = c("state" = "abbreviation")) |>
+  mutate(motelsperarea =  motels / area) |>
+  arrange(desc(motelsperarea)) |>
+  slice(c(1:5, 44:48)) |>
   select(state, motelsperarea)
 ```
 
@@ -451,9 +451,9 @@ Great interpretations! Now, before we proceed with visualization tasks, we want 
 Use the following code chunk to add a new variable to refer to the establishment. Since the two data frames have the same columns, we can easily bind them with the `bind_rows()` function:
 
 ```{r bind-rows, exercise = TRUE}
-dennys2 <- dennys %>%
+dennys2 <- dennys |>
   mutate(establishment = "Denny's")
-laquinta2 <- laquinta %>%
+laquinta2 <- laquinta |>
   mutate(establishment = "La Quinta")
 
 locations <- bind_rows(list(dennys2, laquinta2))
@@ -476,24 +476,24 @@ Using `ggplot()`, filter the locations for North Carolina only, and plot the coo
 *The use of `alpha = 0.7` inside `geom_point()` allows us to better see the overlaid points.*
 
 ```{r plot-nc, exercise=TRUE}
-locations %>%
-  filter(___) %>%
+locations |>
+  filter(___) |>
   ggplot(mapping = aes(___, ___, ___)) +
   geom_point(alpha = 0.7) +
   coord_fixed()
 ```
 
 ```{r plot-nc-hint}
-locations %>%
-  filter(state == "NC") %>%
+locations |>
+  filter(state == "NC") |>
   ggplot(mapping = aes(x = ___, y = ___, color = ___)) +
   geom_point(alpha = 0.5) +
   coord_fixed()
 ```
 
 ```{r plot-nc-solution}
-locations %>%
-  filter(state == "NC") %>%
+locations |>
+  filter(state == "NC") |>
   ggplot(mapping = aes(x = longitude, y = latitude, color = establishment)) +
   geom_point(alpha = 0.5) +
   coord_fixed()
@@ -537,16 +537,16 @@ question("Select all (longitude, latitude) combinations that have clusters of lo
 Make the same plot, this time filtering for Texas.
 
 ```{r texas, exercise=TRUE}
-locations %>%
-  filter(___) %>%
+locations |>
+  filter(___) |>
   ggplot(mapping = aes(___, ___, ___)) +
   geom_point(alpha = 0.5) +
   coord_fixed()
 ```
 
 ```{r texas-solution}
-locations %>%
-  filter(state == "TX") %>%
+locations |>
+  filter(state == "TX") |>
   ggplot(mapping = aes(x = longitude, y = latitude, color = establishment)) +
   geom_point(alpha = 0.5) +
   coord_fixed()
@@ -565,41 +565,41 @@ We will first examine distance using only observations from a North Carolina. Us
 We'll take advantage of a `*_join()` function later to easily calculate distances between locations.
 
 ```{r north-carolina, exercise = TRUE}
-nc_dn <- dennys %>%
+nc_dn <- dennys |>
   filter(___)
 ___(nc_dn)
 
-nc_lq <- laquinta %>%
+nc_lq <- laquinta |>
   filter(___)
 ___(nc_lq)
 ```
 
 ```{r north-carolina-hint-1}
-nc_dn <- dennys %>%
+nc_dn <- dennys |>
   filter(state == "NC")
 ___(nc_dn)
 
-nc_lq <- laquinta %>%
+nc_lq <- laquinta |>
   filter(state == "NC")
 ___(nc_lq)
 ```
 
 ```{r north-carolina-hint-2}
-nc_dn <- dennys %>%
+nc_dn <- dennys |>
   filter(state == "NC")
 nrow(nc_dn)
 
-nc_lq <- laquinta %>%
+nc_lq <- laquinta |>
   filter(state == "NC")
 nrow(nc_lq)
 ```
 
 ```{r north-carolina-solution}
-nc_dn <- dennys %>%
+nc_dn <- dennys |>
   filter(state == "NC")
 nrow(nc_dn)
 
-nc_lq <- laquinta %>%
+nc_lq <- laquinta |>
   filter(state == "NC")
 nrow(nc_lq)
 ```
@@ -755,17 +755,17 @@ This function takes five arguments:
 Calculate the distances between all pairs of Denny’s and La Quinta locations and save this variable as `distance.` Save this in a new dataframe called `nc_dist`.
 
 ```{r distance-calc, exercise = TRUE}
-nc_dist <- nc_dn_lq %>%
+nc_dist <- nc_dn_lq |>
   mutate(___)
 ```
 
 ```{r distance-calc-hint-1}
-nc_dist <- nc_dn_lq %>%
+nc_dist <- nc_dn_lq |>
   mutate(distance = haversine(___))
 ```
 
 ```{r distance-calc-solution}
-nc_dist <- nc_dn_lq %>%
+nc_dist <- nc_dn_lq |>
   mutate(distance = haversine(longitude.x, latitude.x,
                               longitude.y, latitude.y))
 ```
@@ -777,23 +777,23 @@ grade_this_code("Great! The values have been stored!")
 Now, calculate the *minimum* distance between a Denny’s and La Quinta for each Denny’s location. Check the hints if you need help!
 
 ```{r minimum-dist, exercise = TRUE}
-nc_mindist <- nc_dist %>%
+nc_mindist <- nc_dist |>
 ```
 
 ```{r minimum-dist-hint-1}
-nc_mindist <- nc_dist %>%
-  group_by(___) %>%
+nc_mindist <- nc_dist |>
+  group_by(___) |>
 ```
 
 ```{r minimum-dist-hint-2}
-nc_mindist <- nc_dist %>%
-  group_by(address.x) %>%
+nc_mindist <- nc_dist |>
+  group_by(address.x) |>
   summarise(closest = ___)
 ```
 
 ```{r minimum-dist-solution}
-nc_mindist <- nc_dist %>%
-  group_by(address.x) %>%
+nc_mindist <- nc_dist |>
+  group_by(address.x) |>
   summarise(closest = min(distance))
 ```
 
@@ -906,11 +906,11 @@ Repeat the same analysis for Texas in the next section.
 ```
 
 ```{r texas-filter-solution}
-tx_dn <- dennys %>%
+tx_dn <- dennys |>
   filter(state == "TX")
 nrow(tx_dn)
 
-tx_lq <- laquinta %>%
+tx_lq <- laquinta |>
   filter(state == "TX")
 nrow(tx_lq)
 ```
@@ -948,7 +948,7 @@ x = (summary(tx_mindist$closest)[5] - summary(tx_mindist$closest)[2])
 y = summary(tx_mindist$closest)[2] - x
 z = summary(tx_mindist$closest)[5] + x
 
-tx_mindist %>%
+tx_mindist |>
   filter(closest < y | closest > z)
 ```
 
@@ -988,14 +988,14 @@ question("What potential problem(s) would we face if we attempted to perform OLS
 Use the code in the following code chunk to join the closest La Quinta data to the location information of the Denny's restaurants in Texas. Then, in the same code chunk, plot the Denny's locations again, this time mapping `aes(color = closest)`.
 
 ```{r texas-closest-plot, exercise = TRUE}
-tx_dn %>%
-  left_join(tx_mindist, by = c("address" = "address.x")) %>%
+tx_dn |>
+  left_join(tx_mindist, by = c("address" = "address.x")) |>
   ggplot(___) 
 ```
 
 ```{r texas-closest-plot-hint-1}
-tx_dn %>%
-  left_join(tx_mindist, by = c("address" = "address.x")) %>%
+tx_dn |>
+  left_join(tx_mindist, by = c("address" = "address.x")) |>
   ggplot(aes(x = longitude, y = latitude, color = closest)) +
   geom_point() +
   coord_fixed()
@@ -1005,8 +1005,8 @@ tx_dn %>%
 You may have to add another layer with a color palette, like `scale_color_viridis_c()`,
 to more clearly see the variation.
 
-tx_dn %>%
-  left_join(tx_mindist, by = c("address" = "address.x")) %>%
+tx_dn |>
+  left_join(tx_mindist, by = c("address" = "address.x")) |>
   ggplot(aes(x = longitude, y = latitude, color = closest)) +
   geom_point() +
   coord_fixed()
