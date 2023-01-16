@@ -9,8 +9,8 @@ library(usethis)
 
 ucbadmit <- read_csv(here::here("data-raw", "ucb-admit", "ucb-admit.csv"))
 
-ucbadmit <- ucbadmit %>%
-  janitor::clean_names() %>%
+ucbadmit <- ucbadmit |>
+  janitor::clean_names() |>
   mutate(
     admit = factor(admit, levels = c("Rejected", "Admitted")),
     gender = factor(gender),

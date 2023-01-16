@@ -12,8 +12,8 @@ ncbikecrash_names <- read_csv(here::here("data-raw", "ncbikecrash", "ncbikecrash
 
 names(ncbikecrash_raw) <- ncbikecrash_names$new
 
-ncbikecrash <- ncbikecrash_raw %>%
-  select(sort(names(.))) %>%
+ncbikecrash <- ncbikecrash_raw |>
+  select(sort(names(ncbikecrash_raw))) |>
   select(
     object_id,
     city, county, region, development, locality, on_road,
