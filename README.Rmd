@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 # dsbox <img src="man/figures/logo.png" align="right" height="170">
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/rstudio-education/dsbox/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio-education/dsbox/actions)
+[![R-CMD-check](https://github.com/evandragich/dsbox/workflows/R-CMD-check/badge.svg)](https://github.com/evandragich/dsbox/actions)
 <!-- badges: end -->
 
 The goal of dsbox is to supplement the Data Science Course in a Box project. The package contains the datasets that are used in the materials in Data Science Course in a Box as well as the learnr tutorials.
