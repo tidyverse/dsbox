@@ -675,7 +675,7 @@ How many columns are in the new dataframe `nc_dn_lq`? You may submit your answer
 
 ```{r north-carolina-join-columns-check}
 grade_this({
-  if(identical(.result, 1) | identical(.result, 11L)) {
+  if(identical(.result, 11) | identical(.result, 11L)) {
     pass(random_praise())
   }
   fail("Try joining again!")
@@ -827,8 +827,7 @@ question("The distribution is:",
   answer("Left-skewed"),
   answer("Symmetric"),
   correct = "Correct!",
-  allow_retry = TRUE,
-  random_answer_order = TRUE
+  allow_retry = TRUE
 )
 ```
 
@@ -979,6 +978,7 @@ question("What potential problem(s) would we face if we attempted to perform OLS
          correct = TRUE),
   answer("Correlated structure of data leading to collinearity in predictors and thus unattainable linear model fit."),
   correct = random_praise(),
+  random_answer_order	= TRUE,
   allow_retry = TRUE
 )
 ```
@@ -1004,6 +1004,12 @@ tx_dn %>%
 ```{r texas-closest-plot-hint-2}
 You may have to add another layer with a color palette, like `scale_color_viridis_c()`,
 to more clearly see the variation.
+
+tx_dn %>%
+  left_join(tx_mindist, by = c("address" = "address.x")) %>%
+  ggplot(aes(x = longitude, y = latitude, color = closest)) +
+  geom_point() +
+  coord_fixed()
 ```
 
 ```{r texas-4-quiz}
@@ -1013,7 +1019,6 @@ question("The Denny's location in Texas that is furthest from a La Quinta is in 
   answer("Lower left"),
   answer("Lower right"),
   correct = random_praise(),
-  random_answer_order = TRUE,
   allow_retry = TRUE
 )
 ```
