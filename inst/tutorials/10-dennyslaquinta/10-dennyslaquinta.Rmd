@@ -646,7 +646,7 @@ In order to calculate these distances we need to first restructure our data to p
 In this case we want to keep all rows and columns from both `nc_dn` and `nc_lq` data frames. So we will use a `full_join()`. The following image illustrates why:
 
 ```{r full-join-photo, fig.margin = TRUE, echo = FALSE, out.width="50%"}
-knitr::include_graphics("images/full-join")
+knitr::include_graphics("images/full-join.png")
 ```
 
 Let's join the data on Denny's and La Quinta locations in North Carolina, and take a look at what it looks like:
