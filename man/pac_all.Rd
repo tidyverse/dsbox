@@ -51,10 +51,10 @@ scraped from the website on 11 Nov 2020.
 library(dplyr)
 library(ggplot2)
 
-pac_all \%>\%
-  filter(country \%in\% c("Canada", "UK")) \%>\%
-  group_by(country, year) \%>\%
-  summarise(tot = sum(total)) \%>\%
+pac_all |>
+  filter(country \%in\% c("Canada", "UK")) |>
+  group_by(country, year) |>
+  summarise(tot = sum(total)) |>
   ggplot(aes(x = year, y = tot, group = country, color = country)) +
   geom_line() +
   labs(

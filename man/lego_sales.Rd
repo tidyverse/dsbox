@@ -34,8 +34,8 @@ Names and hobbies have been randomly generated
 
 library(dplyr)
 
-lego_sales \%>\%
-  count(first_name, sort = TRUE) \%>\%
+lego_sales |>
+  count(first_name, sort = TRUE) |>
   top_n(3)
 
 }
