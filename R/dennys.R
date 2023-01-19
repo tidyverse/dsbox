@@ -23,11 +23,11 @@
 #'
 #'
 #'
-#' dennys %>%
-#'   group_by(state) %>%
-#'   summarise(restaurants = n()) %>%
-#'   arrange(desc(factor(restaurants))) %>%
-#'   slice_head(n = 10) %>%
+#' dennys |>
+#'   group_by(state) |>
+#'   summarise(restaurants = n()) |>
+#'   arrange(desc(factor(restaurants))) |>
+#'   slice_head(n = 10) |>
 #'   ggplot(aes(x = reorder(state, -restaurants), y = restaurants)) +
 #'   geom_col()
 "dennys"

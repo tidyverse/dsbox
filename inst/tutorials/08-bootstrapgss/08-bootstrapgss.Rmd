@@ -32,41 +32,41 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r setup-email-var}
-gss16 <- dsbox::gss16 %>%
+gss16 <- dsbox::gss16 |>
   mutate(email = emailmin + (emailhr * 60))
 ```
 
 ```{r setup-seed-email-na}
-gss16_email <- dsbox::gss16 %>%
-  mutate(email = emailmin + (emailhr * 60)) %>%
+gss16_email <- dsbox::gss16 |>
+  mutate(email = emailmin + (emailhr * 60)) |>
   filter(!is.na(email))
 
 set.seed(1234)
 ```
 
 ```{r setup-boot-df-mean}
-gss16_email <- dsbox::gss16 %>%
-  mutate(email = emailmin + (emailhr * 60)) %>%
+gss16_email <- dsbox::gss16 |>
+  mutate(email = emailmin + (emailhr * 60)) |>
   filter(!is.na(email))
   
 set.seed(1234)
 
-boot_df <- gss16_email %>%
-  specify(response = email) %>% 
-  generate(reps = 1000, type = "bootstrap") %>% 
+boot_df <- gss16_email |>
+  specify(response = email) |> 
+  generate(reps = 1000, type = "bootstrap") |> 
   calculate(stat = "mean")
 ```
 
 ```{r setup-boot-df-median}
-gss16_email <- dsbox::gss16 %>%
-  mutate(email = emailmin + (emailhr * 60)) %>%
+gss16_email <- dsbox::gss16 |>
+  mutate(email = emailmin + (emailhr * 60)) |>
   filter(!is.na(email))
 
 set.seed(1234)
 
-boot_df_median <- gss16_email %>%
-  specify(response = email) %>% 
-  generate(reps = 1000, type = "bootstrap") %>% 
+boot_df_median <- gss16_email |>
+  specify(response = email) |> 
+  generate(reps = 1000, type = "bootstrap") |> 
   calculate(stat = "median")
 ```
 
@@ -134,22 +134,22 @@ For the first exercise, create a new variable called email that combines these t
 (Yes, this exercise is a repeat of what you did last week!)
 
 ```{r email-variable, exercise=TRUE}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   ___
 ```
 
 ```{r email-variable-hint-1}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(___)
 ```
 
 ```{r email-variable-hint-2}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(email = ___)
 ```
 
 ```{r email-variable-solution}
-gss16 <- gss16 %>%
+gss16 <- gss16 |>
   mutate(email = emailmin + (emailhr * 60))
 ```
 
@@ -168,17 +168,17 @@ Instead save the resulting data frame as `gss16_email`.
 ```
 
 ```{r filter-email-hint-1}
-gss16_email <- gss16 %>%
+gss16_email <- gss16 |>
   ___
 ```
 
 ```{r filter-email-hint-2}
-gss16_email <- gss16 %>%
+gss16_email <- gss16 |>
   filter(___(email))
 ```
 
 ```{r filter-email-solution}
-gss16_email <- gss16 %>%
+gss16_email <- gss16 |>
   filter(!is.na(email))
 ```
 
@@ -226,30 +226,30 @@ There are a few functions we use from the `tidymodels` package in doing this:
 Fill in the blanks in the following code block to create the bootstrapped data frame:
 
 ```{r create-boot-df, exercise = TRUE, exercise.setup = "setup-seed-email-na"}
-boot_df <- ___ %>%
-  specify(response = ___) %>% 
-  generate(reps = 1000, type = "bootstrap") %>% 
+boot_df <- ___ |>
+  specify(response = ___) |> 
+  generate(reps = 1000, type = "bootstrap") |> 
   ___(stat = "___")
 ```
 
 ```{r create-boot-df-hint-1}
-boot_df <- gss16_email %>%
-  specify(response = ___) %>% 
-  generate(reps = 1000, type = "bootstrap") %>% 
+boot_df <- gss16_email |>
+  specify(response = ___) |> 
+  generate(reps = 1000, type = "bootstrap") |> 
   ___(stat = "___")
 ```
 
 ```{r create-boot-df-hint-2}
-boot_df <- gss16_email %>%
-  specify(response = email) %>% 
-  generate(reps = 1000, type = "bootstrap") %>% 
+boot_df <- gss16_email |>
+  specify(response = email) |> 
+  generate(reps = 1000, type = "bootstrap") |> 
   ___(stat = "___")
 ```
 
 ```{r create-boot-df-solution}
-boot_df <- gss16_email %>%
-  specify(response = email) %>% 
-  generate(reps = 1000, type = "bootstrap") %>% 
+boot_df <- gss16_email |>
+  specify(response = email) |> 
+  generate(reps = 1000, type = "bootstrap") |> 
   calculate(stat = "mean")
 ```
 
@@ -278,31 +278,31 @@ To find this range, we calculate percentiles so that the central 95% of the dist
 Fill in the blanks in this code block to construct the 95% bootstrap confidence interval for the mean amount of time Americans spend on email weekly.
 
 ```{r confidence-interval-email, exercise = TRUE, exercise.setup = "setup-boot-df-mean"}
-___ %>%
+___ |>
   summarize(lower = quantile(___, ___),
             upper = ___(___, ___))
 ```
 
 ```{r confidence-interval-email-hint-1}
-boot_df %>%
+boot_df |>
   summarize(lower = quantile(___, ___),
             upper = ___(___, ___))
 ```
 
 ```{r confidence-interval-email-hint-2}
-boot_df %>%
+boot_df |>
   summarize(lower = quantile(stat, ___),
             upper = ___(___, ___))
 ```
 
 ```{r confidence-interval-email-hint-3}
-boot_df %>%
+boot_df |>
   summarize(lower = quantile(stat, 0.025),
             upper = ___(___, ___))
 ```
 
 ```{r confidence-interval-email-solution}
-boot_df %>%
+boot_df |>
   summarize(lower = quantile(stat, 0.025),
             upper = quantile(stat, 0.975))
 ```
@@ -341,7 +341,7 @@ bootstrap confidence interval for the mean amount of time Americans spend on ema
 weekly. 
 
 ```{r confidence-99-email, exercise = TRUE, exercise.setup = "setup-boot-df-mean"}
-___ %>%
+___ |>
   ___
 ```
 
@@ -350,19 +350,19 @@ Look at the previous question for help!
 ```
 
 ```{r confidence-99-email-hint-2}
-boot_df %>%
+boot_df |>
   summarize(lower = ___(___, ___),
             ___ = ___)
 ```
 
 ```{r confidence-99-email-hint-3}
-boot_df %>%
+boot_df |>
   summarize(lower = quantile(___, 0.005),
             upper = quantile(___, ___))
 ```
 
 ```{r confidence-99-email-solution}
-boot_df %>%
+boot_df |>
   summarize(lower = quantile(stat, 0.005),
             upper = quantile(stat, 0.995))
 ```
@@ -386,7 +386,7 @@ amount of time Americans spend on email weekly.
 First, create a bootstrapped data frame just like you did in a previous exercise, only now, we want to calculate bootstrap medians. Your data frame should be called `boot_df_median`.
 
 ```{r create-boot-df-median, exercise = TRUE, exercise.setup = "setup-seed-email-na"}
-boot_df_median <- ___ %>%
+boot_df_median <- ___ |>
   ___
 ```
 
@@ -395,23 +395,23 @@ Look at how you created your first bootstrapped data frame, just remember to cal
 ``` 
 
 ```{r create-boot-df-median-hint-2}
-boot_df_median <- ___ %>%
-  ___(response = ___) %>% 
-  ___(reps =___, type = ___) %>% 
+boot_df_median <- ___ |>
+  ___(response = ___) |> 
+  ___(reps =___, type = ___) |> 
   ___(stat = "___")
 ```
 
 ```{r create-boot-df-median-hint-3}
-boot_df_median <- gss16_email %>%
-  specify(response = ___) %>% 
-  generate(reps = 1000, type = "bootstrap") %>% 
+boot_df_median <- gss16_email |>
+  specify(response = ___) |> 
+  generate(reps = 1000, type = "bootstrap") |> 
   calculate(stat = "___")
 ```
 
 ```{r create-boot-df-median-solution}
-boot_df_median <- gss16_email %>%
-  specify(response = email) %>% 
-  generate(reps = 1000, type = "bootstrap") %>% 
+boot_df_median <- gss16_email |>
+  specify(response = email) |> 
+  generate(reps = 1000, type = "bootstrap") |> 
   calculate(stat = "median")
 ```
 
@@ -422,7 +422,7 @@ grade_this_code("You have created a new bootstrapped data frame!")
 Now, calculate the 90% confidence interval for the median amount of time spent on email.
 
 ```{r confidence-90-median, exercise = TRUE, exercise.setup = "setup-boot-df-median"}
-___ %>%
+___ |>
   ___
 ```
 
@@ -432,19 +432,19 @@ Remember to use the 'boot_df_median' dataframe.
 ```
 
 ```{r confidence-90-median-hint-2}
-boot_df_median %>%
+boot_df_median |>
   summarize(lower = ___(___, ___),
             ___ = ___)
 ```
 
 ```{r confidence-90-median-hint-3}
-boot_df_median %>%
+boot_df_median |>
   summarize(lower = quantile(___, 0.05),
             upper = quantile(___, ___))
 ```
 
 ```{r confidence-90-median-solution}
-boot_df_median %>%
+boot_df_median |>
   summarize(lower = quantile(stat, 0.05),
             upper = quantile(stat, 0.95))
 ```

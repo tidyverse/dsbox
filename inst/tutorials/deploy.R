@@ -7,16 +7,16 @@ library(here)
 
 # get a list of directories ----------------------------------------------------
 
-tutorial_dirs <- dir_info(path = here::here("inst/tutorials/"), recurse = 0) %>%
+tutorial_dirs <- dir_info(path = here::here("inst/tutorials/"), recurse = 0) |>
   filter(
     type == "directory",
     str_detect(path, "/")
-  ) %>%
+  ) |>
   pull(path)
 
 # tutorials --------------------------------------------------------------------
 
-tutorials <- tibble(dir_to_deploy = tutorial_dirs) %>%
+tutorials <- tibble(dir_to_deploy = tutorial_dirs) |>
   mutate(
     title = str_remove(tutorial_dirs, "^.*tutorials/"),
     title = paste0("dsbox-", title),

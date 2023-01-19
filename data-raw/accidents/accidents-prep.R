@@ -10,7 +10,7 @@ accidents <- read_csv(here::here("data-raw", "accidents", "uk-accidents.csv"))
 
 # Clean up / make more usable --------------------------------------------------
 
-accidents <- accidents %>%
+accidents <- accidents |>
   rename(
     id                 = accident_index,
     easting            = location_easting_osgr,
@@ -33,7 +33,7 @@ accidents <- accidents %>%
     special_condition  = special_conditions_at_site,
     hazard             = carriageway_hazards,
     police             = did_police_officer_attend_scene_of_accident
-  ) %>%
+  ) |>
   mutate(
     severity = case_when(
       severity == 1 ~ "Fatal",

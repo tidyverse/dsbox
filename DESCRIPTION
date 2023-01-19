@@ -6,6 +6,7 @@ Authors@R: c(
     person("Mine", "\u00C7etinkaya-Rundel", email = "mine@rstudio.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-6452-2420")),
     person("Lee", "Suddaby", email = "leesuddaby@gmail.com", role = c("ctb")),
     person("Zeno", "Kujawa", email = "zeno.kujawa@gmail.com", role = c("ctb")),
+    person("Evan", "Dragich", email = "evandragich@gmail.com", role = c("ctb")),
     person("RStudio", role = c("cph", "fnd"))
     )
 Description: Datasets accompanying Data Science Course in a Box, an 
@@ -13,7 +14,10 @@ Description: Datasets accompanying Data Science Course in a Box, an
     science, and statistics.
 Encoding: UTF-8
 LazyData: true
-Imports: 
+Suggests: 
+    dplyr, 
+    ggplot2, 
+    tibble,
     learnr,
     scales,
     tidyverse,
@@ -23,18 +27,14 @@ Imports:
     tidymodels,
     fivethirtyeight,
     palmerpenguins,
-    gradethis (>= 0.1.0.9004)
-Suggests: 
-    dplyr, 
-    ggplot2, 
-    tibble
+    gradethis (>= 0.2.11.9000)
 Depends: 
-    R (>= 2.10)
+    R (>= 4.1)
 License: MIT + file LICENSE
 URL: https://rstudio-education.github.io/dsbox,
     https://github.com/rstudio-education/dsbox
 BugReports: https://github.com/rstudio-education/dsbox/issues
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 Remotes: 
     rstudio-education/gradethis

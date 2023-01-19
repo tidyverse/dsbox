@@ -33,8 +33,8 @@
 #' library(ggplot2)
 #' library(dplyr)
 #'
-#' gss16 %>%
-#'   mutate(email = (emailhr * 60) + emailmin) %>%
+#' gss16 |>
+#'   mutate(email = (emailhr * 60) + emailmin) |>
 #'   ggplot(aes(x = email)) +
 #'   geom_histogram(binwidth = 60) +
 #'   labs(x = "Time spent on email (in minutes)")

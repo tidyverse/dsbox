@@ -14,3 +14,4 @@ rsconnect/
 ^inst/tutorials/.*files$
 ^inst/tutorials/deploy.R$
 man/figures/dsbox-fullsize.png
+^cran-comments\.md$

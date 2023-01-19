@@ -67,3 +67,8 @@ tutorials:
 - name: 09-palmerpenguins
   title: Modelling the Palmer Penguins
   url: https://minecr.shinyapps.io/dsbox-09-palmerpenguins/
+- name: 10-dennyslaquinta
+  title: La Quinta is Spanish for \"Next to Denny's\"
+  url: https://minecr.shinyapps.io/dsbox-10-dennyslaquinta/
+
+

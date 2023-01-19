@@ -34,7 +34,7 @@ penguins <- penguins
 ```
 
 ```{r unit-conversion}
-penguins <- penguins %>%
+penguins <- penguins |>
   mutate(
     body_mass_kg = 0.001 * body_mass_g,
     flipper_length_cm = 0.1 * flipper_length_mm,
@@ -44,7 +44,7 @@ penguins <- penguins %>%
 ```
 
 ```{r mass-vs-flipper-r2-setup}
-penguins <- penguins %>%
+penguins <- penguins |>
   mutate(
     body_mass_kg = 0.001 * body_mass_g,
     flipper_length_cm = 0.1 * flipper_length_mm,
@@ -52,13 +52,13 @@ penguins <- penguins %>%
     bill_depth_cm = 0.1 * bill_depth_mm
   ) 
   
-mass_flip_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+mass_flip_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(body_mass_kg ~ flipper_length_cm, data = penguins)
 ```
 
 ```{r mass-vs-species-r2-setup}
-penguins <- penguins %>%
+penguins <- penguins |>
   mutate(
     body_mass_kg = 0.001 * body_mass_g,
     flipper_length_cm = 0.1 * flipper_length_mm,
@@ -66,13 +66,13 @@ penguins <- penguins %>%
     bill_depth_cm = 0.1 * bill_depth_mm
   ) 
 
-mass_spec_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+mass_spec_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(body_mass_kg ~ species, data = penguins)
 ```
 
 ```{r mass-vs-bill-length-r2-setup}
-penguins <- penguins %>%
+penguins <- penguins |>
   mutate(
     body_mass_kg = 0.001 * body_mass_g,
     flipper_length_cm = 0.1 * flipper_length_mm,
@@ -80,13 +80,13 @@ penguins <- penguins %>%
     bill_depth_cm = 0.1 * bill_depth_mm
   ) 
 
-mass_len_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+mass_len_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(body_mass_kg ~ bill_length_cm, data = penguins)
 ```
 
 ```{r mass-vs-bill-depth-r2-setup}
-penguins <- penguins %>%
+penguins <- penguins |>
   mutate(
     body_mass_kg = 0.001 * body_mass_g,
     flipper_length_cm = 0.1 * flipper_length_mm,
@@ -94,13 +94,13 @@ penguins <- penguins %>%
     bill_depth_cm = 0.1 * bill_depth_mm
   ) 
   
-mass_dep_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+mass_dep_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(body_mass_kg ~ bill_depth_cm, data = penguins)
 ```
 
 ```{r predict-newflip-setup}
-penguins <- penguins %>%
+penguins <- penguins |>
   mutate(
     body_mass_kg = 0.001 * body_mass_g,
     flipper_length_cm = 0.1 * flipper_length_mm,
@@ -108,14 +108,14 @@ penguins <- penguins %>%
     bill_depth_cm = 0.1 * bill_depth_mm
   )
 
-mass_flip_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+mass_flip_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(body_mass_kg ~ flipper_length_cm, data = penguins)
 newflip <- data.frame(flipper_length_cm = seq(17, 24, by = 0.1))
 ```
 
 ```{r final-plot-setup}
-penguins <- penguins %>%
+penguins <- penguins |>
   mutate(
     body_mass_kg = 0.001 * body_mass_g,
     flipper_length_cm = 0.1 * flipper_length_mm,
@@ -123,8 +123,8 @@ penguins <- penguins %>%
     bill_depth_cm = 0.1 * bill_depth_mm
     ) 
 
-mass_flip_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+mass_flip_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(body_mass_kg ~ flipper_length_cm, data = penguins)
 
 newflip <- data.frame(flipper_length_cm = seq(17, 24, by = 0.1))
@@ -217,7 +217,7 @@ In the following code block, use `mutate()` to add the new variable `body_mass_g
 Note that 1 gram = 0.001 kilogram.
 
 ```{r body-mass-kg, exercise=TRUE}
-penguins <- penguins %>% 
+penguins <- penguins |> 
   ___ 
 ```
 
@@ -226,17 +226,17 @@ Use the 'mutate()' function!
 ```
 
 ```{r body-mass-kg-hint-2}
-penguins <- penguins %>%
+penguins <- penguins |>
   mutate(___) 
 ```
 
 ```{r body-mass-kg-hint-3}
-penguins <- penguins %>%
+penguins <- penguins |>
   mutate(body_mass_kg = ___) 
 ```
 
 ```{r body-mass-kg-solution}
-penguins <- penguins %>%
+penguins <- penguins |>
   mutate(body_mass_kg = 0.001 * body_mass_g)
 ```
 
@@ -254,22 +254,22 @@ Note that 1 millimetre = 0.1 centimetre.
 Using the `mutate()` function, create the variable `flipper_length_cm`.
 
 ```{r flipper-cm, exercise=TRUE}
-penguins <- penguins %>%
+penguins <- penguins |>
   ___ 
 ```
 
 ```{r flipper-cm-hint-1}
-penguins <- penguins %>%
+penguins <- penguins |>
   mutate(___)
 ```
 
 ```{r flipper-cm-hint-2}
-penguins <- penguins %>%
+penguins <- penguins |>
   mutate(flipper_length_cm = ___)
 ```
 
 ```{r flipper-cm-solution}
-penguins <- penguins %>%
+penguins <- penguins |>
   mutate(flipper_length_cm = 0.1 * flipper_length_mm)
 ```
 
@@ -282,7 +282,7 @@ grade_this_code("The new variable has been added.")
 Create the variable `bill_length_cm`.
 
 ```{r bill-length-cm, exercise=TRUE}
-penguins <- penguins %>%
+penguins <- penguins |>
   ___ 
 ```
 
@@ -291,12 +291,12 @@ Refer to the previous exercise, it's pretty similar!
 ```
 
 ```{r bill-length-cm-hint-2}
-penguins <- penguins %>%
+penguins <- penguins |>
   mutate(bill_length_cm = ___)
 ```
 
 ```{r bill-length-cm-solution}
-penguins <- penguins %>%
+penguins <- penguins |>
   mutate(bill_length_cm = 0.1 * bill_length_mm)
 ```
 
@@ -309,7 +309,7 @@ grade_this_code("The new varible has been created.")
 Create the variable `bill_depth_cm`.
 
 ```{r bill-depth-cm, exercise=TRUE}
-penguins <- penguins %>%
+penguins <- penguins |>
   ___ 
 ```
 
@@ -318,12 +318,12 @@ Look at previous exercises for help.
 ```
 
 ```{r bill-depth-cm-hint-2}
-penguins_new <- penguins %>%
+penguins_new <- penguins |>
   mutate(bill_depth_cm = ___)
 ```
 
 ```{r bill-depth-cm-solution}
-penguins <- penguins %>%
+penguins <- penguins |>
   mutate(bill_depth_cm = 0.1 * bill_depth_mm)
 ```
 
@@ -457,15 +457,15 @@ Linear regression using ordinary least squares (OLS) is implemented by using the
 The `tidy()` function can be used to view the attributes of the model.
 
 ```{r mass-vs-flipper, exercise=TRUE, exercise.setup = "unit-conversion"}
-mass_flip_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+mass_flip_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(body_mass_kg ~ flipper_length_cm, data = penguins)
 tidy(mass_flip_fit)
 ```
 
 ```{r mass-vs-flipper-solution}
-mass_flip_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+mass_flip_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(body_mass_kg ~ flipper_length_cm, data = penguins)
 tidy(mass_flip_fit)
 ```
@@ -552,22 +552,22 @@ Look at the previous question for help!
 ```
 
 ```{r mass-vs-species-hint-2}
-mass_spec_fit <- linear_reg() %>%
-  set_engine("___") %>%
+mass_spec_fit <- linear_reg() |>
+  set_engine("___") |>
   fit(___ ~ ___, data = ___)
 tidy(___)
 ```
 
 ```{r mass-vs-species-hint-3}
-mass_spec_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+mass_spec_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(body_mass_kg ~ ___, data = ___)
 tidy(mass_spec_fit)
 ```
 
 ```{r mass-vs-species-solution}
-mass_spec_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+mass_spec_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(body_mass_kg ~ species, data = penguins)
 tidy(mass_spec_fit)
 ```
@@ -656,22 +656,22 @@ Look at the previous exercises for help!
 ```
 
 ```{r mass-vs-bill-length-hint-2}
-mass_len_fit <- linear_reg() %>%
-  set_engine("___") %>%
+mass_len_fit <- linear_reg() |>
+  set_engine("___") |>
   fit(___ ~ ___, data = ___)
 tidy(mass_len_fit)
 ```
 
 ```{r mass-vs-bill-length-hint-3}
-mass_len_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+mass_len_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(___ ~ bill_length_cm, data = ___)
 tidy(mass_len_fit)
 ```
 
 ```{r mass-vs-bill-length-solution}
-mass_len_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+mass_len_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(body_mass_kg ~ bill_length_cm, data = penguins)
 tidy(mass_len_fit)
 ```
@@ -703,22 +703,22 @@ Look at previous questions for help!
 ```
 
 ```{r mass-vs-bill-depth-hint-2}
-mass_dep_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+mass_dep_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(___ ~ ___, data = ___)
 tidy(mass_dep_fit)
 ```
 
 ```{r mass-vs-bill-depth-hint-3}
-mass_dep_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+mass_dep_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(body_mass_kg ~ ___, data = ___)
 tidy(mass_dep_fit)
 ```
 
 ```{r mass-vs-bill-depth-solution}
-mass_dep_fit <- linear_reg() %>%
-  set_engine("lm") %>%
+mass_dep_fit <- linear_reg() |>
+  set_engine("lm") |>
   fit(body_mass_kg ~ bill_depth_cm, data = penguins)
 tidy(mass_dep_fit)
 ```

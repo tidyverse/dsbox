@@ -44,7 +44,7 @@ stem_categories <- c(
 ```
 
 ```{r setup-major-type}
-college_recent_grads <- fivethirtyeight::college_recent_grads %>%
+college_recent_grads <- fivethirtyeight::college_recent_grads |>
   mutate(major_type = ifelse(major_category %in% stem_categories, "stem", "not stem"))
 ```
 
@@ -148,7 +148,7 @@ We use the `arrange()` function to do this, and sort it by the `unemployment_rat
 By default `arrange()` sorts in ascending order, which is what we want here – we’re interested in the major with the *lowest* unemployment rate.
 
 ```{r lowest-unemployment-rate, exercise=TRUE}
-college_recent_grads %>%
+college_recent_grads |>
   arrange(unemployment_rate)
 ```
 
@@ -160,8 +160,8 @@ The name of the major takes up a lot of space on the page, and so some of the va
 We can use the `select()` function to choose which variables to display, and in which order:
 
 ```{r lowest-unemployment-select, exercise=TRUE}
-college_recent_grads %>%
-  arrange(unemployment_rate) %>%
+college_recent_grads |>
+  arrange(unemployment_rate) |>
   select(rank, major, unemployment_rate)
 ```
 
@@ -176,8 +176,8 @@ In short, `select()` keeps variables while `relocate()`, well, relocates them!
 Use `relocate()` in the following code block to move `rank`, `major` and `unemployment_rate` to the front, and compare the output with that of the `select()` function above.
 
 ```{r lowest-unemployment-relocate, exercise=TRUE}
-college_recent_grads %>%
-  arrange(unemployment_rate) %>%
+college_recent_grads |>
+  arrange(unemployment_rate) |>
   relocate(rank, major, unemployment_rate)
 ```
 
@@ -188,8 +188,8 @@ For example, if earlier we were interested in the major with the highest unemplo
 Note that the `desc()` function specifies that we want `unemployment_rate` in descending order.
 
 ```{r highest-unemployment-rate, exercise=TRUE}
-college_recent_grads %>%
-  arrange(desc(unemployment_rate)) %>%
+college_recent_grads |>
+  arrange(desc(unemployment_rate)) |>
   select(rank, major, unemployment_rate)
 ```
 
@@ -199,37 +199,37 @@ Using what you’ve learned so far, arrange the data in descending order with re
 Show only the top 3 majors by adding `top_n(3)` at the end of the pipeline.
 
 ```{r highest-percentage-women, exercise=TRUE}
-college_recent_grads %>%
-  ___(desc(___)) %>%
-  select(major, total, ___) %>%
+college_recent_grads |>
+  ___(desc(___)) |>
+  select(major, total, ___) |>
   ___
 ```
 
 ```{r highest-percentage-women-hint-1}
-college_recent_grads %>%
-  arrange(desc(___)) %>%
-  select(major, total, ___) %>%
+college_recent_grads |>
+  arrange(desc(___)) |>
+  select(major, total, ___) |>
   ___
 ```
 
 ```{r highest-percentage-women-hint-2}
-college_recent_grads %>%
-  arrange(desc(sharewomen)) %>%
-  select(major, total, ___) %>%
+college_recent_grads |>
+  arrange(desc(sharewomen)) |>
+  select(major, total, ___) |>
   ___
 ```
 
 ```{r highest-percentage-women-hint-3}
-college_recent_grads %>%
-  arrange(desc(sharewomen)) %>%
-  select(major, total, sharewomen) %>%
+college_recent_grads |>
+  arrange(desc(sharewomen)) |>
+  select(major, total, sharewomen) |>
   ___
 ```
 
 ```{r highest-percentage-women-solution}
-college_recent_grads %>%
-  arrange(desc(sharewomen)) %>%
-  select(major, total, sharewomen) %>%
+college_recent_grads |>
+  arrange(desc(sharewomen)) |>
+  select(major, total, sharewomen) |>
   top_n(3)
 ```
 
@@ -346,7 +346,7 @@ quiz(
 We can also calculate summary statistics for this distribution using the summarise function:
 
 ```{r summary-stats, exercise=TRUE}
-college_recent_grads %>%
+college_recent_grads |>
   summarise(min = min(median), max = max(median),
             mean = mean(median), med = median(median),
             sd = sd(median), 
@@ -443,36 +443,36 @@ Use the partial code block below to arrange all major categories in descending o
 
 ```{r highest-typical-income, exercise=TRUE, message=FALSE}
 college_recent_grads ___
-  ___(___) %>%
-  ___(avg_mean_income = ___(___)) %>%
+  ___(___) |>
+  ___(avg_mean_income = ___(___)) |>
   ___(___(avg_mean_income))
 ```
 
 ```{r highest-typical-income-hint-1}
-college_recent_grads %>%
-  group_by(major_category) %>%
-  ___(avg_mean_income = ___(___)) %>%
+college_recent_grads |>
+  group_by(major_category) |>
+  ___(avg_mean_income = ___(___)) |>
   ___(___(avg_mean_income))
 ```
 
 ```{r highest-typical-income-hint-2}
-college_recent_grads %>%
-  group_by(major_category) %>%
-  summarise(avg_mean_income = ___(median)) %>%
+college_recent_grads |>
+  group_by(major_category) |>
+  summarise(avg_mean_income = ___(median)) |>
   ___(___(avg_mean_income))
 ```
 
 ```{r highest-typical-income-hint-3}
-college_recent_grads %>%
-  group_by(major_category) %>%
-  summarise(avg_mean_income = mean(median)) %>%
+college_recent_grads |>
+  group_by(major_category) |>
+  summarise(avg_mean_income = mean(median)) |>
   ___(___(avg_mean_income))
 ```
 
 ```{r highest-typical-income-solution}
-college_recent_grads %>%
-  group_by(major_category) %>%
-  summarise(avg_mean_income = mean(median)) %>%
+college_recent_grads |>
+  group_by(major_category) |>
+  summarise(avg_mean_income = mean(median)) |>
   arrange(desc(avg_mean_income))
 ```
 
@@ -509,14 +509,14 @@ Which major category has the fewest majors in this sample? To answer this questi
 Add to the pipeline appropriately to arrange the results so that the major with the lowest observations is on top.
 
 ```{r least-popular-major, exercise=TRUE}
-college_recent_grads %>%
-  count(major_category) %>%
+college_recent_grads |>
+  count(major_category) |>
   ___
 ```
 
 ```{r least-popular-major-solution}
-college_recent_grads %>%
-  count(major_category) %>%
+college_recent_grads |>
+  count(major_category) |>
   arrange(n)
 ```
 
@@ -567,7 +567,7 @@ stem_categories <- c("Biology & Life Science",
 Then, we can use this to create a new variable in our data frame indicating whether a major is STEM or not.
 
 ```{r stem-or-not-ex, exercise=TRUE}
-college_recent_grads <- college_recent_grads %>%
+college_recent_grads <- college_recent_grads |>
   mutate(major_type = ifelse(major_category %in% stem_categories, "stem", "not stem"))
 ```
 
@@ -592,7 +592,7 @@ Other logical operators that are commonly used are
 We can use the logical operators to also filter our data for STEM majors whose median earnings is less than median for all majors’s median earnings, which we found to be $36,000 earlier.
 
 ```{r medians-less-than-avg, exercise=TRUE, exercise.setup = "setup-major-type"}
-college_recent_grads %>%
+college_recent_grads |>
   filter(
     major_type == "stem",
     median < 36000
@@ -605,52 +605,52 @@ Modify the above code to show only the major name and median, 25th percentile, a
 The data should be sorted such that the major with the highest median earning is on top.
 
 ```{r median-less-than-avg, exercise=TRUE, exercise.setup = "setup-major-type"}
-college_recent_grads %>%
+college_recent_grads |>
   filter(
     major_type == "stem",
     median < 36000
     ) ___
-  ___(___, p25th, ___, p75th) %>%
+  ___(___, p25th, ___, p75th) |>
   arrange(___)
 ```
 
 ```{r median-less-than-avg-hint-1}
-college_recent_grads %>%
+college_recent_grads |>
   filter(
     major_type == "stem",
     median < 36000
-    ) %>%
-  ___(___, p25th, ___, p75th) %>%
+    ) |>
+  ___(___, p25th, ___, p75th) |>
   arrange(___)
 ```
 
 ```{r median-less-than-avg-hint-2}
-college_recent_grads %>%
+college_recent_grads |>
   filter(
     major_type == "stem",
     median < 36000
-    ) %>%
-  select(___, p25th, ___, p75th) %>%
+    ) |>
+  select(___, p25th, ___, p75th) |>
   arrange(___)
 ```
 
 ```{r median-less-than-avg-hint-3}
-college_recent_grads %>%
+college_recent_grads |>
   filter(
     major_type == "stem",
     median < 36000
-    ) %>%
-  select(major, p25th, median, p75th) %>%
+    ) |>
+  select(major, p25th, median, p75th) |>
   arrange(___)
 ```
 
 ```{r median-less-than-avg-solution}
-college_recent_grads %>%
+college_recent_grads |>
   filter(
     major_type == "stem",
     median < 36000
-    ) %>%
-  select(major, p25th, median, p75th) %>%
+    ) |>
+  select(major, p25th, median, p75th) |>
   arrange(desc(median))
 ```
 
