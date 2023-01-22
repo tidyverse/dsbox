@@ -8,10 +8,10 @@
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 2867 rows and 9 columns.
 \describe{
 \item{harass5}{Response to the questions "Over the past five years, have you been harassed by your superiors or co-workers at your job, for example, have you experienced any bullying, physical or psychological abuse?" Possible answers are Yes, No and Does not apply.}
-\item{emailmin}{Number of minutes spent on email weekly, extra to the hours in emailhrs (e.g. emailmin = 30 for 2.5 hours on email).}
+\item{emailmin}{Number of minutes spent on email weekly; extra to the hours in emailhrs (e.g. emailmin = 30 for 2.5 hours on email).}
 \item{emailhr}{Number of hours spent on email weekly.}
 \item{educ}{Number of years in education.}
-\item{polviews}{Political views. Possible answers are Extremely liberal, Liberal, Slightly liberal, Moderate, Slghtly conservative, Conservative, Extrmly conservative.}
+\item{polviews}{Political views. Possible answers are Extremely liberal, Liberal, Slightly liberal, Moderate, Slightly conservative, Conservative, Extremely conservative.}
 \item{advfront}{Response to the question "Even if it brings no immediate benefits, scientific research that advances the frontiers of knowledge is necessary and should be supported by the federal government." Possible answers are Strongly agree, Agree, Dont know, Disagree and Strongly Disagree.}
 \item{snapchat}{Whether respondant uses Snapchat or not.}
 \item{instagram}{Whether respondant uses Instagram or not.}
@@ -31,7 +31,7 @@ Hundreds of trends have been tracked since 1972. In addition, since the GSS
 adopted questions from earlier surveys, trends can be followed for up to 70 years.
 The GSS contains a standard core of demographic, behavioral, and attitudinal
 questions, plus topics of special interest. Among the topics covered are civil
-liberties, crime and violence, intergroup tolerance, morality, national spending
+liberties, crime and violence, inter-group tolerance, morality, national spending
 priorities, psychological well-being, social mobility, and stress and traumatic events.
 }
 \details{

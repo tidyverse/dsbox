@@ -14,8 +14,8 @@
 #'   \item{class_year}{What is your class year? (First-year, Sophomore, Junior, Senior)}
 #'   \item{hair_color}{What color hair do you have? (Brown, Blonde, Black)}
 #'   \item{campus}{What campus do you live on? (East, West, Central, Off campus)}
-#'   \item{watch_sports}{What is your favorite sport to watch? (Basketball, Football, Soccer, Other, I dont watch sports)}
-#'   \item{beyonce_love}{DO YOU LOVE BEYONCE? (hell yes, yes, meh, no, I don't care. \#teamnicki)}
+#'   \item{watch_sports}{What is your favorite sport to watch? (Basketball, Football, Soccer, Other, I don't watch sports)}
+#'   \item{beyonce_love}{Do you love Beyonce? (hell yes, yes, meh, no, I don't care. \#teamnicki)}
 #'   \item{fav_artist}{Who is your favorite artist? (Beyonce, Taylor swift, Kanye West, Kendrick Lamar, Florida-Georgia Line, none of these)}
 #'   \item{social_network}{Favorite social network? (Facebook, Twitter, Instagram, Yikyak, Vine, Snapchat, Youtube, I don't use social media)}
 #'   \item{relationship_status}{Are you currently in a relationship? (yes, no, it's complicated)}
@@ -46,9 +46,9 @@
 #'   \item{game_of_thrones}{Who shall rule the Realm? (House Targaryen, House Tyrell, House Stark, House Lannister, House Martell, House Greyjoy, I don't know what you are talking about)}
 #'   \item{netflix_binge_show}{What is your Netflix binge show? (House of Cards, Gilmore Girls, Breaking Bad, How I Met Your Mother, Friends, Battlestar Galactica)}
 #'   \item{chipotle_order}{What do you order at Chipotle? (Burrito Bowl, Quesadilla, Salad, Margarita (no food), Hard tacos, Soft tacos, Burrito)}
-#'   \item{fav_pokemon}{What is your favorite pokemon? (Charizard, Blastoise, Venusaur, Jigglypuff, Rayquaza)}
+#'   \item{fav_pokemon}{What is your favorite Pokemon? (Charizard, Blastoise, Venusaur, Jigglypuff, Rayquaza)}
 #'   \item{first_tooth}{When did you lose your first tooth?}
-#'   \item{fav_cheese}{What is your favorite cheese? (Blue, Goat, Feta, Cheddar, Pepperjack, Brie, None of the above)}
+#'   \item{fav_cheese}{What is your favorite cheese? (Blue, Goat, Feta, Cheddar, Pepper Jack, Brie, None of the above)}
 #'   \item{cat_or_dog}{Cat or Dog? (Cat, Dog, I'm not an animal person)}
 #'   \item{fav_late_night_food}{What is your late night food of choice? (Pizza, Jimmy John's, Cosmic, Cookout, Pitchforks)}
 #'   \item{fav_dessert_flavor}{What your favorite dessert flavor? (chocolate, vanilla, fruity, sour, sweet-and-salty, other, I don't eat dessert because I don't like fun)}

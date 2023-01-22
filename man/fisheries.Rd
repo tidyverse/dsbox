@@ -8,7 +8,7 @@
 A tibble with 75 rows and 3 variables:
 \describe{
 \item{country}{Name of country}
-\item{capture}{Tonnage from capture, including fish, crustaceans, molluscs, etc.}
+\item{capture}{Tonnage from capture, including fish, crustaceans, mollusks, etc.}
 \item{aquaculture}{Tonnage from aquaculture}
 }
 }

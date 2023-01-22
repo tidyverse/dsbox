@@ -9,7 +9,7 @@ A tibble with 13,245 rows and 10 variables:
 \describe{
 \item{id}{ID number of the listing}
 \item{price}{Price, in GBP, for one night stay}
-\item{neighbourhood}{Neighbourhood listing is located in}
+\item{neighborhood}{neighborhood listing is located in}
 \item{accommodates}{Number of people listing accommodates}
 \item{bathrooms}{Number of bathrooms}
 \item{bedrooms}{Number of bedrooms}
@@ -29,7 +29,7 @@ edibnb
 Recent developments in Edinburgh regarding the growth of Airbnb and its
 impact on the housing market means a better understanding of the Airbnb
 listings is needed. Using data provided by Airbnb, we can explore how Airbnb
-availability and prices vary by neighbourhood.
+availability and prices vary by neighborhood.
 }
 \details{
 The data come from the
