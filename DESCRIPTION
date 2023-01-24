@@ -31,10 +31,10 @@ Suggests:
 Depends: 
     R (>= 4.1)
 License: MIT + file LICENSE
-URL: https://rstudio-education.github.io/dsbox,
+URL: https://rstudio-education.github.io/dsbox/,
     https://github.com/rstudio-education/dsbox
 BugReports: https://github.com/rstudio-education/dsbox/issues
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 Remotes: 
-    rstudio-education/gradethis
+    rstudio/gradethis

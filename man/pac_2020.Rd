@@ -16,7 +16,7 @@ A tibble with 226 rows and 6 variables:
 }
 }
 \source{
-https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs
+https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/2022
 }
 \usage{
 pac_2020
@@ -32,10 +32,10 @@ money their candidates raise and where that money comes from.
 In the United States, “only American citizens (and immigrants with green
 cards) can contribute to federal politics, but the American divisions of
 foreign companies can form political action committees (PACs) and collect
-contributions from their American employees.” (Source: \href{https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs}{OpenSecrets.org})
+contributions from their American employees.” (Source: \href{https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/2022}{OpenSecrets.org})
 
 The data come from the
-\href{https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs}{OpenSecrets.org}.
+\href{https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/2022}{OpenSecrets.org}.
 
 The data were scraped from the OpenSecrets.org website in June 2020.
 It is part of a series of similar datasets in this package consisting of

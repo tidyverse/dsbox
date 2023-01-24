@@ -8,7 +8,7 @@
 #' The data come from the
 #' [Kaggle database](https://www.kaggle.com/thoroc/edinburgh-inside-airbnb/version/2),
 #' and was originally distributed by
-#' [Inside Airbnb](http://insideairbnb.com/get-the-data.html) on 25 June 2019.
+#' [Inside Airbnb](http://insideairbnb.com/get-the-data/) on 25 June 2019.
 #'
 #' The data has been modified to better serve the goals of introductory data science education.
 #'

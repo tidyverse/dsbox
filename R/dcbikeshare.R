@@ -20,8 +20,8 @@
 #' [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset). Sources of the
 #' data itself are
 #' [Capital Bikeshare](https://www.capitalbikeshare.com/system-data),
-#' [freemeteo.co.uk](http://www.freemeteo.co.uk) for weather data, and
-#' [dv.gov](http://dchr.dc.gov/page/holiday-schedule) for the holiday schedule.
+#' [i-weather.com](https://i-weather.com/) for weather data, and
+#' [dc.gov](https://dchr.dc.gov/page/holiday-schedules) for the holiday schedule.
 #'
 #' The data have been modified to better serve the goals of introductory data science education.
 #'

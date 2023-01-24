@@ -4,10 +4,10 @@
 #' looking to prevent them.
 #'
 #' The data come from the UK Government at
-#' [data.gov.uk](https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data).
+#' [roadtraffic.dft.gov.uk](https://roadtraffic.dft.gov.uk/custom-downloads/road-accidents).
 #' It's been modified to better serve the goals of introductory data science education.
 #'
-#' @source https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data
+#' @source https://roadtraffic.dft.gov.uk/custom-downloads/road-accidents
 #' @format A tibble with 768 rows and 31 variables:
 #' \describe{
 #'   \item{id}{Accident ID}

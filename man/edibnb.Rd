@@ -35,7 +35,7 @@ availability and prices vary by neighborhood.
 The data come from the
 \href{https://www.kaggle.com/thoroc/edinburgh-inside-airbnb/version/2}{Kaggle database},
 and was originally distributed by
-\href{http://insideairbnb.com/get-the-data.html}{Inside Airbnb} on 25 June 2019.
+\href{http://insideairbnb.com/get-the-data/}{Inside Airbnb} on 25 June 2019.
 
 The data has been modified to better serve the goals of introductory data science education.
 }

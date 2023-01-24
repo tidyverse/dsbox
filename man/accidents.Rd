@@ -41,7 +41,7 @@ A tibble with 768 rows and 31 variables:
 }
 }
 \source{
-https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data
+https://roadtraffic.dft.gov.uk/custom-downloads/road-accidents
 }
 \usage{
 accidents
@@ -52,7 +52,7 @@ looking to prevent them.
 }
 \details{
 The data come from the UK Government at
-\href{https://data.gov.uk/dataset/cb7ae6f0-4be6-4935-9277-47e5ce24a11f/road-safety-data}{data.gov.uk}.
+\href{https://roadtraffic.dft.gov.uk/custom-downloads/road-accidents}{roadtraffic.dft.gov.uk}.
 It's been modified to better serve the goals of introductory data science education.
 }
 \examples{
