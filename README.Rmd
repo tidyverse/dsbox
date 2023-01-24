@@ -23,21 +23,19 @@ The goal of dsbox is to supplement the Data Science Course in a Box project. The
 
 ## Installation
 
-<!--
-
 You can install the released version of dsbox from [CRAN](https://CRAN.R-project.org) with:
 
-``` r
+```{r}
+#| eval: false
+
 install.packages("dsbox")
 ```
-And the development version from [GitHub](https://github.com/) with:
 
--->
+And the development version from [GitHub](https://github.com/rstudio-education/dsbox) with:
 
-dsbox is not yet on CRAN. For now, you can install it from GitHub with
+```{r}
+#| eval: false
 
-```{r, eval=FALSE}
-# install.packages("devtools")
 devtools::install_github("rstudio-education/dsbox")
 ```
 

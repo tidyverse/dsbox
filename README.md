@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/rstudio-education/dsbox/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio-education/dsbox/actions)
+[![R-CMD-check](https://github.com/evandragich/dsbox/workflows/R-CMD-check/badge.svg)](https://github.com/evandragich/dsbox/actions)
 <!-- badges: end -->
 
 The goal of dsbox is to supplement the Data Science Course in a Box
@@ -15,21 +15,17 @@ tutorials.
 
 ## Installation
 
-<!--
-
-You can install the released version of dsbox from [CRAN](https://CRAN.R-project.org) with:
+You can install the released version of dsbox from
+[CRAN](https://CRAN.R-project.org) with:
 
 ``` r
 install.packages("dsbox")
 ```
-And the development version from [GitHub](https://github.com/) with:
 
--->
-
-dsbox is not yet on CRAN. For now, you can install it from GitHub with
+And the development version from
+[GitHub](https://github.com/rstudio-education/dsbox) with:
 
 ``` r
-# install.packages("devtools")
 devtools::install_github("rstudio-education/dsbox")
 ```
 
