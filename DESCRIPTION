@@ -6,7 +6,7 @@ Authors@R: c(
     person("Mine", "\u00C7etinkaya-Rundel", email = "cetinkaya.mine@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-6452-2420")),
     person("Lee", "Suddaby", email = "leesuddaby@gmail.com", role = c("ctb")),
     person("Zeno", "Kujawa", email = "zeno.kujawa@gmail.com", role = c("ctb")),
-    person("Evan", "Dragich", email = "evandragich@gmail.com", role = c("ctb")),
+    person("Evan", "Dragich", email = "evandragich@gmail.com", role = c("ctb"),  comment = c(ORCID = "0000-0001-9751-1840")),
     person("RStudio", role = c("cph", "fnd"))
     )
 Description: Datasets accompanying Data Science Course in a Box, an 
@@ -31,10 +31,10 @@ Suggests:
 Depends: 
     R (>= 4.1)
 License: MIT + file LICENSE
-URL: https://rstudio-education.github.io/dsbox,
+URL: https://rstudio-education.github.io/dsbox/,
     https://github.com/rstudio-education/dsbox
 BugReports: https://github.com/rstudio-education/dsbox/issues
 RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 Remotes: 
-    rstudio-education/gradethis
+    rstudio/gradethis

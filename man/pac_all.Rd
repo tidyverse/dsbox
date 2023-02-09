@@ -17,7 +17,7 @@ A tibble with 2156 rows and 7 variables:
 }
 }
 \source{
-https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs
+https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/2022
 }
 \usage{
 pac_all
@@ -36,7 +36,7 @@ foreign companies can form political action committees (PACs) and collect
 contributions from their American employees.” (source: OpenSecrets.org)
 
 The data come from the
-\href{https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs}{OpenSecrets.org}.
+\href{https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/2022}{OpenSecrets.org}.
 
 The data were scraped from the OpenSecrets.org website in June 2020.
 It is part of a series of similar datasets in this package consisting of

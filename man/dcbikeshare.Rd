@@ -53,8 +53,8 @@ The dataset comes from
 \href{http://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset}{UCI Machine Learning Repository}. Sources of the
 data itself are
 \href{https://www.capitalbikeshare.com/system-data}{Capital Bikeshare},
-\href{http://www.freemeteo.co.uk}{freemeteo.co.uk} for weather data, and
-\href{http://dchr.dc.gov/page/holiday-schedule}{dv.gov} for the holiday schedule.
+\href{https://i-weather.com/}{i-weather.com} for weather data, and
+\href{https://dchr.dc.gov/page/holiday-schedules}{dc.gov} for the holiday schedule.
 
 The data have been modified to better serve the goals of introductory data science education.
 }

@@ -9,10 +9,10 @@
 #' In the United States, “only American citizens (and immigrants with green
 #' cards) can contribute to federal politics, but the American divisions of
 #' foreign companies can form political action committees (PACs) and collect
-#' contributions from their American employees.” (Source: [OpenSecrets.org](https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs))
+#' contributions from their American employees.” (Source: [OpenSecrets.org](https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/2022))
 #'
 #' The data come from the
-#' [OpenSecrets.org](https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs).
+#' [OpenSecrets.org](https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/2022).
 #'
 #' The data were scraped from the OpenSecrets.org website in June 2020.
 #' It is part of a series of similar datasets in this package consisting of
@@ -22,7 +22,7 @@
 #' contributions for the 2020 election cycle, with some cleaning also done to
 #' make it more accessible in introductory data science education.
 #'
-#' @source https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs
+#' @source https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/2022
 #' @format A tibble with 226 rows and 6 variables:
 #' \describe{
 #'   \item{name}{Name of company (American divisions of a foreign company)}

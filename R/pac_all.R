@@ -12,7 +12,7 @@
 #' contributions from their American employees.” (source: OpenSecrets.org)
 #'
 #' The data come from the
-#' [OpenSecrets.org](https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs).
+#' [OpenSecrets.org](https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/2022).
 #'
 #' The data were scraped from the OpenSecrets.org website in June 2020.
 #' It is part of a series of similar datasets in this package consisting of
@@ -22,7 +22,7 @@
 #' contributions for all available elections cycles, in raw form as it was when
 #' scraped from the website on 11 Nov 2020.
 #'
-#' @source https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs
+#' @source https://www.opensecrets.org/political-action-committees-pacs/foreign-connected-pacs/2022
 #' @format A tibble with 2156 rows and 7 variables:
 #' \describe{
 #'   \item{name}{Name of company (American divisions of a foreign company)}

@@ -3,12 +3,12 @@
 #' Recent developments in Edinburgh regarding the growth of Airbnb and its
 #' impact on the housing market means a better understanding of the Airbnb
 #' listings is needed. Using data provided by Airbnb, we can explore how Airbnb
-#' availability and prices vary by neighbourhood.
+#' availability and prices vary by neighborhood.
 #'
 #' The data come from the
 #' [Kaggle database](https://www.kaggle.com/thoroc/edinburgh-inside-airbnb/version/2),
 #' and was originally distributed by
-#' [Inside Airbnb](http://insideairbnb.com/get-the-data.html) on 25 June 2019.
+#' [Inside Airbnb](http://insideairbnb.com/get-the-data/) on 25 June 2019.
 #'
 #' The data has been modified to better serve the goals of introductory data science education.
 #'
@@ -17,7 +17,7 @@
 #' \describe{
 #'   \item{id}{ID number of the listing}
 #'   \item{price}{Price, in GBP, for one night stay}
-#'   \item{neighbourhood}{Neighbourhood listing is located in}
+#'   \item{neighborhood}{neighborhood listing is located in}
 #'   \item{accommodates}{Number of people listing accommodates}
 #'   \item{bathrooms}{Number of bathrooms}
 #'   \item{bedrooms}{Number of bedrooms}
