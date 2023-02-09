@@ -55,7 +55,7 @@ a list of breweries in North Carolina as of that date.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="va">ncbreweries</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="va">ncbreweries</span></span></code></pre></div>
     </div>
 
     <div id="format">
@@ -90,21 +90,21 @@ a list of breweries in North Carolina as of that date.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">ncbreweries</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">ncbreweries</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 251 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    name                         city          type  beercount   est status url  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    name                         city          type    beerc…¹   est status url  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 217 Brew Works               Wilson        Micr…        10  <span style="text-decoration: underline;">2</span>017 Active http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 3rd Rock Brewing Company     Trenton       Micr…        12  <span style="text-decoration: underline;">2</span>016 Active http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 7 Clans Brewing              Cherokee      Clie…         1  <span style="text-decoration: underline;">2</span>018 Active http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Andrews Brewing Company      Andrews       Micr…        18  <span style="text-decoration: underline;">2</span>014 Active http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Angry Troll Brewing          Elkin         Micr…         8  <span style="text-decoration: underline;">2</span>017 Active http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Appalachian Mountain Brewery Boone         Micr…        78  <span style="text-decoration: underline;">2</span>013 Active http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Archetype Brewing            Asheville     Micr…        15  <span style="text-decoration: underline;">2</span>017 Active http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Asheville Brewing Company    Asheville     Brew…        87  <span style="text-decoration: underline;">2</span>003 Active http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Ass Clown Brewing Company    Cornelius     Micr…       106  <span style="text-decoration: underline;">2</span>011 Active http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Aviator Brewing Company      Fuquay Varina Micr…        59  <span style="text-decoration: underline;">2</span>008 Active http…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 241 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 217 Brew Works               Wilson        Microb…      10  <span style="text-decoration: underline;">2</span>017 Active http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 3rd Rock Brewing Company     Trenton       Microb…      12  <span style="text-decoration: underline;">2</span>016 Active http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 7 Clans Brewing              Cherokee      Client…       1  <span style="text-decoration: underline;">2</span>018 Active http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Andrews Brewing Company      Andrews       Microb…      18  <span style="text-decoration: underline;">2</span>014 Active http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Angry Troll Brewing          Elkin         Microb…       8  <span style="text-decoration: underline;">2</span>017 Active http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Appalachian Mountain Brewery Boone         Microb…      78  <span style="text-decoration: underline;">2</span>013 Active http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Archetype Brewing            Asheville     Microb…      15  <span style="text-decoration: underline;">2</span>017 Active http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Asheville Brewing Company    Asheville     Brewpub      87  <span style="text-decoration: underline;">2</span>003 Active http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Ass Clown Brewing Company    Cornelius     Microb…     106  <span style="text-decoration: underline;">2</span>011 Active http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Aviator Brewing Company      Fuquay Varina Microb…      59  <span style="text-decoration: underline;">2</span>008 Active http…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 241 more rows, and abbreviated variable name ¹​beercount</span></span>
 </code></pre></div>
     </div>
   </div>
@@ -119,7 +119,7 @@ a list of breweries in North Carolina as of that date.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>
