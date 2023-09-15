@@ -234,25 +234,25 @@ are somewhat cleaned and potentially identifiable cases are removed.</p>
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">student_survey</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 80 × 53</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     pets us_reg…¹ class…² hair_…³ campus watch…⁴ beyon…⁵ fav_a…⁶ socia…⁷ relat…⁸</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1 Southea… Junior  Brown   West   Basket… yes     Taylor… Facebo… no     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     0 Southea… First-… Brown   East   Footba… hell y… Taylor… Instag… no     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     0 Not fro… Sophom… Black   West   Soccer  no      none o… Facebo… no     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     1 Pacific… Junior  Brown   Off c… Footba… hell y… Kanye … Snapch… no     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     7 Southwe… Sophom… Brown   West   I don'… hell y… none o… Instag… it's c…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     1 Mid-Atl… Sophom… Brown   West   Basket… hell y… Beyonce Instag… no     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     3 Midwest  First-… Blonde  East   I don'… meh     Taylor… <span style="color: #BB0000;">NA</span>      no     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     0 Mid-Atl… Sophom… Brown   West   Basket… yes     Kanye … Facebo… no     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     1 Mid-Atl… Sophom… Blonde  Centr… Basket… hell y… Taylor… Instag… no     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>     1 Midwest  First-… Brown   East   Basket… yes     none o… Instag… it's c…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 70 more rows, 43 more variables: num_siblings &lt;int&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   num_languages &lt;chr&gt;, nights_drinking &lt;dbl&gt;, pbj_or_n &lt;chr&gt;, tenting &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     pets us_region        class_year hair_color campus watch_sports beyonce_love</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span>     1 Southeast        Junior     Brown      West   Basketball   yes         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span>     0 Southeast        First-year Brown      East   Football     hell yes    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span>     0 Not from the US  Sophomore  Black      West   Soccer       no          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span>     1 Pacific Northwe… Junior     Brown      Off c… Football     hell yes    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span>     7 Southwest        Sophomore  Brown      West   I don't wat… hell yes    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span>     1 Mid-Atlantic     Sophomore  Brown      West   Basketball   hell yes    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span>     3 Midwest          First-year Blonde     East   I don't wat… meh         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span>     0 Mid-Atlantic     Sophomore  Brown      West   Basketball   yes         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span>     1 Mid-Atlantic     Sophomore  Blonde     Centr… Basketball   hell yes    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span>     1 Midwest          First-year Brown      East   Basketball   yes         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 70 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 46 more variables: fav_artist &lt;chr&gt;, social_network &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   relationship_status &lt;chr&gt;, num_siblings &lt;int&gt;, num_languages &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   nights_drinking &lt;dbl&gt;, pbj_or_n &lt;chr&gt;, tenting &lt;chr&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   countries_visited &lt;int&gt;, first_kiss &lt;int&gt;, hours_watching_television &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   perimeter &lt;chr&gt;, fav_campus_eatery &lt;chr&gt;, fb_visits_per_day &lt;int&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ac &lt;chr&gt;, condiment &lt;chr&gt;, vegetarian &lt;chr&gt;, voted_for_president &lt;chr&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   social_club &lt;chr&gt;, space_time &lt;chr&gt;, university_applications &lt;int&gt;,</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   pizza_consumption &lt;dbl&gt;, sick &lt;int&gt;, games_attended &lt;int&gt;, …</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ac &lt;chr&gt;, condiment &lt;chr&gt;, vegetarian &lt;chr&gt;, voted_for_president &lt;chr&gt;, …</span></span>
 </code></pre></div>
     </div>
   </div>
