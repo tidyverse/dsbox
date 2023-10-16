@@ -15,7 +15,7 @@
 #'   \item{hair_color}{What color hair do you have? (Brown, Blonde, Black)}
 #'   \item{campus}{What campus do you live on? (East, West, Central, Off campus)}
 #'   \item{watch_sports}{What is your favorite sport to watch? (Basketball, Football, Soccer, Other, I don't watch sports)}
-#'   \item{beyonce_love}{Do you love Beyonce? (hell yes, yes, meh, no, I don't care. \#teamnicki)}
+#'   \item{beyonce_love}{Do you love Beyonce? (hell yes, yes, meh, no, I don't care. #teamnicki)}
 #'   \item{fav_artist}{Who is your favorite artist? (Beyonce, Taylor swift, Kanye West, Kendrick Lamar, Florida-Georgia Line, none of these)}
 #'   \item{social_network}{Favorite social network? (Facebook, Twitter, Instagram, Yikyak, Vine, Snapchat, Youtube, I don't use social media)}
 #'   \item{relationship_status}{Are you currently in a relationship? (yes, no, it's complicated)}
